@@ -18,25 +18,16 @@ local function turnon(inst)
 end
 
 local function turnoff(inst)
- if inst.components.fueled:IsEmpty() then
-    if inst.components.fueled ~= nil then
-        inst.components.fueled:StopConsuming()
-		inst.Light:Enable(false)
-	    inst:RemoveTag("light")
-    end
+	inst.components.fueled:StopConsuming()
+	inst.Light:Enable(false)
+	inst:RemoveTag("light")
+		
 	inst.SoundEmitter:KillSound("musicbox/sound/playmelody", "christmas")
-	end
 end
 
 local function OnDropped(inst)
 	turnoff(inst)
 	turnon(inst)
-end
-
-local function OnPickup(inst)
-    inst.components.fueled:StopConsuming()	
-    inst.Light:Enable(false)
-	inst.SoundEmitter:KillSound("musicbox/sound/playmelody", "christmas")		
 end
 
 local function MusicBoxCanAcceptFuelItem(self, item)
@@ -101,7 +92,7 @@ local function fn()
 	inst.components.inventoryitem.imagename = "musicbox"
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/musicbox.xml"	
 	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPickupFn(OnPickup)
+    inst.components.inventoryitem:SetOnPutInInventoryFn(turnoff)
 
 	inst:AddComponent("fueled")
 	inst.components.fueled.accepting = true
