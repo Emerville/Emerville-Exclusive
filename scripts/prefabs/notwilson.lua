@@ -50,7 +50,7 @@ local function fn()
 	inst.components.inventoryitem.imagename = "notwilson"
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/notwilson.xml"
 	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPickupFn(OnPickup)
+    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickup)
 	
 	inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE*2.5
