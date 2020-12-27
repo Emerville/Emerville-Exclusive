@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Atlas>
+	<Texture filename="hamlet_hats.tex" />
+	<Elements>
+		<Element name="antmaskhat.tex" u1="0.001" u2="0.24509375" v2="0.999" v1="0.75490625" variant="" />
+		<Element name="bandithat.tex" u1="0.24709375" u2="0.4911875" v2="0.999" v1="0.75490625" variant="" />
+		<Element name="bathat.tex" u1="0.001" u2="0.24509375" v2="0.75290625" v1="0.5088125" variant="" />
+		<Element name="candlehat.tex" u1="0.24709375" u2="0.4911875" v2="0.75290625" v1="0.5088125" variant="" />
+		<Element name="disguisehat.tex" u1="0.4931875" u2="0.73728125" v2="0.999" v1="0.75490625" variant="" />
+		<Element name="gasmaskhat.tex" u1="0.4931875" u2="0.73728125" v2="0.75290625" v1="0.5088125" variant="" />
+		<Element name="metalplatehat.tex" u1="0.73928125" u2="0.983375" v2="0.999" v1="0.75490625" variant="" />
+		<Element name="peagawkfeatherhat.tex" u1="0.73928125" u2="0.983375" v2="0.75290625" v1="0.5088125" variant="" />
+		<Element name="pigcrownhat.tex" u1="0.001" u2="0.24509375" v2="0.5068125" v1="0.26271875" variant="" />
+		<Element name="pithhat.tex" u1="0.001" u2="0.24509375" v2="0.26071875" v1="0.016625" variant="" />
+		<Element name="thunderhat.tex" u1="0.24709375" u2="0.4911875" v2="0.5068125" v1="0.26271875" variant="" />
+	</Elements>
+</Atlas>

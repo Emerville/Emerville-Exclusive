@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Atlas>
+	<Texture filename="crate_wooden.tex" />
+	<Elements>
+		<Element name="crate_wooden.tex" u1="0.001" u2="0.249" v2="0.999" v1="0.501" variant="" />
+		<Element name="crate_wooden_3d.tex" u1="0.001" u2="0.249" v2="0.499" v1="0.001" variant="" />
+		<Element name="crate_wooden_gingerbread.tex" u1="0.251" u2="0.499" v2="0.999" v1="0.501" variant="" />
+		<Element name="crate_wooden_present.tex" u1="0.501" u2="0.749" v2="0.999" v1="0.501" variant="" />
+		<Element name="crate_wooden_scary.tex" u1="0.251" u2="0.499" v2="0.499" v1="0.001" variant="" />
+	</Elements>
+</Atlas>
