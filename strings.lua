@@ -2026,6 +2026,11 @@ STRINGS.NAMES.CASINOSTATUEHARP = "Harp Statue"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.CASINOSTATUEHARP = "What happened to the head?"
 
 
+--------------------------------------------------------
+STRINGS.NAMES.BEARGERKIT = "Bearger Emergency Kit™"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEARGERKIT = "Use in-case of terrifying encounter with a Bearger."
+
+
 
 
 
