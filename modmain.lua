@@ -216,6 +216,9 @@ PrefabFiles = {
 	"halloweenwendy",
 	"halloweenwinona",
 	"traderwolfgang",
+	
+	--LIMITED EDITION:
+	"beargerkit",
    	
 	-- UNUSED:			
 	"birchnuthat",
