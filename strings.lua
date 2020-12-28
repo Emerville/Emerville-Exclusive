@@ -1746,16 +1746,12 @@ STRINGS.RECIPE_DESC.MEGAPHONEHORN = "Move bitch get out the way!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MEGAPHONEHORN = "It's doc Gerbil's world."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.CHRISTMASWOODIE = "Woodie the Merchant"
+STRINGS.NAMES.CHRISTMASWOODIE = "Woodie the Merchant" --"Woodie the Woodsman"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWOODIE         = "I had a dream that you and I went on a Tropical Experience. Weird."
 STRINGS.CHARACTERS.WX78.DESCRIBE.CHRISTMASWOODIE 		    = "MY FACIAL RECOGNITION SCANNER SAYS THAT I'VE MET YOU BEFORE"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHRISTMASWOODIE    = "I just had deja vu and you look strikingly familiar."
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHRISTMASWOODIE		    = "That fellow looks a lot like me."
-------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.XMASWOODIE = "Woodie the Woodsman"
-
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.XMASWOODIE         = "He looks to be in the Christmas spirit!"
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.TRADERWOLFGANG = "Wolfgang the Collector"
 

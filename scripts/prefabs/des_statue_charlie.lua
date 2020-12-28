@@ -12,7 +12,7 @@ local prefabs =
 
 }
 
-local PETALSPERDAY = 8
+local PETALSPERDAY = 5
 local MAXPETALS = 5
 local childtype = "flower"
 
@@ -118,8 +118,6 @@ local function fn()
     --inst.entity:AddTag("statue")
 
     MakeObstaclePhysics(inst, 0.75)
-
-    inst:AddTag("structure")
 	
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon( "des_statue_charlie.tex" )
@@ -134,6 +132,7 @@ local function fn()
 	inst:AddTag("water_sourse")
 	inst:AddTag("water_sourse_nolimit")
 	inst:AddTag("des_statue_charlie")
+    inst:AddTag("structure")
 
 	local scale = 1
 	inst.Transform:SetScale(scale, scale, scale)

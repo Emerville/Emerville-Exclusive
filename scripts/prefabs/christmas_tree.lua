@@ -8,6 +8,11 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/christmas_tree.tex"),	
 }
 
+local prefabs = 
+{
+	"collapse_small",
+}
+
 local function onhammered(inst, worker)
 	inst.components.lootdropper:DropLoot()
 	SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
@@ -23,9 +28,6 @@ local function onbuilt(inst)
 	inst.AnimState:PushAnimation("christmas")
 	inst.SoundEmitter:PlaySound("dontstarve/common/farm_improved_craft")		
 end
-
---if TheWorld.state.isnight then
---inst.Light:Enable(true)	
 
 local function fn(Sim)
 	local inst = CreateEntity()

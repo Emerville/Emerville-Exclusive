@@ -13,21 +13,16 @@ local assets =
 
 local prefabs =
 {
-    "goldnugget",
-	"snowglobe",
-	"santa_helper_hat",
-}
-
-local prefabs =
-{
 	"statue_transition",
 	"statue_transition_2",
+    "goldnugget",
+	"snowglobe",
+	"santa_helper_hat",	
 }
 
 local offering_recipe =
 {
-	snowglobe					    = { "walrus_tusk", "purplegem", "goldnugget", "rocks", "silk", "ice",},
---	santa_helper_hat				= { "walrus_tusk", "greengem", "goldnugget", "rocks", "silk", "ice" },
+	snowglobe = { "walrus_tusk", "purplegem", "goldnugget", "rocks", "silk", "ice",},
 }
 
 for k, _ in pairs(offering_recipe) do
@@ -220,14 +215,6 @@ local function OnLoadPostPass(inst)
 end
 ----------------------
 
---[[local function onopen(inst)
-	inst.SoundEmitter:PlaySound("dontstarve/common/together/gate/open")
-end
-
-local function onclose(inst)
-	inst.SoundEmitter:PlaySound("dontstarve/common/together/gate/close")
-end]] 
-
 local chance = 0.50 
 local function Greetings(inst)
 		if math.random() < chance then
@@ -276,44 +263,6 @@ local function AcceptTest(inst, item)
     return item.components.tradable.goldvalue > 0
 end
 
---[[local function stomp(inst)
-	inst.AnimState:PlayAnimation("idle_onemanband1_pst")
-	inst.AnimState:PushAnimation("idle_onemanband2_pre")
-	inst.AnimState:PushAnimation("idle_onemanband2_loop")
-	inst.AnimState:PushAnimation("idle_onemanband2_pst",false) --end of the chain, do NOT loop
-	--inst:DoTaskInTime(.3,function(inst) if inst then --that if is just for being sure :P
-		--inst.SoundEmitter:PlaySound("dontstarve/characters/wilton/hurt") --need better sound
-	--end end)
-end
-
-local function onanimover(inst)
-	if math.random() < 0.15 then
-		stomp(inst)
-	else
-		inst.AnimState:PlayAnimation("idle_onemanband1_loop")
-	end
-end]]
-
---[[local function OnIsNight(inst, isnight)
-    if isnight then
-	inst.components.talker:Say("I'm scared of the dark! I need a hug!")
-	inst.SoundEmitter:PlaySound("dontstarve_DLC001/characters/webber/emote")	
-    inst.AnimState:PlayAnimation("emoteXL_sad")
-    inst.AnimState:PushAnimation("idle_loop")	
-	end
-end]]
-
---[[    EventHandler("ontalk", function(inst, data)
-        if inst.sg:HasStateTag("idle") and not inst.sg:HasStateTag("notalking") then
-            if not inst:HasTag("mime") then
-                inst.sg:GoToState("talk", data.noanim)
-            elseif not inst.components.inventory:IsHeavyLifting() then
-                --Don't do it even if mounted!
-                inst.sg:GoToState("mime")
-            end
-        end
-    end),]]
-
 local function fn(Sim)
     local inst = CreateEntity()
 
@@ -358,39 +307,26 @@ local function fn(Sim)
     light:SetColour(180/255, 195/255, 50/255)
     light:Enable(true)		
 	
---	inst.SoundEmitter:PlaySound("dontstarve_DLC001/characters/webber/talk_LP", "talk")
-
---    inst:AddTag("trader")
-
-	inst:AddComponent("talker")
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
-    inst.components.talker.offset = Vector3(0, -400, 0)	
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end	
+	
+	inst:AddComponent("talker")
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+    inst.components.talker.offset = Vector3(0, -400, 0)		
 		
     inst:AddComponent("inspectable")
 	inst.components.inspectable.getstatus = getstatus	
-
---[[    inst:AddComponent("trader")
-    inst.components.trader:SetAcceptTest(AcceptTest)
-    inst.components.trader.onaccept = OnGetItemFromPlayer
-    inst.components.trader.onrefuse = OnRefuseItem]]
 
 	inst:AddComponent("container")
     inst.components.container:WidgetSetup("sacred_chest")
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose		
 	
---	inst:ListenForEvent("animqueueover",onanimover) --the listener persists
-	
---    inst:WatchWorldState("isnight", OnIsNight)
---    OnIsNight(inst, TheWorld.state.isnight)	
     inst:DoPeriodicTask(20, Greetings)
 
     inst:AddComponent("timer")

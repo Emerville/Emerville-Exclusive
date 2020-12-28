@@ -183,7 +183,6 @@ PrefabFiles = {
     -- ALL I WANT FOR CHRISTMAS IS YOU!
 	"casinochristmastree",
 	"christmaswoodie",
-	"xmaswoodie",
 	"statuecharlie",
 	"rosekey",
 
@@ -876,7 +875,7 @@ local function PlayerControllerPostInit( playercontroller )
 				self.placer = SpawnPrefab("crate_wooden_placer_3d")
 			elseif skin == "crate_wooden_scary" then
 				self.placer = SpawnPrefab("crate_wooden_placer_scary")
-			else --skin == "crate_wooden_scary" then
+			else --skin == "crate_wooden_present" then
 				self.placer = SpawnPrefab("crate_wooden_placer_present")
 			end		
 			
@@ -1048,7 +1047,7 @@ AddStategraphActionHandler("wilson_client", attyla_pickhandler)
 ----------------------------------------------------------------
 -- Show Me Mod Highlight Compatability
 ----------------------------------------------------------------
-local containers = {"crate_wooden", "crate_wooden_gingerbread", "crate_wooden_3d", "crate_wooden_scary", "freezereye", "compost_box"}
+local containers = {"crate_wooden", "crate_wooden_gingerbread", "crate_wooden_3d", "crate_wooden_scary", "crate_wooden_present", "freezereye", "compost_box"}
 TUNING.MONITOR_CHESTS = TUNING.MONITOR_CHESTS or {}
 for k, v in pairs(containers) do
     TUNING.MONITOR_CHESTS[v] = true
