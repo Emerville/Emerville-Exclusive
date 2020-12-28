@@ -1,5 +1,5 @@
 name = "Emerville Exclusive"
-version = "1.14.1" --Added three more decimals to specify the version number of the fork.
+version = "1.14.2" --Added three more decimals to specify the version number of the fork.
 --version_compatible = "2.02" --didn't seem to work when I tried with local dedicated...
 description = "This mod is so great, we made another one!"
 author = "Luis95R, KoreanWaffles"
