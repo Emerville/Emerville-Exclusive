@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0" name="beargerkit">
-        <file id="0" name="beargerkit/beargerkit.png" width="622" height="508" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="beargerkit/beargerkit.png" width="450" height="450" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="beargerkit">
         <animation id="0" name="idle" length="200" interval="100">
@@ -36,7 +36,7 @@
             </mainline>
             <timeline id="0" name="beargerkit">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="1.997753" y="-0.892731" pivot_x="0.503745" pivot_y="0.321218" angle="0" scale_x="0.35" scale_y="0.35"/>
+                    <object folder="0" file="0" x="1.997753" y="-0.892731" pivot_x="0.503745" pivot_y="0.321218" angle="340.706106" scale_x="0.4" scale_y="0.4"/>
                 </key>
             </timeline>
         </animation>

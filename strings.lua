@@ -1429,7 +1429,7 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.STATUECHARLIE = "I feel a shiver down my spi
 STRINGS.NAMES.CHRISTMAS_TREE = "Christmas Tree"
 STRINGS.RECIPE_DESC.CHRISTMAS_TREE = "Tree with lights."
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMAS_TREE          = "All I want for Christmas is you!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMAS_TREE          = "All I want for Christmas is you!" --"I have so much fun with you, shining tree."
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.CHRISTMAS_TREE			= "All the lights are shining so brightly everywhere!"
 STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CHRISTMAS_TREE 		= "I won't ask for much this Christmas."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.CHRISTMAS_TREE 		    = "Santa Claus won't make me happy."
@@ -2024,12 +2024,35 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.CASINOSTATUEHARP = "What happened to the hea
 
 --------------------------------------------------------
 STRINGS.NAMES.BEARGERKIT = "Bearger Emergency Kit™"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEARGERKIT = "Use in-case of terrifying encounter with a Bearger."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEARGERKIT = "[DO NOT EAT]: Place on ground in-case of terrifying encounter with a Bearger." --"Finally! The only escape from this hell."
+--STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BEARGERKIT = "I hope I'll still get to Valhalla this way."
+--STRINGS.CHARACTERS.WX78.DESCRIBE.BEARGERKIT = "SELF-DESTRUCTION IMMINENT."
+--STRINGS.CHARACTERS.WENDY.DESCRIBE.BEARGERKIT = "See you on the other side, Abigail."
 
-
-
-
-
+STRINGS.DST_MOD_REINCARNATION =
+{
+    -- Global announcement of a reincarnating player
+    ON_DESPAWN_ANNOUNCE = "%s realized the utter futility of existence "..
+                          "and escapes this godforsaken world.",
+    -- Lines the character says on impending death
+    ON_USE_SAY =
+    {
+        "Oh... I don't feel so well.",
+        "Ow! I'm starting to feel intense pain!",
+		"Darkness is coming for me.",		
+        "I... I can't see...",
+        "I think my ears are bleeding.",
+        "Somebody please help me!",
+        "It feels like my head is going to explode!",
+        "This is the end...Goodbye cruel world!",
+		"Aaaaargh..."
+    },
+    --- Line to say on equipping
+    --ON_EQUIP_SAY = "The needle looks dirty.",
+	
+    --- Refuse because of being in a cave
+    ON_REFUSE_SAY_SLAVE = "*Spits it out* - I should be exploring the caves." --"I'm not going to spend my last moments down here.",
+}
 
 --------------------------------------------------------
 STRINGS.NAMES.MINI_YURT = "Miniature Yurt"

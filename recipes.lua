@@ -404,7 +404,7 @@ end
 
 if GetModConfigData("christmastreerecipe") then
 local christmasrecipe = MakeRecipe("christmas_tree",
-{Ingredient("log", 8), Ingredient("transistor", 3), Ingredient("petals", 8)}, 
+{Ingredient("livinglog", 3), Ingredient("transistor", 3), Ingredient("petals", 8)}, 
 RECIPETABS.TOWN,
 TECH.SCIENCE_TWO, 
 "christmas_tree_placer",
