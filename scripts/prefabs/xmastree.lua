@@ -42,7 +42,7 @@ end
 
 local function OnBurnt(inst)
 	inst.AnimState:PlayAnimation("burnt")
-	inst.components.sanityaura.aura = 0
+--	inst.components.sanityaura.aura = 0
 end
 	
 local function onsave(inst, data)
