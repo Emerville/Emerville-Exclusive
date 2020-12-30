@@ -609,6 +609,15 @@ modimport("scripts/customcontainers.lua")
 --If I had one gold coin for every day Luis wasn't iconic, I'd be broke and living in the Emerslums with the rest of the Emer-rats ツ
 modimport("koreanwaffles.lua")
 
+-- TheWorld.ismastersim is not yet available
+--[[local ismastersim = GLOBAL.TheNet:GetIsMasterSimulation() and not GLOBAL.TheShard:IsSecondary()
+
+local function AddReincarnationMemory(inst)
+    inst:AddComponent("reincarnationmemory")
+    end
+    AddPrefabPostInit("world", AddReincarnationMemory)]]
+
+
 -----------------------------------------------------------
 --~ [Tuning & Misc] ~--
 -----------------------------------------------------------
