@@ -42,7 +42,7 @@ end
 local function MusicBoxTakeFuel(self, item)
     if self:CanAcceptFuelItem(item) then
         self:DoDelta(480)
-        self.inst.SoundEmitter:PlaySound("dontstarve/common/ancienttable_craft", "sound")
+        self.inst.SoundEmitter:PlaySound("dontstarve/common/ancienttable_craft")
         return true
     end
     OnDropped(inst)
