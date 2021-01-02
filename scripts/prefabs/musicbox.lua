@@ -34,6 +34,10 @@ end
 
 local function takefuel(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/ancienttable_craft")
+    
+    if inst.components.inventoryitem and inst.components.inventoryitem.owner == nil then
+        turnon(inst)
+    end
 end
 
 local function CanAcceptFuelItem(self, item)
