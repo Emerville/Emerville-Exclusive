@@ -12,14 +12,14 @@ local function turnon(inst)
     inst.components.fueled:StartConsuming()
     inst.Light:Enable(true)
     inst:AddTag("light")
-    inst.SoundEmitter:PlaySound("musicbox/sound/playmelody", "christmas")
+    inst.SoundEmitter:PlaySound("musicbox/sound/playmelody", "musicbox_melody")
 end
 
 local function turnoff(inst)
     inst.components.fueled:StopConsuming()
     inst.Light:Enable(false)
     inst:RemoveTag("light")
-    inst.SoundEmitter:KillSound("musicbox/sound/playmelody", "christmas")
+    inst.SoundEmitter:KillSound("musicbox_melody")
 end
 
 local function OnDropped(inst)
@@ -34,7 +34,6 @@ end
 
 local function nofuel(inst)
     SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
-    inst.SoundEmitter:KillSound("musicbox/sound/playmelody", "christmas")
     inst.Light:Enable(false)
     turnoff(inst)
 end
