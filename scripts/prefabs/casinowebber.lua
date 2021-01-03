@@ -23,17 +23,16 @@ local function Greetings(inst)
     inst.AnimState:PushAnimation("idle_loop")
 end
 
-local function ontradeforgold(inst, item)
+local function OnTradeForGold(inst, item)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local spawnangle = inst.targetplayer and inst.spawnangle or 0
+    
     for k = 1, item.components.tradable.goldvalue do
+        local angle = (spawnangle + math.random() * 60 - 30) * DEGREES
+        local speed = math.random() * 4 + 2
         local nug = SpawnPrefab("goldnugget")
-        local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0, 4.5, 0)
-
-        nug.Transform:SetPosition(pt:Get())
-        local down = TheCamera:GetDownVec()
-        local angle = math.atan2(down.z, down.x) + (math.random() * 60 - 30) * DEGREES
-        --local angle = (math.random() * 60 - 30 - TUNING.CAM_ROT - 90) / 180 * PI
-        local sp = math.random() * 4 + 2
-        nug.Physics:SetVel(sp * math.cos(angle), math.random() * 2 + 8, sp * math.sin(angle))
+        nug.Transform:SetPosition(x, y + 4.5, z)
+        nug.Physics:SetVel(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle))
     end
 end
 
@@ -41,9 +40,14 @@ local function OnGetItemFromPlayer(inst, giver, item)
     inst.SoundEmitter:PlaySound("dontstarve_DLC001/characters/webber/emote")
     inst.AnimState:PlayAnimation("emoteXL_happycheer")
     if item.components.tradable.goldvalue > 0 then
-        inst:DoTaskInTime(20/30, ontradeforgold, item)
         inst.components.talker:Say("Yay! Thanks!")
+        inst:DoTaskInTime(0.65, OnTradeForGold, item)
+        
+        if inst.targetplayer then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            inst.spawnangle = 180 - giver:GetAngleToPoint(x, 0, z)
         end
+    end
     inst.AnimState:PushAnimation("idle_loop")
 end
 
@@ -95,6 +99,18 @@ end
             end
         end
     end),]]
+
+local function OnLoad(inst, data)
+    if not data then
+        return
+    end
+    
+    inst.targetplayer = data.targetplayer
+end
+
+local function OnSave(inst, data)
+    data.targetplayer = inst.targetplayer
+end
 
 local function fn(Sim)
     local inst = CreateEntity()
@@ -165,6 +181,11 @@ local function fn(Sim)
     inst:WatchWorldState("isnight", OnIsNight)
     OnIsNight(inst, TheWorld.state.isnight)
     inst:DoPeriodicTask(45, Greetings)
+    
+    inst.OnLoad = OnLoad
+    inst.OnSave = OnSave
+
+    inst.targetplayer = true
 
     return inst
 end
