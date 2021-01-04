@@ -735,6 +735,17 @@ nil,
 "images/inventoryimages/ewecushat.xml",
 "ewecushat.tex")
 
+AddRecipe("beargerkit", 
+{Ingredient("gunpowder", 5), Ingredient("red_cap", 5)}, 
+nil, 
+TECH.LOST, 
+nil, 
+nil, 
+nil, 
+nil, 
+nil, 
+"images/inventoryimages/beargerkit.xml",
+"beargerkit.tex")
 
 --------------------------------------------------------------------------
 --[[ SLOT MACHINE STRUCTURES ]]

@@ -1,6 +1,5 @@
 local assets =
 {
-    Asset("ANIM", "anim/ui_chest_4x4.zip"),	
     Asset("ANIM", "anim/beargerkit.zip"),	
 	
     Asset("ATLAS", "images/inventoryimages/beargerkit.xml"),
@@ -23,13 +22,13 @@ end
 -- (should be scheduled)
 local function dodespawn(player)
 --~     -- Kill the player
---~     player:PushEvent("death", { cause = "reincarnationshot" })
+--~     player:PushEvent("death", { cause = "beargerkit" })
 --~     -- Add a morgue record if the player's death handler won't add one
 --~     if player.ghostenabled then
 --~         player.player_classified:AddMorgueRecord()
 --~     end
 
-    player.deathcause = "reincarnationshot"
+    player.deathcause = "beargerkit"
     player.deathclientobj = TheNet:GetClientTableForUser(player.userid)
     player.player_classified:AddMorgueRecord()
 
@@ -46,31 +45,21 @@ local function dodespawn(player)
         skel:SetSkeletonAvatarData(player.deathclientobj)
     end
 
-
     -- Delete must happen when the player is actually removed
     -- This is currently handled in playerspawner listening to
-    -- ms_playerdespawnanddelete
-	
+    -- ms_playerdespawnanddelete	
     player:PushEvent("ms_playerreroll")	
- --   inst._savedata[player.userid] = player.SaveForReroll ~= nil and player:SaveForReroll() or nil
 	
-    TheWorld:PushEvent("ms_playerdespawnanddelete", player)
-end
-
------------------------------------------------------------------------------------------
---CODE Taken from multiplayer_portal.lua to use for example. --Luis
---1. Make it so people keep achievements and stars --DONE
---2. Make it so people keep their maps + recipes unlocked when eating it on surface. --NEED HELP.
----------------------------------------------------------------------------------------
-
---[[local function moonrock_onaccept(inst, giver)--, item)
-    giver:PushEvent("ms_playerreroll")
-    if giver.components.inventory ~= nil then
-        giver.components.inventory:DropEverything()
+    -- Drop everything from inventory if we're not storing it;
+    -- always drop irreplaceable items.
+    -- TODO: Always drop non-persistent items as they will be lost otherwise? 
+    if player.components.inventory ~= nil then
+        player.components.inventory:DropEverythingWithTag("irreplaceable")
+        --player.components.inventory:DropEverything()
     end
 
-	if giver.components.leader ~= nil then
-		local followers = giver.components.leader.followers
+	if player.components.leader ~= nil then
+		local followers = player.components.leader.followers
 		for k, v in pairs(followers) do
 			if k.components.inventory ~= nil then
 				k.components.inventory:DropEverything()
@@ -78,50 +67,10 @@ end
 				k.components.container:DropEverything()
 			end
 		end
-	end
-
-    inst._savedata[giver.userid] = giver.SaveForReroll ~= nil and giver:SaveForReroll() or nil
-    TheWorld:PushEvent("ms_playerdespawnanddelete", giver)
+	end	
+	
+    TheWorld:PushEvent("ms_playerdespawnanddelete", player)
 end
-
-local function moonrock_onsave(inst, data)
-    data.players = next(inst._savedata) ~= nil and inst._savedata or nil
-end
-
-local function moonrock_onload(inst, data)
-    inst._savedata = data ~= nil and data.players or inst._savedata
-end
-
-local function moonrock_master_postinit(inst)
-    inst:AddComponent("moontrader")
-    inst.components.moontrader:SetCanAcceptFn(moonrock_canaccept)
-    inst.components.moontrader:SetOnAcceptFn(moonrock_onaccept)
-
-    if not TheWorld:HasTag("cave") then
-        inst.fx.entity:SetParent(inst.entity)
-        inst._task = nil
-        inst._savedata = {}
-        inst.OnEntitySleep = moonrock_onsleep
-        inst.OnEntityWake = moonrock_onwake
-        inst.OnSave = moonrock_onsave
-        inst.OnLoad = moonrock_onload
-
-        inst:ListenForEvent("ms_newplayerspawned", function(world, player)
-            if inst._savedata[player.userid] ~= nil then
-                if player.LoadForReroll ~= nil then
-                    player:LoadForReroll(inst._savedata[player.userid])
-                end
-                inst._savedata[player.userid] = nil
-            end
-        end, TheWorld)
-
-        inst:ListenForEvent("ms_playerjoined", function(world, player)
-            --In case despawn never finished after saving for reroll
-            inst._savedata[player.userid] = nil
-        end, TheWorld)
-    end
-end]]
-
 
 -- Kill a player (should be scheduled)
 local function dokill(player)
@@ -131,23 +80,14 @@ local function dokill(player)
                         player:GetDisplayName()),
                     nil, nil, "death")
 
-    -- If there is a personal chester, kill it to drop its inventory
+    --Personal Chester Mod Compatibility: If there is a personal chester, kill it to drop its inventory
     if player.chester ~= nil and player.chester.components.health ~= nil then
         player.chester.components.health:Kill()
-    end
-
-    -- Drop everything from inventory if we're not storing it;
-    -- always drop irreplaceable items.
-    -- TODO: Always drop non-persistent items as they will be lost otherwise?
-    if player.components.inventory ~= nil then
-            player.components.inventory:DropEverything()
-            --player.components.inventory:DropEverythingWithTag("irreplaceable")
     end
 
     -- Play a fancy animation
     player.sg:GoToState("teleportato_teleport")
 end
-
 
 -- Initiate despawning a player
 local function despawn(player)
@@ -184,16 +124,10 @@ local function despawn(player)
     end
 end
 
--- Warn the player when putting the shot in the inventory
-local function onputininventory(inst, owner)
-    if owner ~= nil and owner:HasTag("player") then
-        say(owner, inst.components.inspectable:GetDescription(owner))
-    end
-end
-
 -- Initiate respawning the player if the conditions are met
 local function oneaten(inst, eater)
     if not eater:HasTag("player") and eater.components.health then
+        SpawnPrefab("explode_small_slurtle").Transform:SetPosition(eater:GetPosition():Get()) 
         eater.components.health:Kill()
     end
 	
@@ -215,7 +149,6 @@ local function oneaten(inst, eater)
 			nug.Physics:SetVel(sp * math.cos(angle), math.random() * 2 + 8, sp * math.sin(angle))						
         else
             despawn(player)
-            inst:Remove()
         end
     end
 end
@@ -249,11 +182,10 @@ local function fn()
 	
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "beargerkit"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/beargerkit.xml"	
-    inst.components.inventoryitem:SetOnPutInInventoryFn(onputininventory)	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/beargerkit.xml"		
 	
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = FOODTYPE.MEAT
+    inst.components.edible.foodtype = FOODTYPE.VEGGIE
 	inst.components.edible.healthvalue = 0
 	inst.components.edible.sanityvalue = 0
     inst.components.edible.hungervalue = 0

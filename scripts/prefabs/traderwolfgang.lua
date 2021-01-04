@@ -156,12 +156,6 @@ local function fn(Sim)
 
 --    inst:AddTag("trader")
 
-	inst:AddComponent("talker")
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
-    inst.components.talker.offset = Vector3(0, -400, 0)	
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -169,6 +163,12 @@ local function fn(Sim)
     end	
 		
     inst:AddComponent("inspectable")
+	
+	inst:AddComponent("talker")
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+    inst.components.talker.offset = Vector3(0, -400, 0)	
 
 --[[    inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(AcceptTest)

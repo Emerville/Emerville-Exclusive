@@ -2051,7 +2051,7 @@ STRINGS.DST_MOD_REINCARNATION =
     --ON_EQUIP_SAY = "The needle looks dirty.",
 	
     --- Refuse because of being in a cave
-    ON_REFUSE_SAY_SLAVE = "*Spits it out* - I should be exploring the caves." --"I'm not going to spend my last moments down here.",
+    ON_REFUSE_SAY_SLAVE = "*Spits out* - I should be exploring the caves." --"I'm not going to spend my last moments down here.",
 }
 
 --------------------------------------------------------

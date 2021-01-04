@@ -125,7 +125,8 @@ local function fn(Sim)
     MakeObstaclePhysics(inst, .3)
 
     inst.Transform:SetFourFaced()
-
+	inst.Transform:SetRotation(-90)
+	
     local hats = {"hat_top"}
     local hat = hats[math.random(#hats)]
     inst.AnimState:OverrideSymbol("swap_hat", hat, "swap_hat")
@@ -157,12 +158,6 @@ local function fn(Sim)
 
     inst:AddTag("trader")
 
-    inst:AddComponent("talker")
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
-    inst.components.talker.offset = Vector3(0, -400, 0)
-
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
@@ -170,6 +165,12 @@ local function fn(Sim)
     end
 
     inst:AddComponent("inspectable")
+	
+	inst:AddComponent("talker")
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+    inst.components.talker.offset = Vector3(0, -400, 0)	
 
     inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(AcceptTest)
