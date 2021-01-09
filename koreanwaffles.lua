@@ -89,6 +89,10 @@ end)]]
 --thus preserving new changes Klei made such as changes to the Telelocator Staff with the introduction of Turn of Tides and fixing skin animations.
 
 AddPrefabPostInit("firestaff", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+    
 	local _onattack_red = inst.components.weapon.onattack
 
 	local function OnAttack(inst, attacker, target, skipsanity)
@@ -102,6 +106,10 @@ AddPrefabPostInit("firestaff", function(inst)
 end)
 
 AddPrefabPostInit("greenstaff", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+
 	local _destroystructure = inst.components.spellcaster.spell
 
 	local function DestroyStructure(staff, target)
