@@ -253,6 +253,8 @@ local function fn(Sim)
     inst.components.container:WidgetSetup("crate_wooden")     
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
+    inst.components.container.skipopensnd = true
+    inst.components.container.skipclosesnd = true
 
     inst:AddComponent("lootdropper")
 	

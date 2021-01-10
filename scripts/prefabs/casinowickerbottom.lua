@@ -100,7 +100,9 @@ local function fn(Sim)
 	inst:AddComponent("container")
     inst.components.container:WidgetSetup("casinowickerbottom")
     inst.components.container.onopenfn = onopen
-    inst.components.container.onclosefn = onclose		
+    inst.components.container.onclosefn = onclose
+    inst.components.container.skipopensnd = true
+    inst.components.container.skipclosesnd = true
 	
 --	inst:ListenForEvent("animqueueover",onanimover) --the listener persists
 		

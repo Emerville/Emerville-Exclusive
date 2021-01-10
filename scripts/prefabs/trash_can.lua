@@ -79,6 +79,8 @@ local function fn()
 	inst.components.container:WidgetSetup("trash_can")	
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
+    inst.components.container.skipopensnd = true
+    inst.components.container.skipclosesnd = true
 
     inst:AddComponent("lootdropper")
     inst:AddComponent("workable")

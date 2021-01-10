@@ -101,7 +101,9 @@ local function fn(Sim)
 	inst:AddComponent("container")	
 	inst.components.container.onopenfn = onopen
 	inst.components.container.onclosefn = onclose
-    inst.components.container:WidgetSetup("vacuum_chest")	
+    inst.components.container:WidgetSetup("vacuum_chest")
+    inst.components.container.skipopensnd = true
+    inst.components.container.skipclosesnd = true
 
 	inst:AddComponent("lootdropper")
 	
