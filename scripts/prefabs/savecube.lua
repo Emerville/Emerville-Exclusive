@@ -20,7 +20,7 @@ end
 
 local function onfinished(inst)	
 	inst.SoundEmitter:PlaySound("dontstarve/common/tent_dis_pre")
-	inst.persists = false              
+	inst:Remove()
 end
 
 --[[local function OnHaunt(inst)
@@ -82,7 +82,9 @@ local function fn()
 	
 	inst.components.hauntable:SetOnHauntFn(function(inst, doer)		
     SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.components.finiteuses:Use(1)	
+    if inst.components.finiteuses then
+        inst.components.finiteuses:Use(1)
+    end
     return old_onhaunt(inst, doer)
 	end)
 
