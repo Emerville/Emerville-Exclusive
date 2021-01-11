@@ -735,6 +735,7 @@ local efc_recipe = {
 	}
 AddCookerRecipe("cookpot", efc_recipe)	
 AddCookerRecipe("portablecookpot", efc_recipe)
+AddCookerRecipe("archive_cookpot", efc_recipe)
 
 ----------------
 -- Skin Creator:
