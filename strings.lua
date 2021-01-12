@@ -1718,15 +1718,30 @@ STRINGS.RECIPE_DESC.DST_WOODIEDOLL = "A Wooden Doll!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WOODIEDOLL = "I swear this doll transforms sometimes..."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.DST_WINONADOLL = "Winona Doll"
+STRINGS.RECIPE_DESC.DST_WINONADOLL = "A resourceful doll!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WINONADOLL = "A hard-working doll!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.DST_WORMWOODDOLL = "Wormwood Doll"
+STRINGS.RECIPE_DESC.DST_WORMWOODDOLL = "A nature loving doll!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORMWOODDOLL = "A peculiar yet cuddly plant looking doll!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.DST_WORTOXDOLL_UNCORRUPTED = "Uncorrupted Wortox Doll"
+STRINGS.RECIPE_DESC.DST_WORTOXDOLL_UNCORRUPTED = "A harmless doll!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORTOXDOLL_UNCORRUPTED = "What a mischievous looking doll!"
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DST_WURTDOLL_ABYSSAL = "Abyssal Wurt Doll"
 STRINGS.RECIPE_DESC.DST_WURTDOLL_ABYSSAL = "An aspiring Merm-like doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WURTDOLL_ABYSSAL = "I swear this doll transforms sometimes..."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WURTDOLL_ABYSSAL = "This doll seems eager for knowledge."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DST_WARLYDOLL = "Warly Doll"
 STRINGS.RECIPE_DESC.DST_WARLYDOLL = "A talented chef doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WARLYDOLL = "I swear this doll transforms sometimes..."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WARLYDOLL = "It smells like delicious spices."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DST_MYSTERYDOLL= "Mystery Doll"
 STRINGS.RECIPE_DESC.DST_MYSTERYDOLL = "What a strange doll..."

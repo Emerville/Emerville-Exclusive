@@ -92,7 +92,8 @@ PrefabFiles = {
 	"attyla_guano",
 	-- not an actual item, but gotta include it:
 	"attylalootspawner",
-     --[Character Dolls]
+	
+     -- CHARACTER DOLLS
 	"dst_wolfgangdoll",
 	"dst_wilsondoll",	
     "dst_wigfriddoll",
@@ -104,9 +105,12 @@ PrefabFiles = {
 	"dst_waxwelldoll",
 	"dst_woodiedoll",
 	"dst_webberdoll",
-	"dst_mysterydoll",
+	"dst_winonadoll",
+	"dst_wormwooddoll",
+	"dst_wortoxdoll_uncorrupted",	
 	"dst_wurtdoll_abyssal",
-	"dst_warlydoll",	
+	"dst_warlydoll",
+	"dst_mysterydoll",
 
 	-- EVENT: 
 	"greencane", 
@@ -586,6 +590,10 @@ AddMinimapAtlas("images/inventoryimages/waxwelldoll.xml")
 AddMinimapAtlas("images/inventoryimages/wigfriddoll.xml")
 AddMinimapAtlas("images/inventoryimages/wesdoll.xml")
 AddMinimapAtlas("images/inventoryimages/mysterydoll.xml")
+AddMinimapAtlas("images/inventoryimages/winonadoll.xml")
+AddMinimapAtlas("images/inventoryimages/wormwooddoll.xml")
+AddMinimapAtlas("images/inventoryimages/wortoxdoll_uncorrupted.xml")
+
 --Local Files
 local require = GLOBAL.require
 local TUNING = GLOBAL.TUNING

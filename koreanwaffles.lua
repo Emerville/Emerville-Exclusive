@@ -51,16 +51,9 @@ local TheNet = GLOBAL.TheNet
 
 
 --------------------------------------------------
--- Character Dolls --
+-- Character Dolls -- Moved to Modmain.lua -Luis
 --------------------------------------------------
 --The rest of the dolls' data is handled by their respective prefab files.
-
-table.insert(PrefabFiles, "dst_winonadoll")
-table.insert(PrefabFiles, "dst_wormwooddoll")
-table.insert(PrefabFiles, "dst_wortoxdoll_uncorrupted")
-AddMinimapAtlas("images/inventoryimages/winonadoll.xml")
-AddMinimapAtlas("images/inventoryimages/wormwooddoll.xml")
-AddMinimapAtlas("images/inventoryimages/wortoxdoll_uncorrupted.xml")
 
 STRINGS.NAMES.DST_WINONADOLL = "Winona Doll"
 STRINGS.NAMES.DST_WORMWOODDOLL = "Wormwood Doll"
