@@ -16,12 +16,12 @@ local prefabs =
 
 local function onopen(inst)
 	inst.AnimState:PlayAnimation("open")
-	inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open", "open")
+	inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open")
 end 
 
 local function onclose(inst) 
 	inst.AnimState:PlayAnimation("close")
-	inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_close", "close")	
+	inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_close")	
 end 
 
 local function onhammered(inst, worker)
