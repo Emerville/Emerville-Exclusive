@@ -77,6 +77,9 @@ local function init()
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "growthstaff"	
     inst.components.inventoryitem.atlasname = "images/inventoryimages/growthstaff.xml"
+	
+	inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = TUNING.MED_FUEL
     
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(onequip)

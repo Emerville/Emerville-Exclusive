@@ -53,6 +53,9 @@ local function init()
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "dark_axe"	
     inst.components.inventoryitem.atlasname = "images/inventoryimages/dark_axe.xml"	
+	
+	inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = TUNING.MED_FUEL
 
 	inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.CHOP, 1.5)

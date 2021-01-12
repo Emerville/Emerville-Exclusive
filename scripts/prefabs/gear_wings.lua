@@ -56,6 +56,9 @@ local function fn()
     inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.imagename = "gear_wings"	
     inst.components.inventoryitem.atlasname = "images/inventoryimages/gear_wings.xml"
+	
+	inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = TUNING.MED_FUEL
     
 	inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(960) --- 8 days * 1.5

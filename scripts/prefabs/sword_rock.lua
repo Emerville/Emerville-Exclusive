@@ -52,6 +52,9 @@ local function fn()
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "sword_rock"	
     inst.components.inventoryitem.atlasname = "images/inventoryimages/sword_rock.xml"
+	
+	inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = TUNING.MED_FUEL
     
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(onequip)

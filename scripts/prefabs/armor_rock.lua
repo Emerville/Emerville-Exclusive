@@ -48,6 +48,9 @@ local function fn()
 	inst.components.inventoryitem.imagename = "armor_rock"
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/armor_rock.xml"
 	
+	inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = TUNING.LARGE_FUEL
+	
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(480, 0.85)
 
