@@ -231,7 +231,7 @@ nil,
 "images/inventoryimages/crate_wooden.xml",
 "crate_wooden.tex")
 crate_wooden.sortkey = AllRecipes["treasurechest"]["sortkey"] + 0.1
-crate_wooden.skinnable = true
+crate_wooden.reskinnable = true
 end
 
 AddRecipe("crate_wooden_gingerbread", 
