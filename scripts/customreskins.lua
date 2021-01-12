@@ -228,7 +228,6 @@ local function BuilderPostInit(builder)
     end
     
     local MakeRecipeAtPoint = function(self, recipe, pt, rot, skin)
-        print("Received skin to build: ".. (skin or "nil"))
         _MakeRecipeAtPoint(self, recipe, pt, rot, skin)
     end
     
