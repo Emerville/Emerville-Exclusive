@@ -155,6 +155,7 @@ PrefabFiles = {
 	"clawmeteor",
 	"swing_charge",
 	"crosshair",
+	"bushhatex",
 
 	-- TO DO:		
 	"clockqueen",

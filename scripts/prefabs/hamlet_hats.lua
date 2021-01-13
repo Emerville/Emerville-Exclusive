@@ -209,8 +209,7 @@ end
 	
    local function candle_turnon(inst)
         local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
-        if not inst.components.fueled:IsEmpty() then
-            inst.components.fueled:StartConsuming()		
+        if not inst.components.fueled:IsEmpty() then	
             if inst._light == nil or not inst._light:IsValid() then
                 inst._light = SpawnPrefab("minerhatlight")
             end
@@ -218,10 +217,11 @@ end
                 onequip(inst, owner)
                 inst._light.entity:SetParent(owner.entity)
             end
+			inst.components.fueled:StartConsuming()	
             local soundemitter = owner ~= nil and owner.SoundEmitter or inst.SoundEmitter
             soundemitter:PlaySound("dontstarve/common/minerhatAddFuel")			
 		    inst.SoundEmitter:PlaySound("dontstarve/wilson/torch_LP", "torch")
-	        inst.SoundEmitter:SetParameter( "torch", "intensity", 1 )
+	        inst.SoundEmitter:SetParameter("torch", "intensity", 1)
 			
 	        if inst.fire == nil then
 	            inst.fire = SpawnPrefab("torchfire")
@@ -240,8 +240,7 @@ end
         if owner ~= nil and inst.components.equippable ~= nil and inst.components.equippable:IsEquipped() then
             onequip(inst, owner)
         end
-        inst.components.fueled:StopConsuming()
-		
+        inst.components.fueled:StopConsuming()		
         if inst._light ~= nil then
             if inst._light:IsValid() then
                 inst._light:Remove()
@@ -302,6 +301,8 @@ end
         end
 		
 		hamlet_master(inst)
+		
+		inst:AddTag("waterproofer")
 		
 		inst.components.inventoryitem:SetOnDroppedFn(candle_turnoff)
 		
@@ -408,18 +409,18 @@ end
 		
 		hamlet_master(inst)
 		
-		inst:AddTag("gasmask")
+		--inst:AddTag("gasmask")
 		inst:AddTag("goggles")
 		
 		inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
         inst.components.equippable.dapperness = TUNING.DAPPERNESS_MED
-		inst.components.equippable:SetOnEquip(onequip)
+		inst.components.equippable:SetOnEquip(opentop_onequip)
 		inst.components.equippable:SetOnUnequip(onunequip)
 
 		inst:AddComponent("fueled")
 		inst.components.fueled.fueltype = "USAGE"
         inst.components.fueled:InitializeFuelLevel(TUNING.GOGGLES_PERISHTIME)
-		inst.components.fueled:SetDepletedFn(generic_perish)		
+		inst.components.fueled:SetDepletedFn(--[[generic_perish]]inst.Remove)		
 
         inst:AddComponent("waterproofer")
         inst.components.waterproofer:SetEffectiveness(TUNING.WATERPROOFNESS_SMALL)	
@@ -536,13 +537,13 @@ end
 		
 		hamlet_master(inst)
 		
-		inst:AddComponent("fueled")
-		inst.components.fueled.fueltype = "USAGE"
-		inst.components.fueled:InitializeFuelLevel(TUNING.WALRUSHAT_PERISHTIME)
-		inst.components.fueled:SetDepletedFn(generic_perish)
+        inst:AddComponent("fueled")
+        inst.components.fueled.fueltype = FUELTYPE.USAGE
+        inst.components.fueled:InitializeFuelLevel(TUNING.FEATHERHAT_PERISHTIME)
+        inst.components.fueled:SetDepletedFn(inst.Remove)
 		
 		inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
-		inst.components.equippable.dapperness = TUNING.DAPPERNESS_LARGE
+        inst.components.equippable.dapperness = TUNING.DAPPERNESS_SMALL
 		inst.components.equippable:SetOnEquip(peagawkfeather_equip)
 		inst.components.equippable:SetOnUnequip(peagawkfeather_unequip)
 		
@@ -662,7 +663,7 @@ end
                 bat_turnoff(owner)
             end
         end
-        inst:Remove()
+        inst:Remove()--generic_perish(inst)
     end
 	
 	local function bat_custom_init(inst)

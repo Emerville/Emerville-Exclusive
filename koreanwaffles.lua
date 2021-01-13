@@ -55,15 +55,6 @@ local TheNet = GLOBAL.TheNet
 --------------------------------------------------
 --The rest of the dolls' data is handled by their respective prefab files.
 
-STRINGS.NAMES.DST_WINONADOLL = "Winona Doll"
-STRINGS.NAMES.DST_WORMWOODDOLL = "Wormwood Doll"
-STRINGS.NAMES.DST_WORTOXDOLL_UNCORRUPTED = "Uncorrupted Wortox Doll"
-
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WINONADOLL = "A hard-working doll!"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORMWOODDOLL = "A peculiar yet cuddly plant!"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORTOXDOLL_UNCORRUPTED = "What a mischievous looking doll!"
-
-
 --------------------------------------------------
 -- Antlion -- Patched by Achievement Mod Update -Luis
 --------------------------------------------------
@@ -71,7 +62,6 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORTOXDOLL_UNCORRUPTED = "What a mischie
     if not TheNet:GetIsServer() then return inst end
     inst.components.lootdropper:AddChanceLoot("chesspiece_antlion_sketch", 1)
 end)]]
-
 
 --------------------------------------------------
 -- Staves --

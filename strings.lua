@@ -1776,7 +1776,14 @@ STRINGS.CHARACTERS.WX78.DESCRIBE.TRADERWOLFGANG 		   = "HE COLLECTS RARE ITEMS"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TRADERWOLFGANG    = "A collecter of unique and rare items."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.ROSEKEY = "Rose Key"
+
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROSEKEY = "It has the letter 'C' etched on it - wonder who it belongs to..."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.BUSHHATEX = "Bush Hat EX"
+STRINGS.RECIPE_DESC.BUSHHATEX = "Perfect hiding!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.BUSHHATEX = "Perfect hiding!"
+------------------------------------------------------------------------------------------------------------
 
 -------------------------
 --[COSMETIC DONOR]
