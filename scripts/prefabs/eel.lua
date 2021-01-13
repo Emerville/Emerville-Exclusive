@@ -82,7 +82,7 @@ local function commonfn(build, anim, loop, dryable, cookable)
     MakeHauntableLaunchAndPerish(inst)
 
     inst:AddComponent("tradable")
-    inst.components.tradable.goldvalue = TUNING.GOLD_VALUES.RAREMEAT
+    inst.components.tradable.goldvalue = 3
     inst.data = {}
 
     return inst

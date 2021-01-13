@@ -388,6 +388,8 @@ Assets = {
 	Asset("IMAGE", "images/inventoryimages/strongclaw.tex"),
 	Asset("ATLAS", "images/inventoryimages/weakpaw.xml"),
 	Asset("IMAGE", "images/inventoryimages/weakpaw.tex"),	
+    Asset("ATLAS", "images/inventoryimages/bushhatex.xml"),
+    Asset("IMAGE", "images/inventoryimages/bushhatex.tex"),
 
 	-- COSMETICS:	
 	Asset("ATLAS", "images/inventoryimages/hat_captain.xml"),
