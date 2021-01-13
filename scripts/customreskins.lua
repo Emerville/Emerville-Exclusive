@@ -52,11 +52,11 @@ local function ReskinToolPostInit(inst)
     local _cancastfn = inst.components.spellcaster.can_cast_fn
     
     local spellfn = function(inst, target, pos)
+        target = target or inst.components.inventoryitem.owner
+
         if not target.components.reskinnable then
             return _spellfn(inst, target, pos)
         end
-
-        target = target or inst.components.inventoryitem.owner
 
         local fx = SpawnPrefab("explode_reskin")
         local fx_info = RESKIN_FX_INFO[target.prefab] or {}
