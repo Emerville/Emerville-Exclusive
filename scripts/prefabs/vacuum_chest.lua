@@ -133,7 +133,12 @@ local function fn(Sim)
 		local item = FindEntity(inst, SEARCH_RADIUS, function(item) 
 			local check = item.components.inventoryitem and item.components.inventoryitem.canbepickedup and item.components.inventoryitem.cangoincontainer
 			return check
-			end, nil, {"casino", "irreplaceable", "resurrector"})
+			end, nil, { "casino", "irreplaceable", "resurrector", "companion" })
+
+        if item and item.prefab == "bernie_inactive" and not item.components.fueled:IsEmpty() then
+            -- Doesn't pick up bernies, but will pick up dead ones
+            return nil
+        end
 
         if item and not inst.components.container:IsFull() then
         -- container is not full, it can pick up the item
