@@ -96,7 +96,7 @@ local function placer_postinit_fn(inst)
 
     placer3.AnimState:SetBank("crate_wooden")
     placer3.AnimState:SetBuild("crate_wooden")
-    placer3.AnimState:PlayAnimation("close")
+    placer3.AnimState:PlayAnimation("closed")
     placer3.AnimState:SetLightOverride(1)
 
     placer3.entity:SetParent(inst.entity)
