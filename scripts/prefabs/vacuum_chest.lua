@@ -71,14 +71,14 @@ local function onload(inst, data)
     end
 end
 
-local function cansuckit(ent)
+local function cansuckit(inst, ent)
     return ent.components.inventoryitem and ent.components.inventoryitem.canbepickedup
         and (ent.prefab ~= "bernie_inactive" or ent.components.fueled:IsEmpty())
         and ent.components.inventoryitem.cangoincontainer
         and ent ~= inst and ent.entity:IsVisible()
 end
 
-local function suckit(item)
+local function suckit(inst, item)
     inst.AnimState:PlayAnimation("hit")
     inst.SoundEmitter:PlaySound("dontstarve/wilson/chest_open")
     inst.components.container:GiveItem(item)
@@ -90,18 +90,18 @@ local function vacuum(inst)
     local ents = TheSim:FindEntities(x, y, z, inst.searchradius, nil, inst.ignoretags)
 
     for _,ent in ipairs(ents) do
-        if cansuckit(ent) then
+        if cansuckit(inst, ent) then
             if not inst.components.container:IsFull() then
-                return suckit(ent)
+                return suckit(inst, ent)
             elseif ent.components.stackable then
                 if unfilledstacks[ent.prefab] then
-                    return suckit(ent)
+                    return suckit(inst, ent)
                 end
 
                 for _,v in pairs(inst.components.container.slots) do
                     if v.components.stackable and not v.components.stackable:IsFull() then
                         if v.prefab == ent.prefab then
-                            return suckit(ent)
+                            return suckit(inst, ent)
                         else
                             unfilledstacks[v.prefab] = true
                         end
