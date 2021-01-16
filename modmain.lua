@@ -175,6 +175,9 @@ PrefabFiles = {
     "armor_windbreaker",	
 	"bottlelantern",
     "palmleaf_umbrella",
+	"eyebrella",
+	"hamlet_hats.lua", 
+	"spider.lua", -- Fix for Disguise Hat, so pigs and spiders don't attack you when wearing it!!!
 	
 	-- THIS IS HALLOWEEN!:
 	"balloons_halloween",
@@ -215,7 +218,7 @@ PrefabFiles = {
     -- NPCS:
     "tradewebber", --OLD
     "casinowebber", --NEW
-    "casinowickerbottom",
+    "casinowickerbottom", --Gem Trader
 	"halloweenwillow",
 	"halloweenwendy",
 	"halloweenwinona",
@@ -269,9 +272,6 @@ PrefabFiles = {
 	"hat_goggles",
 	"armor_beefalo",
 	"gear_hat",	
-	"hamlet_hats.lua", -- The Hats uhhh
-	"spider.lua", -- Fix for Disguise Hat, so pigs and spiders don't attack you when wearing it!!!
---	"bat.lua", -- Fix for Bat Hat, so bats don't attack you when wearing it!!!
 }
 
 Assets = {
@@ -412,8 +412,10 @@ Assets = {
 	Asset("IMAGE", "images/inventoryimages/dontropicalparasol.tex"),
 	Asset("ATLAS", "images/inventoryimages/donarmorwindbreaker.xml"),
 	Asset("IMAGE", "images/inventoryimages/donarmorwindbreaker.tex"),	
-	Asset("IMAGE", "images/inventoryimages/hamlet_hats.tex"),
+	Asset("ATLAS", "images/inventoryimages/eyebrella.xml"),
+	Asset("IMAGE", "images/inventoryimages/eyebrella.tex"),
 	Asset("ATLAS", "images/inventoryimages/hamlet_hats.xml"),
+	Asset("IMAGE", "images/inventoryimages/hamlet_hats.tex"),
 
     -- CASINO:	
 	Asset("IMAGE", "images/inventoryimages/fence.tex"),
@@ -618,7 +620,7 @@ modimport("scripts/cookpotfix.lua")
 modimport("scripts/customcontainers.lua")
 
 --If I had one gold coin for every day Luis wasn't iconic, I'd be broke and living in the Emerslums with the rest of the Emer-rats ツ
-modimport("koreanwaffles.lua")
+--modimport("koreanwaffles.lua") --ALL moved to Modmain. --Luis
 
 -- Custom modded reskins by Platypus
 modimport("scripts/customreskins.lua")
@@ -723,6 +725,45 @@ AddPrefabPostInit("woodie",
 	end
     inst.components.tackler:AddWorkAction(GLOBAL.ACTIONS.HAMMER, 0)
 	end)
+
+--KoreanIcon doing his thing.
+AddPrefabPostInit("firestaff", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+    
+	local _onattack_red = inst.components.weapon.onattack
+
+	local function OnAttack(inst, attacker, target, skipsanity)
+		if target:HasTag("structure") then
+			return
+		end
+		_onattack_red(inst, attacker, target, skipsanity)
+	end
+
+	inst.components.weapon.onattack = OnAttack
+end)
+
+AddPrefabPostInit("greenstaff", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+
+	local _destroystructure = inst.components.spellcaster.spell
+
+	local function DestroyStructure(staff, target)
+		if target:HasTag("structure") or target:HasTag("currency") then
+			local caster = staff.components.inventoryitem.owner
+			if caster.components.talker then
+				caster.components.talker:Say("The Emerville government is looking at me suspiciously...")
+			end
+			return
+		end
+		_destroystructure(staff, target)
+	end
+
+	inst.components.spellcaster.spell = DestroyStructure
+end)
 	
 -------------------------------------------
 -- Remove Scarecrow Obstacle Physics 

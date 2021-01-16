@@ -1928,6 +1928,11 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ARMOR_WINDBREAKER   = "Sigh."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ARMOR_WINDBREAKER = "I shall resist the heat with every step!"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.ARMOR_WINDBREAKER 	= "The heat can't hold us back!"
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.EYEBRELLA = "Legacy Eyebrella"
+STRINGS.RECIPE_DESC.EYEBRELLA = "Rain Rain Go Away!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.EYEBRELLA = "I'd rather be dry but at leave I'm alive!"
+------------------------------------------------------------------------------------------------------------
 
 
 -------------------------
