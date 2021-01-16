@@ -120,6 +120,13 @@ local function fn(Sim)
 	inst.OnSave = onsave 
     inst.OnLoad = onload
 
+    local function cansuckit(ent)
+        return ent.components.inventoryitem and ent.components.inventoryitem.canbepickedup
+            and (ent.prefab ~= "bernie_inactive" or ent.components.fueled:IsEmpty())
+            and ent.components.inventoryitem.cangoincontainer
+            and ent ~= inst and ent.entity:IsVisible()
+    end
+
 	local function suckit(item)
 		inst.AnimState:PlayAnimation("hit")
 		inst.SoundEmitter:PlaySound("dontstarve/wilson/chest_open")
@@ -129,25 +136,29 @@ local function fn(Sim)
 	local function vacuum(inst)
 		local x,y,z = inst.Transform:GetWorldPosition()
 		local SEARCH_RADIUS = 6
+        local canttags = { "casino", "irreplaceable", "resurrector", "companion" }
+        local unfilledstacks = {}
 
-		local item = FindEntity(inst, SEARCH_RADIUS, function(item) 
-			local check = item.components.inventoryitem and item.components.inventoryitem.canbepickedup and item.components.inventoryitem.cangoincontainer
-			return check
-			end, nil, { "casino", "irreplaceable", "resurrector", "companion" })
-
-        if item and item.prefab == "bernie_inactive" and not item.components.fueled:IsEmpty() then
-            -- Doesn't pick up bernies, but will pick up dead ones
-            return nil
-        end
-
-        if item and not inst.components.container:IsFull() then
-        -- container is not full, it can pick up the item
-            suckit(item)
-        elseif item and item.components.stackable then
-        -- if the inventory is full, but the item stacks, and exists in the container, and the stack is not full
-        local stack = inst.components.container:FindItem(function(i) return (i.prefab == item.prefab and not i.components.stackable:IsFull()) end)
-            if stack then
-                suckit(item)
+		local ents = TheSim:FindEntities(x, y, z, SEARCH_RADIUS, nil, canttags)
+        for _,ent in ipairs(ents) do
+            if cansuckit(ent) then
+                if not inst.components.container:IsFull() then
+                    return suckit(ent)
+                elseif ent.components.stackable then
+                    if unfilledstacks[ent.prefab] then
+                        return suckit(ent)
+                    end
+                    
+                    for _,v in pairs(inst.components.container.slots) do
+                        if v.components.stackable and not v.components.stackable:IsFull() then
+                            if v.prefab == ent.prefab then
+                                return suckit(ent)
+                            else
+                                unfilledstacks[v.prefab] = true
+                            end
+                        end
+                    end
+                end
             end
         end
     end
