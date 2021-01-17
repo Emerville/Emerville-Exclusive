@@ -22,6 +22,16 @@ local function CheckEquiped(inst, owner)
 end
 
 local function OnEquip(inst, owner)
+    
+    if owner.components.skinner then
+        local skins = owner.components.skinner:GetClothing()
+        inst.components.skinner:SetClothing(skins.body)
+        inst.components.skinner:SetClothing(skins.hand)
+        inst.components.skinner:SetClothing(skins.legs)
+        inst.components.skinner:SetClothing(skins.feet)
+    
+        owner.components.skinner:ClearAllClothing()
+    end
 	
 	owner.AnimState:OverrideSymbol("swap_body", "torso_skeletalamulet", "torso_skeletalamulet")
 	owner.AnimState:SetBuild("reaper")
@@ -37,6 +47,16 @@ local function OnUnequip(inst, owner)
 
 	owner.AnimState:ClearOverrideSymbol("swap_body")
 	owner.AnimState:SetBuild(owner.prefab)
+    
+    if owner.components.skinner then
+        local skins = inst.components.skinner:GetClothing()
+        owner.components.skinner:SetClothing(skins.body)
+        owner.components.skinner:SetClothing(skins.hand)
+        owner.components.skinner:SetClothing(skins.legs)
+        owner.components.skinner:SetClothing(skins.feet)
+    
+        inst.components.skinner:ClearAllClothing()
+    end
 	
 	inst.equipped = false
 	
@@ -83,7 +103,9 @@ local function init()
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.imagename = "skeletalamulet"
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/skeletalamulet.xml"
-
+    
+    inst:AddComponent("skinner")
+    
 	return inst
 end
 
