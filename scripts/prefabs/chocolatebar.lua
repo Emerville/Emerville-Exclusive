@@ -21,6 +21,8 @@ local function init()
 
     MakeInventoryPhysics(inst)
 
+	inst:AddTag("preparedfood")
+	
     inst.AnimState:SetBank("chocolatebar")
     inst.AnimState:SetBuild("chocolatebar")
     inst.AnimState:PlayAnimation("idle")
