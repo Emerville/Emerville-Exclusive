@@ -8,7 +8,6 @@ local assets = {
 
 local function CheckEquiped(inst, owner)
     if owner and inst.components.equippable:IsEquipped() then
-
         owner.AnimState:SetBuild("reaper")
 
         if inst.taskskel ~= nil then
@@ -19,18 +18,13 @@ local function CheckEquiped(inst, owner)
 end
 
 local function OnEquip(inst, owner)
-    if owner.components.skinner then
-        local skins = owner.components.skinner:GetClothing()
-        inst.components.skinner:SetClothing(skins.body)
-        inst.components.skinner:SetClothing(skins.hand)
-        inst.components.skinner:SetClothing(skins.legs)
-        inst.components.skinner:SetClothing(skins.feet)
-
+    if inst.skins == nil and owner.components.skinner then
+        inst.skins = owner.components.skinner:GetClothing()
         owner.components.skinner:ClearAllClothing()
     end
 
-    owner.AnimState:OverrideSymbol("swap_body", "torso_skeletalamulet", "torso_skeletalamulet")
     owner.AnimState:SetBuild("reaper")
+    owner.AnimState:OverrideSymbol("swap_body", "torso_skeletalamulet", "torso_skeletalamulet")
 
     inst.equipped = true
 
@@ -44,13 +38,11 @@ local function OnUnequip(inst, owner)
     owner.AnimState:SetBuild(owner.prefab)
 
     if owner.components.skinner then
-        local skins = inst.components.skinner:GetClothing()
-        owner.components.skinner:SetClothing(skins.body)
-        owner.components.skinner:SetClothing(skins.hand)
-        owner.components.skinner:SetClothing(skins.legs)
-        owner.components.skinner:SetClothing(skins.feet)
-
-        inst.components.skinner:ClearAllClothing()
+        owner.components.skinner:SetClothing(inst.skins.body)
+        owner.components.skinner:SetClothing(inst.skins.hand)
+        owner.components.skinner:SetClothing(inst.skins.legs)
+        owner.components.skinner:SetClothing(inst.skins.feet)
+        inst.skins = nil
     end
 
     inst.equipped = false
@@ -63,6 +55,16 @@ local function OnUnequip(inst, owner)
     if inst.taskskel ~= nil then
         inst.taskskel:Cancel()
         inst.taskskel = nil
+    end
+end
+
+local function OnSave(inst, data)
+    data.skins = inst.skins
+end
+
+local function OnLoad(inst, data)
+    if data and data.skins then
+        inst.skins = data.skins
     end
 end
 
@@ -98,7 +100,8 @@ local function init()
     inst.components.inventoryitem.imagename = "skeletalamulet"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/skeletalamulet.xml"
 
-    inst:AddComponent("skinner")
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
 
     return inst
 end
