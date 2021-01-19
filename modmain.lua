@@ -1019,7 +1019,24 @@ for k, v in pairs(shadowpieces) do
         GLOBAL.RemovePhysicsColliders(v)
         v.Physics:SetCollisionGroup(GLOBAL.COLLISION.SANITY)     
     end)
-end	
+end
+----------------------------------------
+-- Bees Duplicating Flower Bushes Patch
+----------------------------------------
+-- If a bee pollinates a flower bush and attempts to spawn another 
+-- flower bush, that bush will be replaced by a regular flower --KW
+AddComponentPostInit("pollinator", function(self)
+    if not GLOBAL.TheNet:GetIsServer() then return end
+    local _CreateFlower = self.CreateFlower
+    self.CreateFlower = function(self)
+        for k,v in pairs(self.flowers) do
+            if v.prefab == "flowerbush" then
+                v.prefab = "flower"
+            end
+        end
+        _CreateFlower(self)
+    end
+end)
 
 ------------
 -- Dark Axe
