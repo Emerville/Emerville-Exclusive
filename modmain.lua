@@ -1039,3 +1039,41 @@ end
  
 local trees = {"evergreen", "evergreen_normal", "evergreen_tall", "evergreen_sparse", "evergreen_sparse_normal", "evergreen_sparse_tall", "deciduoustree", "deciduoustree_normal", "deciduoustree_tall"}
 for k,v in pairs(trees) do AddPrefabPostInit(v, EvergreenPostInit) end
+
+------------
+-- Magic Bag Auto-close Fix
+------------
+local function MagicBagPostInit(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.components.container.OnUpdate = function(self, dt)
+        if self.opener == nil then
+            self.inst:StopUpdatingComponent(self)
+        elseif not (self.inst.components.inventoryitem ~= nil and
+                    self.inst.components.inventoryitem.owner ~= nil)
+                and not (self.opener:IsNear(self.inst, 3)
+                    and (self.inst.components.inventoryitem.owner ~= nil
+                            or GLOBAL.CanEntitySeeTarget(self.opener, self.inst))) then
+            self:Close()
+        end
+    end
+end
+AddPrefabPostInit("magicbag", MagicBagPostInit)
+
+local _oldrummagefn = ACTIONS.RUMMAGE.fn
+ACTIONS.RUMMAGE.fn = function(act)
+    local targ = act.target or act.invobject
+
+    if targ ~= nil and targ.prefab == "magicbag" and targ.components.container ~= nil
+            and targ.components.container.canbeopened and not targ.components.container:IsOpenedBy(act.doer) then
+        if targ.components.inventoryitem.owner ~= nil or GLOBAL.CanEntitySeeTarget(act.doer, targ) then
+            act.doer:PushEvent("opencontainer", { container = targ })
+            targ.components.container:Open(act.doer)
+        end
+        return true
+    else
+        return _oldrummagefn(act)
+    end
+end
