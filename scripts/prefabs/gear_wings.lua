@@ -7,15 +7,16 @@ local assets =
 	Asset("IMAGE", "images/inventoryimages/gear_wings.tex"),
 }
 
-local function onperish (inst, owner)
-    local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
-    if owner then
+local function ondepleted(inst)
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    if owner ~= nil then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        SpawnPrefab("brokentool").Transform:SetPosition(x, y, z)
         owner.SoundEmitter:PlaySound("dontstarve/wilson/use_break")
 	    owner.SoundEmitter:PlaySound("dontstarve/creatures/knight/hurt")
-        local brokentool = SpawnPrefab("brokentool")
-        brokentool.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst:Remove()
 	end
+    
+    inst:Remove()
 end
 
 local function onequip(inst, owner)
@@ -62,7 +63,7 @@ local function fn()
     
 	inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(960) --- 8 days * 1.5
-    inst.components.fueled:SetDepletedFn(onperish)
+    inst.components.fueled:SetDepletedFn(ondepleted)
 		
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY

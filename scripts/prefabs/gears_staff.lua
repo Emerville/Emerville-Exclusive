@@ -9,12 +9,6 @@ local assets =
 	
 local function onpocket(inst)
     inst.components.burnable:Extinguish()
-end	
-
-local function generic_perish(inst)
-	local fin = SpawnPrefab("box_gear")
-	      fin.Transform:SetPosition(inst.Transform:GetWorldPosition())	
-    inst:Remove()
 end
 
 local function ondropped(inst)
@@ -56,9 +50,21 @@ local function onattack(inst, owner, target)
 	end
 end
 
-local function nofuel(inst)
+local function ondepleted(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/fireOut")
-	generic_perish(inst)
+
+    local replacement = SpawnPrefab("box_gear")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+    
+    inst:Remove()
 end
 
 local function ontakefuel(inst)
@@ -122,7 +128,7 @@ local function fn()
 	inst.components.fueled.accepting = true
     inst.components.fueled.fueltype = FUELTYPE.NIGHTMARE
 	inst.components.fueled.ontakefuelfn = ontakefuel
-    inst.components.fueled:SetDepletedFn(nofuel)
+    inst.components.fueled:SetDepletedFn(ondepleted)
 	
     MakeHauntableLaunch(inst)
 	

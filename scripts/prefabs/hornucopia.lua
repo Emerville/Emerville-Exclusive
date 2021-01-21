@@ -5,8 +5,17 @@ local assets =
 }
 
 local function onfinished(inst)
-	local fin = SpawnPrefab("minotaurhorn")
-		fin.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+    local replacement = SpawnPrefab("minotaurhorn")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+    
     inst:Remove()
 end
 

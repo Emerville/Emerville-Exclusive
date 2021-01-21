@@ -8,12 +8,6 @@ local assets =
 	Asset("IMAGE", "images/inventoryimages/gears_hat_goggles.tex"),
 }
 
-local function generic_perish(inst)
-	local fin = SpawnPrefab("box_gear")
-	      fin.Transform:SetPosition(inst.Transform:GetWorldPosition())	
-    inst:Remove()
-end
-
 local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_hat", "gears_hat_goggles", "swap_hat")
 	
@@ -50,12 +44,23 @@ local function goggles_onunequip(inst, owner)
     owner.SoundEmitter:PlaySound("dontstarve_DLC001/common/moggles_off")
 end
 
-local function goggles_perish(inst)
-	local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
-	if owner then
-		owner:PushEvent("torchranout", {torch = inst})
-	end
-	generic_perish(inst)
+local function ondepleted(inst)
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    if owner ~= nil then
+        owner:PushEvent("torchranout", { torch = inst })
+    end
+
+    local replacement = SpawnPrefab("box_gear")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+    
+    inst:Remove()
 end
 
 local function fn(Sim)	
@@ -98,7 +103,7 @@ local function fn(Sim)
 	inst.components.fueled.fueltype = FUELTYPE.BURNABLE
 	inst.components.fueled.secondaryfueltype = FUELTYPE.CAVE	
 	inst.components.fueled:InitializeFuelLevel(TUNING.TOTAL_DAY_TIME*.75)
-	inst.components.fueled:SetDepletedFn(goggles_perish)
+	inst.components.fueled:SetDepletedFn(ondepleted)
 	inst.components.fueled.accepting = true
 
 	--[[
