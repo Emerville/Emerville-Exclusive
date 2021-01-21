@@ -1,10 +1,10 @@
 local assets =
 {
-	Asset("ANIM", "anim/gear_wings.zip"),
-	Asset("ANIM", "anim/gear_wings_ground.zip"),
-	
-	Asset("ATLAS", "images/inventoryimages/gear_wings.xml"),
-	Asset("IMAGE", "images/inventoryimages/gear_wings.tex"),
+    Asset("ANIM", "anim/gear_wings.zip"),
+    Asset("ANIM", "anim/gear_wings_ground.zip"),
+
+    Asset("ATLAS", "images/inventoryimages/gear_wings.xml"),
+    Asset("IMAGE", "images/inventoryimages/gear_wings.tex"),
 }
 
 local function ondepleted(inst)
@@ -13,41 +13,41 @@ local function ondepleted(inst)
         local x, y, z = inst.Transform:GetWorldPosition()
         SpawnPrefab("brokentool").Transform:SetPosition(x, y, z)
         owner.SoundEmitter:PlaySound("dontstarve/wilson/use_break")
-	    owner.SoundEmitter:PlaySound("dontstarve/creatures/knight/hurt")
-	end
-    
+        owner.SoundEmitter:PlaySound("dontstarve/creatures/knight/hurt")
+    end
+
     inst:Remove()
 end
 
 local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_body", "gear_wings", "swap_body")
-	owner.SoundEmitter:PlaySound("dontstarve/creatures/knight/idle")
-	
-	inst.components.fueled:StartConsuming()
+    owner.SoundEmitter:PlaySound("dontstarve/creatures/knight/idle")
+
+    inst.components.fueled:StartConsuming()
 end
 
-local function onunequip(inst, owner) 
+local function onunequip(inst, owner)
     owner.AnimState:ClearOverrideSymbol("swap_body")
-	
-	inst.components.fueled:StopConsuming()
+
+    inst.components.fueled:StopConsuming()
 end
 
 local function fn()
-	local inst = CreateEntity()
-	
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddNetwork()
-	
+    local inst = CreateEntity()
+
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddNetwork()
+
     MakeInventoryPhysics(inst)
-       
+
     inst.AnimState:SetBank("bank")
     inst.AnimState:SetBuild("gear_wings_ground")
     inst.AnimState:PlayAnimation("idle")
 
     inst.entity:SetPristine()
-	
+
     if not TheWorld.ismastersim then
         return inst
     end
@@ -55,23 +55,23 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "gear_wings"	
+    inst.components.inventoryitem.imagename = "gear_wings"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/gear_wings.xml"
-	
-	inst:AddComponent("fuel")
+
+    inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.MED_FUEL
-    
-	inst:AddComponent("fueled")
+
+    inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(960) --- 8 days * 1.5
     inst.components.fueled:SetDepletedFn(ondepleted)
-		
+
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
-    inst.components.equippable.walkspeedmult = 1.20    
+    inst.components.equippable.walkspeedmult = 1.20
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
 
     return inst
 end
 
-return Prefab( "common/inventory/gear_wings", fn, assets) 
+return Prefab( "common/inventory/gear_wings", fn, assets)
