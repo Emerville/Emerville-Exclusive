@@ -964,19 +964,7 @@ if not GLOBAL.TheWorld.ismastersim then return inst end
         end
     end
         
-    local function onhammered(inst, worker)
-        inst.components.lootdropper:DropLoot()
-        if inst.components.container ~= nil then
-			inst.components.container:DropEverything()
-		end			
-        local fx = GLOBAL.SpawnPrefab("collapse_small")
-        fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        fx:SetMaterial("wood")
-        inst:Remove()
-    end
-        
     inst.components.workable:SetOnWorkCallback(onhit)
-    inst.components.workable:SetOnFinishCallback(onhammered)
 end)
 
 AddPrefabPostInit("treasurechest", function(inst)
@@ -992,23 +980,22 @@ if not GLOBAL.TheWorld.ismastersim then return inst end
         end
     end
 
-    local function onhammered(inst, worker)
-        if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
-            inst.components.burnable:Extinguish()
-        end
-        inst.components.lootdropper:DropLoot()
-        if inst.components.container ~= nil then
-			inst.components.container:DropEverything()
-		end		
-        local fx = GLOBAL.SpawnPrefab("collapse_small")
-        fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        fx:SetMaterial("wood")
-        inst:Remove()
-    end
-
     inst.components.workable:SetOnWorkCallback(onhit)
-    inst.components.workable:SetOnFinishCallback(onhammered)
 end)
+
+local function OnHitPreserver(inst, worker)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("closed", false)
+    inst.components.container:Close()
+end
+
+local preservers = {"icebox", "saltbox"}
+for k,v in pairs(preservers) do
+    AddPrefabPostInit(v, function(v)
+        if not GLOBAL.TheNet:GetIsServer() then return end
+        v.components.workable:SetOnWorkCallback(OnHitPreserver)
+    end)
+end
 
 -------------------------------------------
 -- Shadow Boss Fix - Code by KoreanWaffles 
