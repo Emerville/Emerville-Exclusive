@@ -785,6 +785,7 @@ local efc_recipe = {
 		perishtime = nil, 
 		sanity = 25,
 		cooktime = 2,
+		overridebuild = "efc",
 		tags = {"catfood"},
 	}
 AddCookerRecipe("cookpot", efc_recipe)	
