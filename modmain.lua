@@ -785,6 +785,7 @@ local efc_recipe = {
 		perishtime = nil, 
 		sanity = 25,
 		cooktime = 2,
+		overridebuild = "efc",
 		tags = {"catfood"},
 	}
 AddCookerRecipe("cookpot", efc_recipe)	
@@ -964,19 +965,7 @@ if not GLOBAL.TheWorld.ismastersim then return inst end
         end
     end
         
-    local function onhammered(inst, worker)
-        inst.components.lootdropper:DropLoot()
-        if inst.components.container ~= nil then
-			inst.components.container:DropEverything()
-		end			
-        local fx = GLOBAL.SpawnPrefab("collapse_small")
-        fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        fx:SetMaterial("wood")
-        inst:Remove()
-    end
-        
     inst.components.workable:SetOnWorkCallback(onhit)
-    inst.components.workable:SetOnFinishCallback(onhammered)
 end)
 
 AddPrefabPostInit("treasurechest", function(inst)
@@ -992,23 +981,22 @@ if not GLOBAL.TheWorld.ismastersim then return inst end
         end
     end
 
-    local function onhammered(inst, worker)
-        if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
-            inst.components.burnable:Extinguish()
-        end
-        inst.components.lootdropper:DropLoot()
-        if inst.components.container ~= nil then
-			inst.components.container:DropEverything()
-		end		
-        local fx = GLOBAL.SpawnPrefab("collapse_small")
-        fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        fx:SetMaterial("wood")
-        inst:Remove()
-    end
-
     inst.components.workable:SetOnWorkCallback(onhit)
-    inst.components.workable:SetOnFinishCallback(onhammered)
 end)
+
+local function OnHitPreserver(inst, worker)
+    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PushAnimation("closed", false)
+    inst.components.container:Close()
+end
+
+local preservers = {"icebox", "saltbox"}
+for k,v in pairs(preservers) do
+    AddPrefabPostInit(v, function(v)
+        if not GLOBAL.TheNet:GetIsServer() then return end
+        v.components.workable:SetOnWorkCallback(OnHitPreserver)
+    end)
+end
 
 -------------------------------------------
 -- Shadow Boss Fix - Code by KoreanWaffles 
@@ -1019,7 +1007,7 @@ for k, v in pairs(shadowpieces) do
         GLOBAL.RemovePhysicsColliders(v)
         v.Physics:SetCollisionGroup(GLOBAL.COLLISION.SANITY)     
     end)
-end	
+end
 
 ------------
 -- Dark Axe
@@ -1039,3 +1027,41 @@ end
  
 local trees = {"evergreen", "evergreen_normal", "evergreen_tall", "evergreen_sparse", "evergreen_sparse_normal", "evergreen_sparse_tall", "deciduoustree", "deciduoustree_normal", "deciduoustree_tall"}
 for k,v in pairs(trees) do AddPrefabPostInit(v, EvergreenPostInit) end
+
+------------
+-- Magic Bag Auto-close Fix
+------------
+local function MagicBagPostInit(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+
+    inst.components.container.OnUpdate = function(self, dt)
+        if self.opener == nil then
+            self.inst:StopUpdatingComponent(self)
+        elseif not (self.inst.components.inventoryitem ~= nil and
+                    self.inst.components.inventoryitem.owner ~= nil)
+                and not (self.opener:IsNear(self.inst, 3)
+                    and (self.inst.components.inventoryitem.owner ~= nil
+                            or GLOBAL.CanEntitySeeTarget(self.opener, self.inst))) then
+            self:Close()
+        end
+    end
+end
+AddPrefabPostInit("magicbag", MagicBagPostInit)
+
+local _oldrummagefn = ACTIONS.RUMMAGE.fn
+ACTIONS.RUMMAGE.fn = function(act)
+    local targ = act.target or act.invobject
+
+    if targ ~= nil and targ.prefab == "magicbag" and targ.components.container ~= nil
+            and targ.components.container.canbeopened and not targ.components.container:IsOpenedBy(act.doer) then
+        if targ.components.inventoryitem.owner ~= nil or GLOBAL.CanEntitySeeTarget(act.doer, targ) then
+            act.doer:PushEvent("opencontainer", { container = targ })
+            targ.components.container:Open(act.doer)
+        end
+        return true
+    else
+        return _oldrummagefn(act)
+    end
+end

@@ -32,7 +32,7 @@ local function OnEquip(inst, owner)
 	owner.components.groundpounder.destructionRings = 0
 	owner.components.groundpounder.numRings = 3
 	owner.components.groundpounder.groundpounddamagemult = 2.5
-	owner.components.groundpounder.noTags = { "FX", "NOCLICK", "DECOR", "INLIMBO", "player", "companion"}
+	owner.components.groundpounder.noTags = { "FX", "NOCLICK", "DECOR", "INLIMBO", "player", "companion", "abigail", "shadowminion" }
 	--[[owner:AddTag("hound")
 	hound = SpawnPrefab("hound")
 	hound:RemoveComponent("sanityaura")
