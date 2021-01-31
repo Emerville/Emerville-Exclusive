@@ -1065,3 +1065,70 @@ ACTIONS.RUMMAGE.fn = function(act)
         return _oldrummagefn(act)
     end
 end
+
+------------
+-- Piggy bank actions
+------------
+
+local PIGBANKGIVE = Action({ rmb=true, priority=1 })
+PIGBANKGIVE.str = "Deposit"
+PIGBANKGIVE.id = "PIGBANKGIVE"
+PIGBANKGIVE.fn = function(act)
+    if act.target ~= nil and act.target:IsValid() and act.target.prefab == "trinket_pigbank"
+            and act.invobject.prefab == "goldcoin" then
+        local num = act.invobject.components.stackable.stacksize
+        act.invobject:Remove()
+        act.target.stored = act.target.stored + num
+        act.target.components.workable:SetWorkLeft(1) -- Reset workable if piggy was empty
+        return true
+    end
+end
+AddAction(PIGBANKGIVE)
+
+local PIGBANKTAKE = Action({ rmb=true, priority=1 })
+PIGBANKTAKE.str = "Withdraw"
+PIGBANKTAKE.id = "PIGBANKTAKE"
+PIGBANKTAKE.fn = function(act)
+    local target = act.target or act.invobject
+    if target.prefab == "trinket_pigbank" then
+        local coins = SpawnPrefab("goldcoin")
+        local maxstack = coins.components.stackable.maxsize
+        local num = target.stored and math.min(maxstack, target.stored) or 0 
+        
+        if num > 0 then
+            coins.components.stackable:SetStackSize(num)
+            act.doer.components.inventory:GiveItem(coins)
+        
+            target.stored = target.stored - num
+        else
+            -- TODO: Make character say something "This piggy has nothing more to give."
+        end
+    
+        if target.stored > 0 then
+            target.components.workable:SetWorkLeft(1)
+        end
+        return true
+    end
+end
+AddAction(PIGBANKTAKE)
+
+local pigbank_give_pickhandler = ActionHandler(ACTIONS.PIGBANKGIVE, "doshortaction")
+local pigbank_take_pickhandler = ActionHandler(ACTIONS.PIGBANKTAKE, "doshortaction")
+
+AddStategraphActionHandler("wilson", pigbank_give_pickhandler)
+AddStategraphActionHandler("wilson", pigbank_take_pickhandler)
+
+AddComponentAction("USEITEM", "inventoryitem", function(inst, doer, target, actions, right)
+    if right and inst.prefab == "goldcoin" and target.prefab == "trinket_pigbank" then
+        table.insert(actions, ACTIONS.PIGBANKGIVE)
+    end
+end)
+
+AddComponentAction("INVENTORY", "inventoryitem", function(inst, doer, actions)
+    if inst.prefab == "trinket_pigbank" then
+        table.insert(actions, ACTIONS.PIGBANKTAKE)
+    end
+end)
+
+AddStategraphActionHandler("wilson_client", pigbank_give_pickhandler)
+AddStategraphActionHandler("wilson_client", pigbank_take_pickhandler)
