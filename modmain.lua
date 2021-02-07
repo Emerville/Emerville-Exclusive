@@ -67,12 +67,14 @@ PrefabFiles = {
 	"baronsuit",
 	"giftgamble",	
 	"elegantlantern",
-	"elegantlantern2", --Rename to Plantern or Luxury Lantern
+	"opulentlantern", --Rename to Plantern or Luxury Lantern
 	"thorn_crown",
 	"notwilson",
 	"nottrump",
 	"magicdolls",
     "magicbag",
+    "magicbag2",
+	"magicpouch2",
 	"chromebag",
 	"chromebag2",
 	"chromebag3",

@@ -1,9 +1,10 @@
+require("prefabs/mushtree_spores")
+
 local assets =
 {
 	Asset("ANIM", "anim/malamilantern.zip"),
 	Asset("ANIM", "anim/swap_malamilantern_skin.zip"),
-	Asset("ANIM", "anim/swap_malamilantern_skin_on.zip"),
-	
+	Asset("ANIM", "anim/swap_malamilantern_skin_on.zip"),	
     Asset("SOUND", "sound/wilson.fsb"),
 	
 	Asset("ATLAS", "images/inventoryimages/malamilantern_skin.xml"),
@@ -12,11 +13,99 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/malamilantern_skin_lit.tex"),
 }
 
+local function IsLightOn(inst)
+    return inst.Light:IsEnabled()
+end
+
+local colour_tint = { 0.4, 0.3, 0.25, 0.2, 0.1 }
+local mult_tint = { 0.7, 0.6, 0.55, 0.5, 0.45 }
+
+local sounds_2 =
+{
+    toggle = "dontstarve/common/together/mushroom_lamp/lantern_2_on",
+    colour = "dontstarve/common/together/mushroom_lamp/change_colour",
+    craft = "dontstarve/common/together/mushroom_lamp/craft_2",
+}
+
+local function ClearSoundQueue(inst)
+    if inst._soundtask ~= nil then
+        inst._soundtask:Cancel()
+        inst._soundtask = nil
+    end
+end
+
+local function OnQueuedSound(inst, soundname)
+    inst._soundtask = nil
+    inst.SoundEmitter:PlaySound(soundname)
+end
+
+local function QueueSound(inst, delay, soundname)
+    if inst._soundtask ~= nil then
+        inst._soundtask:Cancel()
+    end
+    inst._soundtask = inst:DoTaskInTime(delay, OnQueuedSound, soundname)
+end
+
+local COLOURED_LIGHTS =
+{
+    red =
+    {
+        [MUSHTREE_SPORE_RED] = true,
+        ["winter_ornament_light1"] = true,
+        ["winter_ornament_light5"] = true,
+    },
+
+    green =
+    {
+        [MUSHTREE_SPORE_GREEN] = true,
+        ["winter_ornament_light2"] = true,
+        ["winter_ornament_light6"] = true,
+    },
+
+    blue =
+    {
+        [MUSHTREE_SPORE_BLUE] = true,
+        ["winter_ornament_light3"] = true,
+        ["winter_ornament_light7"] = true,
+    },
+}
+
+local function IsRedSpore(item) return COLOURED_LIGHTS.red[item.prefab] end
+local function IsGreenSpore(item) return COLOURED_LIGHTS.green[item.prefab] end
+local function IsBlueSpore(item) return COLOURED_LIGHTS.blue[item.prefab] end
+
+local function UpdateLightState(inst)
+    if not inst.components.fueled:IsEmpty() then
+
+		ClearSoundQueue(inst)
+
+		local sound = sounds_2
+		local num_batteries = #inst.components.container:FindItems( function(item) return item:HasTag("lightbattery") or item:HasTag("spore") end )
+
+		if num_batteries > 0 then
+
+			-- For the GlowCap, spores will tint the light colour to allow for a disco/rave in your base
+			local r = #inst.components.container:FindItems(IsRedSpore)
+			local g = #inst.components.container:FindItems(IsGreenSpore)
+			local b = #inst.components.container:FindItems(IsBlueSpore)
+
+			inst._light.Light:SetColour(colour_tint[g+b + 1] + r/11, colour_tint[r+b + 1] + g/11, colour_tint[r+g + 1] + b/11)
+			inst.AnimState:SetMultColour(mult_tint[g+b + 1], mult_tint[r+b + 1], mult_tint[r+g + 1], 1)		
+		
+			if POPULATING then --This makes it make that squishy sound when placing spores inside.
+
+		    inst.SoundEmitter:PlaySound("dontstarve/common/together/mushroom_lamp/lantern_2_on") --I can't make it word, sad times.
+ --           QueueSound(inst, 13 * FRAMES, sound.colour)
+			end		
+		end
+	end
+end
+
 local function fuelupdate(inst)
     if inst._light ~= nil then
         local fuelpercent = inst.components.fueled:GetPercent()
-        inst._light.Light:SetIntensity(Lerp(0.4, 0.6, fuelpercent))
-        inst._light.Light:SetRadius(Lerp(5, 8, fuelpercent))
+        inst._light.Light:SetIntensity(Lerp(0.4, 0.6, fuelpercent)) --0.75
+        inst._light.Light:SetRadius(Lerp(7, 11, fuelpercent))
         inst._light.Light:SetFalloff(.9)
     end
 end
@@ -30,7 +119,7 @@ local function turnon(inst)
         local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
 
         if inst._light == nil or not inst._light:IsValid() then
-            inst._light = SpawnPrefab("elegantlanternlight")
+            inst._light = SpawnPrefab("opulentlanternlight")
             fuelupdate(inst)
         end
         inst._light.entity:SetParent((owner or inst).entity)
@@ -144,12 +233,13 @@ local function lanternlightfn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddLight()
     inst.entity:AddNetwork()
 
     inst:AddTag("FX")
 
-	inst.Light:SetColour(125 / 255, 250 / 255, 80 / 255)
+	inst.Light:SetColour(.65, .65, .5)  --(125 / 255, 250 / 255, 80 / 255)
 
     inst.entity:SetPristine()
 
@@ -175,6 +265,7 @@ local function fn()
     inst.AnimState:SetBank("malamilantern")
     inst.AnimState:SetBuild("malamilantern")
     inst.AnimState:PlayAnimation("idle_skin_off")
+	inst.AnimState:SetMultColour(.7, .7, .7, 1)
 	
     inst:AddTag("light")	
 
@@ -191,6 +282,12 @@ local function fn()
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"	
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem:SetOnPutInInventoryFn(turnoff)
+	
+    inst:AddComponent("container")
+    inst.components.container:WidgetSetup("opulentlantern")	
+	
+    inst:AddComponent("preserver")
+	inst.components.preserver:SetPerishRateMultiplier(TUNING.PERISH_MUSHROOM_LIGHT_MULT)
 	
     inst:AddComponent("equippable")	
     inst.components.equippable:SetOnEquip(onequip)
@@ -210,7 +307,8 @@ local function fn()
     inst.components.fueled.ontakefuelfn = takefuel
     inst.components.fueled.accepting = true
 	
-
+    inst:ListenForEvent("itemget", UpdateLightState)
+    inst:ListenForEvent("itemlose", UpdateLightState)
 
     inst._light = nil
 
@@ -221,5 +319,5 @@ local function fn()
     return inst
 end
 
-return Prefab("common/inventory/elegantlantern2", fn, assets),
-       Prefab("common/inventory/elegantlanternlight", lanternlightfn)
+return Prefab("common/inventory/opulentlantern", fn, assets),
+       Prefab("common/inventory/opulentlanternlight", lanternlightfn)

@@ -223,7 +223,7 @@ params.magicbag =
         slotpos = {},
         animbank = "ui_chest_4x4",
         animbuild = "ui_chest_4x4",
-        pos = _G.Vector3(380, -200, 0),
+        pos = _G.Vector3(410, -200, 0),
         side_align_tip = 160,
     },
     type = "chest",
@@ -990,3 +990,50 @@ function containers.widgetsetup(container, prefab, data)
                 return old_widgetsetup(container, prefab)
     end
 end
+
+--------------------------------------------------------------------------
+--[[ Opulent Lantern]]
+--------------------------------------------------------------------------
+params.opulentlantern =
+{
+    widget =
+    {
+        slotpos =
+        {
+            _G.Vector3(0, 64 + 32 + 8 + 4, 0), 
+            _G.Vector3(0, 32 + 4, 0),
+            _G.Vector3(0, -(32 + 4), 0), 
+            _G.Vector3(0, -(64 + 32 + 8 + 4), 0),
+        },
+        animbank = "ui_lamp_1x4",
+        animbuild = "ui_lamp_1x4",
+        pos = _G.Vector3(250, -200, 0),
+        side_align_tip = 100,
+    },
+    acceptsstacks = false,
+    type = "cooker",
+}
+
+function params.opulentlantern.itemtestfn(container, item, slot)
+    return (item:HasTag("lightbattery") or item:HasTag("spore"))
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.opulentlantern.slotpos ~= nil and #params.opulentlantern.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "opulentlantern" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end
+
+

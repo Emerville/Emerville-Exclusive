@@ -541,6 +541,20 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICPOUCH          = "A great use of magic.
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICPOUCH       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICPOUCH           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.MAGICPOUCH2 = "Magical Pouch"
+STRINGS.RECIPE_DESC.MAGICPOUCH2 = "Shrinks items to fit in your pocket!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICPOUCH2          = "Very magical indeed."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICPOUCH2           = "I can keep my lighter safe inside."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICPOUCH2         = "Is tiny magic pouch"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICPOUCH2            = "It's very spacious for its size."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICPOUCH2             = "A MAGICAL STORAGE CONTAINER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICPOUCH2     = "It's magical properties allow it to shrink items stored inside."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICPOUCH2           = "Wow, I've never seen anything like it!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICPOUCH2          = "A great use of magic."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICPOUCH2       = "A useful pouch that I can take with me on my adventures."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICPOUCH2           = "We can store our goodies in here."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SMALLMAGICPOUCH = "Small Magical Pouch"
 STRINGS.RECIPE_DESC.SMALLMAGICPOUCH = "Shrinks items to fit in your pocket!"
 
@@ -555,7 +569,7 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMALLMAGICPOUCH          = "A great use of m
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMALLMAGICPOUCH       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMALLMAGICPOUCH           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.MAGICBAG = "Magical Bag"
+STRINGS.NAMES.MAGICBAG = "Magical Pouch"
 STRINGS.RECIPE_DESC.MAGICBAG = "Shrinks items to fit in your pocket!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG          = "Very magical indeed."
@@ -569,10 +583,24 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG          = "A great use of magic."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.MAGICBAG2 = "Magical Bag"
+STRINGS.RECIPE_DESC.MAGICBAG2 = "Shrinks items to fit in your pocket!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG2          = "Very magical indeed."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICBAG2           = "I can keep my lighter safe inside."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICBAG2         = "Is big magic bag"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICBAG2            = "It's very spacious for its size."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICBAG2             = "A MAGICAL STORAGE CONTAINER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICBAG2     = "It's magical properties allow it to shrink items stored inside."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICBAG2           = "Wow, I've never seen anything like it!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG2          = "A great use of magic."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG2       = "A useful pouch that I can take with me on my adventures."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG2           = "We can store our goodies in here."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.BIGMAGICPOUCH = "Big Magical Pouch"
 STRINGS.RECIPE_DESC.BIGMAGICPOUCH = "Shrinks items to fit in your pocket!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.BIGMAGICPOUCH          = "The bigger the better, as Mario says."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.BIGMAGICPOUCH      = "The bigger the better, as Mario says."
 
 
 
@@ -1530,19 +1558,19 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ELEGANTLANTERN       = "A luxurious lantern.
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ELEGANTLANTERN    = "This will help me see enemies in the night."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.ELEGANTLANTERN        = "This can keep away the monster under our bed."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.ELEGANTLANTERN2 = "Elegant Lantern (SECRET RARE)"
-STRINGS.RECIPE_DESC.ELEGANTLANTERN2 = "A portable light source."
+STRINGS.NAMES.OPULENTLANTERN = "Opulent Lantern (SECRET RARE)"
+STRINGS.RECIPE_DESC.OPULENTLANTERN = "A portable light source."
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ELEGANTLANTERN2       = "This lantern is out of this world!"
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.ELEGANTLANTERN2        = "It burns really bright!"
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ELEGANTLANTERN2      = "Wolfgang is no longer scared of dark!"
-STRINGS.CHARACTERS.WENDY.DESCRIBE.ELEGANTLANTERN2         = "So bright that it's blinding."
-STRINGS.CHARACTERS.WX78.DESCRIBE.ELEGANTLANTERN2          = "IT'S MADE FROM RARE MATERIALS"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ELEGANTLANTERN2  = "A latern made from scarce materials."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.ELEGANTLANTERN2        = "A trusty lantern."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ELEGANTLANTERN2       = "A luxurious lantern."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ELEGANTLANTERN2    = "This will help me see enemies in the night."
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.ELEGANTLANTERN2        = "This can keep away the monster under our bed."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.OPULENTLANTERN       = "This lantern is very pricey!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.OPULENTLANTERN        = "It burns even brighter!"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.OPULENTLANTERN      = "Wolfgang make darkness go away!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.OPULENTLANTERN         = "So bright that I might lose my vision. Perfect."
+STRINGS.CHARACTERS.WX78.DESCRIBE.OPULENTLANTERN          = "IT'S MADE FROM RARE AND VERY EXPENSIVE MATERIALS"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.OPULENTLANTERN  = "A latern made from scarce, expensive materials."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.OPULENTLANTERN        = "A delicate, luminous lantern."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.OPULENTLANTERN       = "The finest lantern that wealth can buy."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.OPULENTLANTERN    = "Behold my enemies, a light so powerful!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.OPULENTLANTERN        = "Darkness can't keep me down anymore."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.GIFTGAMBLE = "Slot Present"
 STRINGS.RECIPE_DESC.GIFTGAMBLE = "Everybody loves gambling."
