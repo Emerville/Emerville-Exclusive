@@ -26,32 +26,37 @@ local function onhit(inst, worker)
 end
 
 local function onhammered(inst, worker)
-    if inst:HasTag("fire") and inst.components.burnable then
+    if inst.components.burnable and inst.components.burnable:IsBurning() then
         inst.components.burnable:Extinguish()
     end
     inst.components.lootdropper:DropLoot()
-    SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx:SetMaterial("wood")
     inst:Remove()
 end
 
 local function onregenfn(inst)
-    inst.AnimState:PlayAnimation("empty_ongrowth1")
-    inst.AnimState:PushAnimation("empty_ongrowth2")
-    inst.AnimState:PushAnimation("idle", true)
-    if inst:HasTag("pickedbush") then
-        inst:RemoveTag("pickedbush")
+    if not inst:HasTag("burnt") then
+        inst.AnimState:PlayAnimation("empty_ongrowth1")
+        inst.AnimState:PushAnimation("empty_ongrowth2")
+        inst.AnimState:PushAnimation("idle", true)
+        if inst:HasTag("pickedbush") then
+            inst:RemoveTag("pickedbush")
+            inst:AddTag("flower")
+        end
     end
-    inst:AddTag("flower")
 end
 
 local function onpickedfn(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds")
-    inst.AnimState:PlayAnimation("picked_full")
-    inst.AnimState:PushAnimation("picked_empty")
-    inst.AnimState:PushAnimation("picked")
-    inst:AddTag("pickedbush")
-    inst:RemoveTag("flower")
+    if not inst:HasTag("burnt") then
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds")
+        inst.AnimState:PlayAnimation("picked_full")
+        inst.AnimState:PushAnimation("picked_empty")
+        inst.AnimState:PushAnimation("picked")
+        inst:AddTag("pickedbush")
+        inst:RemoveTag("flower")
+    end
 end
 
 local function makeemptyfn(inst)
@@ -74,9 +79,9 @@ local function OnBurnt(inst)
     inst.AnimState:PlayAnimation("burnt")
     inst.components.sanityaura.aura = 0
     inst:RemoveTag("flower")
---  inst.components.pickable:MakeEmpty()
---  inst.components.pickable:Pause()
---  inst.components.pickable.caninteractwith = false
+    inst.components.pickable:MakeEmpty()
+    inst.components.pickable:Pause()
+    inst.components.pickable.caninteractwith = false
 end
 
 local function onload(inst, data)
@@ -84,8 +89,6 @@ local function onload(inst, data)
         inst.components.burnable.onburnt(inst)
     end
 end
-
-----------------------------------
 
 local function fn()
     local inst = CreateEntity()
