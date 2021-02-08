@@ -2,14 +2,14 @@ require("prefabs/mushtree_spores")
 
 local assets =
 {
-	Asset("ANIM", "anim/malamilantern.zip"),
-	Asset("ANIM", "anim/swap_malamilantern_skin.zip"),
-	Asset("ANIM", "anim/swap_malamilantern_skin_on.zip"),	
+    Asset("ANIM", "anim/malamilantern.zip"),
+    Asset("ANIM", "anim/swap_malamilantern_skin.zip"),
+    Asset("ANIM", "anim/swap_malamilantern_skin_on.zip"),
     Asset("SOUND", "sound/wilson.fsb"),
-	
-	Asset("ATLAS", "images/inventoryimages/malamilantern_skin.xml"),
+
+    Asset("ATLAS", "images/inventoryimages/malamilantern_skin.xml"),
     Asset("IMAGE", "images/inventoryimages/malamilantern_skin.tex"),
-	Asset("ATLAS", "images/inventoryimages/malamilantern_skin_lit.xml"),
+    Asset("ATLAS", "images/inventoryimages/malamilantern_skin_lit.xml"),
     Asset("IMAGE", "images/inventoryimages/malamilantern_skin_lit.tex"),
 }
 
@@ -77,28 +77,28 @@ local function IsBlueSpore(item) return COLOURED_LIGHTS.blue[item.prefab] end
 local function UpdateLightState(inst)
     if not inst.components.fueled:IsEmpty() then
 
-		ClearSoundQueue(inst)
+        ClearSoundQueue(inst)
 
-		local sound = sounds_2
-		local num_batteries = #inst.components.container:FindItems( function(item) return item:HasTag("lightbattery") or item:HasTag("spore") end )
+        local sound = sounds_2
+        local num_batteries = #inst.components.container:FindItems( function(item) return item:HasTag("lightbattery") or item:HasTag("spore") end )
 
-		if num_batteries > 0 then
+        if num_batteries > 0 then
 
-			-- For the GlowCap, spores will tint the light colour to allow for a disco/rave in your base
-			local r = #inst.components.container:FindItems(IsRedSpore)
-			local g = #inst.components.container:FindItems(IsGreenSpore)
-			local b = #inst.components.container:FindItems(IsBlueSpore)
+            -- For the GlowCap, spores will tint the light colour to allow for a disco/rave in your base
+            local r = #inst.components.container:FindItems(IsRedSpore)
+            local g = #inst.components.container:FindItems(IsGreenSpore)
+            local b = #inst.components.container:FindItems(IsBlueSpore)
 
-			inst._light.Light:SetColour(colour_tint[g+b + 1] + r/11, colour_tint[r+b + 1] + g/11, colour_tint[r+g + 1] + b/11)
-			inst.AnimState:SetMultColour(mult_tint[g+b + 1], mult_tint[r+b + 1], mult_tint[r+g + 1], 1)		
-		
-			if POPULATING then --This makes it make that squishy sound when placing spores inside.
+            inst._light.Light:SetColour(colour_tint[g+b + 1] + r/11, colour_tint[r+b + 1] + g/11, colour_tint[r+g + 1] + b/11)
+            inst.AnimState:SetMultColour(mult_tint[g+b + 1], mult_tint[r+b + 1], mult_tint[r+g + 1], 1)
 
-		    inst.SoundEmitter:PlaySound("dontstarve/common/together/mushroom_lamp/lantern_2_on") --I can't make it word, sad times.
+            if POPULATING then --This makes it make that squishy sound when placing spores inside.
+
+            inst.SoundEmitter:PlaySound("dontstarve/common/together/mushroom_lamp/lantern_2_on") --I can't make it word, sad times.
  --           QueueSound(inst, 13 * FRAMES, sound.colour)
-			end		
-		end
-	end
+            end
+        end
+    end
 end
 
 local function fuelupdate(inst)
@@ -136,7 +136,7 @@ local function turnon(inst)
         inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_on")
         inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_LP", "loop")
 
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin_lit.xml"
+        inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin_lit.xml"
         inst.components.inventoryitem:ChangeImageName("malamilantern_skin_lit")
     end
 end
@@ -165,7 +165,7 @@ local function turnoff(inst)
     inst.SoundEmitter:KillSound("loop")
     inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_off")
 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"
     inst.components.inventoryitem:ChangeImageName("malamilantern_skin")
 end
 
@@ -180,18 +180,17 @@ local function ondropped(inst)
     turnon(inst)
 end
 
---
 local function onequip(inst, owner)
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
     owner.AnimState:OverrideSymbol("lantern_overlay", "swap_malamilantern_skin_on", "swap_malamilantern_skin_on")
-    
+
     if inst.components.fueled:IsEmpty() then
         owner.AnimState:OverrideSymbol("swap_object", "swap_malamilantern_skin", "swap_malamilantern_skin")
-        owner.AnimState:Hide("LANTERN_OVERLAY") 
+        owner.AnimState:Hide("LANTERN_OVERLAY")
     else
         owner.AnimState:OverrideSymbol("swap_object", "swap_malamilantern_skin", "swap_malamilantern_skin")
-        owner.AnimState:Show("LANTERN_OVERLAY") 
+        owner.AnimState:Show("LANTERN_OVERLAY")
     end
     turnon(inst)
 end
@@ -227,8 +226,6 @@ local function takefuel(inst)
     end
 end
 
----------------------------------
-
 local function lanternlightfn()
     local inst = CreateEntity()
 
@@ -239,7 +236,7 @@ local function lanternlightfn()
 
     inst:AddTag("FX")
 
-	inst.Light:SetColour(.65, .65, .5)  --(125 / 255, 250 / 255, 80 / 255)
+    inst.Light:SetColour(.65, .65, .5)  --(125 / 255, 250 / 255, 80 / 255)
 
     inst.entity:SetPristine()
 
@@ -260,14 +257,14 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
-    MakeInventoryPhysics(inst)	
+    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("malamilantern")
     inst.AnimState:SetBuild("malamilantern")
     inst.AnimState:PlayAnimation("idle_skin_off")
-	inst.AnimState:SetMultColour(.7, .7, .7, 1)
-	
-    inst:AddTag("light")	
+    inst.AnimState:SetMultColour(.7, .7, .7, 1)
+
+    inst:AddTag("light")
 
     inst.entity:SetPristine()
 
@@ -278,35 +275,35 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "malamilantern_skin"	
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"	
+    inst.components.inventoryitem.imagename = "malamilantern_skin"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem:SetOnPutInInventoryFn(turnoff)
-	
+
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("opulentlantern")	
-	
+    inst.components.container:WidgetSetup("opulentlantern")
+
     inst:AddComponent("preserver")
-	inst.components.preserver:SetPerishRateMultiplier(TUNING.PERISH_MUSHROOM_LIGHT_MULT)
-	
-    inst:AddComponent("equippable")	
+    inst.components.preserver:SetPerishRateMultiplier(TUNING.PERISH_MUSHROOM_LIGHT_MULT)
+
+    inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(onequip)
-    inst.components.equippable:SetOnUnequip(onunequip)	
+    inst.components.equippable:SetOnUnequip(onunequip)
 
     inst:AddComponent("machine")
     inst.components.machine.turnonfn = turnon
     inst.components.machine.turnofffn = turnoff
     inst.components.machine.cooldowntime = 0
 
-    inst:AddComponent("fueled")		
+    inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.BURNABLE
-	inst.components.fueled.secondaryfueltype = FUELTYPE.CAVE
-    inst.components.fueled:InitializeFuelLevel(TUNING.LANTERN_LIGHTTIME*0.75)
+    inst.components.fueled.secondaryfueltype = FUELTYPE.CAVE
+    inst.components.fueled:InitializeFuelLevel(TUNING.LANTERN_LIGHTTIME * 0.75)
     inst.components.fueled:SetDepletedFn(nofuel)
     inst.components.fueled:SetUpdateFn(fuelupdate)
     inst.components.fueled.ontakefuelfn = takefuel
     inst.components.fueled.accepting = true
-	
+
     inst:ListenForEvent("itemget", UpdateLightState)
     inst:ListenForEvent("itemlose", UpdateLightState)
 
