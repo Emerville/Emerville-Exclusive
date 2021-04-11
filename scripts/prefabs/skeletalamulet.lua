@@ -6,17 +6,6 @@ local assets = {
     Asset("ANIM", "anim/reaper.zip")
 }
 
-local function CheckEquiped(inst, owner)
-    if owner and inst.components.equippable:IsEquipped() then
-        owner.AnimState:SetBuild("reaper")
-
-        if inst.taskskel ~= nil then
-            inst.taskskel:Cancel()
-            inst.taskskel = nil
-        end
-    end
-end
-
 local function OnEquip(inst, owner)
     if inst.skins == nil and owner.components.skinner then
         inst.skins = owner.components.skinner:GetClothing()
@@ -25,8 +14,6 @@ local function OnEquip(inst, owner)
 
     owner.AnimState:SetBuild("reaper")
     owner.AnimState:OverrideSymbol("swap_body", "torso_skeletalamulet", "torso_skeletalamulet")
-
-    inst.equipped = true
 
     if owner.components.sanity then
         owner.components.sanity:DoDelta(-25)
@@ -43,18 +30,6 @@ local function OnUnequip(inst, owner)
         owner.components.skinner:SetClothing(inst.skins.legs)
         owner.components.skinner:SetClothing(inst.skins.feet)
         inst.skins = nil
-    end
-
-    inst.equipped = false
-
-    if inst.task ~= nil then
-        inst.task:Cancel()
-        inst.task = nil
-    end
-
-    if inst.taskskel ~= nil then
-        inst.taskskel:Cancel()
-        inst.taskskel = nil
     end
 end
 
