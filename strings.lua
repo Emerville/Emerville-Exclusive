@@ -532,76 +532,57 @@ STRINGS.RECIPE_DESC.MAGICPOUCH = "Shrinks items to fit in your pocket!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICPOUCH          = "Very magical indeed."
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICPOUCH           = "I can keep my lighter safe inside."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICPOUCH         = "Is tiny magic pouch"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICPOUCH         = "Is magic pouch."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICPOUCH            = "It's very spacious for its size."
 STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICPOUCH             = "A MAGICAL STORAGE CONTAINER"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICPOUCH     = "It's magical properties allow it to shrink items stored inside."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICPOUCH           = "Wow, I've never seen anything like it!"
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICPOUCH           = "It shrinks items inside - I've never seen anything like it!"
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICPOUCH          = "A great use of magic."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICPOUCH       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICPOUCH           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.MAGICPOUCH2 = "Magical Pouch"
-STRINGS.RECIPE_DESC.MAGICPOUCH2 = "Shrinks items to fit in your pocket!"
+STRINGS.NAMES.MAGICPOUCH_CLASSIC = "Magical Pouch"
+STRINGS.RECIPE_DESC.MAGICPOUCH_CLASSIC = "Shrinks items to fit in your pocket!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICPOUCH2          = "Very magical indeed."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICPOUCH2           = "I can keep my lighter safe inside."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICPOUCH2         = "Is tiny magic pouch"
-STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICPOUCH2            = "It's very spacious for its size."
-STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICPOUCH2             = "A MAGICAL STORAGE CONTAINER"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICPOUCH2     = "It's magical properties allow it to shrink items stored inside."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICPOUCH2           = "Wow, I've never seen anything like it!"
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICPOUCH2          = "A great use of magic."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICPOUCH2       = "A useful pouch that I can take with me on my adventures."
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICPOUCH2           = "We can store our goodies in here."
-------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.SMALLMAGICPOUCH = "Small Magical Pouch"
-STRINGS.RECIPE_DESC.SMALLMAGICPOUCH = "Shrinks items to fit in your pocket!"
-
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMALLMAGICPOUCH          = "Very magical indeed."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.SMALLMAGICPOUCH           = "I can keep my lighter safe inside."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SMALLMAGICPOUCH         = "Is tiny magic pouch"
-STRINGS.CHARACTERS.WENDY.DESCRIBE.SMALLMAGICPOUCH            = "It's very spacious for its size."
-STRINGS.CHARACTERS.WX78.DESCRIBE.SMALLMAGICPOUCH             = "A MAGICAL STORAGE CONTAINER"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SMALLMAGICPOUCH     = "It's magical properties allow it to shrink items stored inside."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.SMALLMAGICPOUCH           = "Wow, I've never seen anything like it!"
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SMALLMAGICPOUCH          = "A great use of magic."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SMALLMAGICPOUCH       = "A useful pouch that I can take with me on my adventures."
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.SMALLMAGICPOUCH           = "We can store our goodies in here."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICPOUCH_CLASSIC          = "Very magical indeed."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICPOUCH_CLASSIC           = "I can keep my lighter safe inside."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICPOUCH_CLASSIC         = "Is magic pouch."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICPOUCH_CLASSIC            = "It's very spacious for its size."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICPOUCH_CLASSIC             = "A MAGICAL STORAGE CONTAINER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICPOUCH_CLASSIC     = "It's magical properties allow it to shrink items stored inside."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICPOUCH_CLASSIC           = "It shrinks items inside - I've never seen anything like it!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICPOUCH_CLASSIC          = "A great use of magic."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICPOUCH_CLASSIC       = "A useful pouch that I can take with me on my adventures."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICPOUCH_CLASSIC           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.MAGICBAG = "Magical Pouch"
 STRINGS.RECIPE_DESC.MAGICBAG = "Shrinks items to fit in your pocket!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG          = "Very magical indeed."
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICBAG           = "I can keep my lighter safe inside."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICBAG         = "Is big magic bag"
-STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICBAG            = "It's very spacious for its size."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICBAG         = "Is magic pouch."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICBAG            = "It's spacious for its size."
 STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICBAG             = "A MAGICAL STORAGE CONTAINER"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICBAG     = "It's magical properties allow it to shrink items stored inside."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICBAG           = "Wow, I've never seen anything like it!"
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICBAG           = "It shrinks items inside - I've never seen anything like it!"
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG          = "A great use of magic."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.MAGICBAG2 = "Magical Bag"
-STRINGS.RECIPE_DESC.MAGICBAG2 = "Shrinks items to fit in your pocket!"
+STRINGS.RECIPE_DESC.MAGICBAG2 = "Shrinks items even further to fit in your pocket!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG2          = "Very magical indeed."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICBAG2           = "I can keep my lighter safe inside."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICBAG2         = "Is big magic bag"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG2          = "Beyond magical indeed."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MAGICBAG2           = "I can keep my lighter and valuables safe inside."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MAGICBAG2         = "Is magic bag."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.MAGICBAG2            = "It's very spacious for its size."
-STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICBAG2             = "A MAGICAL STORAGE CONTAINER"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICBAG2     = "It's magical properties allow it to shrink items stored inside."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICBAG2           = "Wow, I've never seen anything like it!"
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG2          = "A great use of magic."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG2       = "A useful pouch that I can take with me on my adventures."
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG2           = "We can store our goodies in here."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MAGICBAG2             = "A LARGE MAGICAL STORAGE CONTAINER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MAGICBAG2     = "It's magical properties allow it to further shrink items stored inside."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MAGICBAG2           = "The space inside is outstanding!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG2          = "A greater use of magic."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG2       = "A useful bag that I can take with me on my adventures."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG2           = "We can store our goodies inside."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.BIGMAGICPOUCH = "Big Magical Pouch"
-STRINGS.RECIPE_DESC.BIGMAGICPOUCH = "Shrinks items to fit in your pocket!"
-
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.BIGMAGICPOUCH      = "The bigger the better, as Mario says."
-
 
 
 
@@ -870,6 +851,11 @@ STRINGS.NAMES.STRONGCLAW = "Abstract Claw"
 STRINGS.RECIPE_DESC.STRONGCLAW = "Dance without mercy."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.STRONGCLAW = "This item belongs to Luis." --"This allows me to use Ecstatic Osculate and Surrealistic Tango."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.MOONROCKSEED2 = "Stationary Celestial Orb"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MOONROCKSEED2 = "There's science inside!"
+------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1223,8 +1209,20 @@ STRINGS.CHARACTERS.WOODIE.DESCRIBE.CASINOWICKERBOTTOM      = "Howdy... Ms. Wicke
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CASINOWICKERBOTTOM     = "She's very persistent to reach her dreams."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CASINOWICKERBOTTOM  = "She's well on her way to complete her quest!"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.CASINOWICKERBOTTOM      = "She looks like a very nice, rich lady."
----------------
+------------------------------------------------------------------------------------------
+STRINGS.NAMES.CASINOWOODLEGS = "Woodlegs the Treasure Hunter"
 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CASINOWOODLEGS     = "You're not from around here, are you?" 
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.CASINOWOODLEGS      = "This pirate guy sure is funny looking."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CASINOWOODLEGS    = "Where did you come from?"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.CASINOWOODLEGS       = "I wonder if he's found the meaning of life."
+STRINGS.CHARACTERS.WX78.DESCRIBE.CASINOWOODLEGS        = "HE'S GOT WHAT I WANT"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CASINOWOODLEGS = "A traveler who searches for rare treasure."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.CASINOWOODLEGS      = "He's got a great beard."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CASINOWOODLEGS     = "Oh great another adventurer."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CASINOWOODLEGS  = "What treasure do you hold?"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.CASINOWOODLEGS      = "Arggg matey! Hehe."
+------------------------------------------------------------------------------------------
 STRINGS.NAMES.HALLOWEENWILLOW = "Willow the Witch"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALLOWEENWILLOW = "Her favorite holiday is Halloween." 
@@ -1380,6 +1378,11 @@ STRINGS.NAMES.PINKCANE = "Pink First Winter Cane"
 STRINGS.RECIPE_DESC.PINKCANE = "An icy cane."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.PINKCANE = "A rare cane, crafted during the first winter of the seventh world."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PURPLECANE = "Purple First Winter Cane"
+STRINGS.RECIPE_DESC.PURPLECANE = "An icy cane."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PURPLECANE = "A rare cane, crafted during the first winter of the eighth world."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SCYTHE = "Scythe"
 
@@ -1613,6 +1616,19 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TRINKET_PIGBANK     = "This was important to
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TRINKET_PIGBANK  = "There's lots of loot inside!"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.TRINKET_PIGBANK      = "Long ago, I had one of these."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GOLDENPIGGY = "Golden Piggy Bank"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENPIGGY     = "I have coins to store." 
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENPIGGY      = "A gold coin should fit in here."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GOLDENPIGGY    = "Pig is super heavy."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.GOLDENPIGGY       = "This fat pig is hungry for coins."
+STRINGS.CHARACTERS.WX78.DESCRIBE.GOLDENPIGGY        = "ITS MECHANISM HAS BEEN IMPROVED"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GOLDENPIGGY = "A golden pig-shaped container to store coins in."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.GOLDENPIGGY      = "I'd prefer if it was edible."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GOLDENPIGGY     = "I'll store my riches in here."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GOLDENPIGGY  = "A treasure to store more treasure!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.GOLDENPIGGY      = "It seems very pricey."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.GOLDENEGG = "Golden Egg"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENEGG = "That's no regular egg."
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.GOLDENEGG = "An egg, just golden."
@@ -1771,13 +1787,21 @@ STRINGS.RECIPE_DESC.DST_WARLYDOLL = "A talented chef doll!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WARLYDOLL = "It smells like delicious spices."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.WALTERDOLL = "Walter Doll"
+STRINGS.RECIPE_DESC.WALTERDOLL = "An adventerous doll!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.WALTERDOLL = "I'd take this doll camping with me."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DST_MYSTERYDOLL= "Mystery Doll"
 STRINGS.RECIPE_DESC.DST_MYSTERYDOLL = "What a strange doll..."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_MYSTERYDOLL = "What a perculiar doll. I feel odd being near it."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SKELETALAMULET = "Skeletal Amulet"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SKELETALAMULET = "I don't know if I should be holding this"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SKELETALAMULET = "I don't know if I should be holding this."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.REAPERAMULET = "Reaper Amulet"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.REAPERAMULET = "I feel a connection to the afterlife."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.HORSEHEAD = "Horse Mask"
 STRINGS.RECIPE_DESC.HORSEHEAD = "Neighhhhhh!"

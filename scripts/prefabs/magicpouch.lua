@@ -7,6 +7,14 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/magicpouch.tex"),		
 }
 
+local function Sparkle(inst)
+    if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
+        inst.AnimState:PlayAnimation("idle_sparkle")
+        inst.AnimState:PushAnimation("idle", true)
+    end
+    inst:DoTaskInTime(4 + math.random(), Sparkle)
+end
+
 local function ondropped(inst, owner)
     inst.components.container:Close(owner)
 end
@@ -58,6 +66,8 @@ local function fn()
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
+	
+    inst:DoTaskInTime(1, Sparkle)
 	
     return inst
 end

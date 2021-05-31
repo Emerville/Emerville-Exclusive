@@ -1,11 +1,19 @@
 local assets =
 {
-    Asset("ANIM", "anim/ui_chest_4x4.zip"),	
+    Asset("ANIM", "anim/ui_chest_5x8.zip"),	
     Asset("ANIM", "anim/magicbag.zip"),	
 	
-    Asset("ATLAS", "images/inventoryimages/magicbag.xml"),
-    Asset("IMAGE", "images/inventoryimages/magicbag.tex"),	
+    Asset("ATLAS", "images/inventoryimages/magicbag2.xml"),
+    Asset("IMAGE", "images/inventoryimages/magicbag2.tex"),	
 }
+
+local function Sparkle(inst)
+    if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
+        inst.AnimState:PlayAnimation("idle_sparkle")
+        inst.AnimState:PushAnimation("idle", true)
+    end
+    inst:DoTaskInTime(4 + math.random(), Sparkle)
+end
 
 local function ondropped(inst, owner)
     inst.components.container:Close(owner)
@@ -34,7 +42,7 @@ local function fn()
 	
     inst.AnimState:SetBank("magicbag")
     inst.AnimState:SetBuild("magicbag")
-    inst.AnimState:PlayAnimation("idle2")
+    inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("magicalpouch")	
     inst:AddTag("casino")
@@ -48,17 +56,19 @@ local function fn()
     inst:AddComponent("inspectable")	
 	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "magicbag"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicbag.xml"
+    inst.components.inventoryitem.imagename = "magicbag2"	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicbag2.xml"
     inst.components.inventoryitem.cangoincontainer = true	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("magicbag")
+    inst.components.container:WidgetSetup("magicbag2")
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
+	
+    inst:DoTaskInTime(1, Sparkle)
 	
     return inst
 end

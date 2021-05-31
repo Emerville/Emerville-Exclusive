@@ -1037,3 +1037,208 @@ function containers.widgetsetup(container, prefab, data)
 end
 
 
+
+
+--------------------------------------------------------------------------
+--[[ Magic Bag 2]]
+--------------------------------------------------------------------------
+params.magicbag2 =
+{
+    widget =
+    {
+		slotpos = {},
+		animbank = "ui_chest_5x8",
+		animbuild = "ui_chest_5x8",
+		pos = _G.Vector3(665, -200, 0),
+		side_align_tip = 160,
+    },
+    type = "chest",
+}
+
+	for y = 4, 0, -1 do
+		for x = 0, 7 do
+		table.insert(params.magicbag2.widget.slotpos, _G.Vector3(80 * x - 346 * 2 + 109, 80 * y - 100 * 2 + 42, 0))
+	end
+end
+
+function params.magicbag2.itemtestfn(container, item, slot)
+	if item.prefab == "chester_eyebone" or 
+	   item.prefab == "magicpouch" or 
+	   item.prefab == "magicbag" then    
+	   return false    
+	end    
+	return true    
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.magicbag2.slotpos ~= nil and #params.magicbag2.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "magicbag2" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end
+
+--------------------------------------------------------------------------
+--[[ Woodie the Merchant ]]
+--------------------------------------------------------------------------
+
+params.shipwreckedwoodie =
+{
+	widget =
+	{
+		slotpos = 
+        {
+            _G.Vector3(-37.5, 32 + 4, 0), 
+            _G.Vector3(37.4, 32 + 4, 0),
+            _G.Vector3(-37.5, -(32 + 4), 0), 
+            _G.Vector3(37.5, -(32 + 4), 0),
+        },		
+        animbank = "ui_bundle_2x2",
+        animbuild = "ui_bundle_2x2",
+        pos = _G.Vector3(0, 200, 0),
+        side_align_tip = 120,
+		buttoninfo =
+		{			
+			text = "Convert",
+			position = _G.Vector3(0, -100, 0),	
+		}
+	},
+	type = "chest",
+}
+
+local function convertfn(act)
+	local inst = act.target
+    local container = inst.components.container
+    	local has_burned_smth = false
+
+--     if inst.components.fueled ~= nil then		
+		for i = 1, container:GetNumSlots() do
+			local item = container:GetItemInSlot(i)
+			if item ~= nil then
+     			local product_prefab = nil 
+	     		if item.components.cookable ~= nil then 
+					local product = item.components.cookable.product or "ash"
+					product_prefab = type(product) ~= "function" and
+            						 product or
+            						 product(item, inst, doer)
+	     		elseif item.prefab:find("goldnugget") and
+				item.components.stackable ~= nil and item.components.stackable:StackSize() >= 5 then 
+	     			product_prefab = "goldcoin"
+				elseif item.prefab:find("magicbag") >= 3 then 
+	     			product_prefab = "magicbag2"
+				elseif item.prefab:find("rocks") and item.components.stackable:StackSize() >= 5 then 
+	     			product_prefab = "moonrocknugget"					
+				elseif item.prefab:find("goldcoin") and item.components.stackable:StackSize() >= 40 then 
+	     			product_prefab = "elegantlantern"			
+	     		end
+				
+	     		if product_prefab ~= nil then 
+     				local product = SpawnPrefab(product_prefab)
+					
+     				if item.components.stackable ~= nil	and
+					product.components.stackable ~= nil then 
+     					local stack = item.components.stackable:StackSize()
+						if product_prefab == "goldcoin" or product_prefab == "moonrocknugget" then
+							stack = math.floor(stack/5)
+						elseif product_prefab == "rocks" then
+							stack = math.floor(stack/2)
+						end	
+						if stack > 1 then
+							local new_stack = math.min(stack, product.components.stackable.maxsize)
+							product.components.stackable:SetStackSize(new_stack)
+						end
+     				end					
+					
+					if item.components.perishable ~= nil and
+					product.components.perishable ~= nil and not item:HasTag("smallcreature") then
+               			local new_percent = 1 - (1 - item.components.perishable:GetPercent()) * .5
+               			product.components.perishable:SetPercent(new_percent)
+           			end
+										
+					if item.components.edible ~= nil then
+						local OnEaten = item.components.edible.oneaten
+						if OnEaten ~= nil then
+							OnEaten(inst, inst)
+						end
+					end
+					
+     				inst.components.container:RemoveItemBySlot(i):Remove()
+     				inst.components.container:GiveItem(product, i)
+					
+					has_burned_smth = true
+     			end 
+			end
+		end 
+		
+		if has_burned_smth then
+			inst.SoundEmitter:PlaySound("dontstarve/quagmire/common/coins/drop")  
+			--inst.SoundEmitter:PlaySound("dontstarve/common/together/dragonfly_furnace/light")		
+			--inst:SpawnChild("firesplash_fx").Transform:SetScale(.5,.5,.5)
+		else
+			inst.SoundEmitter:PlaySound("dontstarve/HUD/click_negative")
+	end
+end
+
+AddAction("CONVERTGOLD", "Convert", convertfn)
+
+function params.shipwreckedwoodie.widget.buttoninfo.fn(inst)
+	if inst.components.container ~= nil then
+        BufferedAction(inst.components.container.opener, inst, ACTIONS.CONVERTGOLD):Do()
+    elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
+        SendRPCToServer(RPC.DoWidgetButtonAction, ACTIONS.CONVERTGOLD.code, inst, ACTIONS.CONVERTGOLD.mod_name)
+    end
+end
+
+function params.shipwreckedwoodie.widget.buttoninfo.validfn(inst)
+	if inst.replica.container ~= nil then
+		local container = inst.replica.container
+		local _numslots = container:GetNumSlots()
+		for i = 1, _numslots, 1 do
+			local iteminslot = container:GetItemInSlot(i)
+			if iteminslot ~= nil then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+function params.shipwreckedwoodie.itemtestfn(container, item, slot)
+ if	item.prefab == "magicbag" or
+	item.prefab == "magicbag2" or
+	item.prefab == "goldnugget" or	
+	item.prefab == "goldcoin" or
+--	item.prefab == "rocks" or	
+	item.prefab == "moonrocknugget" or	
+	item.prefab == "elegantlantern" then	
+		return true
+	end
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.shipwreckedwoodie.slotpos ~= nil and #params.shipwreckedwoodie.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "shipwreckedwoodie" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end

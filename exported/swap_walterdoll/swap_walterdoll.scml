@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0" name="swap_walterdoll">
+        <file id="0" name="swap_walterdoll/swap_walterdoll-0.png" width="147" height="242" pivot_x="0.14527" pivot_y="0.816872"/>
+    </folder>
+    <entity id="0" name="swap_walterdoll">
+        <animation id="0" name="BUILD" length="50" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="25">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="2" time="50">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="swap_walterdoll">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-0.64527" y="-0.316872"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

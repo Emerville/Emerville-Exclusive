@@ -20,13 +20,15 @@ local prefabs =
 local function MakeLoot(inst)
     local possible_loot =
     {
+		{chance = 5,    item = "magicdolls"},
         {chance = 5,    item = "magicdolls"},	
         {chance = 5,    item = "magicdolls"},
 		{chance = 5,    item = "magicdolls"},
-		{chance = 5,    item = "magicdolls"},		
-        {chance = 4,    item = "magicdolls"},
-		{chance = 4,    item = "skeletalamulet"},
-		{chance = 4,    item = "horsehead"},		
+		{chance = 5,    item = "magicdolls"},	
+		{chance = 4,    item = "magicdolls"},		
+--		{chance = 4,    item = "doctoramulet"},
+		{chance = 4,    item = "reaperamulet"},
+		{chance = 4,    item = "horsehead"},	
 		{chance = 3,    item = "magicdolls"},		
         {chance = 3,    item = "elegantlantern"},
         {chance = 3,    item = "magicbag"},		

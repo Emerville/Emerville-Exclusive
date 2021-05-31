@@ -28,13 +28,8 @@ local function MakeHat(name, tag)
 	end
 	
 	local function onequip(inst, owner, symbol_override)
-        local skin_build = inst:GetSkinBuild()
-        if skin_build ~= nil then
-            owner:PushEvent("equipskinneditem", inst:GetSkinName())
-            owner.AnimState:OverrideItemSkinSymbol("swap_hat", skin_build, symbol_override or "swap_hat", inst.GUID, fname)
-        else
-            owner.AnimState:OverrideSymbol("swap_hat", fname, symbol_override or "swap_hat")
-        end
+        owner.AnimState:OverrideSymbol("swap_hat", fname, "swap_hat")
+		
         owner.AnimState:Show("HAT")
         owner.AnimState:Show("HAIR_HAT")
         owner.AnimState:Hide("HAIR_NOHAT")
@@ -51,10 +46,6 @@ local function MakeHat(name, tag)
     end
 
     local function onunequip(inst, owner)
-        local skin_build = inst:GetSkinBuild()
-        if skin_build ~= nil then
-            owner:PushEvent("unequipskinneditem", inst:GetSkinName())
-        end
 
         owner.AnimState:ClearOverrideSymbol("swap_hat")
         owner.AnimState:Hide("HAT")
@@ -73,13 +64,7 @@ local function MakeHat(name, tag)
     end
 
 	local function opentop_onequip(inst, owner)
-        local skin_build = inst:GetSkinBuild()
-        if skin_build ~= nil then
-            owner:PushEvent("equipskinneditem", inst:GetSkinName())
-            owner.AnimState:OverrideItemSkinSymbol("swap_hat", skin_build, "swap_hat", inst.GUID, fname)
-        else
-            owner.AnimState:OverrideSymbol("swap_hat", fname, "swap_hat")
-        end
+        owner.AnimState:OverrideSymbol("swap_hat", fname, "swap_hat")       
 
         owner.AnimState:Show("HAT")
         owner.AnimState:Hide("HAIR_HAT")

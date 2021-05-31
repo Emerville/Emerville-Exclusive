@@ -44,7 +44,6 @@ PrefabFiles = {
 	"dark_axe",
 	"dark_pickaxe",
 	"growthstaff",
-	"magicpouch",
 	
 	-- DRESS:	
 	"summerbandana",
@@ -66,15 +65,19 @@ PrefabFiles = {
 	"spartaswurd", --Unfinished Rework	
 	"baronsuit",
 	"giftgamble",	
+--	"opulentlantern", --(aka Plantern)
 	"elegantlantern",
-	"opulentlantern", --Rename to Plantern or Luxury Lantern
+	"skeletalamulet", 
+	"reaperamulet",	
+	"doctoramulet",	
 	"thorn_crown",
 	"notwilson",
 	"nottrump",
 	"magicdolls",
     "magicbag",
     "magicbag2",
-	"magicpouch2",
+	"magicpouch",
+	"magicpouch_classic",
 	"chromebag",
 	"chromebag2",
 	"chromebag3",
@@ -84,10 +87,10 @@ PrefabFiles = {
 	"trinket_pigbank",
 	"efc",
 	"hungerregenbuffefc",
+	"goldenpiggy",
 	"goldenegg",
 	"goldendrum",
 	"coffee",
-	"skeletalamulet",	
 	"hollowhat", -- Unfinished
 	"attyla",
 	"attylaskull",
@@ -112,6 +115,7 @@ PrefabFiles = {
 	"dst_wortoxdoll_uncorrupted",	
 	"dst_wurtdoll_abyssal",
 	"dst_warlydoll",
+	"walterdoll",
 	"dst_mysterydoll",
 
 	-- EVENT: 
@@ -121,8 +125,8 @@ PrefabFiles = {
 	"blackcane",
 	"whitecane",
     "chromecane", --A tribute to Lady Gaga's #1 album Chromatica
---	"invertedcane"	
 	"pinkcane",
+	"purplecane",
 	"scythe",
 	"broomstick",
     "witch_hat",
@@ -216,6 +220,7 @@ PrefabFiles = {
     "casinomarblepillar",
     "casinostatueharp",
 	"advanced_dwellings",
+	"casino_chandelier",
 
     -- NPCS:
     "tradewebber", --OLD
@@ -225,6 +230,8 @@ PrefabFiles = {
 	"halloweenwendy",
 	"halloweenwinona",
 	"traderwolfgang",
+	"shipwreckedwoodie",
+	"casinowoodlegs",
 	
 	--LIMITED EDITION:
 	"beargerkit",
@@ -269,6 +276,7 @@ PrefabFiles = {
 	"firework_fire",
 	"firework",
 	"armor_tungsten",
+	"moonrockseed2",
 	---
 	"flan",
 	"hat_goggles",
@@ -286,6 +294,8 @@ Assets = {
 	Asset("SOUND", "sound/fryingpan.fsb"),
 	Asset("SOUNDPACKAGE", "sound/musicbox.fev"),
 	Asset("SOUND", "sound/musicbox.fsb"),
+	Asset("SOUNDPACKAGE", "sound/woodlegs.fev"),
+	Asset("SOUND", "sound/woodlegs.fsb"),
 
     -- LIGHT:
 	Asset("ATLAS", "images/inventoryimages/lightnecklace.xml"),
@@ -903,6 +913,73 @@ function HighlightPostInit(self)
 end	
 	
 AddComponentPostInit("highlight", HighlightPostInit)
+
+------------
+-- Piggy bank actions
+------------
+
+local PIGBANKGIVE = Action({ rmb=true, priority=1 })
+PIGBANKGIVE.str = "Deposit"
+PIGBANKGIVE.id = "PIGBANKGIVE"
+PIGBANKGIVE.fn = function(act)
+    if act.target ~= nil and act.target:IsValid() and act.target.prefab == "goldenpiggy"
+            and act.invobject.prefab == "goldcoin" then
+        local num = act.invobject.components.stackable.stacksize
+        act.invobject:Remove()
+        act.target.stored = act.target.stored + num
+        act.target.components.workable:SetWorkLeft(1) -- Reset workable if piggy was empty
+        return true
+    end
+end
+AddAction(PIGBANKGIVE)
+
+local PIGBANKTAKE = Action({ rmb=true, priority=1 })
+PIGBANKTAKE.str = "Withdraw"
+PIGBANKTAKE.id = "PIGBANKTAKE"
+PIGBANKTAKE.fn = function(act)
+    local target = act.target or act.invobject
+    if target.prefab == "goldenpiggy" then
+        local coins = SpawnPrefab("goldcoin")
+        local maxstack = coins.components.stackable.maxsize
+        local num = target.stored and math.min(maxstack, target.stored) or 0 
+
+        if num > 0 then
+            coins.components.stackable:SetStackSize(num)
+            act.doer.components.inventory:GiveItem(coins)
+
+            target.stored = target.stored - num
+        else
+            -- TODO: Make character say something "This piggy has nothing more to give."
+        end
+
+        if target.stored > 0 then
+            target.components.workable:SetWorkLeft(1)
+        end
+        return true
+    end
+end
+AddAction(PIGBANKTAKE)
+
+local pigbank_give_pickhandler = ActionHandler(ACTIONS.PIGBANKGIVE, "doshortaction")
+local pigbank_take_pickhandler = ActionHandler(ACTIONS.PIGBANKTAKE, "doshortaction")
+
+AddStategraphActionHandler("wilson", pigbank_give_pickhandler)
+AddStategraphActionHandler("wilson", pigbank_take_pickhandler)
+
+AddComponentAction("USEITEM", "inventoryitem", function(inst, doer, target, actions, right)
+    if right and inst.prefab == "goldcoin" and target.prefab == "goldenpiggy" then
+        table.insert(actions, ACTIONS.PIGBANKGIVE)
+    end
+end)
+
+AddComponentAction("INVENTORY", "inventoryitem", function(inst, doer, actions)
+    if inst.prefab == "goldenpiggy" then
+        table.insert(actions, ACTIONS.PIGBANKTAKE)
+    end
+end)
+
+AddStategraphActionHandler("wilson_client", pigbank_give_pickhandler)
+AddStategraphActionHandler("wilson_client", pigbank_take_pickhandler)
 
 ----------------
 -- Attyla Stuff

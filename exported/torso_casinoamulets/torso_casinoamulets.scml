@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0" name="torso_casinoamulets">
+        <file id="0" name="torso_casinoamulets/torso_skeletalamulet-0.png" width="76" height="104" pivot_x="0.5" pivot_y="0.27"/>
+        <file id="1" name="torso_casinoamulets/torso_skeletalamulet-1.png" width="84" height="114" pivot_x="0.55" pivot_y="0.3"/>
+        <file id="2" name="torso_casinoamulets/torso_skeletalamulet-2.png" width="84" height="114" pivot_x="0.55" pivot_y="0.3"/>
+        <file id="3" name="torso_casinoamulets/torso_skeletalamulet-3.png" width="84" height="108" pivot_x="0.261905" pivot_y="0.185185"/>
+        <file id="4" name="torso_casinoamulets/torso_skeletalamulet-4.png" width="68" height="125" pivot_x="0.0147059" pivot_y="0.336"/>
+        <file id="5" name="torso_casinoamulets/torso_skeletalamulet-5.png" width="98" height="99" pivot_x="0" pivot_y="0.5"/>
+        <file id="6" name="torso_casinoamulets/torso_skeletalamulet-6.png" width="76" height="40" pivot_x="0.490125" pivot_y="-1.20247"/>
+        <file id="7" name="torso_casinoamulets/torso_skeletalamulet-7.png" width="76" height="44" pivot_x="0.662822" pivot_y="-1.06986"/>
+        <file id="8" name="torso_casinoamulets/torso_skeletalamulet-8.png" width="76" height="48" pivot_x="0.315454" pivot_y="-0.827063"/>
+        <file id="9" name="torso_casinoamulets/torso_skeletalamulet-10.png" width="32" height="80" pivot_x="0" pivot_y="0.137506"/>
+    </folder>
+    <entity id="0" name="torso_skeletalamulet">
+        <animation id="0" name="reaperamulet" length="50" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="25">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="2" time="49">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="3" time="50">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="torso_skeletalamulet">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="1.361544" y="-1.741" angle="0"/>
+                </key>
+                <key id="1" time="49" spin="0">
+                    <object folder="0" file="0" x="1.361544" y="-1.741" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

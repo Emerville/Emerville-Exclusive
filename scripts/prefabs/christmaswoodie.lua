@@ -18,11 +18,13 @@ local prefabs =
     "goldnugget",
 	"snowglobe",
 	"santa_helper_hat",	
+	"magicbag2",
 }
 
 local offering_recipe =
 {
-	snowglobe = { "walrus_tusk", "purplegem", "goldnugget", "rocks", "silk", "ice",},
+	magicbag2 = { "magicbag", "magicbag", "magicbag", "magicbag", "magicbag", "magicbag",},
+ --   snowglobe = { "walrus_tusk", "purplegem", "goldnugget", "rocks", "silk", "ice",},
 }
 
 for k, _ in pairs(offering_recipe) do

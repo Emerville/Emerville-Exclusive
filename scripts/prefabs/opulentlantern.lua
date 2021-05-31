@@ -17,6 +17,18 @@ local function IsLightOn(inst)
     return inst.Light:IsEnabled()
 end
 
+local light_str =
+{
+    {radius = 2.5, falloff = .85, intensity = 0.75},
+    {radius = 3.25, falloff = .85, intensity = 0.75},
+    {radius = 4.25, falloff = .85, intensity = 0.75},
+    {radius = 5.5, falloff = .85, intensity = 0.75},
+}
+local fulllight_light_str =
+{
+    radius = 5.5, falloff = 0.85, intensity = 0.75
+}
+
 local colour_tint = { 0.4, 0.3, 0.25, 0.2, 0.1 }
 local mult_tint = { 0.7, 0.6, 0.55, 0.5, 0.45 }
 
@@ -70,19 +82,69 @@ local COLOURED_LIGHTS =
     },
 }
 
-local function IsRedSpore(item) return COLOURED_LIGHTS.red[item.prefab] end
-local function IsGreenSpore(item) return COLOURED_LIGHTS.green[item.prefab] end
-local function IsBlueSpore(item) return COLOURED_LIGHTS.blue[item.prefab] end
+local function IsRedSpore(item)
+    if COLOURED_LIGHTS.red[item.prefab] then
+        return true
+    elseif item.components.container ~= nil then
+        return item.components.container:FindItem(IsRedSpore) ~= nil
+    else
+        return false
+    end
+end
+
+local function IsGreenSpore(item)
+    if COLOURED_LIGHTS.green[item.prefab] then
+        return true
+    elseif item.components.container ~= nil then
+        return item.components.container:FindItem(IsGreenSpore) ~= nil
+    else
+        return false
+    end
+end
+
+local function IsBlueSpore(item)
+    if COLOURED_LIGHTS.blue[item.prefab] then
+        return true
+    elseif item.components.container ~= nil then
+        return item.components.container:FindItem(IsBlueSpore) ~= nil
+    else
+        return false
+    end
+end
+
+local function is_battery_type(item)
+    return item:HasTag("lightbattery")
+        or item:HasTag("spore")
+        or item:HasTag("lightcontainer")
+end
+
+local function is_fulllighter(item)
+    return item:HasTag("fulllighter")
+end
 
 local function UpdateLightState(inst)
     if not inst.components.fueled:IsEmpty() then
 
-        ClearSoundQueue(inst)
+    ClearSoundQueue(inst)
 
-        local sound = sounds_2
-        local num_batteries = #inst.components.container:FindItems( function(item) return item:HasTag("lightbattery") or item:HasTag("spore") end )
+    local sound = sounds_2
+    local num_batteries = #inst.components.container:FindItems(is_battery_type)
+		
+    if num_batteries > 0 then
+        local num_fulllights = #inst.components.container:FindItems(is_fulllighter)
 
-        if num_batteries > 0 then
+        local new_perishrate = (num_fulllights > 0 and 0) or TUNING.PERISH_MUSHROOM_LIGHT_MULT
+        inst.components.preserver:SetPerishRateMultiplier(new_perishrate)		
+
+        if num_fulllights > 0 then
+            inst.Light:SetRadius(fulllight_light_str.radius)
+            inst.Light:SetFalloff(fulllight_light_str.falloff)
+            inst.Light:SetIntensity(fulllight_light_str.intensity)
+        else
+            inst.Light:SetRadius(light_str[num_batteries].radius)
+            inst.Light:SetFalloff(light_str[num_batteries].falloff)
+            inst.Light:SetIntensity(light_str[num_batteries].intensity)
+        end
 
             -- For the GlowCap, spores will tint the light colour to allow for a disco/rave in your base
             local r = #inst.components.container:FindItems(IsRedSpore)
@@ -92,12 +154,9 @@ local function UpdateLightState(inst)
             inst._light.Light:SetColour(colour_tint[g+b + 1] + r/11, colour_tint[r+b + 1] + g/11, colour_tint[r+g + 1] + b/11)
             inst.AnimState:SetMultColour(mult_tint[g+b + 1], mult_tint[r+b + 1], mult_tint[r+g + 1], 1)
 
-            if POPULATING then --This makes it make that squishy sound when placing spores inside.
-
-            inst.SoundEmitter:PlaySound("dontstarve/common/together/mushroom_lamp/lantern_2_on") --I can't make it word, sad times.
+            inst.SoundEmitter:PlaySound("dontstarve/common/together/mushroom_lamp/lantern_2_on") --I can't make it work, sad times.
  --           QueueSound(inst, 13 * FRAMES, sound.colour)
-            end
-        end
+		end
     end
 end
 
@@ -236,7 +295,7 @@ local function lanternlightfn()
 
     inst:AddTag("FX")
 
-    inst.Light:SetColour(.65, .65, .5)  --(125 / 255, 250 / 255, 80 / 255)
+    inst.Light:SetColour(215 / 255, 230 / 255, 250 / 255) --(.65, .65, .5)  --(125 / 255, 250 / 255, 80 / 255)
 
     inst.entity:SetPristine()
 
@@ -262,7 +321,10 @@ local function fn()
     inst.AnimState:SetBank("malamilantern")
     inst.AnimState:SetBuild("malamilantern")
     inst.AnimState:PlayAnimation("idle_skin_off")
-    inst.AnimState:SetMultColour(.7, .7, .7, 1)
+    inst.AnimState:SetMultColour(.7, .7, .7, 1) 
+	
+    inst.Light:SetColour(.65, .65, .5)
+    inst.Light:Enable(false)
 
     inst:AddTag("light")
 

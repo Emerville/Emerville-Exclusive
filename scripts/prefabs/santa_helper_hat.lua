@@ -27,7 +27,7 @@ local function OnEquip(inst, owner)
 
 	if inst.components.fueled ~= nil then
         inst.components.fueled:StartConsuming()
-        inst.dubloon_task = inst:DoPeriodicTask(240, function() SpawnDubloon(inst, owner) end) --480 Day/Regular --240 HalfDay/Event	
+        inst.dubloon_task = inst:DoPeriodicTask(480, function() SpawnDubloon(inst, owner) end) --480 Day/Regular --240 HalfDay/Event	
     end
 end
 

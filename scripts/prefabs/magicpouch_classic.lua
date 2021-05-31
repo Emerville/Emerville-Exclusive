@@ -3,8 +3,8 @@ local assets =
     Asset("ANIM", "anim/ui_chest_4x4.zip"),	
     Asset("ANIM", "anim/magicpouch.zip"),
 	
-    Asset("ATLAS", "images/inventoryimages/magicpouch.xml"),
-    Asset("IMAGE", "images/inventoryimages/magicpouch.tex"),		
+    Asset("ATLAS", "images/inventoryimages/magicpouch_classic.xml"),
+    Asset("IMAGE", "images/inventoryimages/magicpouch_classic.tex"),		
 }
 
 local function ondropped(inst, owner)
@@ -34,7 +34,7 @@ local function fn()
 	
     inst.AnimState:SetBank("magicpouch")
     inst.AnimState:SetBuild("magicpouch")
-    inst.AnimState:PlayAnimation("idle2")
+    inst.AnimState:PlayAnimation("idle_classic")
 
     inst:AddTag("magicalpouch")	
 	
@@ -47,8 +47,8 @@ local function fn()
     inst:AddComponent("inspectable")	
 	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "magicpouch"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicpouch.xml"
+    inst.components.inventoryitem.imagename = "magicpouch_classic"	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicpouch_classic.xml"
     inst.components.inventoryitem.cangoincontainer = true	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
@@ -62,4 +62,4 @@ local function fn()
     return inst
 end
 
-return Prefab("common/magicpouch2", fn, assets)
+return Prefab("common/magicpouch_classic", fn, assets)
