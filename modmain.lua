@@ -65,7 +65,7 @@ PrefabFiles = {
 	"spartaswurd", --Unfinished Rework	
 	"baronsuit",
 	"giftgamble",	
---	"opulentlantern", --(aka Plantern)
+	"opulentlantern", --(aka Plantern)
 	"elegantlantern",
 	"skeletalamulet", 
 	"reaperamulet",	

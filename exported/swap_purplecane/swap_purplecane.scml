@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0" name="swap_purplecane">
-        <file id="0" name="swap_purplecane/swap_purplecane.png" width="130" height="214" pivot_x="0.538168" pivot_y="0.455039"/>
+        <file id="0" name="swap_purplecane/swap_purplecane.png" width="130" height="214" pivot_x="0.474506" pivot_y="0.497675"/>
     </folder>
     <entity id="0" name="swap_purplecane">
         <animation id="0" name="BUILD" length="50" interval="100">
@@ -18,13 +18,13 @@
             </mainline>
             <timeline id="0" name="swap_purplecane">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="2.961832" y="104.053953" scale_y="1.2"/>
+                    <object folder="0" file="0" x="0.030593" y="116.00279" angle="0" scale_x="1.2" scale_y="1.2"/>
                 </key>
                 <key id="1" time="25" spin="0">
-                    <object folder="0" file="0" x="2.961832" y="104.053953" scale_y="1.2"/>
+                    <object folder="0" file="0" x="-5.314201" y="115.00279" angle="0" scale_y="1.2"/>
                 </key>
                 <key id="2" time="50" spin="0">
-                    <object folder="0" file="0" x="2.961832" y="104.053953" scale_y="1.2"/>
+                    <object folder="0" file="0" x="-5.314201" y="115.00279" angle="0" scale_y="1.2"/>
                 </key>
             </timeline>
         </animation>

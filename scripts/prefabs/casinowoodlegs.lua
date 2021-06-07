@@ -2,6 +2,7 @@ local assets =
 {
 	Asset("ANIM", "anim/woodlegs.zip"),
 	Asset("ANIM", "anim/woodlegs_dss.zip"),
+    Asset("ANIM", "anim/quagmire_ui_pot_1x3.zip"),	
 
 	Asset("SOUNDPACKAGE", "sound/woodlegs.fev"),
 	Asset("SOUND", "sound/woodlegs.fsb"),	
@@ -13,15 +14,14 @@ local prefabs =
 {
 	"statue_transition",
 	"statue_transition_2",
-    "goldnugget",
-	"snowglobe",
-	"santa_helper_hat",	
 	"magicbag2",
+	"opulentlantern",
 }
 
 local offering_recipe =
 {
-   snowglobe = { "walrus_tusk", "purplegem", "goldnugget", "rocks", "silk", "ice",},
+   magicbag2 = { "magicbag", "magicbag", "magicbag"},
+   opulentlantern = { "elegantlantern", "elegantlantern", "elegantlantern"},
 }
 
 for k, _ in pairs(offering_recipe) do
@@ -150,7 +150,7 @@ local function DoLocalOffering(inst, doer)
 		local rewarditem = CheckOffering(inst.components.container.slots)
 		if rewarditem then
 			inst.AnimState:PlayAnimation("emoteXL_happycheer")
-			inst.components.talker:Say("Here's a gift for your troubles.")
+			inst.components.talker:Say("Thanks for the trade matey, enjoy!")
 			inst.SoundEmitter:PlaySound("woodlegs/woodlegs/emote")
 			inst.AnimState:PushAnimation("idle_loop")
 			LockChest(inst)
@@ -317,7 +317,7 @@ local function fn(Sim)
 	inst.components.inspectable.getstatus = getstatus	
 
 	inst:AddComponent("container")
-    inst.components.container:WidgetSetup("sacred_chest")
+    inst.components.container:WidgetSetup("casinowoodlegs")
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true

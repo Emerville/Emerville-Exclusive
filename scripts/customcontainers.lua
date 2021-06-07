@@ -862,6 +862,54 @@ function containers.widgetsetup(container, prefab, data)
 end
 
 --------------------------------------------------------------------------
+--[[ Casino Woodlegs ]]
+--------------------------------------------------------------------------
+params.casinowoodlegs =
+{
+	widget =
+	{
+        slotpos =
+        {
+            _G.Vector3(0, 64 + 8, 0),
+            _G.Vector3(0, 0, 0),
+            _G.Vector3(0, -(64 + 8), 0),
+        },
+        animbank = "quagmire_ui_pot_1x3",
+        animbuild = "quagmire_ui_pot_1x3",
+        pos = _G.Vector3(200, 0, 0),
+        side_align_tip = 100,
+	},
+	type = "chest",
+}
+
+function params.casinowoodlegs.itemtestfn(container, item, slot)
+ if	item.prefab == "magicbag" or
+	item.prefab == "magicbag2" or
+	item.prefab == "elegantlantern" or	
+	item.prefab == "opulentlantern" then	
+		return true
+	end
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.casinowoodlegs.slotpos ~= nil and #params.casinowoodlegs.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "casinowoodlegs" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end
+
+--------------------------------------------------------------------------
 --[[ Gem Trader Wickerbottom ]]
 --------------------------------------------------------------------------
 params.casinowickerbottom =

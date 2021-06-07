@@ -569,7 +569,7 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG          = "A great use of magic."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG       = "A useful pouch that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG           = "We can store our goodies in here."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.MAGICBAG2 = "Magical Bag"
+STRINGS.NAMES.MAGICBAG2 = "Magical Bag (Collector's Rare)"
 STRINGS.RECIPE_DESC.MAGICBAG2 = "Shrinks items even further to fit in your pocket!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MAGICBAG2          = "Beyond magical indeed."
@@ -1561,7 +1561,7 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ELEGANTLANTERN       = "A luxurious lantern.
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ELEGANTLANTERN    = "This will help me see enemies in the night."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.ELEGANTLANTERN        = "This can keep away the monster under our bed."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.OPULENTLANTERN = "Opulent Lantern (SECRET RARE)"
+STRINGS.NAMES.OPULENTLANTERN = "Opulent Lantern (Collector's Rare)"
 STRINGS.RECIPE_DESC.OPULENTLANTERN = "A portable light source."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.OPULENTLANTERN       = "This lantern is very pricey!"
