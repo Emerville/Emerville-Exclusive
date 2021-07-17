@@ -12,11 +12,11 @@ local function ondropped(inst, owner)
 end
 
 local function onopen(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/backpack_open", "open")
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/backpack_open")
 end
 
 local function onclose(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/backpack_close", "open")
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/backpack_close")
 end
 
 local function fn()
@@ -37,6 +37,7 @@ local function fn()
     inst.AnimState:PlayAnimation("idle_classic")
 
     inst:AddTag("magicalpouch")	
+    inst:AddTag("casino")
 	
 	inst.entity:SetPristine()
 

@@ -1,7 +1,7 @@
 local assets =
 {
-    Asset("ANIM", "anim/ui_chest_4x4.zip"),	
-    Asset("ANIM", "anim/magicpouch.zip"),	
+    Asset("ANIM", "anim/ui_chest_5x8.zip"),	
+    Asset("ANIM", "anim/magicbag.zip"),	
 	
     Asset("ATLAS", "images/inventoryimages/magicbag.xml"),
     Asset("IMAGE", "images/inventoryimages/magicbag.tex"),	
@@ -38,10 +38,10 @@ local function fn()
     MakeInventoryPhysics(inst)
 	
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon("magicpouch.tex")
+    minimap:SetIcon("magicbag.tex")
 	
-    inst.AnimState:SetBank("magicpouch")
-    inst.AnimState:SetBuild("magicpouch")
+    inst.AnimState:SetBank("magicbag")
+    inst.AnimState:SetBuild("magicbag")
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("magicalpouch")	
@@ -56,8 +56,8 @@ local function fn()
     inst:AddComponent("inspectable")	
 	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "magicpouch"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicpouch.xml"
+    inst.components.inventoryitem.imagename = "magicbag"	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicbag.xml"
     inst.components.inventoryitem.cangoincontainer = true	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
