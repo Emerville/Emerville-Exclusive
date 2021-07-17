@@ -12,20 +12,28 @@ local prefabs =
     "pinkfieldfx", -- to be changed to its own fx ...
 }
 
-local MIN_DAMAGE = 15
-local SPEED_BUFF = 0.35
-local BUFF_DURATION = 5
-local BUFF_COOLDOWN = 30
+--local MIN_DAMAGE = 15
+local CANE_SPEED_BUFFED = TUNING.CANE_SPEED_MULT + 0.35
+local CANE_BUFF_DURATION = 5
+local CANE_ARMOR_COOLDOWN = 240
+local CANE_ARMOR_FIRST_COOLDOWN = 5 -- minimum cooldown after re-equipped
+local SHIELD_DURATION = 10 * FRAMES
+local SANITY_CHANGE_ON_BUFF = -15
+local RESISTANCES = {
+    "_combat"
+}
 
-local function OnBuff(inst, owner)
+local function OnBuff(inst)
     if inst._fx then
         inst._fx:kill_fx()
     end
+    local owner = inst.components.inventoryitem:GetGrandOwner() or inst
     inst._fx = SpawnPrefab("pinkfieldfx") -- to be changed to its own fx ...
     inst._fx.Transform:SetPosition(0, 0.2, 0) -- to be adjusted along new fx ...
     inst._fx.entity:SetParent(owner.entity)
 
-    inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT + SPEED_BUFF
+    inst.components.equippable.walkspeedmult = CANE_SPEED_BUFFED
+    owner.components.sanity:DoDelta(SANITY_CHANGE_ON_BUFF)
 end
 
 local function OnBuffOver(inst, owner)
@@ -33,22 +41,55 @@ local function OnBuffOver(inst, owner)
         inst._fx:kill_fx()
     end
 
-    if inst ~= nil and owner ~= nil then
-        inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT
-        inst.task = nil
+    local owner = inst.components.inventoryitem:GetGrandOwner() or inst
+    inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT
+    inst.buff_task = nil
+end
+
+local function OnShieldOver(inst, OnResistDamage)
+    inst.shield_task = nil
+    inst.buff_task = nil
+    for i, v in ipairs(RESISTANCES) do
+        inst.components.resistance:RemoveResistance(v)
+    end
+    inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
+end
+
+local function OnResistDamage(inst)
+    if inst.shield_task ~= nil then
+        inst.shield_task:Cancel()
+    end
+    inst.shield_task = inst:DoTaskInTime(SHIELD_DURATION, OnShieldOver, OnResistDamage)
+    inst.components.resistance:SetOnResistDamageFn(nil)
+    
+    if inst.buff_task ~= nil then
+        inst.buff_task:Cancel()
+    end
+    inst.buff_task = inst:DoTaskInTime(CANE_BUFF_DURATION, OnBuffOver)
+    OnBuff(inst)
+
+    if inst.components.cooldown.onchargedfn ~= nil then
+        inst.components.cooldown:StartCharging()
     end
 end
 
-local function OnOwnerAttacked(inst, owner, data)
-    if inst.components.cooldown and inst.components.cooldown:IsCharged()
-        and data.damageresolved >= MIN_DAMAGE then
-        if inst.task ~= nil then
-            inst.task:Cancel()
-        end
-        inst.task = inst:DoTaskInTime(BUFF_DURATION, OnBuffOver, inst, owner)
-        inst.components.cooldown:StartCharging(BUFF_COOLDOWN)
+local function ShouldResistFn(inst)
+    if not inst.components.equippable:IsEquipped() then
+        return false
+    end
+    local owner = inst.components.inventoryitem.owner
+    return owner ~= nil and not (owner.components.inventory ~= nil and owner.components.inventory:EquipHasTag("forcefield"))
+end
 
-        OnBuff(inst, owner)
+local function OnChargedFn(inst)
+    if inst.shield_task ~= nil then
+        inst.shield_task:Cancel()
+        inst.shield_task = nil
+        inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
+    end
+
+    for i, v in ipairs(RESISTANCES) do
+        inst.components.resistance:AddResistance(v)
     end
 end
 
@@ -57,19 +98,28 @@ local function onequip(inst, owner)
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 
-    inst:ListenForEvent("attacked", inst.onownerattackedfn, owner)
+    inst.components.cooldown.onchargedfn = OnChargedFn
+    inst.components.cooldown:StartCharging(math.max(CANE_ARMOR_FIRST_COOLDOWN, inst.components.cooldown:GetTimeToCharged()))
 end
 
 local function onunequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
+    
+    if inst.shield_task ~= nil then
+        inst.shield_task:Cancel()
+        inst.shield_task = nil
+        inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
+    end
 
-    inst:RemoveEventCallback("attacked", inst.onownerattackedfn, owner)
+    if inst.buff_task ~= nil then
+        inst.buff_task:Cancel()
+        inst.buff_task = nil
+        OnBuffOver(inst)
+    end
 
-    if inst.task ~= nil then
-        inst.task:Cancel()
-        OnBuffOver(inst, owner)
-        inst.task = nil
+    for i, v in ipairs(RESISTANCES) do
+        inst.components.resistance:RemoveResistance(v)
     end
 
 end
@@ -106,19 +156,23 @@ local function fn()
     inst.components.inventoryitem.atlasname = "images/inventoryimages/purplecane.xml"
 
     inst:AddComponent("equippable")
-
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
     inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT
     inst.components.equippable.dapperness = TUNING.DAPPERNESS_TINY
+    
+    inst:AddComponent("resistance")
+    inst.components.resistance:SetShouldResistFn(ShouldResistFn)
+    inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
 
     inst:AddComponent("cooldown")
-    inst.components.cooldown:StartCharging(BUFF_COOLDOWN)
+    inst.components.cooldown.cooldown_duration = CANE_ARMOR_COOLDOWN
 
     MakeHauntableLaunch(inst)
 
-    inst.onownerattackedfn = function(owner, data) OnOwnerAttacked(inst, owner, data) end
-    inst.task = nil
+    inst.shield_task = nil
+    inst.buff_task = nil
+    inst._fx = nil
 
     return inst
 end
