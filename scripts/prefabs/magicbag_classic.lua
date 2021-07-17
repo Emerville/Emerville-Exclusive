@@ -3,17 +3,9 @@ local assets =
     Asset("ANIM", "anim/ui_chest_5x8.zip"),	
     Asset("ANIM", "anim/magicbag.zip"),	
 	
-    Asset("ATLAS", "images/inventoryimages/magicbag2.xml"),
-    Asset("IMAGE", "images/inventoryimages/magicbag2.tex"),	
+    Asset("ATLAS", "images/inventoryimages/magicbag_classic.xml"),
+    Asset("IMAGE", "images/inventoryimages/magicbag_classic.tex"),	
 }
-
-local function Sparkle(inst)
-    if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
-        inst.AnimState:PlayAnimation("idle_sparkle")
-        inst.AnimState:PushAnimation("idle", true)
-    end
-    inst:DoTaskInTime(4 + math.random(), Sparkle)
-end
 
 local function ondropped(inst, owner)
     inst.components.container:Close(owner)
@@ -42,9 +34,9 @@ local function fn()
 	
     inst.AnimState:SetBank("magicbag")
     inst.AnimState:SetBuild("magicbag")
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:PlayAnimation("idle_classic")
 
-    inst:AddTag("magicalpouch")	
+    inst:AddTag("magicalbag")	
     inst:AddTag("casino")
 	
 	inst.entity:SetPristine()
@@ -56,21 +48,19 @@ local function fn()
     inst:AddComponent("inspectable")	
 	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "magicbag2"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicbag2.xml"
+    inst.components.inventoryitem.imagename = "magicbag_classic"	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicbag_classic.xml"
     inst.components.inventoryitem.cangoincontainer = true	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("magicbag2")
+    inst.components.container:WidgetSetup("magicbag")
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
 	
-    inst:DoTaskInTime(1, Sparkle)
-	
     return inst
 end
 
-return Prefab("common/magicbag2", fn, assets)
+return Prefab("common/magicbag_classic", fn, assets)

@@ -181,18 +181,27 @@ params.magicpouch =
     widget =
     {
         slotpos = {},
-        animbank = "ui_chest_3x3",
-        animbuild = "ui_chest_3x3",
-        pos = _G.Vector3(400, -220, 0),
+        animbank = "ui_chest_4x4",
+        animbuild = "ui_chest_4x4",
+        pos = _G.Vector3(410, -200, 0),
         side_align_tip = 160,
     },
     type = "chest",
 }
 
-    for y = 2, 0, -1 do
-        for x = 0, 2 do
-        table.insert(params.magicpouch.widget.slotpos, _G.Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
+    for y = 3, 0, -1 do
+        for x = 0, 3 do
+        table.insert(params.magicpouch.widget.slotpos, _G.Vector3(80 * x - 80 * 2 + 40, 80 * y - 80 * 2 + 40, 0))
     end
+end
+
+function params.magicpouch.itemtestfn(container, item, slot)
+	if item.prefab == "chester_eyebone" or 
+	   item.prefab == "magicpouch" or 
+	   item.prefab == "magicbag" then    
+	   return false    
+	end    
+	return true    
 end
 
 local containers = _G.require "containers"
@@ -213,6 +222,7 @@ function containers.widgetsetup(container, prefab, data)
     end
 end
 
+
 --------------------------------------------------------------------------
 --[[ magicbag ]]
 --------------------------------------------------------------------------
@@ -220,19 +230,19 @@ params.magicbag =
 {
     widget =
     {
-        slotpos = {},
-        animbank = "ui_chest_4x4",
-        animbuild = "ui_chest_4x4",
-        pos = _G.Vector3(410, -200, 0),
-        side_align_tip = 160,
+		slotpos = {},
+		animbank = "ui_chest_5x8",
+		animbuild = "ui_chest_5x8",
+		pos = _G.Vector3(665, -200, 0),
+		side_align_tip = 160,
     },
     type = "chest",
 }
 
-    for y = 3, 0, -1 do
-        for x = 0, 3 do
-        table.insert(params.magicbag.widget.slotpos, _G.Vector3(80 * x - 80 * 2 + 40, 80 * y - 80 * 2 + 40, 0))
-    end
+	for y = 4, 0, -1 do
+		for x = 0, 7 do
+		table.insert(params.magicbag.widget.slotpos, _G.Vector3(80 * x - 346 * 2 + 109, 80 * y - 100 * 2 + 42, 0))
+	end
 end
 
 function params.magicbag.itemtestfn(container, item, slot)
@@ -886,8 +896,8 @@ params.casinowoodlegs =
 function params.casinowoodlegs.itemtestfn(container, item, slot)
  if	item.prefab == "trinket_pigbank" or
 	item.prefab == "piggybank" or
+	item.prefab == "magicpouch" or
 	item.prefab == "magicbag" or
-	item.prefab == "magicbag2" or
 	item.prefab == "elegantlantern" or	
 	item.prefab == "opulentlantern" or	
 	item.prefab == "ice_pack" or	
@@ -1089,60 +1099,6 @@ function containers.widgetsetup(container, prefab, data)
     end
 end
 
-
-
-
---------------------------------------------------------------------------
---[[ Magic Bag 2]]
---------------------------------------------------------------------------
-params.magicbag2 =
-{
-    widget =
-    {
-		slotpos = {},
-		animbank = "ui_chest_5x8",
-		animbuild = "ui_chest_5x8",
-		pos = _G.Vector3(665, -200, 0),
-		side_align_tip = 160,
-    },
-    type = "chest",
-}
-
-	for y = 4, 0, -1 do
-		for x = 0, 7 do
-		table.insert(params.magicbag2.widget.slotpos, _G.Vector3(80 * x - 346 * 2 + 109, 80 * y - 100 * 2 + 42, 0))
-	end
-end
-
-function params.magicbag2.itemtestfn(container, item, slot)
-	if item.prefab == "chester_eyebone" or 
-	   item.prefab == "magicpouch" or 
-	   item.prefab == "magicbag" then    
-	   return false    
-	end    
-	return true    
-end
-
-local containers = _G.require "containers"
-containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.magicbag2.slotpos ~= nil and #params.magicbag2.widget.slotpos or 0)
-local old_widgetsetup = containers.widgetsetup
-function containers.widgetsetup(container, prefab, data)
-        local pref = prefab or container.inst.prefab
-        if pref == "magicbag2" then
-                local t = params[pref]
-                if t ~= nil then
-                        for k, v in pairs(t) do
-                                container[k] = v
-                        end
-                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
-                end
-        else
-                return old_widgetsetup(container, prefab)
-    end
-end
-
-
-
 --------------------------------------------------------------------------
 --[[ Woodie the Merchant ]]
 --------------------------------------------------------------------------
@@ -1268,8 +1224,8 @@ function params.shipwreckedwoodie.widget.buttoninfo.validfn(inst)
 end
 
 function params.shipwreckedwoodie.itemtestfn(container, item, slot)
- if	item.prefab == "magicbag" or
-	item.prefab == "magicbag2" or
+ if	item.prefab == "magicpouch" or
+	item.prefab == "magicbag" or
 	item.prefab == "goldnugget" or	
 	item.prefab == "goldcoin" or
 --	item.prefab == "rocks" or	
