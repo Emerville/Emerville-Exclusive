@@ -583,6 +583,20 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MAGICBAG2          = "A greater use of magic
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MAGICBAG2       = "A useful bag that I can take with me on my adventures."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.MAGICBAG2           = "We can store our goodies inside."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.FROSTPACK = "Frost Pack (Collector's Rare)"
+STRINGS.RECIPE_DESC.FROSTPACK = "Shrinks items even further to fit in your pocket!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.FROSTPACK          = "Beyond magical indeed."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.FROSTPACK           = "I can keep my lighter and valuables safe inside."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.FROSTPACK         = "Is magic bag."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.FROSTPACK            = "It's very spacious for its size."
+STRINGS.CHARACTERS.WX78.DESCRIBE.FROSTPACK             = "A LARGE MAGICAL STORAGE CONTAINER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.FROSTPACK     = "It's magical properties allow it to further shrink items stored inside."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.FROSTPACK           = "The space inside is outstanding!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.FROSTPACK          = "A greater use of magic."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.FROSTPACK       = "A useful bag that I can take with me on my adventures."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.FROSTPACK           = "We can store our goodies inside."
+------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1012,6 +1026,20 @@ STRINGS.CHARACTERS.WOODIE.DESCRIBE.ICE_PACK 			= "Ma' food will be kept tasty."
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ICE_PACK 			= "Keeps my suit clean from carrying food around."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ICE_PACK 	    = "A crack intö Niflheim."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.ICE_PACK 		    = "Now that is convenience!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.ICYPACK 									= "Icy Pack"
+STRINGS.RECIPE_DESC.ICYPACK 							= "Portable Ice Box."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ICYPACK 			= "A scientific achievement for food!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.ICYPACK 			    = "It's a tiny fridge!"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ICYPACK 			= "Is small, but good for food!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.ICYPACK 				= "A cold box to match my cold heart."
+STRINGS.CHARACTERS.WX78.DESCRIBE.ICYPACK 				= "THERMALS ARE STABLE"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ICYPACK 		= "A small mobile Ice Box to slow spoilage."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.ICYPACK 			    = "Ma' food will be kept tasty."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ICYPACK 			= "Keeps my suit clean from carrying food around."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ICYPACK 	        = "A crack intö Niflheim."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.ICYPACK 		        = "Now that is convenience!"
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.MECH_HAY_ITEM = "Hay Wall Gate"
 STRINGS.RECIPE_DESC.MECH_HAY_ITEM = "Hay Wall Gate Segment."

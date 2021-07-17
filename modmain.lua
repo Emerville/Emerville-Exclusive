@@ -78,6 +78,8 @@ PrefabFiles = {
     "magicbag2",
 	"magicpouch",
 	"magicpouch_classic",
+	"icypack",
+	"frostpack",
 	"chromebag",
 	"chromebag2",
 	"chromebag3",
@@ -230,7 +232,7 @@ PrefabFiles = {
 	"halloweenwendy",
 	"halloweenwinona",
 	"traderwolfgang",
-	"shipwreckedwoodie",
+--	"shipwreckedwoodie",
 	"casinowoodlegs",
 	
 	--LIMITED EDITION:

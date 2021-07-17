@@ -104,7 +104,8 @@ local function LockChest(inst)
 end 
 
 local function onopen(inst) 
---    inst.AnimState:PlayAnimation("open")
+    --inst.AnimState:PlayAnimation("idle_loop")
+    inst.sg:GoToState("idle")
     inst.SoundEmitter:PlaySound("dontstarve/wilson/chest_open")
 end 
 
@@ -181,6 +182,7 @@ end
 
 local function onclose(inst, doer)
 --    inst.AnimState:PlayAnimation("close")
+
 
 	if not DoLocalOffering(inst, doer) then
 		DoNetworkOffering(inst, doer)
@@ -262,9 +264,9 @@ local function fn(Sim)
     local hats = {"hat_pirate"}
     local hat = hats[math.random(#hats)]
     inst.AnimState:OverrideSymbol("swap_hat", hat, "swap_hat")
-    local objects = {"swap_bluecane"}	
+    local objects = {"swap_purplecane"}	
     local object = objects[math.random(#objects)]
-	inst.AnimState:OverrideSymbol("swap_object", object, "swap_bluecane")
+	inst.AnimState:OverrideSymbol("swap_object", object, "swap_purplecane")
 
     inst.AnimState:SetBank("wilson")
     inst.AnimState:SetBuild("woodlegs")

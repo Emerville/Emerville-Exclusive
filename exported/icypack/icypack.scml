@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
-    <folder id="0" name="swap_purplecane">
-        <file id="0" name="swap_purplecane/swap_purplecane.png" width="156" height="246" pivot_x="0.474506" pivot_y="0.497675"/>
+    <folder id="0" name="icypack">
+        <file id="0" name="icypack/icypack.png" width="216" height="216" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="swap_purplecane">
-        <animation id="0" name="BUILD" length="50" interval="100">
+    <entity id="0" name="icypack">
+        <animation id="0" name="idle" length="50" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -16,9 +16,9 @@
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="swap_purplecane">
+            <timeline id="0" name="icypack">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-0.968105" y="121.978666" pivot_x="0.468105" pivot_y="0.521334" angle="0"/>
+                    <object folder="0" file="0" x="-0.990783" y="-0.751152" pivot_x="0.487711" pivot_y="0.168203" scale_x="0.8" scale_y="0.8"/>
                 </key>
             </timeline>
         </animation>

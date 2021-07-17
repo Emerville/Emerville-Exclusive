@@ -768,7 +768,7 @@ local function checktable(t, n, p, v)
 end
 
 local function convertfn(act)
-    local convert99 = {"skeletalamulet", "horsehead"}
+    local convert99 = {"skeletalamulet", "reaperamulet", "horsehead"}
     local convert25 = {"baronsuit", "coffee_cooked", "magicdolls", "notwilson", "spartahelmut", "thorn_crown"}
     local convert20 = {"box_gear"}
     local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat"}
@@ -838,6 +838,7 @@ function params.traderwolfgang.itemtestfn(container, item, slot)
     item.prefab == "spartahelmut" or
 	item.prefab == "horsehead" or		
 	item.prefab == "skeletalamulet" or	
+    item.prefab == "reaperamulet" or
 	item.prefab == "magicdolls" then	
 		return true
 	end
@@ -883,10 +884,14 @@ params.casinowoodlegs =
 }
 
 function params.casinowoodlegs.itemtestfn(container, item, slot)
- if	item.prefab == "magicbag" or
+ if	item.prefab == "trinket_pigbank" or
+	item.prefab == "piggybank" or
+	item.prefab == "magicbag" or
 	item.prefab == "magicbag2" or
 	item.prefab == "elegantlantern" or	
-	item.prefab == "opulentlantern" then	
+	item.prefab == "opulentlantern" or	
+	item.prefab == "ice_pack" or	
+	item.prefab == "frostpack" then	
 		return true
 	end
 end
@@ -1136,10 +1141,13 @@ function containers.widgetsetup(container, prefab, data)
     end
 end
 
+
+
 --------------------------------------------------------------------------
 --[[ Woodie the Merchant ]]
 --------------------------------------------------------------------------
 
+--[[
 params.shipwreckedwoodie =
 {
 	widget =
@@ -1182,8 +1190,6 @@ local function convertfn(act)
 	     		elseif item.prefab:find("goldnugget") and
 				item.components.stackable ~= nil and item.components.stackable:StackSize() >= 5 then 
 	     			product_prefab = "goldcoin"
-				elseif item.prefab:find("magicbag") >= 3 then 
-	     			product_prefab = "magicbag2"
 				elseif item.prefab:find("rocks") and item.components.stackable:StackSize() >= 5 then 
 	     			product_prefab = "moonrocknugget"					
 				elseif item.prefab:find("goldcoin") and item.components.stackable:StackSize() >= 40 then 
@@ -1289,4 +1295,4 @@ function containers.widgetsetup(container, prefab, data)
         else
                 return old_widgetsetup(container, prefab)
     end
-end
+end]]
