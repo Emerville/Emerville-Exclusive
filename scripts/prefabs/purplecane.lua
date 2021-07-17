@@ -113,6 +113,7 @@ local function fn()
     inst.components.equippable.dapperness = TUNING.DAPPERNESS_TINY
 
     inst:AddComponent("cooldown")
+    inst.components.cooldown:StartCharging(BUFF_COOLDOWN)
 
     MakeHauntableLaunch(inst)
 
