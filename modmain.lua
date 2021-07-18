@@ -128,6 +128,7 @@ PrefabFiles = {
     "chromecane", --A tribute to Lady Gaga's #1 album Chromatica
 	"pinkcane",
 	"purplecane",
+	"lightning_barrier",
 	"scythe",
 	"broomstick",
     "witch_hat",
