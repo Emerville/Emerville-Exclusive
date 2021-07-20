@@ -9,10 +9,9 @@ local assets =
 
 local prefabs =
 {
-    "pinkfieldfx", -- to be changed to its own fx ...
+    "lightning_barrier",
 }
 
---local MIN_DAMAGE = 15
 local CANE_SPEED_BUFFED = TUNING.CANE_SPEED_MULT + 0.35
 local CANE_BUFF_DURATION = 5
 local CANE_ARMOR_COOLDOWN = 240
@@ -28,9 +27,8 @@ local function OnBuff(inst)
         inst._fx:kill_fx()
     end
     local owner = inst.components.inventoryitem:GetGrandOwner() or inst
-    inst._fx = SpawnPrefab("lightning_barrier") -- to be changed to its own fx ...
-    inst._fx.Transform:SetPosition(0, 1.5, 0) -- to be adjusted along new fx ...
-
+    inst._fx = SpawnPrefab("lightning_barrier")
+    inst._fx.Transform:SetPosition(0, 1.5, 0)
     inst._fx.entity:SetParent(owner.entity)
 
     inst.components.equippable.walkspeedmult = CANE_SPEED_BUFFED
@@ -40,20 +38,22 @@ end
 local function OnBuffOver(inst, owner)
     if inst._fx then
         inst._fx:kill_fx()
+        inst._fx = nil
     end
 
     local owner = inst.components.inventoryitem:GetGrandOwner() or inst
     inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT
+
     inst.buff_task = nil
 end
 
 local function OnShieldOver(inst, OnResistDamage)
-    inst.shield_task = nil
-    inst.buff_task = nil
     for i, v in ipairs(RESISTANCES) do
         inst.components.resistance:RemoveResistance(v)
     end
     inst.components.resistance:SetOnResistDamageFn(OnResistDamage)
+    
+    inst.shield_task = nil
 end
 
 local function OnResistDamage(inst)
