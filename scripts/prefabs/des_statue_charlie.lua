@@ -9,7 +9,6 @@ local assets =
 
 local PETALSPERDAY = 5
 local MAXPETALS = 5
-local childtype = "flower"
 
 local function PlantFlower(inst)
     local minrad = 1.5
@@ -20,27 +19,28 @@ local function PlantFlower(inst)
     local pt = inst:GetPosition()
 
     --not too many children
-    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, maxrad)
-    local count=0
-    for k,v in pairs(ents) do
-        if v.prefab == childtype or v.prefab == "flower_rose" or v.prefab == "flower" then
-            count = count + 1
-        end
-    end
-    if count >= MAXPETALS then return end
-    if math.random() < 0.40 then childtype = "flower" end
-    if math.random() < 0.40 then childtype = "flower_evil" end
-    if math.random() < 0.20 then childtype = "flower_rose" end
+    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, maxrad, {"flower"})
+	if #ents >= MAXPETALS then return end
 
+    -- Choose a flower to spawn
+    local childtype
+    local rand = math.random()
+	if rand < 0.40 then
+        childtype = "flower"
+    elseif rand < 0.80 then
+        childtype = "flower_evil"
+    else
+        childtype = "flower_rose"
+    end
 
     --Find spot for new child and spawn
     local angle = math.random() * 2 * PI
     local radius = math.random() * (maxrad - minrad) + minrad
     local offset, check_angle, deflected = FindWalkableOffset(pt, angle, radius, 8, true, false)
+
     if(not check_angle) then return end
-    angle = check_angle
-    pt.x = pt.x + radius * math.cos(angle)
-    pt.z = pt.z - radius * math.sin(angle)
+    pt.x = pt.x + radius * math.cos(check_angle)
+    pt.z = pt.z - radius * math.sin(check_angle)
 
     SpawnPrefab(childtype).Transform:SetPosition(pt:Get())
 end
