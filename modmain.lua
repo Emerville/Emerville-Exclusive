@@ -1140,12 +1140,13 @@ local function MagicBagPostInit(inst)
     end
 end
 AddPrefabPostInit("magicbag", MagicBagPostInit)
+AddPrefabPostInit("magicpouch", MagicBagPostInit)
 
 local _oldrummagefn = ACTIONS.RUMMAGE.fn
 ACTIONS.RUMMAGE.fn = function(act)
     local targ = act.target or act.invobject
 
-    if targ ~= nil and targ.prefab == "magicbag" and targ.components.container ~= nil
+    if targ ~= nil and (targ.prefab == "magicbag" or targ.prefab == "magicpouch") and targ.components.container ~= nil
             and targ.components.container.canbeopened and not targ.components.container:IsOpenedBy(act.doer) then
         if targ.components.inventoryitem.owner ~= nil or GLOBAL.CanEntitySeeTarget(act.doer, targ) then
             act.doer:PushEvent("opencontainer", { container = targ })
