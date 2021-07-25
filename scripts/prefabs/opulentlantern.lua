@@ -15,7 +15,7 @@ local FIRST_FERTILIZE_COOLDOWN = 1  -- cooldown after fertilization starts
 local FERTILIZE_COOLDOWN = 5        -- periodic cooldown between fertilization while remaining on
 local FERTILIZE_DURATION = 6
 local FERTILIZE_RADIUS = 10
-local FERTILZE_SPEED_MULT = 2
+local FERTILZE_SPEED_MULT = 3
 
 local function StopGrowthBoost(inst)
     if inst._boostedfx ~= nil then
