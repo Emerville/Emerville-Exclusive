@@ -11,6 +11,86 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/malamilantern_skin_lit.tex"),
 }
 
+local FIRST_FERTILIZE_COOLDOWN = 1  -- cooldown after fertilization starts
+local FERTILIZE_COOLDOWN = 5        -- periodic cooldown between fertilization while remaining on
+local FERTILIZE_DURATION = 6
+local FERTILIZE_RADIUS = 10
+local FERTILZE_SPEED_MULT = 2
+
+local function StopGrowthBoost(inst)
+    if inst._boostedfx ~= nil then
+        inst._boostedfx:Kill()
+        inst._boostedfx = nil
+    end
+
+    if inst._boostedtask ~= nil then
+        inst._boostedtask:Cancel()
+        inst._boostedtask = nil
+    end
+
+    local remaining_time = inst.components.growable.targettime - GetTime()
+    
+    if remaining_time > 0 then
+    
+        -- Growable:StartGrowing() forces spring growth multiplier...
+        if inst.components.growable.springgrowth and TheWorld.state.isspring then
+            remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
+        end
+        
+        inst.components.growable:StartGrowing(remaining_time * FERTILZE_SPEED_MULT)
+    end
+end
+
+local function DoGrowthBoost(inst)
+    local pt = inst:GetPosition()
+    local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, FERTILIZE_RADIUS, {"farm_plant"})
+    for k, crop in ipairs(ents) do
+        if crop.components.growable == nil or not crop.components.growable:IsGrowing() then return end
+
+        if crop._boostedfx == nil then
+            crop._boostedfx = crop:SpawnChild("quagmire_wormwood_fx")
+        end
+        
+        local remaining_time = crop.components.growable.targettime - GetTime()
+        
+        if crop._boostedtask == nil then
+            remaining_time = remaining_time / FERTILZE_SPEED_MULT
+            
+            -- Growable:StartGrowing() forces spring growth multiplier...
+            if crop.components.growable.springgrowth and TheWorld.state.isspring then
+                remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
+            end
+            
+            crop.components.growable:StartGrowing(remaining_time)
+        else
+            crop._boostedtask:Cancel()
+        end
+        
+        crop._boostedtask = crop:DoTaskInTime(math.min(FERTILIZE_DURATION, remaining_time), StopGrowthBoost)
+    end
+end
+
+local function onstartboostingfn(inst)
+    if inst._task ~= nil then
+        inst._task:Cancel()
+    end
+    
+    inst._task = inst:DoTaskInTime(FIRST_FERTILIZE_COOLDOWN, function(inst)
+        inst._task = inst:DoPeriodicTask(FERTILIZE_COOLDOWN, DoGrowthBoost)
+        DoGrowthBoost(inst)
+    end)
+end
+
+local function onstopboostingfn(inst)
+    if inst._task ~= nil then
+        inst._task:Cancel()
+    end
+    inst._task = nil
+    
+    -- one last boost so nearby crops get full duration
+    DoGrowthBoost(inst)
+end
+
 local function fuelupdate(inst)
     if inst._light ~= nil then
         local fuelpercent = inst.components.fueled:GetPercent()
@@ -48,6 +128,8 @@ local function turnon(inst)
 
         inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin_lit.xml"
         inst.components.inventoryitem:ChangeImageName("malamilantern_skin_lit")
+        
+        inst:OnStartBoosting()
     end
 end
 
@@ -77,6 +159,8 @@ local function turnoff(inst)
 
     inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"
     inst.components.inventoryitem:ChangeImageName("malamilantern_skin")
+    
+    inst:OnStopBoosting()
 end
 
 local function OnRemove(inst)
@@ -189,9 +273,6 @@ local function fn()
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem:SetOnPutInInventoryFn(turnoff)
 
-    inst:AddComponent("container")
-    inst.components.container:WidgetSetup("opulentlantern")
-
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
@@ -211,6 +292,10 @@ local function fn()
     inst.components.fueled.accepting = true
 
     inst._light = nil
+    inst._task = nil
+    
+    inst.OnStartBoosting = onstartboostingfn
+    inst.OnStopBoosting = onstopboostingfn
 
     MakeHauntableLaunch(inst)
 

@@ -283,7 +283,10 @@ PrefabFiles = {
 	"flan",
 	"hat_goggles",
 	"armor_beefalo",
-	"gear_hat",	
+	"gear_hat",
+    
+    -- Borrowed assets:
+    "quagmire_wormwood_fx", -- From Re-Gorge-itated
 }
 
 Assets = {
