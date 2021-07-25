@@ -20,7 +20,7 @@ local function fn()
     inst.AnimState:SetBuild("quagmire_wormwood_fx")
     inst.AnimState:PlayAnimation("pre")
     inst.AnimState:PushAnimation("loop", true)
-	inst.AnimState:SetLightOverride(1)
+    inst.AnimState:SetLightOverride(1)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.AnimState:SetFinalOffset(1)
     inst.AnimState:SetHaunted(true)
@@ -34,20 +34,20 @@ local function fn()
     if not TheWorld.ismastersim then
         return inst
     end
-	
-	inst.AnimState:SetScale(math.random() < .5 and -s or s, s)
-	
+
+    inst.AnimState:SetScale(math.random() < .5 and -s or s, s)
+
     inst.persists = false
-	
-	function inst.Kill(inst)
-		inst.AnimState:PlayAnimation("pst", false)
-	end
-	
-	inst:ListenForEvent("animover", function()
-		if inst.AnimState:AnimDone() and inst.AnimState:IsCurrentAnimation("pst") then
-			inst:Remove()
-		end
-	end)
+
+    function inst.Kill(inst)
+        inst.AnimState:PlayAnimation("pst", false)
+    end
+
+    inst:ListenForEvent("animover", function()
+        if inst.AnimState:AnimDone() and inst.AnimState:IsCurrentAnimation("pst") then
+            inst:Remove()
+        end
+    end)
 
     return inst
 end

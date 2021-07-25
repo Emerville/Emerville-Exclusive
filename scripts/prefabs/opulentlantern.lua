@@ -29,14 +29,14 @@ local function StopGrowthBoost(inst)
     end
 
     local remaining_time = inst.components.growable.targettime - GetTime()
-    
+
     if remaining_time > 0 then
-    
+
         -- Growable:StartGrowing() forces spring growth multiplier...
         if inst.components.growable.springgrowth and TheWorld.state.isspring then
             remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
         end
-        
+
         inst.components.growable:StartGrowing(remaining_time * FERTILZE_SPEED_MULT)
     end
 end
@@ -50,22 +50,22 @@ local function DoGrowthBoost(inst)
         if crop._boostedfx == nil then
             crop._boostedfx = crop:SpawnChild("quagmire_wormwood_fx")
         end
-        
+
         local remaining_time = crop.components.growable.targettime - GetTime()
-        
+
         if crop._boostedtask == nil then
             remaining_time = remaining_time / FERTILZE_SPEED_MULT
-            
+
             -- Growable:StartGrowing() forces spring growth multiplier...
             if crop.components.growable.springgrowth and TheWorld.state.isspring then
                 remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
             end
-            
+
             crop.components.growable:StartGrowing(remaining_time)
         else
             crop._boostedtask:Cancel()
         end
-        
+
         crop._boostedtask = crop:DoTaskInTime(math.min(FERTILIZE_DURATION, remaining_time), StopGrowthBoost)
     end
 end
@@ -74,7 +74,7 @@ local function onstartboostingfn(inst)
     if inst._task ~= nil then
         inst._task:Cancel()
     end
-    
+
     inst._task = inst:DoTaskInTime(FIRST_FERTILIZE_COOLDOWN, function(inst)
         inst._task = inst:DoPeriodicTask(FERTILIZE_COOLDOWN, DoGrowthBoost)
         DoGrowthBoost(inst)
@@ -86,7 +86,7 @@ local function onstopboostingfn(inst)
         inst._task:Cancel()
     end
     inst._task = nil
-    
+
     -- one last boost so nearby crops get full duration
     DoGrowthBoost(inst)
 end
@@ -128,7 +128,7 @@ local function turnon(inst)
 
         inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin_lit.xml"
         inst.components.inventoryitem:ChangeImageName("malamilantern_skin_lit")
-        
+
         inst:OnStartBoosting()
     end
 end
@@ -159,7 +159,7 @@ local function turnoff(inst)
 
     inst.components.inventoryitem.atlasname = "images/inventoryimages/malamilantern_skin.xml"
     inst.components.inventoryitem:ChangeImageName("malamilantern_skin")
-    
+
     inst:OnStopBoosting()
 end
 
@@ -293,7 +293,7 @@ local function fn()
 
     inst._light = nil
     inst._task = nil
-    
+
     inst.OnStartBoosting = onstartboostingfn
     inst.OnStopBoosting = onstopboostingfn
 
