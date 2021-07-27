@@ -72,10 +72,10 @@ local function onload(inst, data)
 end
 
 local function cansuckit(inst, ent)
-    return ent.components.inventoryitem and ent.components.inventoryitem.canbepickedup
-        and (ent.prefab ~= "bernie_inactive" or ent.components.fueled:IsEmpty())
+    return ent.entity:IsVisible()
+        and ent.components.inventoryitem and ent.components.inventoryitem.canbepickedup
         and ent.components.inventoryitem.cangoincontainer
-        and ent ~= inst and ent.entity:IsVisible()
+        and (ent.prefab ~= "bernie_inactive" or ent.components.fueled:IsEmpty())
 end
 
 local function suckit(inst, item)
@@ -84,31 +84,35 @@ local function suckit(inst, item)
     inst.components.container:GiveItem(item)
 end
 
-local function vacuum(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local unfilledstacks = {}
-    local ents = TheSim:FindEntities(x, y, z, inst.searchradius, nil, inst.ignoretags)
+local function OnEntityFound(inst, ent, unfilledstacks)
+    if not cansuckit(inst, ent) then return end
+    
+    if not inst.components.container:IsFull() then
+        return suckit(inst, ent)
+    elseif ent.components.stackable then
+        if unfilledstacks[ent.prefab] then
+            return suckit(inst, ent)
+        end
 
-    for _,ent in ipairs(ents) do
-        if cansuckit(inst, ent) then
-            if not inst.components.container:IsFull() then
-                return suckit(inst, ent)
-            elseif ent.components.stackable then
-                if unfilledstacks[ent.prefab] then
+        for _,v in pairs(inst.components.container.slots) do
+            if v.components.stackable and not v.components.stackable:IsFull() then
+                if v.prefab == ent.prefab then
                     return suckit(inst, ent)
-                end
-
-                for _,v in pairs(inst.components.container.slots) do
-                    if v.components.stackable and not v.components.stackable:IsFull() then
-                        if v.prefab == ent.prefab then
-                            return suckit(inst, ent)
-                        else
-                            unfilledstacks[v.prefab] = true
-                        end
-                    end
+                else
+                    unfilledstacks[v.prefab] = true
                 end
             end
         end
+    end
+end
+
+local function vacuum(inst)
+    local unfilledstacks = {}
+    local x,y,z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, inst.searchradius, nil, inst.ignoretags)
+
+    for _,ent in ipairs(ents) do
+        OnEntityFound(inst, ent, unfilledstacks)
     end
 end
 
@@ -161,9 +165,9 @@ local function fn(Sim)
     inst.OnLoad = onload
 
     inst.searchradius = 6
-    inst.ignoretags = { "casino", "irreplaceable", "resurrector", "companion" }
+    inst.ignoretags = { "casino", "irreplaceable", "resurrector", "companion", "smallcreature", "structure" }
 
-    inst:DoPeriodicTask(0.5, vacuum)
+    inst:DoPeriodicTask(1, vacuum)
 
     return inst
 end
