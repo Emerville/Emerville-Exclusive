@@ -11,12 +11,13 @@ local assets =
 local prefabs =
 {
     "magicdolls",
-	"magicbag",	
-	"elegantlantern",
 	"skeletalamulet",
 	"horsehead",
+	"elegantlantern",
+	"magicpouch",	
 }
 
+--		{chance = 4,    item = "doctoramulet"},	
 local function MakeLoot(inst)
     local possible_loot =
     {
@@ -25,13 +26,13 @@ local function MakeLoot(inst)
         {chance = 5,    item = "magicdolls"},
 		{chance = 5,    item = "magicdolls"},
 		{chance = 5,    item = "magicdolls"},	
-		{chance = 4,    item = "magicdolls"},		
---		{chance = 4,    item = "doctoramulet"},
+		{chance = 4,    item = "magicdolls"},	
+		{chance = 4,    item = "magicdolls"},			
 		{chance = 4,    item = "reaperamulet"},
-		{chance = 4,    item = "horsehead"},	
-		{chance = 3,    item = "magicdolls"},		
+		{chance = 4,    item = "horsehead"},			
         {chance = 3,    item = "elegantlantern"},
-        {chance = 3,    item = "magicbag"},		
+        {chance = 3,    item = "magicpouch"},	
+        {chance = 3,    item = "icypack"},		
     }
     local totalchance = 0
     for m, n in ipairs(possible_loot) do

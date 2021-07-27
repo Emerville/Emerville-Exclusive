@@ -1,10 +1,10 @@
 local assets =
 {
-    Asset("ANIM", "anim/ui_chest_4x4.zip"),	
+    Asset("ANIM", "anim/ui_chest_2x2.zip"),	
     Asset("ANIM", "anim/frostpack.zip"),	
 	
-    Asset("ATLAS", "images/inventoryimages/magicbag.xml"),
-    Asset("IMAGE", "images/inventoryimages/magicbag.tex"),	
+    Asset("ATLAS", "images/inventoryimages/frostpack.xml"),
+    Asset("IMAGE", "images/inventoryimages/frostpack.tex"),	
 }
 
 --[[local function Sparkle(inst)
@@ -38,13 +38,13 @@ local function fn()
     MakeInventoryPhysics(inst)
 	
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon("magicpouch.tex")
+    minimap:SetIcon("frostpack.tex")
 	
     inst.AnimState:SetBank("frostpack")
     inst.AnimState:SetBuild("frostpack")
     inst.AnimState:PlayAnimation("idle")
 
-    inst:AddTag("magicalpouch")	
+    inst:AddTag("frostpack")	
     inst:AddTag("casino")
 	
 	inst.entity:SetPristine()
@@ -56,19 +56,21 @@ local function fn()
     inst:AddComponent("inspectable")	
 	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "magicpouch"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/magicpouch.xml"
-    inst.components.inventoryitem.cangoincontainer = true	
+    inst.components.inventoryitem.imagename = "frostpack"	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/frostpack.xml"
+    --inst.components.inventoryitem.cangoincontainer = true	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("magicbag")
+    inst.components.container:WidgetSetup("frostpack")
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
 	
     --inst:DoTaskInTime(1, Sparkle)
+	
+	MakeHauntableLaunch(inst)
 	
     return inst
 end

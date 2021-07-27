@@ -82,6 +82,12 @@ local function fn(Sim)
     light:SetRadius(2)
     light:SetColour(180/255, 195/255, 50/255)
     light:Enable(true)		
+	
+	inst:AddComponent("talker")
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+    inst.components.talker.offset = Vector3(0, -400, 0)	
 
     inst.entity:SetPristine()
 
@@ -90,12 +96,6 @@ local function fn(Sim)
     end	
 		
     inst:AddComponent("inspectable")
-	
-	inst:AddComponent("talker")
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
-    inst.components.talker.offset = Vector3(0, -400, 0)	
 
 	inst:AddComponent("container")
     inst.components.container:WidgetSetup("casinowickerbottom")

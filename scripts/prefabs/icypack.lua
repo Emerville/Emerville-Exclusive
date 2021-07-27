@@ -3,9 +3,21 @@ local assets =
 	Asset("ANIM", "anim/icypack.zip"),
     Asset("ANIM", "anim/ui_ice_pack_1x2.zip"),	
 	
-	Asset("ATLAS", "images/inventoryimages/ice_pack.xml"),
-	Asset("IMAGE", "images/inventoryimages/ice_pack.tex"),		
+	Asset("ATLAS", "images/inventoryimages/icypack.xml"),
+	Asset("IMAGE", "images/inventoryimages/icypack.tex"),		
 }
+
+--[[local function Sparkle(inst)
+    if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
+        inst.AnimState:PlayAnimation("idle_sparkle")
+        inst.AnimState:PushAnimation("idle", true)
+    end
+    inst:DoTaskInTime(4 + math.random(), Sparkle)
+end]]
+
+local function ondropped(inst, owner)
+    inst.components.container:Close(owner)
+end
 
 local function onopen(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/icebox_open")
@@ -30,8 +42,9 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")	
 
 	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon("ice_pack.tex")
+	minimap:SetIcon("icypack.tex")
 	
+	inst:AddTag("icypack")
 	inst:AddTag("fridge")
     inst:AddTag("nocool")	
 	
@@ -44,15 +57,20 @@ local function fn()
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")	
-	inst.components.inventoryitem.imagename = "ice_pack"
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/ice_pack.xml"
+	inst.components.inventoryitem.imagename = "icypack"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/icypack.xml"
+	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     
     inst:AddComponent("container")
-	inst.components.container:WidgetSetup("ice_pack")  	
+	inst.components.container:WidgetSetup("icypack")  	
     inst.components.container.onopenfn = onopen
     inst.components.container.onclosefn = onclose
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
+	
+    --inst:DoTaskInTime(1, Sparkle)
+	
+	MakeHauntableLaunch(inst)
 	
     return inst
 end

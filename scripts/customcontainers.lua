@@ -198,7 +198,9 @@ end
 function params.magicpouch.itemtestfn(container, item, slot)
 	if item.prefab == "chester_eyebone" or 
 	   item.prefab == "magicpouch" or 
-	   item.prefab == "magicbag" then    
+	   item.prefab == "magicbag" or 
+	   item.prefab == "icypack" or 
+	   item.prefab == "frostpack" then    
 	   return false    
 	end    
 	return true    
@@ -248,7 +250,9 @@ end
 function params.magicbag.itemtestfn(container, item, slot)
 	if item.prefab == "chester_eyebone" or 
 	   item.prefab == "magicpouch" or 
-	   item.prefab == "magicbag" then    
+	   item.prefab == "magicbag" or
+	   item.prefab == "icypack" or
+	   item.prefab == "frostpack" then    
 	   return false    
 	end    
 	return true    
@@ -690,26 +694,26 @@ function containers.widgetsetup(container, prefab, data)
 end
 
 --------------------------------------------------------------------------
---[[ ice_pack ]]
+--[[ icypack ]]
 -------------------------------------------------------------------------- 
-params.ice_pack =
+params.icypack =
 {
     widget =
     {
         slotpos = {},
         animbank = "ui_ice_pack_1x2",
         animbuild = "ui_ice_pack_1x2",
-        pos = _G.Vector3(450, -300, 0),
+        pos = _G.Vector3(300, -320, 0),
         side_align_tip = 160,		
     },
-    type = "chest",
+    type = "cooker",
 }
 
     for y = 0, 1 do
-	table.insert(params.ice_pack.widget.slotpos, _G.Vector3(-162 + (75/2), -75 * y + 114 ,0))
+	table.insert(params.icypack.widget.slotpos, _G.Vector3(-162 + (75/2), -75 * y + 114 ,0))
 end
 
-function params.ice_pack.itemtestfn(container, item, slot)
+function params.icypack.itemtestfn(container, item, slot)
 	return (item.components.edible and item.components.perishable) or
 	       item:HasTag("icebox_valid") or		   		   
            item:HasTag("fresh") or 
@@ -718,11 +722,59 @@ function params.ice_pack.itemtestfn(container, item, slot)
 end
 
 local containers = _G.require "containers"
-containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.ice_pack.widget.slotpos ~= nil and #params.ice_pack.widget.slotpos or 0)
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.icypack.widget.slotpos ~= nil and #params.icypack.widget.slotpos or 0)
 local old_widgetsetup = containers.widgetsetup
 function containers.widgetsetup(container, prefab, data)
         local pref = prefab or container.inst.prefab
-        if pref == "ice_pack" then
+        if pref == "icypack" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end
+
+--------------------------------------------------------------------------
+--[[ frostpack ]]
+-------------------------------------------------------------------------- 
+params.frostpack =
+{
+    widget =
+    {
+        slotpos =
+        {
+            _G.Vector3(-37.5, 32 + 4, 0),
+            _G.Vector3(37.5, 32 + 4, 0),
+            _G.Vector3(-37.5, -(32 + 4), 0),
+            _G.Vector3(37.5, -(32 + 4), 0),
+        },
+        animbank = "ui_chest_2x2",
+        animbuild = "ui_chest_2x2",
+        pos = _G.Vector3(210, -270, 0),
+        side_align_tip = 160,		
+    },
+    type = "cooker",
+}
+
+function params.frostpack.itemtestfn(container, item, slot)
+	return (item.components.edible and item.components.perishable) or
+	       item:HasTag("icebox_valid") or		   		   
+           item:HasTag("fresh") or 
+	       item:HasTag("stale") or
+	       item:HasTag("spoiled")
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.frostpack.widget.slotpos ~= nil and #params.frostpack.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "frostpack" then
                 local t = params[pref]
                 if t ~= nil then
                         for k, v in pairs(t) do
@@ -900,7 +952,7 @@ function params.casinowoodlegs.itemtestfn(container, item, slot)
 	item.prefab == "magicbag" or
 	item.prefab == "elegantlantern" or	
 	item.prefab == "opulentlantern" or	
-	item.prefab == "ice_pack" or	
+	item.prefab == "icypack" or	
 	item.prefab == "frostpack" then	
 		return true
 	end
@@ -967,10 +1019,8 @@ local function checktable(t, n, p, v)
 end
 
 local function convertfn(act)
-    local convert4 = {"greengem"}
-    local convert3 = {"yellowgem", "orangegem"}
-    local convert2 = {"purplegem"}
-    local convert1 = {"bluegem", "redgem"}
+    local convert2 = {"yellowgem", "greengem", "orangegem", "opalpreciousgem"}
+    local convert1 = {"bluegem", "redgem", "purplegem"}
 
 	local inst = act.target
     local container = inst.components.container
@@ -984,9 +1034,7 @@ local function convertfn(act)
             if item.prefab == "goldcoin" then
                 value = 1
             else
-                value = checktable(convert4, 4, item.prefab, value)
-                value = checktable(convert3, 3, item.prefab, value)
-                value = checktable(convert2, 2, item.prefab, value)
+                value = checktable(convert2, 3, item.prefab, value)
                 value = checktable(convert1, 1, item.prefab, value)
             end
             if item.components.stackable then 

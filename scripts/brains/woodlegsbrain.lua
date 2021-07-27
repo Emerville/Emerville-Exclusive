@@ -33,14 +33,14 @@ function WoodlegsBrain:OnStart()
             ChattyNode(self.inst, "PIG_TALK_RUN_FROM_SPIDER",
                 RunAway(self.inst, "spider", 4, 8)),
 			Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
-        }, .25)
+        }, 3)
 
     local night = WhileNode( function() return not TheWorld.state.isday end, "IsNight",
         PriorityNode{
             ChattyNode(self.inst, "PIG_TALK_RUN_FROM_SPIDER",
                 RunAway(self.inst, "spider", 4, 8)),
 			Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
-        }, 1)
+        }, 3)
 
     local root =
         PriorityNode(

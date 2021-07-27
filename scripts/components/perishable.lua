@@ -84,6 +84,12 @@ local function Update(inst, dt)
                 else
                     modifier = FREEZEYE_PERISH_MULT
                 end
+            elseif owner:HasTag("frostpack") then
+                if inst:HasTag("frozen") and not owner:HasTag("nocool") and not owner:HasTag("lowcool") then
+                    modifier = TUNING.PERISH_COLD_FROZEN_MULT
+                else
+                    modifier = FREEZEYE_PERISH_MULT
+                end
             elseif owner:HasTag("compost") then
                 modifier = COMPOST_PERISH_MULT
             elseif owner:HasTag("foodpreserver") then

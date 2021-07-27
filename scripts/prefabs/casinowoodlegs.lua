@@ -14,13 +14,15 @@ local prefabs =
 {
 	"statue_transition",
 	"statue_transition_2",
-	"magicbag2",
+	"frostpack",
+	"magicbag",
 	"opulentlantern",
 }
 
 local offering_recipe =
 {
-   magicbag2 = { "magicbag", "magicbag", "magicbag"},
+   frostpack = { "icypack", "icypack", "icypack"},
+   magicbag =  { "magicpouch", "magicpouch", "magicpouch"},
    opulentlantern = { "elegantlantern", "elegantlantern", "elegantlantern"},
 }
 
@@ -286,19 +288,19 @@ local function fn(Sim)
     light:SetIntensity(.8)
     light:SetRadius(2)
     light:SetColour(180/255, 195/255, 50/255)
-    light:Enable(true)		
+    light:Enable(true)	
+
+	inst:AddComponent("talker")
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+    inst.components.talker.offset = Vector3(0, -400, 0)		
 	
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end	
-	
-	inst:AddComponent("talker")
-    inst.components.talker.fontsize = 35
-    inst.components.talker.font = TALKINGFONT
-    --inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
-    inst.components.talker.offset = Vector3(0, -400, 0)	
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = 3

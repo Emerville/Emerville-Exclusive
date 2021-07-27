@@ -6,7 +6,6 @@ PrefabFiles = {
 	"wool_sack",
 	"wool_sack2",
 	"mechanicalfan",
-	"ice_pack",
 	
 	-- FARM:
 	"compost_box",
@@ -311,8 +310,6 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/wool_sack.tex"),	
 	Asset("ATLAS", "images/inventoryimages/mechanicalfan_3.xml"),
 	Asset("IMAGE", "images/inventoryimages/mechanicalfan_3.tex"),
-	Asset("ATLAS", "images/inventoryimages/ice_pack.xml"),
-    Asset("IMAGE", "images/inventoryimages/ice_pack.tex"),
 
 	-- FARM:
 	Asset("ATLAS", "images/inventoryimages/compost_box.xml"),
@@ -457,6 +454,10 @@ Assets = {
 	-- SLOT MACHINE:
 	Asset("ATLAS", "images/inventoryimages/giftgamble.xml"),
     Asset("IMAGE", "images/inventoryimages/giftgamble.tex"),
+	Asset("ATLAS", "images/inventoryimages/frostpack.xml"),
+    Asset("IMAGE", "images/inventoryimages/frostpack.tex"),
+	Asset("ATLAS", "images/inventoryimages/icypack.xml"),
+    Asset("IMAGE", "images/inventoryimages/icypack.tex"),
     Asset("ATLAS", "images/inventoryimages/magicpouch.xml"),
     Asset("IMAGE", "images/inventoryimages/magicpouch.tex"),
     Asset("ATLAS", "images/inventoryimages/magicpouch_classic.xml"),
@@ -511,6 +512,8 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/chromecane.tex"),
 	Asset("ATLAS", "images/inventoryimages/pinkcane.xml"),
     Asset("IMAGE", "images/inventoryimages/pinkcane.tex"),	
+	Asset("ATLAS", "images/inventoryimages/purplecane.xml"),
+    Asset("IMAGE", "images/inventoryimages/purplecane.tex"),
 	Asset("ATLAS", "images/inventoryimages/scythe.xml"),
     Asset("IMAGE", "images/inventoryimages/scythe.tex"),	
 	Asset("ATLAS", "images/inventoryimages/witch_hat.xml"),
@@ -1117,7 +1120,7 @@ local trees = {"evergreen", "evergreen_normal", "evergreen_tall", "evergreen_spa
 for k,v in pairs(trees) do AddPrefabPostInit(v, EvergreenPostInit) end
 
 ------------
--- Magic Bag Auto-close Fix
+-- Magic Bag/Pouch Auto-close Fix by Plataqueen
 ------------
 local function MagicBagPostInit(inst)
     if not GLOBAL.TheWorld.ismastersim then
