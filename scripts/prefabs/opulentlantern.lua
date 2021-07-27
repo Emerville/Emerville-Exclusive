@@ -11,7 +11,7 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/malamilantern_skin_lit.tex"),
 }
 
-local FIRST_FERTILIZE_COOLDOWN = 1  -- cooldown after fertilization starts
+local FIRST_FERTILIZE_COOLDOWN = 2  -- cooldown after fertilization starts
 local FERTILIZE_COOLDOWN = 5        -- periodic cooldown between fertilization while remaining on
 local FERTILIZE_DURATION = 6
 local FERTILIZE_RADIUS = 10
