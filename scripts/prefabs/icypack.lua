@@ -46,7 +46,8 @@ local function fn()
 	
 	inst:AddTag("icypack")
 	inst:AddTag("fridge")
-    inst:AddTag("nocool")	
+    inst:AddTag("nocool")
+    inst:AddTag("casino")
 	
     inst.entity:SetPristine()
 
