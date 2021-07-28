@@ -1122,32 +1122,43 @@ for k,v in pairs(trees) do AddPrefabPostInit(v, EvergreenPostInit) end
 ------------
 -- Magic Bag/Pouch Auto-close Fix by Plataqueen
 ------------
-local function MagicBagPostInit(inst)
-    if not GLOBAL.TheWorld.ismastersim then
-        return inst
-    end
-
-    inst.components.container.OnUpdate = function(self, dt)
-        if self.opener == nil then
-            self.inst:StopUpdatingComponent(self)
-        elseif not (self.inst.components.inventoryitem ~= nil and
-                    self.inst.components.inventoryitem.owner ~= nil)
-                and not (self.opener:IsNear(self.inst, 3)
-                    and (self.inst.components.inventoryitem.owner ~= nil
-                            or GLOBAL.CanEntitySeeTarget(self.opener, self.inst))) then
-            self:Close()
+-- fix for keeping the container open while riding
+function OnUpdateContainerFn(self, dt)
+    if self.opencount == 0 then
+        self.inst:StopUpdatingComponent(self)
+    else
+        for opener, _ in pairs(self.openlist) do
+            if not (self.inst.components.inventoryitem ~= nil and
+                    self.inst.components.inventoryitem:IsHeldBy(opener)) and
+                    (--(opener.components.rider ~= nil and opener.components.rider:IsRiding()) or
+                    not (opener:IsNear(self.inst, 3) and
+                    GLOBAL.CanEntitySeeTarget(opener, self.inst))) then
+                self:Close(opener)
+            end
         end
     end
 end
-AddPrefabPostInit("magicbag", MagicBagPostInit)
-AddPrefabPostInit("magicpouch", MagicBagPostInit)
 
+local function MagicContainerPostInit(inst)
+    if GLOBAL.TheWorld.ismastersim then
+        inst.components.container.OnUpdate = OnUpdateContainerFn
+    end
+end
+
+AddPrefabPostInit("magicpouch", MagicContainerPostInit)
+AddPrefabPostInit("magicbag", MagicContainerPostInit)
+AddPrefabPostInit("icypack", MagicContainerPostInit)
+AddPrefabPostInit("frostpack", MagicContainerPostInit)
+
+-- fix for opening the container in the dark
 local _oldrummagefn = ACTIONS.RUMMAGE.fn
 ACTIONS.RUMMAGE.fn = function(act)
     local targ = act.target or act.invobject
 
-    if targ ~= nil and (targ.prefab == "magicbag" or targ.prefab == "magicpouch") and targ.components.container ~= nil
-            and targ.components.container.canbeopened and not targ.components.container:IsOpenedBy(act.doer) then
+    if targ ~= nil and targ.components.container ~= nil
+        and (targ.prefab == "magicbag" or targ.prefab == "magicpouch"
+            or targ.prefab == "icypack" or targ.prefab == "frostpack")
+        and targ.components.container.canbeopened and not targ.components.container:IsOpenedBy(act.doer) then
         if targ.components.inventoryitem.owner ~= nil or GLOBAL.CanEntitySeeTarget(act.doer, targ) then
             act.doer:PushEvent("opencontainer", { container = targ })
             targ.components.container:Open(act.doer)
