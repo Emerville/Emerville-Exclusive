@@ -165,7 +165,7 @@ local function fn(Sim)
     inst.OnLoad = onload
 
     inst.searchradius = 6
-    inst.ignoretags = { "casino", "irreplaceable", "resurrector", "companion", "smallcreature", "structure" }
+    inst.ignoretags = { "casino", "irreplaceable", "resurrector", "companion", "canbetrapped", "structure" }
 
     inst:DoPeriodicTask(1, vacuum)
 
