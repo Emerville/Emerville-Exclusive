@@ -175,7 +175,8 @@ local function fn()
     inst.AnimState:SetBuild("malamilantern")
     inst.AnimState:PlayAnimation("idle_off")
 	
-    inst:AddTag("light")	
+    inst:AddTag("light")
+    inst:AddTag("casino")
 
     inst.entity:SetPristine()
 
