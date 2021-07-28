@@ -139,7 +139,7 @@ local function fn()
     inst.AnimState:SetBuild("purplecane")
     inst.AnimState:PlayAnimation("idle")
 
-    inst:AddTag("weapon")
+    inst:AddTag("cane")
 
     inst.entity:SetPristine()
 

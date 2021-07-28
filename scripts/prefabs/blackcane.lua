@@ -44,6 +44,8 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
+    inst:AddTag("cane")
+
     MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("blackcane")

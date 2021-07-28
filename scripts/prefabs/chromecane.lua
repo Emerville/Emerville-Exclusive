@@ -54,6 +54,8 @@ local function fn()
     inst.AnimState:SetBuild("chromecane")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("cane")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then

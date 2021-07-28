@@ -173,6 +173,8 @@ local function fn()
     inst.AnimState:SetBuild("pinkcane")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("cane")
+
     inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
