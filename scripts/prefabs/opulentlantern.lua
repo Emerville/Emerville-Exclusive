@@ -28,6 +28,12 @@ local function StopGrowthBoost(inst)
         inst._boostedtask = nil
     end
 
+    local pausedremaining = inst.components.growable.pausedremaining
+    if pausedremaining ~= nil then
+        inst.components.growable.pausedremaining = pausedremaining * FERTILZE_SPEED_MULT
+        return
+    end
+
     local remaining_time = inst.components.growable.targettime - GetTime()
 
     if remaining_time > 0 then
