@@ -1128,8 +1128,10 @@ function OnUpdateContainerFn(self, dt)
         self.inst:StopUpdatingComponent(self)
     else
         for opener, _ in pairs(self.openlist) do
+            -- Don't auto-close if held in hands, backpack or riding, but do close if moved far or can no longer see it.
             if not (self.inst.components.inventoryitem ~= nil and
-                    self.inst.components.inventoryitem:IsHeldBy(opener)) and
+                    (self.inst.components.inventoryitem:IsHeldBy(opener) or
+                        self.inst.components.inventoryitem:GetGrandOwner() == opener)) and
                     (--(opener.components.rider ~= nil and opener.components.rider:IsRiding()) or
                     not (opener:IsNear(self.inst, 3) and
                     GLOBAL.CanEntitySeeTarget(opener, self.inst))) then
