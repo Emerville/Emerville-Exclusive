@@ -927,52 +927,151 @@ end
 --------------------------------------------------------------------------
 --[[ Casino Woodlegs ]]
 --------------------------------------------------------------------------
-params.casinowoodlegs =
+params.casinowoodlegs = 
 {
-	widget =
-	{
-        slotpos =
+    widget = 
+    {
+        slotpos = 
         {
             _G.Vector3(0, 64 + 8, 0),
             _G.Vector3(0, 0, 0),
-            _G.Vector3(0, -(64 + 8), 0),
+            _G.Vector3(0, - (64 + 8), 0),
         },
         animbank = "quagmire_ui_pot_1x3",
         animbuild = "quagmire_ui_pot_1x3",
         pos = _G.Vector3(200, 0, 0),
         side_align_tip = 100,
-	},
-	type = "chest",
+        buttoninfo = 
+        {
+            text = "Trade",
+            position = _G.Vector3(0, - 128, 0),
+        }
+    },
+    type = "chest",
 }
 
+local function woodlegs_tradefn(act)
+
+    local traded_items = {
+        elegantlantern = "opulentlantern",
+        magicpouch = "magicbag",
+        icypack = "frostpack",
+        trinket_pigbank = "goldenpiggy"
+    }
+
+    local inst = act.target
+    local container = inst.components.container
+    local counts = {}
+
+    for i = 1, container:GetNumSlots() do
+        local item = container:GetItemInSlot(i)
+        if item and traded_items[item.prefab] then
+            if not counts[item.prefab] then
+                counts[item.prefab] = 0
+            end
+            if item.components.stackable then
+                counts[item.prefab] = counts[item.prefab] + item.components.stackable.stacksize
+            else
+                counts[item.prefab] = counts[item.prefab] + 1
+            end
+        end
+    end
+
+    for k, v in pairs(counts) do
+        if traded_items[k] then
+            local quantity = container:GetNumSlots()
+            if v >= quantity then
+                local removed = 0
+                for i = 1, container:GetNumSlots() do
+                    if removed >= quantity then
+                        break
+                    end
+                    local item = container:GetItemInSlot(i)
+                    if item and item.prefab == k then
+                        if item.components.stackable then
+                            quantity = item.components.stackable.maxsize
+                            if v < quantity then
+                                return
+                            end
+                            local stacksize = item.components.stackable.stacksize
+                            local remaining = quantity - removed
+                            if stacksize > remaining then
+                                item.components.stackable:SetStackSize(stacksize - remaining)
+                                removed = removed + remaining
+                            elseif stacksize == remaining then
+                                removed = removed + remaining
+                                container:RemoveItemBySlot(i)
+                            else -- stacksize < remaining
+                                removed = removed + stacksize
+                                container:RemoveItemBySlot(i)
+                            end
+                        else
+                            removed = removed + 1
+                            item:Remove()
+                        end
+                    end
+                end
+                local traded_item = SpawnPrefab(traded_items[k])
+                container:GiveItem(traded_item)
+                inst.SoundEmitter:PlaySound("dontstarve/quagmire/common/coins/drop")
+            end
+        end
+    end
+end
+
+AddAction("CASINOTRADE", "Trade", woodlegs_tradefn)
+
 function params.casinowoodlegs.itemtestfn(container, item, slot)
- if	item.prefab == "trinket_pigbank" or
-	item.prefab == "piggybank" or
-	item.prefab == "magicpouch" or
-	item.prefab == "magicbag" or
-	item.prefab == "elegantlantern" or	
-	item.prefab == "opulentlantern" or	
-	item.prefab == "icypack" or	
-	item.prefab == "frostpack" then	
-		return true
-	end
+    if item.prefab == "elegantlantern" or
+    item.prefab == "opulentlantern" or
+    item.prefab == "trinket_pigbank" or
+    item.prefab == "goldenpiggy" or
+    item.prefab == "magicpouch" or
+    item.prefab == "magicbag" or
+    item.prefab == "icypack" or
+    item.prefab == "frostpack" then
+        return true
+    end
+end
+
+function params.casinowoodlegs.widget.buttoninfo.fn(inst)
+    if inst.components.container ~= nil then
+        BufferedAction(inst.components.container.opener, inst, ACTIONS.CASINOTRADE):Do()
+    elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
+        SendRPCToServer(RPC.DoWidgetButtonAction, ACTIONS.CASINOTRADE.code, inst, ACTIONS.CASINOTRADE.mod_name)
+    end
+end
+
+function params.casinowoodlegs.widget.buttoninfo.validfn(inst)
+    if inst.replica.container ~= nil then
+        local container = inst.replica.container
+        local _numslots = container:GetNumSlots()
+        for i = 1, _numslots, 1 do
+            local iteminslot = container:GetItemInSlot(i)
+            if iteminslot ~= nil then
+                return true
+            end
+        end
+    else
+        return false
+    end
 end
 
 local containers = _G.require "containers"
 containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.casinowoodlegs.slotpos ~= nil and #params.casinowoodlegs.widget.slotpos or 0)
 local old_widgetsetup = containers.widgetsetup
 function containers.widgetsetup(container, prefab, data)
-        local pref = prefab or container.inst.prefab
-        if pref == "casinowoodlegs" then
-                local t = params[pref]
-                if t ~= nil then
-                        for k, v in pairs(t) do
-                                container[k] = v
-                        end
-                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
-                end
-        else
-                return old_widgetsetup(container, prefab)
+    local pref = prefab or container.inst.prefab
+    if pref == "casinowoodlegs" then
+        local t = params[pref]
+        if t ~= nil then
+            for k, v in pairs(t) do
+                container[k] = v
+            end
+            container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+        end
+    else
+        return old_widgetsetup(container, prefab)
     end
 end
 
