@@ -2,7 +2,7 @@
 --~ [Widget Setup -- CONTAINERS] ~--
 -------------------------------------
 _G = GLOBAL
-local params={} 
+local params = {} 
 
 --------------------------------------------------------------------------
 --[[ freezereye ]]
@@ -27,7 +27,7 @@ for y = 1, 0, -1 do
 end
 
 function params.freezereye.itemtestfn(container, item, slot)
-	return (item.components.edible and item.components.perishable) or
+ 	return (item.components.edible and item.components.perishable) or
 	       item:HasTag("icebox_valid") or		   		   
            item:HasTag("fresh") or 
 	       item:HasTag("stale") or
@@ -235,7 +235,7 @@ params.magicbag =
 		slotpos = {},
 		animbank = "ui_chest_5x8",
 		animbuild = "ui_chest_5x8",
-		pos = _G.Vector3(665, -200, 0),
+		pos = _G.Vector3(470, -200, 0),
 		side_align_tip = 160,
     },
     type = "chest",
@@ -703,7 +703,7 @@ params.icypack =
         slotpos = {},
         animbank = "ui_ice_pack_1x2",
         animbuild = "ui_ice_pack_1x2",
-        pos = _G.Vector3(300, -320, 0),
+        pos = _G.Vector3(110, -312, 0),
         side_align_tip = 160,		
     },
     type = "cooker",
@@ -755,7 +755,7 @@ params.frostpack =
         },
         animbank = "ui_chest_2x2",
         animbuild = "ui_chest_2x2",
-        pos = _G.Vector3(210, -270, 0),
+        pos = _G.Vector3(10, -261, 0),
         side_align_tip = 160,		
     },
     type = "cooker",

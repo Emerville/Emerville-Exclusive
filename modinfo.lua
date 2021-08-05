@@ -1,5 +1,5 @@
 name = "Emerville Exclusive"
-version = "1.15.11" --Added three more decimals to specify the version number of the fork.
+version = "1.16.02" --Added three more decimals to specify the version number of the fork.
 --version_compatible = "2.02" --didn't seem to work when I tried with local dedicated...
 description = "This mod is so great, we made another one!"
 author = "Luis95R, KoreanWaffles"
@@ -221,7 +221,7 @@ configuration_options =
      {description = "Craftable", data = true},
      {description = "Disabled", data = false},
     },
-      default = true,
+      default = false,
     },
 -------- 
     { 
@@ -232,7 +232,7 @@ configuration_options =
      {description = "Craftable", data = true},
      {description = "Disabled", data = false},
     },
-      default = true,
+      default = false,
     },
 -------- 
     { 
@@ -463,6 +463,17 @@ configuration_options =
 	 {description = "Gold", data = "gold"},
     },
       default = "gears",
+    },
+-------- 
+    { 
+    name = "fuelsupplierrecipe",
+    label = "Fuel Supplier",
+    options =
+    {
+     {description = "Craftable", data = true},
+     {description = "Disabled", data = false},
+    },
+      default = true,
     },
 -------- 
     { 

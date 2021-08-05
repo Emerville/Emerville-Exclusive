@@ -64,9 +64,6 @@ local function fn()
 	
     local minimap = inst.entity:AddMiniMapEntity()
     minimap:SetIcon("freezereye.tex")	
-
-	inst:AddTag("freezeye")
-    inst:AddTag("structure")
 	
     inst.AnimState:SetBank("freezereye")
     inst.AnimState:SetBuild("freezereye")
@@ -76,7 +73,11 @@ local function fn()
     inst.Light:SetRadius(1)
     inst.Light:SetFalloff(.8)
     inst.Light:SetIntensity(.3)
-    inst.Light:SetColour(255/255,255/255,255/255)		
+    inst.Light:SetColour(255/255,255/255,255/255)	
+
+    inst:AddTag("fridge")
+	inst:AddTag("freezeye")
+    inst:AddTag("structure")	
 	
     inst.SoundEmitter:PlaySound("dontstarve/common/ice_box_LP", "idlesound")	
 	
@@ -87,6 +88,9 @@ local function fn()
     end
 	
     inst:AddComponent("inspectable")
+	
+    inst:AddComponent("preserver")
+	inst.components.preserver:SetPerishRateMultiplier(0.25)	
 	
 	inst:AddComponent("container")
     inst.components.container:WidgetSetup("freezereye")

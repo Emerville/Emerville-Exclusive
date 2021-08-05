@@ -127,6 +127,7 @@ PrefabFiles = {
     "chromecane", --A tribute to Lady Gaga's #1 album Chromatica
 	"pinkcane",
 	"purplecane",
+	"greencanefake",
 	"lightning_barrier",
 	"scythe",
 	"broomstick",
@@ -163,6 +164,7 @@ PrefabFiles = {
 	"swing_charge",
 	"crosshair",
 	"bushhatex",
+	"fuelsupplier",
 
 	-- TO DO:		
 	"clockqueen",
@@ -681,10 +683,6 @@ end
 -----------------------------------------------------------
 --~ [Tuning & Misc] ~--
 -----------------------------------------------------------
---Structures
-GLOBAL.FREEZEYE_PERISH_MULT = 0.25 --Won't show correct spoilage date with Show Me mod.
-GLOBAL.COMPOST_PERISH_MULT = 8 --Won't show correct spoilage date with Show Me mod.
-
 --Tuning
 TUNING.ATTYLA_HEALTH = 100
 TUNING.ATTYLA_RUN_SPEED = 6

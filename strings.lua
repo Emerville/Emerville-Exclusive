@@ -884,6 +884,13 @@ STRINGS.NAMES.MOONROCKSEED2 = "Stationary Celestial Orb"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MOONROCKSEED2 = "There's science inside!"
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.FUELSUPPLIER = "Fuel Supplier"
+STRINGS.RECIPE_DESC.FUELSUPPLIER = "Add fuel to fire pit permanently."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GREENCANEFAKE = "Green First Winter Cane"
+STRINGS.RECIPE_DESC.GREENCANEFAKE = "An icy cane."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GREENCANEFAKE = "A rare cane, crafted during the first winter of the first world."
 
 
 

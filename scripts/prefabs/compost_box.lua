@@ -108,11 +108,12 @@ local function fn()
 	local minimap = inst.entity:AddMiniMapEntity()	
 	minimap:SetIcon("compost_box.tex")
 
-	inst:AddTag("structure")	
-	inst:AddTag("compost")	
     inst.AnimState:SetBank("compost_box")
     inst.AnimState:SetBuild("compost_box")
     inst.AnimState:PlayAnimation("close")
+	
+	inst:AddTag("compost")	
+	inst:AddTag("structure")	
 
     inst.entity:SetPristine()	
 
@@ -121,6 +122,9 @@ local function fn()
     end	
 		    
     inst:AddComponent("inspectable")
+	
+    inst:AddComponent("preserver")
+	inst.components.preserver:SetPerishRateMultiplier(4)	
 	
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("compost_box")    

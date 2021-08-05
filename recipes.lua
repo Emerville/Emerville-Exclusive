@@ -750,6 +750,20 @@ nil,
 --------------------------------------------------------------------------
 --[[ SLOT MACHINE STRUCTURES ]]
 --------------------------------------------------------------------------
+if GetModConfigData("fuelsupplierrecipe") then
+MakeRecipe("fuelsupplier",
+{Ingredient("dragon_scales", 1),Ingredient("redgem", 1)},
+RECIPETABS.REFINE,
+TECH.LOST,
+"fuelsupplier_placer",
+1,
+nil,
+nil,
+nil,
+"images/inventoryimages/fuelsupplier.xml",
+"fuelsupplier.tex")
+end
+
 if GetModConfigData("lamppostrecipe") then
 MakeRecipe("kynoox_lamp_post",
 {Ingredient("lantern",1), Ingredient("cutstone", 2)},

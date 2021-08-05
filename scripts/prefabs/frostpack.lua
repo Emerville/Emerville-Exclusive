@@ -7,13 +7,13 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/frostpack.tex"),	
 }
 
---[[local function Sparkle(inst)
+local function Sparkle(inst)
     if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
         inst.AnimState:PlayAnimation("idle_sparkle")
         inst.AnimState:PushAnimation("idle", true)
     end
     inst:DoTaskInTime(4 + math.random(), Sparkle)
-end]]
+end
 
 local function ondropped(inst, owner)
     inst.components.container:Close(owner)
@@ -44,6 +44,7 @@ local function fn()
     inst.AnimState:SetBuild("frostpack")
     inst.AnimState:PlayAnimation("idle")
 
+    inst:AddTag("fridge")
     inst:AddTag("frostpack")	
     inst:AddTag("casino")
 	
@@ -53,12 +54,14 @@ local function fn()
         return inst
     end
 	
-    inst:AddComponent("inspectable")	
+    inst:AddComponent("inspectable")
+	
+    inst:AddComponent("preserver")
+	inst.components.preserver:SetPerishRateMultiplier(0.25)	
 	
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "frostpack"	
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/frostpack.xml"
-    --inst.components.inventoryitem.cangoincontainer = true	
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/frostpack.xml"	
 	inst.components.inventoryitem:SetOnDroppedFn(ondropped)
 	
     inst:AddComponent("container")
@@ -68,7 +71,7 @@ local function fn()
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
 	
-    --inst:DoTaskInTime(1, Sparkle)
+    inst:DoTaskInTime(1, Sparkle)
 	
 	MakeHauntableLaunch(inst)
 	
