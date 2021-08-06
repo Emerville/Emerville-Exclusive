@@ -1000,10 +1000,10 @@ local function woodlegs_tradefn(act)
                                 removed = removed + remaining
                             elseif stacksize == remaining then
                                 removed = removed + remaining
-                                container:RemoveItemBySlot(i)
+                                container:RemoveItemBySlot(i):Remove()
                             else -- stacksize < remaining
                                 removed = removed + stacksize
-                                container:RemoveItemBySlot(i)
+                                container:RemoveItemBySlot(i):Remove()
                             end
                         else
                             removed = removed + 1
