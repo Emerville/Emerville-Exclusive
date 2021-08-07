@@ -1168,3 +1168,26 @@ ACTIONS.RUMMAGE.fn = function(act)
         return _oldrummagefn(act)
     end
 end
+
+----------------------------------------
+-- Bees Duplicating Flower Bushes Patch
+----------------------------------------
+-- When bees attempt to spawn a new flower, if the flower it
+-- tries to spawn is a flower bush, it will be replaced by a
+-- regular flower. Add new values to the invalid_flowers table
+-- to exclude other things from bee flower spawns. --KW
+AddComponentPostInit("pollinator", function(self)
+    if not GLOBAL.TheNet:GetIsServer() then return end
+    local _CreateFlower = self.CreateFlower
+    self.CreateFlower = function(self)
+        local invalid_flowers = {"flowerbush"}
+        for i, v in ipairs(invalid_flowers) do
+            for j, w in ipairs(self.flowers) do
+                if w.prefab == v then
+                    self.flowers[j] = {prefab = "flower"}
+                end
+            end
+        end
+        _CreateFlower(self)
+    end
+end)
