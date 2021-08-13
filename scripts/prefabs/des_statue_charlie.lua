@@ -9,6 +9,14 @@ local assets =
 
 local PETALSPERDAY = 5
 local MAXPETALS = 5
+local RESTING_TIME = 5
+
+local function GetTime(inst, stage, data)
+    if stage == 1 then
+        return (TUNING.TOTAL_DAY_TIME - RESTING_TIME) / PETALSPERDAY
+    end
+    return RESTING_TIME
+end
 
 local function PlantFlower(inst)
     local minrad = 1.5
@@ -143,14 +151,17 @@ local function fn()
     ---------------Growing details
     local growth_stages = {
         {
-            name = "Spawn Flower",
-            time = function(inst) return TUNING.TOTAL_DAY_TIME/PETALSPERDAY end,
-            fn = PlantFlower
+            name = "Spawning Flower",
+            time = GetTime,
+        },
+        {
+            name = "Resting",
+            time = GetTime,
+            fn = PlantFlower,
         },
     }
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
-    inst.components.growable:SetStage(1)
     inst.components.growable.loopstages = true
     inst.components.growable:StartGrowing()
 
