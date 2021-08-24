@@ -1087,6 +1087,38 @@ for k,v in pairs(preservers) do
     end)
 end
 
+local mushroom_lights = {"mushroom_light", "mushroom_light2"}
+for k, v in pairs(mushroom_lights) do
+    AddPrefabPostInit(v, function(inst)
+        if not GLOBAL.TheWorld.ismastersim then return inst end
+
+        local function IsLightOn(inst)
+            return inst.Light:IsEnabled()
+        end
+        local function ClearSoundQueue(inst)
+            if inst._soundtask ~= nil then
+                inst._soundtask:Cancel()
+                inst._soundtask = nil
+            end
+        end
+    
+        local function onworked(inst, worker, workleft)
+            if workleft > 0 and not inst:HasTag("burnt") then
+                ClearSoundQueue(inst)
+                inst.AnimState:PlayAnimation(IsLightOn(inst) and "hit_on" or "hit")
+                inst.AnimState:PushAnimation(IsLightOn(inst) and "idle_on" or "idle", false)
+
+                if inst.components.container ~= nil then
+                    inst.components.container:DropEverything()
+                    inst.components.container:Close()
+                end
+            end
+        end
+
+        inst.components.workable:SetOnWorkCallback(onworked)
+    end)
+end
+
 -------------------------------------------
 -- Shadow Boss Fix - Code by KoreanWaffles 
 -------------------------------------------	
