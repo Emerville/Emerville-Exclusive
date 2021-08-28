@@ -27,11 +27,16 @@ local function StopGrowthBoost(inst)
         inst._boostedtask:Cancel()
         inst._boostedtask = nil
     end
+    
 
-    local pausedremaining = inst.components.growable.pausedremaining
-    if pausedremaining ~= nil then
+    local pausedremaining = inst.components.growable and inst.components.growable.pausedremaining
+    if pausedremaining then
         inst.components.growable.pausedremaining = pausedremaining * FERTILZE_SPEED_MULT
         return
+    end
+    
+    if inst.components.growable == nil or inst.components.growable.targettime == nil then
+        return -- Crop finished growing without changing prefab (e.g. tillweeds)
     end
 
     local remaining_time = inst.components.growable.targettime - GetTime()
