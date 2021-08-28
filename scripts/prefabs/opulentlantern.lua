@@ -53,6 +53,10 @@ local function StopGrowthBoost(inst)
 end
 
 local function DoGrowthBoost(inst)
+    if inst.components.fueled == nil or inst.components.fueled:IsEmpty() then
+        return
+    end
+
     local pt = inst:GetPosition()
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, FERTILIZE_RADIUS, {"farm_plant"})
     for k, crop in ipairs(ents) do
@@ -112,10 +116,8 @@ local function fuelupdate(inst)
 end
 
 local function turnon(inst)
-    if not inst.components.fueled:IsEmpty() then
-        if inst.components.fueled ~= nil then
-            inst.components.fueled:StartConsuming()
-        end
+    if inst.components.fueled ~= nil and not inst.components.fueled:IsEmpty() then
+        inst.components.fueled:StartConsuming()
 
         local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
 
