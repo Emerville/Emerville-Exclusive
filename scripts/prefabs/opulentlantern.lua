@@ -60,7 +60,8 @@ local function DoGrowthBoost(inst)
     local pt = inst:GetPosition()
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, FERTILIZE_RADIUS, {"farm_plant"})
     for k, crop in ipairs(ents) do
-        if crop:IsValid() and crop.components.growable and crop.components.growable:IsGrowing() then
+        if crop:IsValid() and not crop.components.pickable and
+            crop.components.growable and crop.components.growable:IsGrowing() then
 
             if crop._boostedfx == nil then
                 crop._boostedfx = crop:SpawnChild("quagmire_wormwood_fx")
