@@ -27,16 +27,16 @@ local function StopGrowthBoost(inst)
         inst._boostedtask:Cancel()
         inst._boostedtask = nil
     end
+    
 
-    if not inst.components.growable or inst.components.growable.targettime == nil
-        or inst._boostedstage ~= inst.components.growable:GetStage() then
-        return
-    end
-
-    local pausedremaining = inst.components.growable.pausedremaining
+    local pausedremaining = inst.components.growable and inst.components.growable.pausedremaining
     if pausedremaining then
         inst.components.growable.pausedremaining = pausedremaining * FERTILZE_SPEED_MULT
         return
+    end
+    
+    if inst.components.growable == nil or inst.components.growable.targettime == nil then
+        return -- Crop finished growing without changing prefab (e.g. tillweeds)
     end
 
     local remaining_time = inst.components.growable.targettime - GetTime()
@@ -60,31 +60,28 @@ local function DoGrowthBoost(inst)
     local pt = inst:GetPosition()
     local ents = TheSim:FindEntities(pt.x, pt.y, pt.z, FERTILIZE_RADIUS, {"farm_plant"})
     for k, crop in ipairs(ents) do
-        if crop:IsValid() and not crop.components.pickable and
-            crop.components.growable and crop.components.growable:IsGrowing() then
+        if crop.components.growable == nil or not crop.components.growable:IsGrowing() then return end
 
-            if crop._boostedfx == nil then
-                crop._boostedfx = crop:SpawnChild("quagmire_wormwood_fx")
-            end
-
-            local remaining_time = crop.components.growable.targettime - GetTime()
-
-            if crop._boostedtask == nil then
-                remaining_time = remaining_time / FERTILZE_SPEED_MULT
-
-                -- Growable:StartGrowing() forces spring growth multiplier...
-                if crop.components.growable.springgrowth and TheWorld.state.isspring then
-                    remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
-                end
-
-                crop.components.growable:StartGrowing(remaining_time)
-                crop._boostedstage = crop.components.growable:GetStage()
-            else
-                crop._boostedtask:Cancel()
-            end
-
-            crop._boostedtask = crop:DoTaskInTime(math.min(FERTILIZE_DURATION, remaining_time), StopGrowthBoost)
+        if crop._boostedfx == nil then
+            crop._boostedfx = crop:SpawnChild("quagmire_wormwood_fx")
         end
+
+        local remaining_time = crop.components.growable.targettime - GetTime()
+
+        if crop._boostedtask == nil then
+            remaining_time = remaining_time / FERTILZE_SPEED_MULT
+
+            -- Growable:StartGrowing() forces spring growth multiplier...
+            if crop.components.growable.springgrowth and TheWorld.state.isspring then
+                remaining_time = remaining_time / TUNING.SPRING_GROWTH_MODIFIER
+            end
+
+            crop.components.growable:StartGrowing(remaining_time)
+        else
+            crop._boostedtask:Cancel()
+        end
+
+        crop._boostedtask = crop:DoTaskInTime(math.min(FERTILIZE_DURATION, remaining_time), StopGrowthBoost)
     end
 end
 

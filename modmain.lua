@@ -91,6 +91,9 @@ PrefabFiles = {
 	"goldenegg",
 	"goldendrum",
 	"coffee",
+	"coffeebeans",
+	"coffeebush",
+	"dug_coffeebush",
 	"hollowhat", -- Unfinished
 	"attyla",
 	"attylaskull",
@@ -261,7 +264,6 @@ PrefabFiles = {
     "candyburst",	
 	"mech.lua",
 	"locked_mech.lua",
-	"eel",
 	"pawn",
 	"pawnb",
 	"mechabat",
@@ -492,6 +494,10 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/friend_log.tex"),
 	Asset("IMAGE", "images/inventoryimages/coffee.tex"),
 	Asset("ATLAS", "images/inventoryimages/coffee.xml"),
+	Asset("ATLAS", "images/inventoryimages/volcanoinventory.xml"),
+	Asset("IMAGE", "images/inventoryimages/volcanoinventory.tex"),
+	Asset("ATLAS", "images/inventoryimages/dug_coffeebush.xml"),
+	Asset("IMAGE", "images/inventoryimages/dug_coffeebush.tex"),
     Asset("ATLAS", "images/inventoryimages/efc.xml"),
 	Asset("IMAGE", "images/inventoryimages/efc.tex"),
 	Asset("ATLAS", "images/inventoryimages/goldenegg.xml"),
@@ -652,7 +658,7 @@ modimport("scripts/customcontainers.lua")
 modimport("scripts/customreskins.lua")
 	
 -- TheWorld.ismastersim is not yet available
-local ismastersim = GLOBAL.TheNet:GetIsMasterSimulation() and not GLOBAL.TheShard:IsSecondary()
+--[[local ismastersim = GLOBAL.TheNet:GetIsMasterSimulation() and not GLOBAL.TheShard:IsSecondary()
 
 if ismastersim then
     local function AddReincarnationMemory(inst)
@@ -678,12 +684,14 @@ if ismastersim then
         end
     end
     AddPlayerPostInit(ReplaceNewSpawn)
-end
+end]]
 
 -----------------------------------------------------------
 --~ [Tuning & Misc] ~--
 -----------------------------------------------------------
 --Tuning
+TUNING.GOLD_VALUES.RAREMEAT = 4
+
 TUNING.ATTYLA_HEALTH = 100
 TUNING.ATTYLA_RUN_SPEED = 6
 TUNING.ATTYLA_GUANO_FERTILIZE = TUNING.GUANO_FERTILIZE/2

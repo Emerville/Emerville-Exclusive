@@ -55,7 +55,7 @@ local function dodespawn(player)
     -- TODO: Always drop non-persistent items as they will be lost otherwise? 
     if player.components.inventory ~= nil then
         player.components.inventory:DropEverythingWithTag("irreplaceable")
-        --player.components.inventory:DropEverything()
+        player.components.inventory:DropEverything()
     end
 
 	if player.components.leader ~= nil then

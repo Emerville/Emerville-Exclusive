@@ -46,7 +46,6 @@ local function necklacelight()
     inst.AnimState:PlayAnimation("anim")
 	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 
-    local light = inst.entity:AddLight()
     inst.Light:SetFalloff(0.6)
     inst.Light:SetIntensity(0.75)
     inst.Light:SetRadius(2)
@@ -54,7 +53,8 @@ local function necklacelight()
     inst.Light:Enable(true)
 	
 	inst.foleysound = "dontstarve/movement/foley/trunksuit"
-	
+
+    inst:AddTag("light")	
 	inst:AddTag("show_spoilage")
     inst:AddTag("icebox_valid")	
 	

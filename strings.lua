@@ -2111,6 +2111,175 @@ STRINGS.RECIPE_DESC.KYNOOX_URN = "What is inside?"
 
 STRINGS.NAMES.COFFEE = "Raw Coffee"
 STRINGS.NAMES.COFFEE_COOKED = "Coffee"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.COFFEEBUSH = "Coffee Plant"
+STRINGS.NAMES.DUG_COFFEEBUSH = "Coffee Plant"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUG_COFFEEBUSH = "This belongs in the ground!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.DUG_COFFEEBUSH = "I know just what to do with you."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DUG_COFFEEBUSH = "It will grow no strong beans like this."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.DUG_COFFEEBUSH = "Shall I put you back in the ground and grant you life?"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.DUG_COFFEEBUSH = "It requires soil to grow."
+STRINGS.CHARACTERS.WX78.DESCRIBE.DUG_COFFEEBUSH = "JUST ADD ASH"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.DUG_COFFEEBUSH = "This is worth replanting."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.DUG_COFFEEBUSH = "I'm going to take you everywhere with me."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.DUG_COFFEEBUSH = "Cöffee tö gö."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.DUG_COFFEEBUSH = "With just a little love you could grow again."
+STRINGS.CHARACTERS.WINONA.DESCRIBE.DUG_COFFEEBUSH = "It can't get to work if it ain't in the ground!"
+STRINGS.CHARACTERS.WORTOX.DESCRIBE.DUG_COFFEEBUSH = "Plant it in the ground, the mortals want their coffee."
+STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.DUG_COFFEEBUSH = "Needs dirt"
+STRINGS.CHARACTERS.WARLY.DESCRIBE.DUG_COFFEEBUSH = "Coffee to go!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.COFFEEBEANS = "Coffee Beans"
+STRINGS.NAMES.COFFEEBEANS_COOKED = "Roasted Coffee Beans"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEEBEANS = "They could use some roasting."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEEBEANS = "These could use fire."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEEBEANS = "Tiny beans give Wolfgang strength!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEEBEANS = "These look stimulating."
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEEBEANS = "Very high in caffiene."
+STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEEBEANS = "DRINKABLE BEANS"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEEBEANS = "It's strange to see them this color."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEEBEANS = "I should cook these up."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEEBEANS = "I take mine black."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEEBEANS = "These smell very... adult."
+STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEEBEANS = "They ain't much good without a good roastin'!"
+STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEEBEANS = "Well what do you know, these beans are white as snow! Hyuyu!"
+STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEEBEANS = "Zoomberries!"
+STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEEBEANS = "Glorious!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEEBEANS_COOKED = "Heat definitely improved them."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEEBEANS_COOKED = "Ahhh, that aroma."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEEBEANS_COOKED = "Is bitter beans!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEEBEANS_COOKED = "Who knew the will to live came in bean form?"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEEBEANS_COOKED = "Ahh, that roast smells delightful."
+STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEEBEANS_COOKED = "NARCOTIC BEAN HAS REACHED OPTIMUM ROAST LEVEL"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEEBEANS_COOKED = "Better than raw, but perhaps there's a better way to prepare them?"
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEEBEANS_COOKED = "Canadians love their coffee."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEEBEANS_COOKED = "It smells energizing."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEEBEANS_COOKED = "These make me feel funny."
+STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEEBEANS_COOKED = "Now they're ready for a brewin'!"
+STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEEBEANS_COOKED = "They've become dark, like the darkness dimension!"
+STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEEBEANS_COOKED = "Smells good"
+STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEEBEANS_COOKED = "Could use water..."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.COFFEE = "Coffee"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEEBOT = "This is a coffee machine."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEE = "It smells delicious and energizing!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEE = "I suddenly feel motivated."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEE = "Strong, like Wolfgang!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEE = "Dark. Bitter..."
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEE = "I do love a cup of coffee and a good book."
+STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEE = "IT'S JUST HOT BEAN JUICE"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEE = "I look forward to this."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEE = "Good ol' joe."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEE = "Bitter and pulse-pounding."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEE = "Bitter."
+STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEE = "Nothin' like a cup of joe before a day of hard work!"
+STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEE = "Mortals love this stuff for waking up."
+STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEE = "Wheee!!!"
+STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEE = "Magnifique!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.RECIPE_DESC.DUG_COFFEEBUSH = "Infuse some cones with fire."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "I think it needs to be fertilized.",
+			GENERIC = "This is a plant I could learn to love.",
+			PICKED = "Maybe they'll grow back?",
+			WITHERED = "Looks malnourished.",
+		}
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "It needs ash and love. Mostly just ash.",
+			GENERIC = "Hot java from hot lava!",
+			PICKED = "Aw, but I want another cup...",
+			WITHERED = "It needs ash and love. Mostly just ash.",
+		}
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Where did all tasty beans go?",
+			GENERIC = "Coffee bush is proud, strong.",
+			PICKED = "Rest now, friend.",
+			WITHERED = "It is on death's door.",
+		}
+STRINGS.CHARACTERS.WENDY.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "It could use a pick me up.",
+			GENERIC = "A beany gift from the heavens.",
+			PICKED = "All wounds heal in time, little bush.",
+			WITHERED = "I feel the same way, friend.",
+		}
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "It is not flowering at this time.",
+			GENERIC = "Coffea genus.",
+			PICKED = "Bean gone awhile now.",
+			WITHERED = "It is too hot for the Coffea plant.",
+		}
+STRINGS.CHARACTERS.WX78.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "THE BUSH IS NO LONGER HOLDING",
+			GENERIC = "BUSH PRODUCES NARCOTICS",
+			PICKED = "NARCOTIC PRODUCTION RENEWING",
+			WITHERED = "NARCOTIC PRODUCTION SUSPENDED",
+		}
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "You look a little down, bud.",
+			GENERIC = "Coffee beans!",
+			PICKED = "I wish it had more beans.",
+			WITHERED = "It could use good cuppa joe.",
+		}
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Barren.",
+			GENERIC = "Delightful coffee beans.",
+			PICKED = "I've picked them all.",
+			WITHERED = "Decay has overtaken it.",
+		}
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Weakling bush!",
+			GENERIC = "Just add water?",
+			PICKED = "Its fruits must be rebörn.",
+			WITHERED = "Weakling bush!",
+		}
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "No more mean beans.",
+			GENERIC = "It's covered in the happy beans.",
+			PICKED = "We took them all.",
+			WITHERED = "The bean bush looks sad.",
+		}
+STRINGS.CHARACTERS.WINONA.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "It's on strike.",
+			GENERIC = "The beans are ready for the pickin'!",
+			PICKED = "Plants need time to do work too y'know?",
+			WITHERED = "It's on strike.",
+		}
+STRINGS.CHARACTERS.WORTOX.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Little bush you look so sad, but a handful of ash will make you glad! Hyuyu!",
+			GENERIC = "Covered in those beans mortals love.",
+			PICKED = "Gone, all gone.",
+			WITHERED = "No more, no more.",
+		}
+STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Are you sick?",
+			GENERIC = "Zoomberry friend",
+			PICKED = "They'll grow back",
+			WITHERED = "Needs ashes!",
+		}
+STRINGS.CHARACTERS.WARLY.DESCRIBE.COFFEEBUSH =
+		{
+			BARREN = "Come back, coffee!",
+			GENERIC = "Does that bush grow... coffee beans?!",
+			PICKED = "I hope they grow back by tomorrow morning.",
+			WITHERED = "Come back, coffee!",
+		}
+------------------------------------------------------------------------------------------------------------
 
 STRINGS.NAMES.CASINOMARBLEPILLAR = "Marble Pillar"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.CASINOMARBLEPILLAR = "Even stone can not withstand the constant pull of decay."

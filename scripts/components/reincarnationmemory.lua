@@ -46,7 +46,6 @@ function ReincarnationMemory:StorePlayer(inst)
     local age = nil
     local builder_data = nil
     local inventory_data = nil
-    local health_penalty = nil
     local maps = nil
 --    local petleash = nil
 
@@ -60,11 +59,6 @@ function ReincarnationMemory:StorePlayer(inst)
 
     if inst.components.inventory ~= nil then
         inventory_data = inst.components.inventory:OnSave()
-    end
-
-    if inst.components.health ~= nil and
-       inst.components.health:GetPenaltyPercent() > 0 then
-        health_penalty = inst.components.health:GetPenaltyPercent()
     end
 
     if inst.player_classified ~= nil and
@@ -83,7 +77,6 @@ function ReincarnationMemory:StorePlayer(inst)
                  age = age,
                  builder_data = builder_data,
                  inventory_data = inventory_data,
-                 health_penalty = health_penalty,
                  maps = maps,
 --                 petleash = petleash,
              })
@@ -101,7 +94,6 @@ function ReincarnationMemory:RestorePlayer(inst)
         local age = player_memory.age
         local builder_data = player_memory.builder_data
         local inventory_data = player_memory.inventory_data
-        local health_penalty = player_memory.health_penalty
         local maps = player_memory.maps
  --       local petleash = player_memory.petleash
 
@@ -143,14 +135,6 @@ function ReincarnationMemory:RestorePlayer(inst)
                               function(inst)
                                   inst.components.inventory:OnLoad(inventory_data)
                               end)
-        end
-        if health_penalty ~= nil and
-           inst.components.health ~= nil then
-            -- Call DeltaPenalty() instead of SetPenality()
-            -- in case the new character has an inherent penalty.
-            -- Also, it calls ForceUpdateHUD() which should be called
-            -- when using SetPenality().
-            inst.components.health:DeltaPenalty(health_penalty)
         end
         if maps ~= nil then
             -- Queueing without delay seems to lead to a race condition,
