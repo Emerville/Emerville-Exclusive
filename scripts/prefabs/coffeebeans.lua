@@ -233,7 +233,7 @@ local function MakeVeggie(name, has_seeds)
         inst.components.edible.healthvalue = JY_VEGGIES[name].cooked_health
         inst.components.edible.hungervalue = JY_VEGGIES[name].cooked_hunger
         inst.components.edible.sanityvalue = JY_VEGGIES[name].cooked_sanity or 0
-        inst.components.edible.foodtype = FOODTYPE.VEGGIE
+        inst.components.edible.foodtype = FOODTYPE.GOODIES
 		inst.components.edible:SetOnEatenFn(OnEaten)
 
         inst:AddComponent("stackable")

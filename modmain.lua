@@ -705,6 +705,7 @@ TUNING.ROCK_FRUIT_LOOT = {ANGLE = 65, SPEED = -1.8, HEIGHT = 0.5, RIPE_CHANCE = 
 --Make Ingredient
 AddIngredientValues({"goldenegg",}, {egg=4})
 AddIngredientValues({"goldendrum",}, {goldendrum=1})
+AddIngredientValues({"coffeebeans_cooked",}, {coffeebeans_cooked=1})
 
 --New Fuel
 GLOBAL.FUELTYPE.ANIMSPARROWGUN = "GEARS"
@@ -821,6 +822,23 @@ local efc_recipe = {
 AddCookerRecipe("cookpot", efc_recipe)	
 AddCookerRecipe("portablecookpot", efc_recipe)
 AddCookerRecipe("archive_cookpot", efc_recipe)
+
+local coffee =
+{
+    name = "coffee",
+    test = function(cooker, names, tags) return names.coffeebeans_cooked and (names.coffeebeans_cooked == 4 or (names.coffeebeans_cooked == 3 and tags.dairy)) end,
+    priority = 30,
+    weight = 1,
+    foodtype = "GOODIES",
+	health = TUNING.HEALING_SMALL,
+	hunger = TUNING.CALORIES_TINY,
+    sanity = -TUNING.SANITY_TINY,
+    cooktime = .5,
+    tags = {},
+}
+AddCookerRecipe("cookpot",coffee)
+AddCookerRecipe("portablecookpot",coffee)
+AddCookerRecipe("archive_cookpot", coffee)
 
 -----------------------------------------------------
 -- Scythe Blink Sanity Drain - Code by KoreanWaffles
