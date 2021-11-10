@@ -199,6 +199,8 @@ PrefabFiles = {
     "shadowbatminion",
 	"batdamageability",	
 	"infernalboss",
+	"themask",
+	"themasktornado",
 
     -- ALL I WANT FOR CHRISTMAS IS YOU!
 	"casinochristmastree",
@@ -287,6 +289,7 @@ PrefabFiles = {
 	"hat_goggles",
 	"armor_beefalo",
 	"gear_hat",
+	"mermhats",
     
     -- Borrowed assets:
     "quagmire_wormwood_fx", -- From Re-Gorge-itated
@@ -595,6 +598,10 @@ Assets = {
     Asset("ATLAS", "images/inventoryimages/puluji.xml"),
 	Asset("IMAGE", "images/inventoryimages/flan.tex"),
 	Asset("ATLAS", "images/inventoryimages/flan.xml"),	
+	Asset("ATLAS", "images/inventoryimages/mermhat.xml"),
+    Asset("IMAGE", "images/inventoryimages/mermhat.tex"),
+	Asset("ATLAS", "images/inventoryimages/mermlighthat.xml"),
+    Asset("IMAGE", "images/inventoryimages/mermlighthat.tex"),
 }
 
 -----------------------------------------------------------
@@ -712,12 +719,19 @@ GLOBAL.FUELTYPE.ANIMSPARROWGUN = "GEARS"
 GLOBAL.FUELTYPE.HOUNDHAT = "SPIDERHAT"
 GLOBAL.FUELTYPE.DSTDOLL = "DSTDOLL"
 GLOBAL.FUELTYPE.BLUEGEM = "BLUEGEM"
+GLOBAL.FUELTYPE.PURPLEGEM = "PURPLEGEM"
 
 --AddPrefabPostInit
 AddPrefabPostInit("bluegem", 
 	function (inst)
 		inst:AddComponent("fuel")		
 		inst.components.fuel.fueltype = "BLUEGEM"
+	end)
+	
+AddPrefabPostInit("purplegem", 
+	function (inst)
+		inst:AddComponent("fuel")		
+		inst.components.fuel.fueltype = "PURPLEGEM"
 	end)
 
 AddPrefabPostInit("gears", 

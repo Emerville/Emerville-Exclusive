@@ -4,11 +4,11 @@ local assets =
 }
 local SMASHABLE_WORK_ACTIONS =
 {
-    CHOP = false,
-    DIG = false,
+    CHOP = true,
+    DIG = true,
     HAMMER = false,
-    MINE = false,
-	ATTACK = true,
+    MINE = true,
+	ATTACK = false,
 }
 local SMASHABLE_TAGS = { "_combat" }
 for k, v in pairs(SMASHABLE_WORK_ACTIONS) do

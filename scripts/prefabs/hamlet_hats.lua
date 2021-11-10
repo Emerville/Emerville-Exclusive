@@ -582,18 +582,64 @@ end
 	
 	local function disguise_equip(inst, owner)
 		opentop_onequip(inst, owner)
-		if owner:HasTag("spiderwhisperer") then
+		--[[if owner:HasTag("spiderwhisperer") then
 		owner:RemoveTag("monster")
 		owner:AddTag("premonster")
+		end]]
+		
+		if owner:HasTag("monster") then
+			owner:AddTag("unmonster")
+			owner:RemoveTag("monster")		
 		end
+	
+		if owner:HasTag("playermonster") then
+			owner:AddTag("unplayermonster")
+			owner:RemoveTag("playermonster")		
+		end
+	
+		if owner:HasTag("spiderwhisperer") then
+			owner:AddTag("unspiderwhisperer")
+			owner:RemoveTag("spiderwhisperer")		
+		end	
+	
+		if owner:HasTag("merm") then
+			owner:AddTag("unmerm")
+			owner:RemoveTag("merm")
+			owner:RemoveTag("mermguard")
+			owner:RemoveTag("mermfluent")		
+		end
+		
 	end
 	
 	local function disguise_onunequip(inst, owner)
 		onunequip(inst, owner)
-		if owner:HasTag("spiderwhisperer") then
+		--[[if owner:HasTag("spiderwhisperer") then
 		owner:AddTag("monster")
 		owner:RemoveTag("premonster")
+		end]]
+		
+		if owner:HasTag("unplayermonster") then
+			owner:AddTag("playermonster")
+			owner:RemoveTag("unplayermonster")		
 		end
+	
+		if owner:HasTag("unspiderwhisperer") then
+			owner:AddTag("spiderwhisperer")
+			owner:RemoveTag("unspiderwhisperer")		
+		end
+	
+		if owner:HasTag("unmonster") then
+			owner:AddTag("monster")
+			owner:RemoveTag("unmonster")		
+		end
+	
+		if owner:HasTag("unmerm") then
+			owner:AddTag("merm")
+			owner:AddTag("mermguard")
+			owner:AddTag("mermfluent")
+			owner:RemoveTag("unmerm")
+		end
+	
 	end
 	
 	local function disguise()
@@ -611,7 +657,7 @@ end
 		
 		hamlet_master(inst)
 		
-		inst:AddTag("pigman")
+		--inst:AddTag("pigman")
 		
 		inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
 		inst.components.equippable:SetOnEquip(disguise_equip)

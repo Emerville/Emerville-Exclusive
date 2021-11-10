@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0" name="swap_hat">
+        <file id="0" name="swap_hat/swap_hat-0.png" width="300" height="300" pivot_x="0.536667" pivot_y="0.076667"/>
+        <file id="1" name="swap_hat/swap_hat-1.png" width="300" height="300" pivot_x="0.56" pivot_y="0.09"/>
+        <file id="2" name="swap_hat/swap_hat-2.png" width="349" height="349" pivot_x="0.510029" pivot_y="0.13467"/>
+        <file id="3" name="swap_hat/swap_hat-3.png" width="356" height="216" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="themask">
+        <animation id="0" name="anim" length="100" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="25">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="50">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="75">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="100">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="swap_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="12.9999" y="-68.9999" angle="0"/>
+                </key>
+                <key id="1" time="25" spin="0">
+                    <object folder="0" file="0" x="12.9999" y="-68.9999" angle="0"/>
+                </key>
+                <key id="2" time="50" spin="0">
+                    <object folder="0" file="0" x="12.9999" y="-68.9999" angle="0"/>
+                </key>
+                <key id="3" time="75" spin="0">
+                    <object folder="0" file="0" x="12.9999" y="-68.9999" angle="0"/>
+                </key>
+                <key id="4" time="100" spin="0">
+                    <object folder="0" file="0" x="12.9999" y="-68.9999" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="swap_hat-3">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-121" y="78" scale_x="0.7" scale_y="0.7"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

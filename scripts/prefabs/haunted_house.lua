@@ -49,7 +49,7 @@ local function onnear(inst)
                pos.z = pos.z - 4
                hound.Transform:SetPosition(pos:Get())      
                 lightning.Transform:SetPosition(pos:Get())]]
-        inst.AnimState:PlayAnimation("far", true)
+        inst.AnimState:PlayAnimation("near")
        --inst.Light:Enable(true)
 
        --SpawnPrefab("spider_dropper").Transform:SetPosition(inst.Transform:GetWorldPosition(0,10,0))
@@ -58,7 +58,7 @@ end
 
 
 local function onfar(inst)
-    inst.AnimState:PlayAnimation("near", true)     
+    inst.AnimState:PlayAnimation("far")     
 --   inst.Light:Enable(false)
     inst.components.childspawner:StopSpawning()
     inst.components.periodicspawner:Stop()       
@@ -70,11 +70,11 @@ local function ReturnChildren(inst)
 end
 
 ----------------------------------------------------
-local function onbuilt(inst)
-	inst.AnimState:PlayAnimation("place")
+--[[local function onbuilt(inst)
+--	inst.AnimState:PlayAnimation("place")
 	inst.AnimState:PushAnimation("near", false)
 --    SpawnPrefab("dropperweb")
-end
+end]]
 
 local function onignite(inst)
     inst.components.sleepingbag:DoWakeUp()
@@ -105,7 +105,7 @@ local function onwake(inst, sleeper, nostatechange)
     end
 
     if inst.sleep_anim ~= nil then
-        inst.AnimState:PushAnimation("near", true)
+        inst.AnimState:PushAnimation("far", true)
         stopsleepsound(inst)
     end		
 	
@@ -192,7 +192,7 @@ local function fn(Sim)
 	
     inst.AnimState:SetBank("haunted_house")
     inst.AnimState:SetBuild("haunted_house")
-    inst.AnimState:PlayAnimation("near")
+    inst.AnimState:PlayAnimation("far")
     
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon("haunted_house.tex")
@@ -237,19 +237,16 @@ local function fn(Sim)
     inst.components.sleepingbag.onwake = onwake
     --convert wetness delta to drying rate
     inst.components.sleepingbag.dryingrate = math.max(0, -TUNING.SLEEP_WETNESS_PER_TICK / TUNING.SLEEP_TICK_PERIOD)
-	
-	--inst:AddComponent("burnable")
-	--inst.components.burnable:AddBurnFX("pigtorch_flame", Vector3(-210,10,-00.1), "fire_marker")
     
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(10,17)
     inst.components.playerprox:SetOnPlayerNear(onnear)
     inst.components.playerprox:SetOnPlayerFar(onfar)
 	
-	inst:ListenForEvent("onbuilt", onbuilt)
+--	inst:ListenForEvent("onbuilt", onbuilt)
 
     return inst
 end
 
 return Prefab("common/haunted_house", fn, assets, prefabs),
-	   MakePlacer("common/haunted_house_placer", "haunted_house", "haunted_house", "near") 
+	   MakePlacer("common/haunted_house_placer", "haunted_house", "haunted_house", "far") 

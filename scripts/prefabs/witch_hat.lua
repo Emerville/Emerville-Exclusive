@@ -17,34 +17,33 @@ local function SpawnDubloon(inst, owner)
 	dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())	
 end
 
+local function ruinshat_fxanim(inst)
+    inst._fx.AnimState:PlayAnimation("hit")
+    inst._fx.AnimState:PushAnimation("idle_loop")
+end
 
---[[    local function ruinshat_fxanim(inst)
-        inst._fx.AnimState:PlayAnimation("hit")
-        inst._fx.AnimState:PushAnimation("idle_loop")
-    end
+local function ruinshat_oncooldown(inst)
+    inst._task = nil
+end
 
-    local function ruinshat_oncooldown(inst)
-        inst._task = nil
-    end
-
-    local function ruinshat_unproc(inst)
-        if inst:HasTag("forcefield") then
-            inst:RemoveTag("forcefield")
-            if inst._fx ~= nil then
-                inst._fx:kill_fx()
-                inst._fx = nil
-            end
-            inst:RemoveEventCallback("armordamaged", ruinshat_fxanim)
-
-            inst.components.armor:SetAbsorption(0)
-            inst.components.armor.ontakedamage = nil
-
-            if inst._task ~= nil then
-                inst._task:Cancel()
-            end
-            inst._task = inst:DoTaskInTime(TUNING.ARMOR_RUINSHAT_COOLDOWN, ruinshat_oncooldown)
+local function ruinshat_unproc(inst)
+    if inst:HasTag("forcefield") then
+        inst:RemoveTag("forcefield")
+        if inst._fx ~= nil then
+            inst._fx:kill_fx()
+            inst._fx = nil
         end
+        inst:RemoveEventCallback("armordamaged", ruinshat_fxanim)
+
+        inst.components.armor:SetAbsorption(0)
+        inst.components.armor.ontakedamage = nil
+
+        if inst._task ~= nil then
+            inst._task:Cancel()
+        end
+        inst._task = inst:DoTaskInTime(TUNING.ARMOR_RUINSHAT_COOLDOWN, ruinshat_oncooldown)
     end
+end
 
     local function ruinshat_proc(inst, owner)
         inst:AddTag("forcefield")
@@ -82,10 +81,10 @@ end
             inst._fx:kill_fx()
             inst._fx = nil
         end
-    end]]
+    end
 	
 local function onequip(inst, owner)
---    inst.onattach(owner)
+   inst.onattach(owner)
 
     owner.AnimState:OverrideSymbol("swap_hat", "witch_hat", "swap_hat")
 	
@@ -102,13 +101,13 @@ local function onequip(inst, owner)
 	
 	if inst.components.fueled ~= nil then
         inst.components.fueled:StartConsuming()
-        inst.dubloon_task = inst:DoPeriodicTask(480, function() SpawnDubloon(inst, owner) end) --480 Day/Regular --240 HalfDay/Event	
+        inst.dubloon_task = inst:DoPeriodicTask(240, function() SpawnDubloon(inst, owner) end) --480 Day/Regular --240 HalfDay/Event	
     end
 	
 end
  
 local function onunequip(inst, owner)
---    inst.ondetach()
+    inst.ondetach()
 
     owner.AnimState:Hide("HAT")
     owner.AnimState:Hide("HAIR_HAT")
@@ -169,7 +168,7 @@ local function fn(Sim)
     inst.components.fueled:InitializeFuelLevel(TUNING.TOPHAT_PERISHTIME)
     inst.components.fueled:SetDepletedFn(inst.Remove)
 	
---[[    inst:AddComponent("armor")
+    inst:AddComponent("armor")
     inst.components.armor:InitCondition(TUNING.ARMOR_RUINSHAT, 0)	
 
         inst.OnRemoveEntity = ruins_onremove
@@ -196,7 +195,7 @@ local function fn(Sim)
                 inst._owner = nil
                 inst._fx = nil
             end
-        end]]	
+        end	
 	
 	MakeHauntableLaunch(inst)	
 

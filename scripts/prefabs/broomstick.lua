@@ -47,11 +47,11 @@ local function onattack(inst, owner, target)
    SpawnPrefab("shadowstrike_slash2_fx").Transform:SetPosition(target:GetPosition():Get())
 end
 	
---[[local function onblink(staff, pos, caster) --Halloween
+local function onblink(staff, pos, caster) --Halloween
     if caster.components.sanity ~= nil then
        caster.components.sanity:DoDelta(-25) --Changed from 50 to 25
    end 
-end]]
+end
 
 local function nofuel(inst)
 	SpawnPrefab("statue_transition").Transform:SetPosition(inst:GetPosition():Get())
@@ -115,8 +115,8 @@ local function fn()
     inst.components.weapon:SetDamage(25)
     inst.components.weapon:SetRange(1.10)
 	
---    inst:AddComponent("blinkstaff") --Halloween
---    inst.components.blinkstaff.onblinkfn = onblink
+    inst:AddComponent("blinkstaff") --Halloween
+    inst.components.blinkstaff.onblinkfn = onblink
 	
     inst:AddComponent("inspectable")
 	

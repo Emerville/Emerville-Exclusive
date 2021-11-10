@@ -32,8 +32,10 @@ SetSharedLootTable( "darkbat",
     {'nightmarefuel', 0.50},
 --  {'witch_hat', 0.50}, --2019
 --  {'scythe', 0.25},	--2019
-	{'broomstick', 0.75}, --2020
-	{'witch_hat', 0.25}, --2020
+--	{'broomstick', 0.75}, --2020
+--	{'witch_hat', 0.25}, --2020
+	{'themask', 0.75}, --2021
+	{'broomstick', 0.25}, --2021
  	
     --{'shadowstaff_blueprint', 1},	
 })

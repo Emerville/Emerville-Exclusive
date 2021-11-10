@@ -1261,6 +1261,14 @@ STRINGS.NAMES.INFERNALBOSS = "Infernal Spectre"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.INFERNALBOSS = "Horned ectoplasmic incarnation."
 ------------------------------------------------------------------------------------------
+STRINGS.NAMES.SHADOWBATENEMY = "Infernal Bat"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHADOWBATENEMY = "I think I'll just start running away now."
+------------------------------------------------------------------------------------------
+STRINGS.NAMES.SHADOWBATMINION = "Infernal Bat"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHADOWBATMINION = "Its going to suck my soul out!"
+------------------------------------------------------------------------------------------
 STRINGS.NAMES.PAWN = "Pawn Remains"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.PAWN = "What could have done this?"
@@ -1430,6 +1438,10 @@ STRINGS.CHARACTERS.WOODIE.DESCRIBE.BROOMSTICK        = "The wood used to make it
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BROOMSTICK       = "I still prefer a cane."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BROOMSTICK    = "Does it belong to a witch or wizard?"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.BROOMSTICK        = "Mother used to clean the house with something like this."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.THEMASK = "The Mask"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.THEMASK       = "This mask looks straight out of a 90s movie."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SANTA_HELPER_HAT = "Santa's Helper Hat"
 STRINGS.RECIPE_DESC.SANTA_HELPER_HAT = "Ho-ho-ho!"
@@ -2469,6 +2481,16 @@ STRINGS.NAMES.HAUNTED_HOUSE = "Haunted House"
 STRINGS.RECIPE_DESC.HAUNTED_HOUSE = "Spooky!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HAUNTED_HOUSE = "How did this get here? Spooky!"
+------------------------------------------------------------------------------------------------------------
+--MERM LIGHT HAT
+STRINGS.NAMES.MERMLIGHTHAT = "Splunking Hat"
+STRINGS.RECIPE_DESC.MERMLIGHTHAT = "Slimy but useful."
+STRINGS.CHARACTERS.GENERIC.MERMLIGHTHAT = "I participated in a fishing contest!"
+
+--MERM HAT
+STRINGS.NAMES.MERMHAT = "Smelly Hat"
+STRINGS.RECIPE_DESC.MERMHAT = "Smells really bad."
+STRINGS.CHARACTERS.GENERIC.MERMHAT = "I participated in a fishing contest!"
 
 
 
