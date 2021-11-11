@@ -133,16 +133,10 @@ end
 
 	
 local function SpawnAnimation(inst)
-
-local target = FindEntity(inst, 9999, nil, { "infernalboss" }, nil)
-	if target ~= nil then
-		inst:Remove()
-	else
-	    SpawnPrefab("shadow_despawn").Transform:SetPosition(inst.Transform:GetWorldPosition())
-	    SpawnPrefab("statue_transition_2").Transform:SetPosition(inst.Transform:GetWorldPosition())
-	    SpawnPrefab("spawnlight_multiplayer").Transform:SetPosition(inst.Transform:GetWorldPosition())
-        SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    end
+    SpawnPrefab("shadow_despawn").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    SpawnPrefab("statue_transition_2").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    SpawnPrefab("spawnlight_multiplayer").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
 end
 
 local function spawnchest(inst)

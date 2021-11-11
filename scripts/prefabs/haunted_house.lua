@@ -70,6 +70,38 @@ local function ReturnChildren(inst)
 end
 
 ----------------------------------------------------
+
+local function AwaitBossKilled(inst)
+    if not inst._spawnedboss then return end
+
+    inst:ListenForEvent("death", function()
+        inst._spawnedboss = nil
+    end, inst._spawnedboss)
+end
+
+local function AwaitBossChange(inst)
+    if not inst._spawnedboss then return end
+
+    inst:ListenForEvent("loot_prefab_spawned", function(_, data)
+        if data.loot and data.loot.prefab == "shadowbatenemy" then
+            inst._spawnedboss = data.loot
+            AwaitBossKilled(inst)
+        end
+    end, inst._spawnedboss)
+end
+
+local function onspawnbossfn(inst, child)
+    if child ~= nil then
+        inst._spawnedboss = child
+        AwaitBossChange(inst)
+    end
+end
+
+local function canspawnbossfn(inst)
+    return inst._spawnedboss == nil
+end
+
+----------------------------------------------------
 --[[local function onbuilt(inst)
 --	inst.AnimState:PlayAnimation("place")
 	inst.AnimState:PushAnimation("near", false)
@@ -159,15 +191,24 @@ local function onsleep(inst, sleeper)
     inst.sleeptask = inst:DoPeriodicTask(TUNING.SLEEP_TICK_PERIOD, onsleeptick, nil, sleeper)
 end
 
-local function onsave(inst, data)
-    if inst:HasTag("burnt") or (inst.components.burnable ~= nil and inst.components.burnable:IsBurning()) then
-        data.burnt = true
+local function OnSave(inst, data)
+    if inst._spawnedboss ~= nil and inst._spawnedboss:IsValid() then
+        data.spawnedboss_id = inst._spawnedboss.GUID
+        return {data.spawnedboss_id}
     end
 end
 
-local function onload(inst, data)
-    if data ~= nil and data.burnt then
-        inst.components.burnable.onburnt(inst)
+local function OnLoadPostPass(inst, newents, data)
+    if data ~= nil and data.spawnedboss_id then
+        local spawnedboss = newents[data.spawnedboss_id]
+        if spawnedboss ~= nil then
+            inst._spawnedboss = spawnedboss.entity
+            if inst._spawnedboss.prefab == "infernalboss" then
+                AwaitBossChange(inst)
+            else
+                AwaitBossKilled(inst)
+            end
+        end
     end
 end
 
@@ -207,21 +248,20 @@ local function fn(Sim)
 	
 	inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_MED   
+
+    inst.entity:AddGroundCreepEntity()
+    inst.GroundCreepEntity:SetRadius(8)
 	
 	inst:AddComponent("childspawner")
 	inst.components.childspawner:SetMaxChildren(3)
 	inst.components.childspawner.childname = "spider_moon"
 	inst.components.childspawner:SetRegenPeriod(30)
 
-    inst.entity:AddGroundCreepEntity()
-    inst.GroundCreepEntity:SetRadius(8)
-
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("infernalboss")
-    inst.components.periodicspawner:SetRandomTimes(30,45)
-    inst.components.periodicspawner:SetDensityInRange(30, 5)
-    inst.components.periodicspawner:SetMinimumSpacing(60)
-    --inst.components.periodicspawner:Start()
+    inst.components.periodicspawner:SetRandomTimes(30, 45)
+    inst.components.periodicspawner:SetOnSpawnFn(onspawnbossfn)
+    inst.components.periodicspawner:SetSpawnTestFn(canspawnbossfn)
 	
 	inst.sleep_phase = "night"
     inst.hunger_tick = TUNING.SLEEP_HUNGER_PER_TICK
@@ -244,6 +284,9 @@ local function fn(Sim)
     inst.components.playerprox:SetOnPlayerFar(onfar)
 	
 --	inst:ListenForEvent("onbuilt", onbuilt)
+    
+    inst.OnSave = OnSave
+    inst.OnLoadPostPass = OnLoadPostPass
 
     return inst
 end
