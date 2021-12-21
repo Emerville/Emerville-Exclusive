@@ -1163,7 +1163,6 @@ for k, v in pairs(mushroom_lights) do
                 inst.AnimState:PushAnimation(IsLightOn(inst) and "idle_on" or "idle", false)
 
                 if inst.components.container ~= nil then
-                    inst.components.container:DropEverything()
                     inst.components.container:Close()
                 end
             end
