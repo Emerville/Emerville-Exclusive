@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0" name="swap_orangecane">
+        <file id="0" name="swap_orangecane/swap_orangecane-0.png" width="156" height="246" pivot_x="0.487261" pivot_y="0.512146"/>
+    </folder>
+    <entity id="0" name="swap_orangecane">
+        <animation id="0" name="BUILD" length="100" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="1" time="25">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="50">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="3" time="75">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="4" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="swap_orangecane-0">
+                <key id="0" time="25" spin="0">
+                    <object folder="0" file="0" x="-0.993631" y="109.004049"/>
+                </key>
+                <key id="1" spin="0">
+                    <object folder="0" file="0" x="1.019108" y="117" pivot_x="0.480892" pivot_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

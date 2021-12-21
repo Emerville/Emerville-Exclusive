@@ -87,7 +87,7 @@ local function init()
 
 	inst:AddComponent("spellcaster")
     inst.components.spellcaster:SetSpellFn(growstaff)
-    inst.components.spellcaster.canuseontargets = false
+    inst.components.spellcaster.canuseontargets = true
 	inst.components.spellcaster.canusefrominventory = true
 	inst.components.spellcaster.canuseonpoint = true
 	

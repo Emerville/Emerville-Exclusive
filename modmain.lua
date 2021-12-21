@@ -130,6 +130,7 @@ PrefabFiles = {
     "chromecane", --A tribute to Lady Gaga's #1 album Chromatica
 	"pinkcane",
 	"purplecane",
+	"orangecane",
 	"greencanefake",
 	"lightning_barrier",
 	"scythe",
@@ -146,6 +147,10 @@ PrefabFiles = {
 	"xmashat_default",
     "christmas_tree",
 	"santa_hat",
+	"gnomescarf",
+	"christmaswendy",
+	"christmaswalter",
+	"christmaswx78",
 	
 	-- ADMIN:
 	"hmsword", --Admin Sword	
@@ -168,6 +173,7 @@ PrefabFiles = {
 	"crosshair",
 	"bushhatex",
 	"fuelsupplier",
+	"reaperamulet2",
 
 	-- TO DO:		
 	"clockqueen",
@@ -525,6 +531,8 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/pinkcane.tex"),	
 	Asset("ATLAS", "images/inventoryimages/purplecane.xml"),
     Asset("IMAGE", "images/inventoryimages/purplecane.tex"),
+	Asset("ATLAS", "images/inventoryimages/orangecane.xml"),
+    Asset("IMAGE", "images/inventoryimages/orangecane.tex"),
 	Asset("ATLAS", "images/inventoryimages/scythe.xml"),
     Asset("IMAGE", "images/inventoryimages/scythe.tex"),	
 	Asset("ATLAS", "images/inventoryimages/witch_hat.xml"),
@@ -722,6 +730,11 @@ GLOBAL.FUELTYPE.BLUEGEM = "BLUEGEM"
 GLOBAL.FUELTYPE.PURPLEGEM = "PURPLEGEM"
 
 --AddPrefabPostInit
+AddPrefabPostInit("marble", 
+	function (inst)
+		inst:AddComponent("tradable")		
+	end)
+
 AddPrefabPostInit("bluegem", 
 	function (inst)
 		inst:AddComponent("fuel")		
@@ -738,6 +751,7 @@ AddPrefabPostInit("gears",
 	function (inst)
 		inst:AddComponent("fuel")		
 		inst.components.fuel.fueltype = "GEARS"
+		inst:AddComponent("tradable")
 	end)
 	
 AddPrefabPostInit("spiderhat", 

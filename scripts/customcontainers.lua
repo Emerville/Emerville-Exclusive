@@ -831,9 +831,9 @@ end
 
 local function convertfn(act)
     local convert99 = {"skeletalamulet", "reaperamulet", "horsehead"}
-    local convert25 = {"baronsuit", "coffee_cooked", "magicdolls", "notwilson", "spartahelmut", "thorn_crown"}
+    local convert25 = {"baronsuit", "magicdolls", "notwilson", "spartahelmut", "thorn_crown"}
     local convert20 = {"box_gear"}
-    local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat"}
+    local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat", "alterguardianhat", "shieldofterror"}
 
 	local inst = act.target
     local container = inst.components.container
@@ -892,6 +892,8 @@ function params.traderwolfgang.itemtestfn(container, item, slot)
 	item.prefab == "deerclops_eyeball" or
 	item.prefab == "minotaurhorn" or
 	item.prefab == "hivehat" or
+	item.prefab == "alterguardianhat" or
+	item.prefab == "shieldofterror" or
 	item.prefab == "box_gear" or		
 	item.prefab == "skeletonhat" or	
 	item.prefab == "notwilson" or

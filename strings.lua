@@ -1247,15 +1247,29 @@ STRINGS.CHARACTERS.WEBBER.DESCRIBE.CASINOWOODLEGS      = "Arggg matey! Hehe."
 STRINGS.NAMES.HALLOWEENWILLOW = "Willow the Witch"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALLOWEENWILLOW = "Her favorite holiday is Halloween." 
-----
+------------------------------------------------------------------------------------------
 STRINGS.NAMES.HALLOWEENWENDY = "Wendy the Wanderer"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALLOWEENWENDY = "I heard she's giving out free candy!" 
----
+------------------------------------------------------------------------------------------
 STRINGS.NAMES.HALLOWEENWINONA = "Winona the Wicked"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALLOWEENWINONA = "She may look scary, but she's actually really nice!" 
+------------------------------------------------------------------------------------------
+STRINGS.NAMES.CHRISTMASWENDY = "Wendy the Bereaved"
 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWENDY = "I think she wants a Banana Pop." 
+STRINGS.CHARACTERS.WENDY.DESCRIBE.CHRISTMASWENDY   = "What a poser."
+------------------------------------------------------------------------------------------
+STRINGS.NAMES.CHRISTMASWALTER = "Walter the Fearless"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWALTER = "He's looking for some marble pieces." 
+STRINGS.CHARACTERS.WALTER.DESCRIBE.CHRISTMASWALTER  = "Did we go to the same camp?"
+------------------------------------------------------------------------------------------
+STRINGS.NAMES.CHRISTMASWX78 = "WX-78 the Soulless Automaton"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWX78 = "He needs some gears for an upgrade." 
+STRINGS.CHARACTERS.WX78.DESCRIBE.CHRISTMASWX78  = "YOU LOOK LIKE A TALKING TOASTER"
 ------------------------------------------------------------------------------------------
 STRINGS.NAMES.INFERNALBOSS = "Infernal Spectre"
 
@@ -1412,6 +1426,11 @@ STRINGS.NAMES.PURPLECANE = "Purple First Winter Cane"
 STRINGS.RECIPE_DESC.PURPLECANE = "An icy cane."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.PURPLECANE = "A rare cane, crafted during the first winter of the eighth world."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.ORANGECANE = "Orange First Winter Cane"
+STRINGS.RECIPE_DESC.ORANGECANE = "An icy cane."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ORANGECANE = "A rare cane, crafted during the first winter of the ninth world."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SCYTHE = "Scythe"
 
@@ -1832,6 +1851,9 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_MYSTERYDOLL = "What a perculiar doll. I 
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.REAPERAMULET = "Reaper Amulet"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.REAPERAMULET = "I feel a connection to the afterlife."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.REAPERAMULET2 = "Reaper Amulet (Skeleton Only Edition)"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.REAPERAMULET2 = "I think Platypus stole this from death himself."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.HORSEHEAD = "Horse Mask"
 STRINGS.RECIPE_DESC.HORSEHEAD = "Neighhhhhh!"
