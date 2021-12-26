@@ -28,18 +28,15 @@ local function oninspect(inst, viewer)
 end
 
 local function onhit(inst, worker, workleft, workdone)
-    local coins = SpawnPrefab("goldcoin")
-    local maxstack = coins.components.stackable.maxsize
-    local num = inst.stored and math.min(maxstack, inst.stored) or 0
-
-    if num > 0 then
-        coins.components.stackable:SetStackSize(num)
-        inst.components.lootdropper:FlingItem(coins)
-
-        inst.stored = inst.stored - num
-    end
-
     if inst.stored > 0 then
+        local coins = SpawnPrefab("goldcoin")
+        local maxstack = coins.components.stackable.maxsize
+        local num = inst.stored and math.min(maxstack, inst.stored) or 0
+
+        coins.components.stackable:SetStackSize(num)
+
+        inst.components.lootdropper:FlingItem(coins)
+        inst.stored = inst.stored - num
         inst.components.workable:SetWorkLeft(1)
     end
 end
