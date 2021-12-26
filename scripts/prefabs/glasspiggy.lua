@@ -95,4 +95,4 @@ local function init()
     return inst
 end
 
-return Prefab("common/objects/filledpiggy", init, assets)
+return Prefab("common/objects/glasspiggy", init, assets)

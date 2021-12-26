@@ -88,7 +88,7 @@ PrefabFiles = {
 	"efc",
 	"hungerregenbuffefc",
 	"goldenpiggy",
-	"filledpiggy",
+	"glasspiggy",
 	"goldenegg",
 	"goldendrum",
 	"coffee",
