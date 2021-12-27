@@ -32,7 +32,10 @@ local function onhit(inst, worker, workleft, workdone)
     end
     
     if inst.stored == 0 then
-        worker.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
+        inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
+        local fx = SpawnPrefab("mining_moonglass_fx")
+        local x, y, z = inst.Transform:GetWorldPosition()
+        fx.Transform:SetPosition(x, y, z)
         inst:Remove()
     end
 end
