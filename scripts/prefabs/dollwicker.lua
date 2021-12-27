@@ -1,25 +1,25 @@
 local assets =
 {
-    Asset("ANIM", "anim/wxdoll.zip"),
-    Asset("ANIM", "anim/swap_wxdoll.zip"),
+    Asset("ANIM", "anim/wickerdoll.zip"),
+    Asset("ANIM", "anim/swap_wickerdoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wxdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wxdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wickerdoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/wickerdoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wxdoll", "swap_wxdoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wickerdoll", "swap_wickerdoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-    inst.components.fueled:StartConsuming()		
+	inst.components.fueled:StartConsuming()		
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-    inst.components.fueled:StopConsuming()		
+	inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -53,7 +53,7 @@ if self:CanAcceptFuelItem(item) then
     end
 end
  
-local function fn()  
+local function fn() 
     local inst = CreateEntity()
  
     inst.entity:AddTransform()
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wxdoll")
-    inst.AnimState:SetBuild("wxdoll")
+    inst.AnimState:SetBank("wickerdoll")
+    inst.AnimState:SetBuild("wickerdoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wxdoll.tex")
+    inst.MiniMapEntity:SetIcon("wickerdoll.tex")
  
     inst:AddTag("sharp")
  
@@ -95,9 +95,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wxdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wxdoll.xml"
-	      
+    inst.components.inventoryitem.imagename = "wickerdoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wickerdoll.xml"
+      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -112,9 +112,9 @@ local function fn()
     SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
-	end)	
+	end)
      
     return inst
 end
 
-return  Prefab("common/inventory/dst_wxdoll", fn, assets) 
+return  Prefab("common/inventory/dollwicker", fn, assets) 

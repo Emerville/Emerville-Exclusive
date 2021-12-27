@@ -1,24 +1,25 @@
-local assets=
+local assets =
 {
-    Asset("ANIM", "anim/webberdoll.zip"),
-    Asset("ANIM", "anim/swap_webberdoll.zip"),
+    Asset("ANIM", "anim/wendydoll.zip"),
+    Asset("ANIM", "anim/swap_wendydoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/webberdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/webberdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wendydoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/wendydoll.tex"),
 }
-local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_webberdoll", "swap_webberdoll")
+
+local function OnEquip(inst, owner)	
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wendydoll", "swap_wendydoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()		
+	inst.components.fueled:StartConsuming()	
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-	inst.components.fueled:StopConsuming()		
+	inst.components.fueled:StopConsuming()
 end
 
 local function onattack(inst, owner, target)
@@ -45,7 +46,7 @@ end
 local function DstDollTakeFuel(self, item) 
 if self:CanAcceptFuelItem(item) then
 	if item.prefab == "magicdolls" then
-		self:DoDelta(1680)
+		self:DoDelta(2400)
 	 end
         item:Remove()
         return true
@@ -62,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("webberdoll")
-    inst.AnimState:SetBuild("webberdoll")
+    inst.AnimState:SetBank("wendydoll")
+    inst.AnimState:SetBuild("wendydoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("webberdoll.tex")
+    inst.MiniMapEntity:SetIcon("wendydoll.tex")
  
     inst:AddTag("sharp")
  
@@ -91,11 +92,11 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
-    inst.components.fueled:SetDepletedFn(inst.Remove)
+    inst.components.fueled:SetDepletedFn(inst.Remove)		
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "webberdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/webberdoll.xml"
+    inst.components.inventoryitem.imagename = "wendydoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wendydoll.xml"
 	      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
@@ -116,4 +117,5 @@ local function fn()
     return inst
 end
 
-return  Prefab("common/inventory/dst_webberdoll", fn, assets) 
+return  Prefab("common/inventory/dollwendy", fn, assets)
+ 

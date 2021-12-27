@@ -1,25 +1,25 @@
 local assets =
 {
-    Asset("ANIM", "anim/woodiedoll.zip"),
-    Asset("ANIM", "anim/swap_woodiedoll.zip"),
+    Asset("ANIM", "anim/willowdoll.zip"),
+    Asset("ANIM", "anim/swap_willowdoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/woodiedoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/woodiedoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/willowdoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/willowdoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_woodiedoll", "swap_woodiedoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_willowdoll", "swap_willowdoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()		
+    inst.components.fueled:StartConsuming()	
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-	inst.components.fueled:StopConsuming()	
+    inst.components.fueled:StopConsuming()		
 end
 
 local function onattack(inst, owner, target)
@@ -60,16 +60,24 @@ local function fn()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
 	inst.entity:AddMiniMapEntity()
+	inst.entity:AddLight()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("woodiedoll")
-    inst.AnimState:SetBuild("woodiedoll")
+    inst.AnimState:SetBank("willowdoll")
+    inst.AnimState:SetBuild("willowdoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("woodiedoll.tex")
+    inst.MiniMapEntity:SetIcon("willowdoll.tex")
  
     inst:AddTag("sharp")
+--[[	inst:AddTag("light")
+	
+	inst.Light:SetRadius(3)
+    inst.Light:SetFalloff(.6)
+    inst.Light:SetIntensity(0.9)
+    inst.Light:SetColour(220/255,209/255,50/255)
+    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )]]	
  
     if not TheWorld.ismastersim then
         return inst
@@ -79,10 +87,8 @@ local function fn()
      
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(20)
-	inst.components.weapon.onattack = onattack	
+	inst.components.weapon.onattack = onattack
   
-    inst:AddComponent("inspectable")
-	
     inst:AddComponent("insulator")
     inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)
 	
@@ -95,9 +101,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "woodiedoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/woodiedoll.xml"
-	      
+    inst.components.inventoryitem.imagename = "willowdoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/willowdoll.xml"
+      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -112,9 +118,9 @@ local function fn()
     SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
-	end)
-     
+	end)	
+	     
     return inst
 end
 
-return  Prefab("common/inventory/dst_woodiedoll", fn, assets) 
+return  Prefab("common/inventory/dollwillow", fn, assets) 

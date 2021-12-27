@@ -1,25 +1,25 @@
 local assets =
 {
-    Asset("ANIM", "anim/wolfgangdoll.zip"),
-    Asset("ANIM", "anim/swap_wolfgangdoll.zip"),
+    Asset("ANIM", "anim/mysterydoll.zip"),
+    Asset("ANIM", "anim/swap_mysterydoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wolfgangdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wolfgangdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/mysterydoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/mysterydoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wolfgangdoll", "swap_wolfgangdoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_mysterydoll", "swap_mysterydoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()		
+	inst.components.fueled:StartConsuming()	
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
-
-    inst.components.fueled:StopConsuming()	
+	
+	inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -52,22 +52,22 @@ if self:CanAcceptFuelItem(item) then
         return true
     end
 end
-
+ 
 local function fn()  
     local inst = CreateEntity()
  
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddNetwork()
---	inst.entity:AddMiniMapEntity()
+	inst.entity:AddMiniMapEntity()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wolfgangdoll")
-    inst.AnimState:SetBuild("wolfgangdoll")
+    inst.AnimState:SetBank("mysterydoll")
+    inst.AnimState:SetBuild("mysterydoll")
     inst.AnimState:PlayAnimation("idle")
 	
---    inst.MiniMapEntity:SetIcon("wolfgangdoll.tex")
+    inst.MiniMapEntity:SetIcon("mysterydoll.tex")
  
     inst:AddTag("sharp")
  
@@ -92,12 +92,12 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
-    inst.components.fueled:SetDepletedFn(inst.Remove)		
-      
+    inst.components.fueled:SetDepletedFn(inst.Remove)
+	
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wolfgangdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wolfgangdoll.xml"
-	      
+    inst.components.inventoryitem.imagename = "mysterydoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/mysterydoll.xml"	
+      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -112,9 +112,9 @@ local function fn()
     SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
-	end)	
+	end)
      
     return inst
 end
 
-return  Prefab("common/inventory/dst_wolfgangdoll", fn, assets) 
+return  Prefab("common/inventory/dollmystery", fn, assets) 

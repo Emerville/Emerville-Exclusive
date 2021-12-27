@@ -1641,6 +1641,11 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GIFTGAMBLE = "A cute little box full of myst
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GIFTGAMBLE = "I want to open it!"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.GIFTGAMBLE = "We hope it's a new toy!"
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.DOLLSET = "Doll Set"
+STRINGS.RECIPE_DESC.DOLLSET = "Everybody loves gambling."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLSET = "Angelyco held a gun up against Luis's head and said to make this." 
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.MAGICDOLLS = "Magical doll" 
 STRINGS.RECIPE_DESC.MAGICDOLLS = "Decoration and a reviving tool." 
 

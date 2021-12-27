@@ -1,14 +1,14 @@
 local assets =
 {
-    Asset("ANIM", "anim/warlydoll.zip"),
-    Asset("ANIM", "anim/swap_warlydoll.zip"),
+    Asset("ANIM", "anim/wortoxdoll_uncorrupted.zip"),
+    Asset("ANIM", "anim/swap_wortoxdoll_uncorrupted.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/warlydoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/warlydoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wortoxdoll_uncorrupted.xml"),
+    Asset("IMAGE", "images/inventoryimages/wortoxdoll_uncorrupted.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_warlydoll", "swap_warlydoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wortoxdoll_uncorrupted", "swap_wortoxdoll_uncorrupted")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("warlydoll")
-    inst.AnimState:SetBuild("warlydoll")
+    inst.AnimState:SetBank("wortoxdoll_uncorrupted")
+    inst.AnimState:SetBuild("wortoxdoll_uncorrupted")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("warlydoll.tex")
+    inst.MiniMapEntity:SetIcon("wortoxdoll_uncorrupted.tex")
  
     inst:AddTag("sharp")
  
@@ -95,8 +95,8 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "warlydoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/warlydoll.xml"
+    inst.components.inventoryitem.imagename = "wortoxdoll_uncorrupted"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wortoxdoll_uncorrupted.xml"
 	
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
@@ -117,4 +117,4 @@ local function fn()
     return inst
 end
 
-return  Prefab("common/inventory/dst_warlydoll", fn, assets) 
+return  Prefab("common/inventory/dollwortox_uncorrupted", fn, assets) 

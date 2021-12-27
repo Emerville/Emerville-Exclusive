@@ -1,14 +1,14 @@
 local assets =
 {
-    Asset("ANIM", "anim/mysterydoll.zip"),
-    Asset("ANIM", "anim/swap_mysterydoll.zip"),
+    Asset("ANIM", "anim/wurtdoll_abyssal.zip"),
+    Asset("ANIM", "anim/swap_wurtdoll_abyssal.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/mysterydoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/mysterydoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wurtdoll_abyssal.xml"),
+    Asset("IMAGE", "images/inventoryimages/wurtdoll_abyssal.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_mysterydoll", "swap_mysterydoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wurtdoll_abyssal", "swap_wurtdoll_abyssal")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
@@ -19,7 +19,7 @@ local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-	inst.components.fueled:StopConsuming()	
+    inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("mysterydoll")
-    inst.AnimState:SetBuild("mysterydoll")
+    inst.AnimState:SetBank("wurtdoll_abyssal")
+    inst.AnimState:SetBuild("wurtdoll_abyssal")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("mysterydoll.tex")
+    inst.MiniMapEntity:SetIcon("wurtdoll_abyssal.tex")
  
     inst:AddTag("sharp")
  
@@ -93,11 +93,11 @@ local function fn()
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
     inst.components.fueled:SetDepletedFn(inst.Remove)
-	
-    inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "mysterydoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/mysterydoll.xml"	
       
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.imagename = "wurtdoll_abyssal"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wurtdoll_abyssal.xml"
+	
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -113,8 +113,8 @@ local function fn()
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
 	end)
-     
+	
     return inst
 end
 
-return  Prefab("common/inventory/dst_mysterydoll", fn, assets) 
+return  Prefab("common/inventory/dollwurt_abyssal", fn, assets) 

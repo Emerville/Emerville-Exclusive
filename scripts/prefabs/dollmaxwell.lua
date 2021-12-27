@@ -1,13 +1,13 @@
-local assets =
+local assets=
 {
-    Asset("ANIM", "anim/wesdoll.zip"),
-    Asset("ANIM", "anim/swap_wesdoll.zip"),
+    Asset("ANIM", "anim/waxwelldoll.zip"),
+    Asset("ANIM", "anim/swap_waxwelldoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wesdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wesdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/waxwelldoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/waxwelldoll.tex"),
 }
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wesdoll", "swap_wesdoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_waxwelldoll", "swap_waxwelldoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
@@ -18,7 +18,7 @@ local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-	inst.components.fueled:StopConsuming()		
+	inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -52,7 +52,7 @@ if self:CanAcceptFuelItem(item) then
     end
 end
  
-local function fn()
+local function fn() 
     local inst = CreateEntity()
  
     inst.entity:AddTransform()
@@ -62,11 +62,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wesdoll")
-    inst.AnimState:SetBuild("wesdoll")
+    inst.AnimState:SetBank("waxwelldoll")
+    inst.AnimState:SetBuild("waxwelldoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wesdoll.tex")
+    inst.MiniMapEntity:SetIcon("waxwelldoll.tex")
  
     inst:AddTag("sharp")
  
@@ -94,9 +94,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wesdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wesdoll.xml"
-	      
+    inst.components.inventoryitem.imagename = "waxwelldoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/waxwelldoll.xml"
+		
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -116,4 +116,4 @@ local function fn()
     return inst
 end
 
-return  Prefab("common/inventory/dst_wesdoll", fn, assets) 
+return  Prefab("common/inventory/dollmaxwell", fn, assets) 

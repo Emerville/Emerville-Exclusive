@@ -117,4 +117,4 @@ local function fn()
     return inst
 end
 
-return  Prefab("common/inventory/dst_wilsondoll", fn, assets) 
+return  Prefab("common/inventory/dollwilson", fn, assets) 

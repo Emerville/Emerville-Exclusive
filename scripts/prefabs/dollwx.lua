@@ -1,25 +1,25 @@
 local assets =
 {
-    Asset("ANIM", "anim/wurtdoll_abyssal.zip"),
-    Asset("ANIM", "anim/swap_wurtdoll_abyssal.zip"),
+    Asset("ANIM", "anim/wxdoll.zip"),
+    Asset("ANIM", "anim/swap_wxdoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wurtdoll_abyssal.xml"),
-    Asset("IMAGE", "images/inventoryimages/wurtdoll_abyssal.tex"),
+    Asset("ATLAS", "images/inventoryimages/wxdoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/wxdoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wurtdoll_abyssal", "swap_wurtdoll_abyssal")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wxdoll", "swap_wxdoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()	
+    inst.components.fueled:StartConsuming()		
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-    inst.components.fueled:StopConsuming()	
+    inst.components.fueled:StopConsuming()		
 end
 
 local function onattack(inst, owner, target)
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wurtdoll_abyssal")
-    inst.AnimState:SetBuild("wurtdoll_abyssal")
+    inst.AnimState:SetBank("wxdoll")
+    inst.AnimState:SetBuild("wxdoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wurtdoll_abyssal.tex")
+    inst.MiniMapEntity:SetIcon("wxdoll.tex")
  
     inst:AddTag("sharp")
  
@@ -95,9 +95,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wurtdoll_abyssal"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wurtdoll_abyssal.xml"
-	
+    inst.components.inventoryitem.imagename = "wxdoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wxdoll.xml"
+	      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -112,9 +112,9 @@ local function fn()
     SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
-	end)
-	
+	end)	
+     
     return inst
 end
 
-return  Prefab("common/inventory/dst_wurtdoll_abyssal", fn, assets) 
+return  Prefab("common/inventory/dollwx", fn, assets) 

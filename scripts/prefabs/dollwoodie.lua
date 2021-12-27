@@ -1,25 +1,25 @@
 local assets =
 {
-    Asset("ANIM", "anim/winonadoll.zip"),
-    Asset("ANIM", "anim/swap_winonadoll.zip"),
+    Asset("ANIM", "anim/woodiedoll.zip"),
+    Asset("ANIM", "anim/swap_woodiedoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/winonadoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/winonadoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/woodiedoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/woodiedoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_winonadoll", "swap_winonadoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_woodiedoll", "swap_woodiedoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()	
+	inst.components.fueled:StartConsuming()		
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-    inst.components.fueled:StopConsuming()	
+	inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("winonadoll")
-    inst.AnimState:SetBuild("winonadoll")
+    inst.AnimState:SetBank("woodiedoll")
+    inst.AnimState:SetBuild("woodiedoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("winonadoll.tex")
+    inst.MiniMapEntity:SetIcon("woodiedoll.tex")
  
     inst:AddTag("sharp")
  
@@ -95,9 +95,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "winonadoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/winonadoll.xml"
-	
+    inst.components.inventoryitem.imagename = "woodiedoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/woodiedoll.xml"
+	      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -113,8 +113,8 @@ local function fn()
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
 	end)
-	
+     
     return inst
 end
 
-return  Prefab("common/inventory/dst_winonadoll", fn, assets) 
+return  Prefab("common/inventory/dollwoodie", fn, assets) 

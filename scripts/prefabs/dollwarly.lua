@@ -1,18 +1,18 @@
 local assets =
 {
-    Asset("ANIM", "anim/wigfriddoll.zip"),
-    Asset("ANIM", "anim/swap_wigfriddoll.zip"),
+    Asset("ANIM", "anim/warlydoll.zip"),
+    Asset("ANIM", "anim/swap_warlydoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wigfriddoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wigfriddoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/warlydoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/warlydoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wigfriddoll", "swap_wigfriddoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_warlydoll", "swap_warlydoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()		
+	inst.components.fueled:StartConsuming()	
 end
   
 local function OnUnequip(inst, owner)
@@ -53,7 +53,7 @@ if self:CanAcceptFuelItem(item) then
     end
 end
  
-local function fn() 
+local function fn()  
     local inst = CreateEntity()
  
     inst.entity:AddTransform()
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wigfriddoll")
-    inst.AnimState:SetBuild("wigfriddoll")
+    inst.AnimState:SetBank("warlydoll")
+    inst.AnimState:SetBuild("warlydoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wigfriddoll.tex")
+    inst.MiniMapEntity:SetIcon("warlydoll.tex")
  
     inst:AddTag("sharp")
  
@@ -80,11 +80,11 @@ local function fn()
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(20)
 	inst.components.weapon.onattack = onattack	
-	
+  
     inst:AddComponent("inspectable")
 	
     inst:AddComponent("insulator")
-    inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)	
+    inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)
 	
     inst:AddComponent("fueled")
 	inst.components.fueled.accepting = true	
@@ -92,12 +92,12 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
-    inst.components.fueled:SetDepletedFn(inst.Remove)	
+    inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wigfriddoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wigfriddoll.xml"
-	      
+    inst.components.inventoryitem.imagename = "warlydoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/warlydoll.xml"
+	
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -113,8 +113,8 @@ local function fn()
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
 	end)
-     
+	
     return inst
 end
 
-return  Prefab("common/inventory/dst_wigfriddoll", fn, assets) 
+return  Prefab("common/inventory/dollwarly", fn, assets) 

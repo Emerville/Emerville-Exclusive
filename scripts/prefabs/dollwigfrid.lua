@@ -1,14 +1,14 @@
 local assets =
 {
-    Asset("ANIM", "anim/wickerdoll.zip"),
-    Asset("ANIM", "anim/swap_wickerdoll.zip"),
+    Asset("ANIM", "anim/wigfriddoll.zip"),
+    Asset("ANIM", "anim/swap_wigfriddoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wickerdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wickerdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wigfriddoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/wigfriddoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wickerdoll", "swap_wickerdoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wigfriddoll", "swap_wigfriddoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
@@ -19,7 +19,7 @@ local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-	inst.components.fueled:StopConsuming()	
+    inst.components.fueled:StopConsuming()	
 end
 
 local function onattack(inst, owner, target)
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wickerdoll")
-    inst.AnimState:SetBuild("wickerdoll")
+    inst.AnimState:SetBank("wigfriddoll")
+    inst.AnimState:SetBuild("wigfriddoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wickerdoll.tex")
+    inst.MiniMapEntity:SetIcon("wigfriddoll.tex")
  
     inst:AddTag("sharp")
  
@@ -80,11 +80,11 @@ local function fn()
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(20)
 	inst.components.weapon.onattack = onattack	
-  
+	
     inst:AddComponent("inspectable")
 	
     inst:AddComponent("insulator")
-    inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)
+    inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)	
 	
     inst:AddComponent("fueled")
 	inst.components.fueled.accepting = true	
@@ -92,12 +92,12 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
-    inst.components.fueled:SetDepletedFn(inst.Remove)
+    inst.components.fueled:SetDepletedFn(inst.Remove)	
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wickerdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wickerdoll.xml"
-      
+    inst.components.inventoryitem.imagename = "wigfriddoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wigfriddoll.xml"
+	      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -117,4 +117,4 @@ local function fn()
     return inst
 end
 
-return  Prefab("common/inventory/dst_wickerdoll", fn, assets) 
+return  Prefab("common/inventory/dollwigfrid", fn, assets) 

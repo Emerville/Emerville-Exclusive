@@ -1,25 +1,24 @@
-local assets =
+local assets=
 {
-    Asset("ANIM", "anim/wormwooddoll.zip"),
-    Asset("ANIM", "anim/swap_wormwooddoll.zip"),
+    Asset("ANIM", "anim/webberdoll.zip"),
+    Asset("ANIM", "anim/swap_webberdoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/wormwooddoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/wormwooddoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/webberdoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/webberdoll.tex"),
 }
-
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_wormwooddoll", "swap_wormwooddoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_webberdoll", "swap_webberdoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
-	inst.components.fueled:StartConsuming()	
+	inst.components.fueled:StartConsuming()		
 end
   
 local function OnUnequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 	
-    inst.components.fueled:StopConsuming()	
+	inst.components.fueled:StopConsuming()		
 end
 
 local function onattack(inst, owner, target)
@@ -46,7 +45,7 @@ end
 local function DstDollTakeFuel(self, item) 
 if self:CanAcceptFuelItem(item) then
 	if item.prefab == "magicdolls" then
-		self:DoDelta(2400)
+		self:DoDelta(1680)
 	 end
         item:Remove()
         return true
@@ -63,11 +62,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("wormwooddoll")
-    inst.AnimState:SetBuild("wormwooddoll")
+    inst.AnimState:SetBank("webberdoll")
+    inst.AnimState:SetBuild("webberdoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("wormwooddoll.tex")
+    inst.MiniMapEntity:SetIcon("webberdoll.tex")
  
     inst:AddTag("sharp")
  
@@ -95,9 +94,9 @@ local function fn()
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "wormwooddoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wormwooddoll.xml"
-	
+    inst.components.inventoryitem.imagename = "webberdoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/webberdoll.xml"
+	      
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
@@ -113,8 +112,8 @@ local function fn()
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
 	end)
-	
+     
     return inst
 end
 
-return  Prefab("common/inventory/dst_wormwooddoll", fn, assets) 
+return  Prefab("common/inventory/dollwebber", fn, assets) 
