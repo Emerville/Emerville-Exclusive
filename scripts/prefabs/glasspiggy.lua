@@ -1,18 +1,9 @@
 local assets =
 {
-    Asset("ANIM", "anim/goldenpiggy.zip"),
-	
-    Asset("ATLAS", "images/inventoryimages/goldenpiggy.xml"),
-    Asset("IMAGE", "images/inventoryimages/goldenpiggy.tex"),
+    Asset("ANIM", "anim/trinket_pigbank.zip"),
+    Asset("ATLAS", "images/inventoryimages/trinket_pigbank.xml"),
+    Asset("IMAGE", "images/inventoryimages/trinket_pigbank.tex"),
 }
-
-local function Sparkle(inst)
-    if not inst.AnimState:IsCurrentAnimation("idle_sparkle") then
-        inst.AnimState:PlayAnimation("idle_sparkle")
-        inst.AnimState:PushAnimation("idle", true)
-    end
-    inst:DoTaskInTime(4 + math.random(), Sparkle)
-end
 
 -- TODO: Move strings to string.lua and add character descriptions
 local function oninspect(inst, viewer)
@@ -38,6 +29,11 @@ local function onhit(inst, worker, workleft, workdone)
         inst.components.lootdropper:FlingItem(coins)
         inst.stored = inst.stored - num
         inst.components.workable:SetWorkLeft(1)
+    end
+    
+    if inst.stored == 0 then
+        worker.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
+        inst:Remove()
     end
 end
 
@@ -65,8 +61,8 @@ local function init()
 
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("goldenpiggy")
-    inst.AnimState:SetBuild("goldenpiggy")
+    inst.AnimState:SetBank("trinket_pigbank")
+    inst.AnimState:SetBuild("trinket_pigbank")
     inst.AnimState:PlayAnimation("idle")
 	
 	inst.entity:SetPristine()
@@ -79,8 +75,8 @@ local function init()
     inst.components.inspectable.descriptionfn = oninspect
 	
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "goldenpiggy"
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/goldenpiggy.xml"	
+	inst.components.inventoryitem.imagename = "trinket_pigbank"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/trinket_pigbank.xml"	
 	
     inst:AddComponent("lootdropper")
 
@@ -94,11 +90,9 @@ local function init()
     inst.OnSave = onsave
     inst.OnLoad = onload
 	
-    inst:DoTaskInTime(1, Sparkle)
-	
 	MakeHauntableLaunch(inst)
 	
     return inst
 end
 
-return Prefab("common/objects/goldenpiggy", init, assets)
+return Prefab("common/objects/glasspiggy", init, assets)

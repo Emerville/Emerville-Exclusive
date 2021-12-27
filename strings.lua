@@ -1668,6 +1668,8 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.TRINKET_PIGBANK     = "This was important to
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.TRINKET_PIGBANK  = "There's lots of loot inside!"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.TRINKET_PIGBANK      = "Long ago, I had one of these."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GLASSPIGGY = "Glass Piggy Bank"
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.GOLDENPIGGY = "Golden Piggy Bank (Collector's Rare)"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.GOLDENPIGGY     = "I have coins to store." 
