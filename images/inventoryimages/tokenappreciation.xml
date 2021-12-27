@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Atlas>
+	<Texture filename="tokenappreciation.tex" />
+	<Elements>
+		<Element name="tokenappreciation1.tex" u1="0.001" u2="0.483375" v2="0.999" v1="0.53225" variant="" />
+		<Element name="tokenappreciation2.tex" u1="0.485375" u2="0.96775" v2="0.999" v1="0.53225" variant="" />
+		<Element name="tokenappreciation3.tex" u1="0.001" u2="0.483375" v2="0.53025" v1="0.0635" variant="" />
+	</Elements>
+</Atlas>

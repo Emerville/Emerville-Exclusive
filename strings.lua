@@ -1462,19 +1462,19 @@ STRINGS.NAMES.THEMASK = "The Mask"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.THEMASK       = "This mask looks straight out of a 90s movie."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.SANTA_HELPER_HAT = "Santa's Helper Hat"
-STRINGS.RECIPE_DESC.SANTA_HELPER_HAT = "Ho-ho-ho!"
+STRINGS.NAMES.ELFHAT = "Elf Hat"
+STRINGS.RECIPE_DESC.ELFHAT = "Dobby was definitely a crackhead."
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SANTA_HELPER_HAT 		= "It's green, warm and iconic."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.SANTA_HELPER_HAT 		= "It's a classic, isn't it?"
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SANTA_HELPER_HAT		= "Wolfgang brings presents, ho ho ho!"
-STRINGS.CHARACTERS.WENDY.DESCRIBE.SANTA_HELPER_HAT 		    = "Eerily joyous."
-STRINGS.CHARACTERS.WX78.DESCRIBE.SANTA_HELPER_HAT 			= "TRADITIONAL GREEN GREMLIN APPENDIX"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SANTA_HELPER_HAT   = "This now-so-popular attire is quite a novelty. Still cute though."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.SANTA_HELPER_HAT 		= "Warm like logs in a fireplace."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.SANTA_HELPER_HAT 	= "The guise of Santa's Elves!"
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.SANTA_HELPER_HAT 		= "We want to get to the part with presents!"
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SANTA_HELPER_HAT 		= "Oh, joy."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ELFHAT 		= "A hat worn by one of Santa's elves." --"It's green, warm and iconic."
+--[[STRINGS.CHARACTERS.WILLOW.DESCRIBE.ELFHAT   = "It's a classic, isn't it?"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.ELFHAT		= "Wolfgang brings presents, ho ho ho!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.ELFHAT 		= "Eerily joyous."
+STRINGS.CHARACTERS.WX78.DESCRIBE.ELFHAT 	    = "TRADITIONAL GREEN GREMLIN APPENDIX"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.ELFHAT = "This now-so-popular attire is quite a novelty. Still cute though."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.ELFHAT 		= "Warm like logs in a fireplace."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.ELFHAT 	= "The guise of Santa's Elves!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.ELFHAT 		= "We want to get to the part with presents!"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.ELFHAT 		= "Oh, joy."]]
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.WITCH_HAT = "Witch Hat"
 
@@ -1865,12 +1865,33 @@ STRINGS.RECIPE_DESC.MEGAPHONEHORN = "Move bitch get out the way!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.MEGAPHONEHORN = "It's doc Gerbil's world."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.CHRISTMASWOODIE = "Woodie the Merchant" --"Woodie the Woodsman"
+STRINGS.NAMES.CHRISTMASWOODIE2 = "Woodie the Merchant" --"Woodie the Woodsman"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWOODIE         = "I had a dream that you and I went on a Tropical Experience. Weird."
-STRINGS.CHARACTERS.WX78.DESCRIBE.CHRISTMASWOODIE 		    = "MY FACIAL RECOGNITION SCANNER SAYS THAT I'VE MET YOU BEFORE"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHRISTMASWOODIE    = "I just had deja vu and you look strikingly familiar."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWOODIE2        = "I had a dream that you and I went on a Tropical Experience. Weird."
+STRINGS.CHARACTERS.WX78.DESCRIBE.CHRISTMASWOODIE2		    = "MY FACIAL RECOGNITION SCANNER SAYS THAT I'VE MET YOU BEFORE"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CHRISTMASWOODIE2   = "I just had deja vu and you look strikingly familiar."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHRISTMASWOODIE2		    = "That fellow looks a lot like me."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.CHRISTMASWOODIE = "Woodie the Joyful"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHRISTMASWOODIE         = "Oh he's back again this year, shocking."
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.CHRISTMASWOODIE		    = "That fellow looks a lot like me."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.TOKENAPPRECIATION1 = "Token of Appreciation (1)"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.TOKENAPPRECIATION1         = "I should give this to Woodie the Joyful."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.TOKENAPPRECIATION2 = "Token of Appreciation (2)"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.TOKENAPPRECIATION2         = "I should give this to Woodie the Joyful."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.TOKENAPPRECIATION3 = "Token of Appreciation (3)"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.TOKENAPPRECIATION3         = "I should give this to Woodie the Joyful."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.ELFSCARF = "Elf Scarf"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ELFSCARF         = "I think this belonged to one of Santa's Elfs."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.TRADERWOLFGANG = "Wolfgang the Collector"
 

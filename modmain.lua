@@ -136,7 +136,7 @@ PrefabFiles = {
 	"scythe",
 	"broomstick",
     "witch_hat",
-	"santa_helper_hat",
+	"elfhat",
 	"musicbox",
 	"musicbox2",
 	
@@ -147,10 +147,11 @@ PrefabFiles = {
 	"xmashat_default",
     "christmas_tree",
 	"santa_hat",
-	"gnomescarf",
+	"elfscarf",
 	"christmaswendy",
 	"christmaswalter",
 	"christmaswx78",
+	"tokenappreciation",
 	
 	-- ADMIN:
 	"hmsword", --Admin Sword	
@@ -211,6 +212,7 @@ PrefabFiles = {
     -- ALL I WANT FOR CHRISTMAS IS YOU!
 	"casinochristmastree",
 	"christmaswoodie",
+	"christmaswoodie2",	
 	"statuecharlie",
 	"rosekey",
 

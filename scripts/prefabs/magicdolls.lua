@@ -43,7 +43,7 @@ elseif  inst.animname == "magicdolls6" then
 else
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magicdolls.xml"
 	inst.components.inventoryitem.ChangeImageName = ("magicdolls")
-end
+	end
 end
 ---
 

@@ -13,15 +13,35 @@ local prefabs =
 	"sanity_raise",
 }
 
-local function onequip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_orangecane", "swap_orangecane")
-    owner.AnimState:Show("ARM_carry")
-    owner.AnimState:Hide("ARM_normal")
-end
+--[[local function spawntornado(staff, target, pos)
 
-local function onunequip(inst, owner)
-    owner.AnimState:Hide("ARM_carry")
-    owner.AnimState:Show("ARM_normal")
+    if not target:IsValid() or target:HasTag("structure") then
+        --target killed or removed in combat damage phase
+        return
+    end
+
+    local dubloon = SpawnPrefab("sandspike_tallperk")
+	dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
+--    tornado.Transform:SetPosition(getspawnlocation(staff, target))
+end]]
+
+local SLEEPTARGETS_CANT_TAGS = { "hound_mutated", "statue"}
+local SLEEPTARGETS_ONEOF_TAGS = { "hound", "warg" }
+
+local function doareapanic(inst, range)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, range, nil, SLEEPTARGETS_CANT_TAGS, SLEEPTARGETS_ONEOF_TAGS)
+    for i, v in ipairs(ents) do
+	
+ --   if caster.components.leader ~= nil then
+        if v.components.combat ~= nil and inst.components.combat:HasTarget() then
+            v.components.combat:GiveUp()
+        end
+		if v.components.hauntable then		
+			v.components.hauntable:Panic(10) 
+		end		
+ --   end	
+	end
 end
 
 local function stomp(inst, caster)
@@ -30,6 +50,19 @@ local function stomp(inst, caster)
     local numtentacles = 10
 
     caster.components.sanity:DoDelta(-10)
+	doareapanic(caster, TUNING.MANDRAKE_SLEEP_RANGE)
+	
+--[[    if caster.components.leader ~= nil and
+        (inst:HasTag("hound") or inst:HasTag("warg")) and
+		not inst:HasTag("hound_mutated") and
+        not (inst.sg ~= nil and inst.sg:HasStateTag("statue")) then
+        if inst.components.combat ~= nil and inst.components.combat:HasTarget() then
+            inst.components.combat:GiveUp()
+        end
+		if inst.components.hauntable then		
+			inst.components.hauntable:Panic(5) 
+		end		
+    end]]
 
     caster:StartThread(function()
         for k = 1, numtentacles do
@@ -59,6 +92,17 @@ local function stomp(inst, caster)
     return true
 end
 
+local function onequip(inst, owner)
+    owner.AnimState:OverrideSymbol("swap_object", "swap_orangecane", "swap_orangecane")
+    owner.AnimState:Show("ARM_carry")
+    owner.AnimState:Hide("ARM_normal")
+end
+
+local function onunequip(inst, owner)
+    owner.AnimState:Hide("ARM_carry")
+    owner.AnimState:Show("ARM_normal")
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -72,6 +116,9 @@ local function fn()
     inst.AnimState:SetBank("orangecane")
     inst.AnimState:SetBuild("orangecane")
     inst.AnimState:PlayAnimation("idle")
+	
+    --Sneak these into pristine state for optimization
+    inst:AddTag("quickcast")
 
     inst:AddTag("cane")
 

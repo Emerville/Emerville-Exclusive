@@ -14,7 +14,7 @@ local assets =
 local prefabs =
 {
     "marble",
-	"emercoin",
+	"tokenappreciation2",
 }
 
 local function Greetings(inst)
@@ -25,7 +25,7 @@ local function Greetings(inst)
 end
 
 local function ontradeforgold(inst, item) 
-		local nug = SpawnPrefab("goldnugget")
+		local nug = SpawnPrefab("tokenappreciation2")
         local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0, 4.5, 0)
         
         nug.Transform:SetPosition(pt:Get())
@@ -112,7 +112,7 @@ local function fn(Sim)
 	inst:AddComponent("talker")
     inst.components.talker.fontsize = 35
     inst.components.talker.font = TALKINGFONT
-    inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
+--    inst.components.talker.colour = Vector3(133/255, 140/255, 167/255)
     inst.components.talker.offset = Vector3(0, -400, 0)	
 
     inst.entity:SetPristine()
