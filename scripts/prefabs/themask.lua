@@ -7,29 +7,32 @@ local assets =
 }
 
 -----------------------------------------------------------
+local firsttalk = 0.50
+local secondtalk = 0.50
+local WALK_SPEED_MULT = 1.05
+local DUBLOON_SPAWN_RATE = 240 --480 Day/Regular --240 HalfDay/Event
+
 local function SpawnDubloon(inst, owner)
     local dubloon = SpawnPrefab("taffy")
     dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
 end
 
-local firsttalk = 0.50
-local secondtalk = 0.50
+local function OnActivate(inst)
+    inst.dubloon_task = inst:DoPeriodicTask(DUBLOON_SPAWN_RATE, function()
+        SpawnDubloon(inst, owner)
+    end)
+
+    inst.components.equippable.walkspeedmult = WALK_SPEED_MULT
+    inst.components.fueled:StartConsuming()
+end
 
 local function onequip(inst, owner)
-    if inst._fx ~= nil then
-        inst._fx:kill_fx()
-    end
-    inst._fx = SpawnPrefab("themasktornado")
-    inst._fx.entity:SetParent(owner.entity)
-
     if owner.components.talker then
         if math.random() < firsttalk then
             owner.components.talker:Say("S-s-s-s-s-s-mokin'!")
-        else
-            if math.random() < secondtalk then
+        elseif math.random() < secondtalk then
             owner.components.talker:Say("Did you miss me?")
-           end
-       end
+        end
     end
 
     owner.AnimState:OverrideSymbol("swap_hat", "themask", "swap_hat")
@@ -43,10 +46,22 @@ local function onequip(inst, owner)
         owner.AnimState:Show("HEAD_HAT")
     end
 
-    if inst.components.fueled ~= nil then
-        inst.components.fueled:StartConsuming()
-        inst.components.fueled:DoDelta(-480)
-        inst.dubloon_task = inst:DoPeriodicTask(240, function() SpawnDubloon(inst, owner) end) --480 Day/Regular --240 HalfDay/Event
+    if inst.components.fueled ~= nil and not inst.components.fueled:IsEmpty() then
+        if inst._fx ~= nil then
+            inst._fx:kill_fx()
+        end
+        
+        if inst.dubloon_task ~= nil then
+            inst.dubloon_task:Cancel()
+        end
+
+        if inst.abilityready then
+            inst._fx = SpawnPrefab("themasktornado")
+            inst._fx.entity:SetParent(owner.entity)
+            inst.components.fueled:DoDelta(-480)
+        end
+        
+        OnActivate(inst)
     end
 end
 
@@ -54,6 +69,10 @@ local function onunequip(inst, owner)
     if inst._fx ~= nil then
         inst._fx:kill_fx()
         inst._fx = nil
+    end
+    if inst.dubloon_task ~= nil then
+        inst.dubloon_task:Cancel()
+        inst.dubloon_task = nil
     end
 
     owner.AnimState:ClearOverrideSymbol("swap_hat")
@@ -66,30 +85,36 @@ local function onunequip(inst, owner)
         owner.AnimState:Show("HEAD")
         owner.AnimState:Hide("HEAD_HAT")
     end
-
-    if inst.components.fueled ~= nil then
-        inst.components.fueled:StopConsuming()
-        inst.dubloon_task:Cancel()
-        inst.dubloon_task = nil
-    end
+    
+    inst.components.fueled:StopConsuming()
 end
 
 local function TheMaskCanAcceptFuelItem(self, item)
-if item ~= nil and item.components.fuel ~= nil and (item.components.fuel.fueltype == FUELTYPE.PURPLEGEM or item.prefab == "purplegem") then
-        return true
-    else
-        return false
-    end
+    return item ~= nil and item.prefab == "purplegem" and
+        self.inst.components.fueled.currentfuel < self.inst.components.fueled.maxfuel
 end
 
 local function TheMaskTakeFuel(self, item)
-if self:CanAcceptFuelItem(item) then
-    if item.prefab =="purplegem" then
+    if self:CanAcceptFuelItem(item) then
+        if self:IsEmpty() and self.inst.components.equippable:IsEquipped() then
+            OnActivate(self.inst)
+        end
+    
         self:DoDelta(4800)
         self.inst.SoundEmitter:PlaySound("dontstarve/common/ancienttable_craft", "sound")
-    end
+        self.inst.components.equippable.walkspeedmult = WALK_SPEED_MULT
+        
         item:Remove()
         return true
+    end
+end
+
+local function OnFuelDepleted(inst)
+    inst.components.equippable.walkspeedmult = 1
+    
+    if inst.dubloon_task ~= nil then
+        inst.dubloon_task:Cancel()
+        inst.dubloon_task = nil
     end
 end
 
@@ -139,34 +164,18 @@ local function fn()
     inst.components.fueled:InitializeFuelLevel(4800)
     inst.components.fueled.CanAcceptFuelItem = TheMaskCanAcceptFuelItem
     inst.components.fueled.TakeFuelItem = TheMaskTakeFuel
+    inst.components.fueled:SetDepletedFn(OnFuelDepleted)
 
-    inst:DoPeriodicTask(1/10, function()
-        -- Don't take fuel if magazine is full!
-        if inst.components.fueled.maxfuel == inst.components.fueled.currentfuel and inst.components.fueled.accepting == true then
-            inst.components.fueled.accepting = false
-        end
-        -- Take fuel if magazine size is bigger than bullet count!
-        if inst.components.fueled.maxfuel > inst.components.fueled.currentfuel and inst.components.fueled.accepting == false then
-            inst.components.fueled.accepting = true
-        end
-
-        -- If snowglobe was emptied and refueled, restore its abilities!
-        if not inst.components.fueled:IsEmpty() and inst:HasTag("emptythemask") then
-            inst:AddComponent("equippable")
-            inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
-            inst.components.equippable:SetOnEquip(onequip)
-            inst.components.equippable:SetOnUnequip(onunequip)
-            inst.components.equippable.walkspeedmult = 1.05
-            inst:RemoveTag("emptythemask")
-        end
-
-        -- Empty? No shooting
+    inst:DoTaskInTime(0, function()
         if inst.components.fueled:IsEmpty() then
-            if not inst:HasTag("emptythemask") then
-                inst:RemoveComponent("equippable")
-                inst:AddTag("emptythemask")
-            end
+            inst.components.equippable.walkspeedmult = 1
         end
+    end)
+    
+    -- Prevents tornado from spawning after a player joins
+    inst.abilityready = false
+    inst:DoTaskInTime(1, function()
+        inst.abilityready = true
     end)
 
     MakeHauntableLaunch(inst)
