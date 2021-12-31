@@ -58,8 +58,6 @@ local function MakeCoin(id, hasfx)
 	
     inst:AddComponent("inventoryitem")	
 	inst.components.inventoryitem:SetOnPutInInventoryFn(inventoryicons)   
-	
-	inst:AddComponent("inspectable")
 
 	inst:AddComponent("waterproofer")
 	inst.components.waterproofer.effectiveness = 0	

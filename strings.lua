@@ -1766,95 +1766,95 @@ STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.NOTTRUMP		  = "Put that thing out of its 
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.NOTTRUMP			  = "He works with the Russians."
 ------------------------------------------------------------------------------------------------------------
 
-STRINGS.NAMES.DST_WOLFGANGDOLL = "Wolfgang Doll"
-STRINGS.RECIPE_DESC.DST_WOLFGANGDOLL = "A mighty stuffed doll!"
+STRINGS.NAMES.DOLLWOLFGANG = "Wolfgang Doll"
+STRINGS.RECIPE_DESC.DOLLWOLFGANG = "A mighty stuffed doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WOLFGANGDOLL = "A doll of a simple-minded Strongman!" --It's stuffed with meat!
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWOLFGANG = "A doll of a simple-minded Strongman!" --It's stuffed with meat!
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WILSONDOLL = "Wilson Doll"
-STRINGS.RECIPE_DESC.DST_WILSONDOLL = "A doll of a Scientist!"
+STRINGS.NAMES.DOLLWILSON = "Wilson Doll"
+STRINGS.RECIPE_DESC.DOLLWILSON = "A doll of a Scientist!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WILSONDOLL = "A doll of a cute, snuggly scientist!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWILSON = "A doll of a cute, snuggly scientist!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WIGFRIDDOLL = "Wigfrid Doll"
-STRINGS.RECIPE_DESC.DST_WIGFRIDDOLL = "This doll is just acting!"
+STRINGS.NAMES.DOLLWIGFRID = "Wigfrid Doll"
+STRINGS.RECIPE_DESC.DOLLWIGFRID = "This doll is just acting!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WIGFRIDDOLL = "It displays Heroic Spirit, Bravery, and Plunder!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWIGFRID = "It displays Heroic Spirit, Bravery, and Plunder!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WILLOWDOLL = "Willow Doll"
-STRINGS.RECIPE_DESC.DST_WILLOWDOLL = "A firey cute doll!" 
+STRINGS.NAMES.DOLLWILLOW = "Willow Doll"
+STRINGS.RECIPE_DESC.DOLLWILLOW = "A firey cute doll!" 
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WILLOWDOLL = "I feel warm just looking at it!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWILLOW = "I feel warm just looking at it!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WENDYDOLL = "Wendy Doll"
-STRINGS.RECIPE_DESC.DST_WENDYDOLL = "A pessimistic doll!"
+STRINGS.NAMES.DOLLWENDY = "Wendy Doll"
+STRINGS.RECIPE_DESC.DOLLWENDY = "A pessimistic doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WENDYDOLL = "Gloomy, yet loving!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWENDY = "Gloomy, yet loving!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WXDOLL = "WX-78 Doll"
-STRINGS.RECIPE_DESC.DST_WXDOLL = "A robot-like doll!"
+STRINGS.NAMES.DOLLWX = "WX-78 Doll"
+STRINGS.RECIPE_DESC.DOLLWX = "A robot-like doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WXDOLL = "Cold yet loving robot!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWX = "Cold yet loving robot!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WICKERDOLL = "Wickerbottom Doll"
-STRINGS.RECIPE_DESC.DST_WICKERDOLL = "An insomniac doll!"
+STRINGS.NAMES.DOLLWICKER = "Wickerbottom Doll"
+STRINGS.RECIPE_DESC.DOLLWICKER = "An insomniac doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WICKERDOLL = "Can't sleep with this one..."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWICKER = "Can't sleep with this one..."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WESDOLL= "Wes Doll"
-STRINGS.RECIPE_DESC.DST_WESDOLL = "A doll with a pale face!"
+STRINGS.NAMES.DOLLWES = "Wes Doll"
+STRINGS.RECIPE_DESC.DOLLWES = "A doll with a pale face!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WESDOLL = "This doll is eerily silent. For a doll that is!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWES = "This doll is eerily silent. For a doll that is!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WAXWELLDOLL = "Maxwell Doll"
-STRINGS.RECIPE_DESC.DST_WAXWELLDOLL = "A doll with ill intent?!"
+STRINGS.NAMES.DOLLMAXWELL = "Maxwell Doll"
+STRINGS.RECIPE_DESC.DOLLMAXWELL = "A doll with ill intent?!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WAXWELLDOLL = "This doll says to bring misfortune to other dolls.."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLMAXWELL = "This doll says to bring misfortune to other dolls.."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WEBBERDOLL = "Webber Doll"
-STRINGS.RECIPE_DESC.DST_WEBBERDOLL = "A Sticky and Web-like doll!"
+STRINGS.NAMES.DOLLWEBBER = "Webber Doll"
+STRINGS.RECIPE_DESC.DOLLWEBBER = "A Sticky and Web-like doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WEBBERDOLL = "It's sticky to the touch! Yuck!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWEBBER = "It's sticky to the touch! Yuck!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WOODIEDOLL = "Woodie Doll"
-STRINGS.RECIPE_DESC.DST_WOODIEDOLL = "A Wooden Doll!"
+STRINGS.NAMES.DOLLWOODIE = "Woodie Doll"
+STRINGS.RECIPE_DESC.DOLLWOODIE = "A Wooden Doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WOODIEDOLL = "I swear this doll transforms sometimes..."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWOODIE = "I swear this doll transforms sometimes..."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WINONADOLL = "Winona Doll"
-STRINGS.RECIPE_DESC.DST_WINONADOLL = "A resourceful doll!"
+STRINGS.NAMES.DOLLWINONA = "Winona Doll"
+STRINGS.RECIPE_DESC.DOLLWINONA = "A resourceful doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WINONADOLL = "A hard-working doll!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWINONA = "A hard-working doll!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WORMWOODDOLL = "Wormwood Doll"
-STRINGS.RECIPE_DESC.DST_WORMWOODDOLL = "A nature loving doll!"
+STRINGS.NAMES.DOLLWORMWOOD = "Wormwood Doll"
+STRINGS.RECIPE_DESC.DOLLWORMWOOD = "A nature loving doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORMWOODDOLL = "A peculiar yet cuddly plant looking doll!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWORMWOOD = "A peculiar yet cuddly plant looking doll!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WORTOXDOLL_UNCORRUPTED = "Uncorrupted Wortox Doll"
-STRINGS.RECIPE_DESC.DST_WORTOXDOLL_UNCORRUPTED = "A harmless doll!"
+STRINGS.NAMES.DOLLWORTOX_UNCORRUPTED = "Uncorrupted Wortox Doll"
+STRINGS.RECIPE_DESC.DOLLWORTOX_UNCORRUPTED = "A harmless doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WORTOXDOLL_UNCORRUPTED = "What a mischievous looking doll!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWORTOX_UNCORRUPTED = "What a mischievous looking doll!"
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WURTDOLL_ABYSSAL = "Abyssal Wurt Doll"
-STRINGS.RECIPE_DESC.DST_WURTDOLL_ABYSSAL = "An aspiring Merm-like doll!"
+STRINGS.NAMES.DOLLWURT_ABYSSAL = "Abyssal Wurt Doll"
+STRINGS.RECIPE_DESC.DOLLWURT_ABYSSAL = "An aspiring Merm-like doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WURTDOLL_ABYSSAL = "This doll seems eager for knowledge."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWURT_ABYSSAL = "This doll seems eager for knowledge."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_WARLYDOLL = "Warly Doll"
-STRINGS.RECIPE_DESC.DST_WARLYDOLL = "A talented chef doll!"
+STRINGS.NAMES.DOLLWARLYDOLL = "Warly Doll"
+STRINGS.RECIPE_DESC.DOLLWARLYDOLL = "A talented chef doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_WARLYDOLL = "It smells like delicious spices."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWARLYDOLL = "It smells like delicious spices."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.WALTERDOLL = "Walter Doll"
-STRINGS.RECIPE_DESC.WALTERDOLL = "An adventerous doll!"
+STRINGS.NAMES.DOLLWALTER = "Walter Doll"
+STRINGS.RECIPE_DESC.DOLLWALTER = "An adventerous doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.WALTERDOLL = "I'd take this doll camping with me."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWALTER = "I'd take this doll camping with me."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DST_MYSTERYDOLL= "Mystery Doll"
-STRINGS.RECIPE_DESC.DST_MYSTERYDOLL = "What a strange doll..."
+STRINGS.NAMES.DOLLMYSTERY = "Mystery Doll"
+STRINGS.RECIPE_DESC.DOLLMYSTERY = "What a strange doll..."
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DST_MYSTERYDOLL = "What a perculiar doll. I feel odd being near it."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLMYSTERY = "What a perculiar doll. I feel odd being near it."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.REAPERAMULET = "Reaper Amulet"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.REAPERAMULET = "I feel a connection to the afterlife."
