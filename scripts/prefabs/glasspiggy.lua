@@ -1,8 +1,8 @@
 local assets =
 {
-    Asset("ANIM", "anim/trinket_pigbank.zip"),
-    Asset("ATLAS", "images/inventoryimages/trinket_pigbank.xml"),
-    Asset("IMAGE", "images/inventoryimages/trinket_pigbank.tex"),
+    Asset("ANIM", "anim/glasspiggy.zip"),
+    Asset("ATLAS", "images/inventoryimages/glasspiggy.xml"),
+    Asset("IMAGE", "images/inventoryimages/glasspiggy.tex"),
 }
 
 -- TODO: Move strings to string.lua and add character descriptions
@@ -32,10 +32,7 @@ local function onhit(inst, worker, workleft, workdone)
     end
     
     if inst.stored == 0 then
-        inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
-        local fx = SpawnPrefab("mining_moonglass_fx")
-        local x, y, z = inst.Transform:GetWorldPosition()
-        fx.Transform:SetPosition(x, y, z)
+        worker.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
         inst:Remove()
     end
 end
@@ -64,8 +61,8 @@ local function init()
 
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("trinket_pigbank")
-    inst.AnimState:SetBuild("trinket_pigbank")
+    inst.AnimState:SetBank("glasspiggy")
+    inst.AnimState:SetBuild("glasspiggy")
     inst.AnimState:PlayAnimation("idle")
 	
 	inst.entity:SetPristine()
@@ -78,8 +75,8 @@ local function init()
     inst.components.inspectable.descriptionfn = oninspect
 	
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "trinket_pigbank"
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/trinket_pigbank.xml"	
+	inst.components.inventoryitem.imagename = "glasspiggy"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/glasspiggy.xml"	
 	
     inst:AddComponent("lootdropper")
 
