@@ -57,8 +57,14 @@ local function ReskinToolPostInit(inst)
         if not target.components.reskinnable then
             return _spellfn(inst, target, pos)
         end
+        
+        local fx_prefab = "explode_reskin"
+        local skin_fx = _G.SKIN_FX_PREFAB[inst:GetSkinName()]
+        if skin_fx ~= nil and skin_fx[1] ~= nil then
+            fx_prefab = skin_fx[1]
+        end
 
-        local fx = SpawnPrefab("explode_reskin")
+        local fx = SpawnPrefab(fx_prefab)
         local fx_info = RESKIN_FX_INFO[target.prefab] or {}
         local scale_override = fx_info.scale or 1
         local offset = fx_info.offset or 0
