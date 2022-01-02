@@ -31,13 +31,12 @@ local function onhit(inst, worker, workleft, workdone)
         inst.components.workable:SetWorkLeft(1)
     end   	
     if inst.stored == 0 then
-        worker.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
         inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
         local fx = SpawnPrefab("mining_moonglass_fx")
         local x, y, z = inst.Transform:GetWorldPosition()
         fx.Transform:SetPosition(x, y, z)
         inst:Remove()
-    end		
+    end
 end
 
 local function onsave(inst, data)
@@ -67,34 +66,34 @@ local function init()
     inst.AnimState:SetBank("glasspiggy")
     inst.AnimState:SetBuild("glasspiggy")
     inst.AnimState:PlayAnimation("idle")
-	
-	inst.entity:SetPristine()
+
+    inst.entity:SetPristine()
 
     if not TheWorld.ismastersim then
         return inst
     end
-	
+
     inst:AddComponent("inspectable")
     inst.components.inspectable.descriptionfn = oninspect
-	
+
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "glasspiggy"
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/glasspiggy.xml"	
-	
+    inst.components.inventoryitem.imagename = "glasspiggy"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/glasspiggy.xml"	
+
     inst:AddComponent("lootdropper")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(1)
     inst.components.workable:SetOnWorkCallback(onhit)
-	
+
     inst.stored = 0
 
     inst.OnSave = onsave
     inst.OnLoad = onload
-	
-	MakeHauntableLaunch(inst)
-	
+
+    MakeHauntableLaunch(inst)
+
     return inst
 end
 
