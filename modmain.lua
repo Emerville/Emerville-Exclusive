@@ -140,12 +140,13 @@ PrefabFiles = {
 	"elfhat",
 	"musicbox",
 	"musicbox2",
+	"sand_spikecane",
 	
 	"snowglobe",
     "snowyball",
 	"santasnowman",
 	
-	"xmashat_default",
+	"santahat",
     "christmas_tree",
 	"santa_hat",
 	"elfscarf",

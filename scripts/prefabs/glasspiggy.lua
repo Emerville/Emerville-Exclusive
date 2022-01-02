@@ -29,12 +29,15 @@ local function onhit(inst, worker, workleft, workdone)
         inst.components.lootdropper:FlingItem(coins)
         inst.stored = inst.stored - num
         inst.components.workable:SetWorkLeft(1)
-    end
-    
+    end   	
     if inst.stored == 0 then
         worker.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
+        inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/shatter")
+        local fx = SpawnPrefab("mining_moonglass_fx")
+        local x, y, z = inst.Transform:GetWorldPosition()
+        fx.Transform:SetPosition(x, y, z)
         inst:Remove()
-    end
+    end		
 end
 
 local function onsave(inst, data)

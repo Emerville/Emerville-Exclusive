@@ -9,87 +9,39 @@ local assets =
 
 local prefabs =
 {
-	"sandspike_tallperk",
+	"sandspike_tallcane",
 	"sanity_raise",
+    "crosshair",
+    "swing_charge",
+	"ground_chunks_breaking",
+    "slingshotammo_marble_proj",
 }
-
---[[local function spawntornado(staff, target, pos)
-
-    if not target:IsValid() or target:HasTag("structure") then
-        --target killed or removed in combat damage phase
-        return
-    end
-
-    local dubloon = SpawnPrefab("sandspike_tallperk")
-	dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
---    tornado.Transform:SetPosition(getspawnlocation(staff, target))
-end]]
 
 local SLEEPTARGETS_CANT_TAGS = { "hound_mutated", "statue"}
 local SLEEPTARGETS_ONEOF_TAGS = { "hound", "warg" }
 
-local function doareapanic(inst, range)
-    local x, y, z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x, y, z, range, nil, SLEEPTARGETS_CANT_TAGS, SLEEPTARGETS_ONEOF_TAGS)
-    for i, v in ipairs(ents) do
-	
- --   if caster.components.leader ~= nil then
-        if v.components.combat ~= nil and inst.components.combat:HasTarget() then
-            v.components.combat:GiveUp()
-        end
-		if v.components.hauntable then		
-			v.components.hauntable:Panic(10) 
-		end		
- --   end	
-	end
-end
+local function OnDamageAll(caster, pt)
+    local range = 30
+    local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, range, nil, SLEEPTARGETS_CANT_TAGS, SLEEPTARGETS_ONEOF_TAGS)
 
-local function stomp(inst, caster)
-    local caster = inst.components.inventoryitem.owner
-    local pt = caster:GetPosition()
-    local numtentacles = 10
+    for k,v in pairs(ents) do
+        if v.components.health and v.components.combat then
+            local fx = SpawnPrefab("sandspike_tallcane")
+            local tpos = Vector3(v.Transform:GetWorldPosition())
+            fx.Transform:SetPosition(tpos.x, 0, tpos.z)
 
-    caster.components.sanity:DoDelta(-10)
-	doareapanic(caster, TUNING.MANDRAKE_SLEEP_RANGE)
-	
---[[    if caster.components.leader ~= nil and
-        (inst:HasTag("hound") or inst:HasTag("warg")) and
-		not inst:HasTag("hound_mutated") and
-        not (inst.sg ~= nil and inst.sg:HasStateTag("statue")) then
-        if inst.components.combat ~= nil and inst.components.combat:HasTarget() then
-            inst.components.combat:GiveUp()
-        end
-		if inst.components.hauntable then		
-			inst.components.hauntable:Panic(5) 
-		end		
-    end]]
-
-    caster:StartThread(function()
-        for k = 1, numtentacles do
-            local theta = math.random() * 2 * PI
-            local radius = math.random(3, 3)
-
-            -- we have to special case this one because birds can't land on creep
-            local result_offset = FindValidPositionByFan(theta, radius, 12, function(offset)
-                local pos = pt + offset
-                --NOTE: The first search includes invisible entities
-                return #TheSim:FindEntities(pos.x, 0, pos.z, 1, nil, { "INLIMBO", "FX" }) <= 0
-                    and TheWorld.Map:IsDeployPointClear(pos, nil, 1)
-            end)
-
-            if result_offset ~= nil then
-                local x, z = pt.x + result_offset.x, pt.z + result_offset.z
-                local tentacle = SpawnPrefab("sandspike_tallperk")
-                tentacle.Transform:SetPosition(x, 0, z)
-                tentacle:DoTaskInTime(0, tentacle.TriggerFX)
-                tentacle:DoTaskInTime(10, tentacle.KillFX)
-
-                --need a better effect
-                SpawnPrefab("sanity_raise").Transform:SetPosition(x, 0, z)
+            v.components.health:DoDelta(-150)
+            if v.sg and v.sg.sg.states.hit and not v.components.health:IsDead() then
+                v.sg:GoToState("hit")
             end
         end
-    end)
-    return true
+    end
+end
+
+local function Impale(inst, caster)
+    local caster = inst.components.inventoryitem.owner
+    local pt = Vector3(caster.Transform:GetWorldPosition())
+    caster:DoTaskInTime(1, OnDamageAll, pt)
 end
 
 local function onequip(inst, owner)
@@ -118,8 +70,10 @@ local function fn()
     inst.AnimState:PlayAnimation("idle")
 	
     --Sneak these into pristine state for optimization
+    --weapon (from weapon component) added to pristine state for optimization
+    inst:AddTag("weapon")
+    inst:AddTag("rangedweapon")
     inst:AddTag("quickcast")
-
     inst:AddTag("cane")
 
     inst.entity:SetPristine()
@@ -144,7 +98,7 @@ local function fn()
     inst.components.equippable.dapperness = TUNING.DAPPERNESS_TINY
 	
 	inst:AddComponent("spellcaster")
-    inst.components.spellcaster:SetSpellFn(stomp)
+    inst.components.spellcaster:SetSpellFn(Impale)
     inst.components.spellcaster.canuseontargets = false
 	inst.components.spellcaster.canusefrominventory = false
 	inst.components.spellcaster.quickcast = true

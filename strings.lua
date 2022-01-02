@@ -1900,6 +1900,10 @@ STRINGS.NAMES.ELFSCARF = "Elf Scarf"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ELFSCARF         = "I think this belonged to one of Santa's Elfs."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.SANTAHAT = "Santa Hat"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SANTAHAT         = "I stole Santa's Hat, Rudolf is going to split me in half with a lazer from his red nose..."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.TRADERWOLFGANG = "Wolfgang the Collector"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.TRADERWOLFGANG         = "He collects rare items."

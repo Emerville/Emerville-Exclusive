@@ -90,4 +90,4 @@ local function fn()
     return inst
 end
 
-return Prefab("common/inventory/xmashat_default", fn, assets)
+return Prefab("common/inventory/santahat", fn, assets)

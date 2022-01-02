@@ -27,8 +27,7 @@ local function OnThrown(inst)
 end
 
 local function OnHit(inst, owner, target)
-        inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo")
-
+    inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo")
 	inst:Remove()
 end
 
