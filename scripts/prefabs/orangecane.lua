@@ -9,19 +9,28 @@ local assets =
 
 local prefabs =
 {
-	"sandspike_tallcane",
-	"sanity_raise",
-    "crosshair",
-    "swing_charge",
-	"ground_chunks_breaking",
-    "slingshotammo_marble_proj",
+    "sandspike_tallcane",
+    "orangecane_proj",
 }
+
+local CANE_SPIKE_COOLDOWN = 240
+
+local function OnAbilityUsed(inst)
+    inst.components.weapon:SetRange(nil)
+    inst.components.spellcaster:SetSpellFn(nil)
+    inst.components.cooldown:StartCharging(CANE_SPIKE_COOLDOWN)
+end
+
+local function CanRangedAttack(inst)
+    return inst.components.cooldown ~= nil and
+        inst.components.cooldown:IsCharged()
+end
 
 local SLEEPTARGETS_CANT_TAGS = { "hound_mutated", "statue"}
 local SLEEPTARGETS_ONEOF_TAGS = { "hound", "warg" }
 
 local function OnDamageAll(caster, pt)
-    local range = 30
+    local range = 15
     local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, range, nil, SLEEPTARGETS_CANT_TAGS, SLEEPTARGETS_ONEOF_TAGS)
 
     for k,v in pairs(ents) do
@@ -41,7 +50,13 @@ end
 local function Impale(inst, caster)
     local caster = inst.components.inventoryitem.owner
     local pt = Vector3(caster.Transform:GetWorldPosition())
-    caster:DoTaskInTime(1, OnDamageAll, pt)
+    OnDamageAll(caster, pt)
+    OnAbilityUsed(inst)
+end
+
+local function OnChargedFn(inst)
+    inst.components.weapon:SetRange(15)
+    inst.components.spellcaster:SetSpellFn(Impale)
 end
 
 local function onequip(inst, owner)
@@ -68,11 +83,8 @@ local function fn()
     inst.AnimState:SetBank("orangecane")
     inst.AnimState:SetBuild("orangecane")
     inst.AnimState:PlayAnimation("idle")
-	
+
     --Sneak these into pristine state for optimization
-    --weapon (from weapon component) added to pristine state for optimization
-    inst:AddTag("weapon")
-    inst:AddTag("rangedweapon")
     inst:AddTag("quickcast")
     inst:AddTag("cane")
 
@@ -84,6 +96,9 @@ local function fn()
 
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(TUNING.CANE_DAMAGE)
+    inst.components.weapon:SetProjectile("orangecane_proj")
+    inst.components.weapon:SetOnProjectileLaunched(OnAbilityUsed)
+    inst.components.weapon.CanRangedAttack = function() return CanRangedAttack(inst) end
 
     inst:AddComponent("inspectable")
 
@@ -96,14 +111,18 @@ local function fn()
     inst.components.equippable:SetOnUnequip(onunequip)
     inst.components.equippable.walkspeedmult = TUNING.CANE_SPEED_MULT
     inst.components.equippable.dapperness = TUNING.DAPPERNESS_TINY
-	
-	inst:AddComponent("spellcaster")
-    inst.components.spellcaster:SetSpellFn(Impale)
-    inst.components.spellcaster.canuseontargets = false
-	inst.components.spellcaster.canusefrominventory = false
-	inst.components.spellcaster.quickcast = true
-	inst.components.spellcaster.canuseonpoint = true
-	inst.components.spellcaster.castingstate = "castspell_tornado"	
+
+    -- Can't use CanCast with canuseonpoint, so enable spell when cooldown is over
+    inst:AddComponent("spellcaster")
+    inst.components.spellcaster.quickcast = true
+    inst.components.spellcaster.canuseonpoint = true
+    inst.components.spellcaster.canuseonpoint_water = true
+    inst.components.spellcaster.castingstate = "castspell_tornado"
+
+    inst:AddComponent("cooldown")
+    inst.components.cooldown.cooldown_duration = CANE_SPIKE_COOLDOWN
+    inst.components.cooldown.onchargedfn = OnChargedFn
+    inst.components.cooldown:StartCharging(CANE_SPIKE_COOLDOWN)
 
     MakeHauntableLaunch(inst)
 

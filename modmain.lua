@@ -132,6 +132,7 @@ PrefabFiles = {
 	"pinkcane",
 	"purplecane",
 	"orangecane",
+	"orangecane_proj",
 	"greencanefake",
 	"lightning_barrier",
 	"scythe",
