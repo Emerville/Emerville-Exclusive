@@ -12,14 +12,14 @@ local secondtalk = 0.50
 local WALK_SPEED_MULT = 1.05
 local DUBLOON_SPAWN_RATE = 240 --480 Day/Regular --240 HalfDay/Event
 
-local function SpawnDubloon(inst, owner)
+local function SpawnDubloon(inst)
     local dubloon = SpawnPrefab("taffy")
     dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
 end
 
 local function OnActivate(inst)
     inst.dubloon_task = inst:DoPeriodicTask(DUBLOON_SPAWN_RATE, function()
-        SpawnDubloon(inst, owner)
+        SpawnDubloon(inst)
     end)
 
     inst.components.equippable.walkspeedmult = WALK_SPEED_MULT
