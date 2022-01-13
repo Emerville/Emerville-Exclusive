@@ -14,7 +14,8 @@ local prefabs =
 	"skeletalamulet",
 	"horsehead",
 	"elegantlantern",
-	"magicpouch",	
+	"magicpouch",
+	"chipotlebag",
 }
 
 --		{chance = 4,    item = "doctoramulet"},	
@@ -27,7 +28,7 @@ local function MakeLoot(inst)
 		{chance = 5,    item = "magicdolls"},
 		{chance = 5,    item = "magicdolls"},	
 		{chance = 4,    item = "magicdolls"},	
-		{chance = 4,    item = "magicdolls"},			
+		{chance = 4,    item = "chipotlebag"},			
 		{chance = 4,    item = "reaperamulet"},
 		{chance = 4,    item = "horsehead"},			
         {chance = 3,    item = "elegantlantern"},

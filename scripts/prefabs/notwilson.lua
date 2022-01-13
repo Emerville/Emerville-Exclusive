@@ -56,6 +56,7 @@ local function fn()
 
     inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(720)
+    inst.components.fueled:StartConsuming()
     inst.components.fueled:SetDepletedFn(inst.Remove)
 
     MakeSmallBurnable(inst, TUNING.LARGE_BURNTIME)

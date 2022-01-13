@@ -72,6 +72,7 @@ PrefabFiles = {
 	"notwilson",
 	"nottrump",
 	"magicdolls",
+	"luisdoll",
     "magicbag",
     "magicbag_classic",
 	"magicpouch",
@@ -83,6 +84,7 @@ PrefabFiles = {
 	"chromebag3",
 	"chromebag4",
 	"horsehead",
+	"chipotlebag",
     	
 	"trinket_pigbank",
 	"efc",

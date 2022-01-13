@@ -1765,7 +1765,15 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.NOTTRUMP		  = "Can we get rid of you along w
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.NOTTRUMP		  = "Put that thing out of its misery."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.NOTTRUMP			  = "He works with the Russians."
 ------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.CHIPOTLEBAG = "Chipotle Bag"
 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHIPOTLEBAG = "What in the ghetto... ?" 
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.LUISDOLL = "Luis Doll"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.LUISDOLL = "This doll smells like a burrito bowl." 
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DOLLWOLFGANG = "Wolfgang Doll"
 STRINGS.RECIPE_DESC.DOLLWOLFGANG = "A mighty stuffed doll!"
 

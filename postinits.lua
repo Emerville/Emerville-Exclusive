@@ -7,7 +7,7 @@ mods=_G.rawget(_G,"mods")or(function()local m={}_G.rawset(_G,"mods",m)return m e
 mods.old_widgetsetup = mods.old_widgetsetup or containers.smartercrockpot_old_widgetsetup or oldwidgetsetup
 containers.widgetsetup = function(container, prefab, ...)
     if not prefab and container.inst.prefab == "glommpack" then
-        prefab = "backpack"
+        prefab = "piggyback"
     end
     return oldwidgetsetup(container, prefab, ...)
 end
@@ -64,6 +64,14 @@ local oldwidgetsetup9 = containers.widgetsetup
 containers.widgetsetup = function(container, prefab, ...)
     if not prefab and container.inst.prefab == "christmaswoodie"  then
         prefab = "sacred_chest"
+    end
+    return oldwidgetsetup9(container, prefab, ...)
+end
+
+local oldwidgetsetup9 = containers.widgetsetup
+containers.widgetsetup = function(container, prefab, ...)
+    if not prefab and container.inst.prefab == "chipotlebag"  then
+        prefab = "backpack"
     end
     return oldwidgetsetup9(container, prefab, ...)
 end

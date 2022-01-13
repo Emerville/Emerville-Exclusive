@@ -74,7 +74,7 @@ local function fn(Sim)
     inst.components.waterproofer:SetEffectiveness(0)	
     
     inst:AddComponent("container")
-    inst.components.container:WidgetSetup("backpack")
+    inst.components.container:WidgetSetup("piggyback")
 	
 	inst.firstlight = 1
 	inst.isnotmoving = 0
