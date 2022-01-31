@@ -55,7 +55,7 @@ end
 local function onload(inst, data)
     if data and data.anim then
         inst.animname = data.anim
-        inst.AnimState:PlayAnimation(inst.animname)
+        inst.AnimState:PlayAnimation(inst.animname, true)
     end
 end
 
@@ -93,7 +93,7 @@ local function init()
 	inst.components.inventoryitem:SetOnPutInInventoryFn(inventoryicons)
    
     inst.animname = names[math.random(#names)]
-    inst.AnimState:PlayAnimation(inst.animname)
+    inst.AnimState:PlayAnimation(inst.animname, true)
    
 	inst:AddComponent("hauntable")
 	inst.components.hauntable:SetHauntValue(TUNING.HAUNT_INSTANT_REZ)

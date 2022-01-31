@@ -24,7 +24,7 @@
             </mainline>
             <timeline id="0" name="chipotlebag">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-89" y="156" angle="0" scale_x="0.6" scale_y="0.6"/>
+                    <object folder="0" file="0" x="-88" y="131" angle="356.26237" scale_x="0.6" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
