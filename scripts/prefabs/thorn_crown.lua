@@ -5,23 +5,7 @@ local assets =
 	Asset("ATLAS", "images/inventoryimages/thorn_crown.xml"),
 	Asset("IMAGE", "images/inventoryimages/thorn_crown.tex"),
 }
---
---[[local chance_effect = 0.50
 
-local function onattack(inst, owner, target)
-	if math.random() < chance_effect then
-			if target and target.components.burnable then
-				target.components.burnable:Ignite(true)
-			end
-		else
-			if target and target.components.freezable then
-			target.components.freezable:AddColdness(1)
-			target.components.freezable:SpawnShatterFX()
-			end
-		end
-	end
-end]]
--------------------------------------------------------------------
 local chance_effect = 0.20
 
 local function procfn(inst, data)
@@ -55,10 +39,9 @@ local function OnEquip(inst, owner, data)
     owner:ListenForEvent("attacked", inst.tryproc)	
     
     --
-	end
+end
 
 local function OnUnequip(inst, owner, data) 
-
     owner.AnimState:Hide("HAT")
     owner.AnimState:Hide("HAT_HAIR")
     owner.AnimState:Show("HAIR_NOHAT")
@@ -71,6 +54,22 @@ local function OnUnequip(inst, owner, data)
 	--
     owner:RemoveEventCallback("attacked", inst.tryproc)
     --
+end
+
+local function ondepleted(inst, owner)
+    local replacement = SpawnPrefab("goldcoin")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+	replacement.components.stackable:SetStackSize(6)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+
+    inst:Remove()
 end
 
 local function fn()
@@ -99,7 +98,6 @@ local function fn()
     inst:AddComponent("inspectable")
 	
 	inst:AddComponent("tradable")
-	inst.components.tradable.goldvalue = 25	
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "thorn_crown"	
@@ -107,6 +105,7 @@ local function fn()
 		
 	inst:AddComponent("armor")
 	inst.components.armor:InitCondition(1000, 0.9)
+	--inst.components.armor:onfinished = ondepleted
    		
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.HEAD

@@ -15,6 +15,22 @@ local function OnPickup(inst)
     inst.Light:Enable(false)
 end
 
+local function ondepleted(inst, owner)
+    local replacement = SpawnPrefab("goldcoin")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+	replacement.components.stackable:SetStackSize(6)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+
+    inst:Remove()
+end
+
 local function fn()
     local inst = CreateEntity()
 
@@ -57,7 +73,7 @@ local function fn()
     inst:AddComponent("fueled")
     inst.components.fueled:InitializeFuelLevel(720)
     inst.components.fueled:StartConsuming()
-    inst.components.fueled:SetDepletedFn(inst.Remove)
+    inst.components.fueled:SetDepletedFn(ondepleted)
 
     MakeSmallBurnable(inst, TUNING.LARGE_BURNTIME)
     MakeSmallPropagator(inst)

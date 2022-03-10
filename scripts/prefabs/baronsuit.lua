@@ -10,19 +10,37 @@ local assets =
 		
 local function onequip(inst, owner) 
     owner.AnimState:OverrideSymbol("swap_body", "baronsuit", "swap_body")
+    if owner.components.hunger ~= nil then
+        owner.components.hunger.burnratemodifiers:SetModifier(inst, TUNING.ARMORBEARGER_SLOW_HUNGER)
+    end
 	inst.components.fueled:StartConsuming()
 end
 
 local function onunequip(inst, owner) 
     owner.AnimState:ClearOverrideSymbol("swap_body")
+    if owner.components.hunger ~= nil then
+        owner.components.hunger.burnratemodifiers:RemoveModifier(inst)
+    end
 	inst.components.fueled:StopConsuming()
 end
 
-local function onperish(inst)
+local function ondepleted(inst, owner)
+    local replacement = SpawnPrefab("goldcoin")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+	replacement.components.stackable:SetStackSize(6)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+
     inst:Remove()
 end
 
-local function suitbaron()
+local function fn()
 	local inst = CreateEntity()
     
 	inst.entity:AddTransform()
@@ -61,12 +79,12 @@ local function suitbaron()
 	inst.components.insulator:SetInsulation(TUNING.INSULATION_LARGE)
 	
 	inst:AddComponent("fueled")
-    inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME*2) --20 Days
-	inst.components.fueled:SetDepletedFn(onperish)
+    inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME*2) --20 Days 
+    inst.components.fueled:SetDepletedFn(ondepleted)
 		
 	MakeHauntableLaunch(inst)	
     
     return inst
 end
 	
-return Prefab("common/inventory/baronsuit", suitbaron, assets) 
+return Prefab("common/inventory/baronsuit", fn, assets) 

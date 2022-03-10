@@ -67,8 +67,7 @@ local function fn()
 	
     inst:AddComponent("inspectable")
 	
-	inst:AddComponent("tradable")
-	inst.components.tradable.goldvalue = 25		
+	inst:AddComponent("tradable")	
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "spartahelmut"
