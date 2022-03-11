@@ -103,14 +103,14 @@ local function fn()
 
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(1000, 0.9)
-    inst.components.armor:onfinished = function() onfinishedfn(inst) end
+    inst.components.armor.onfinished = function() onfinishedfn(inst) end
 
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
     
-	MakeHauntableLaunch(inst)	
+    MakeHauntableLaunch(inst)	
 
     return inst
 end
