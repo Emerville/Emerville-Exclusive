@@ -17,12 +17,12 @@ local function OnEquip(inst, owner)
 
     if owner:HasTag("player") then
         owner.AnimState:Hide("HEAD")
-		owner.AnimState:Show("HEAD_HAT")
+        owner.AnimState:Show("HEAD_HAT")
     end
 	
-	if owner and not owner:HasTag("spartan") then
-		owner:AddTag("spartan")
-	end
+    if owner and not owner:HasTag("spartan") then
+        owner:AddTag("spartan")
+    end
 end
 
 local function OnUnequip(inst, owner) 
@@ -34,19 +34,19 @@ local function OnUnequip(inst, owner)
 
     if owner:HasTag("player") then
         owner.AnimState:Show("HEAD")
-		owner.AnimState:Hide("HEAD_HAT")
+        owner.AnimState:Hide("HEAD_HAT")
     end
 	
-	if owner and owner:HasTag("spartan") then
-		owner:RemoveTag("spartan")
-	end
+    if owner and owner:HasTag("spartan") then
+        owner:RemoveTag("spartan")
+    end
 end
 
-local function onfinishedfn(inst, owner)
+local function onfinishedfn(inst)
     local replacement = SpawnPrefab("goldcoin")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
-	replacement.components.stackable:SetStackSize(10)
+    replacement.components.stackable:SetStackSize(10)
 
     local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
     local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
@@ -83,23 +83,23 @@ local function fn()
 	
     inst:AddComponent("inspectable")
 	
-	inst:AddComponent("tradable")	
+    inst:AddComponent("tradable")	
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "spartahelmut"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/spartahelmut.xml"
 
-	inst:AddComponent("armor")
-	inst.components.armor:InitCondition(840, 0.90)
-    inst.components.armor.onfinished = onfinishedfn
+    inst:AddComponent("armor")
+    inst.components.armor:InitCondition(840, 0.90)
+    inst.components.armor.onfinished = function() onfinishedfn(inst) end
 	
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
 	
-	inst:AddComponent("waterproofer")
-	inst.components.waterproofer:SetEffectiveness(TUNING.WATERPROOFNESS_SMALL)
+    inst:AddComponent("waterproofer")
+    inst.components.waterproofer:SetEffectiveness(TUNING.WATERPROOFNESS_SMALL)
 	
     MakeHauntableLaunch(inst)	
 
