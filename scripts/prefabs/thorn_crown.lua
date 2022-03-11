@@ -15,7 +15,7 @@ local function procfn(inst, data)
             data.attacker.components.combat:GetAttacked(inst, 100) -- Damage done to attacker
                 SpawnPrefab("statue_transition_2").Transform:SetPosition(data.attacker:GetPosition():Get())
             end
-        else if data.attacker and data.attacker.components.health and data.attacker.components.combat then	
+        elseif data.attacker and data.attacker.components.health and data.attacker.components.combat then	
             data.attacker.components.combat:GetAttacked(inst, 25) -- Damage done to attacker
         end
     end -- IT SHOULD WORK NOW.
