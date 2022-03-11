@@ -42,6 +42,22 @@ local function OnUnequip(inst, owner)
 	end
 end
 
+local function onfinishedfn(inst, owner)
+    local replacement = SpawnPrefab("goldcoin")
+    local x, y, z = inst.Transform:GetWorldPosition()
+    replacement.Transform:SetPosition(x, y, z)
+	replacement.components.stackable:SetStackSize(10)
+
+    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
+    local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
+    if holder ~= nil then
+        local slot = holder:GetItemSlot(inst)
+        holder:GiveItem(replacement, slot)
+    end
+
+    inst:Remove()
+end
+
 local function fn()
     local inst = CreateEntity()
     
@@ -75,6 +91,7 @@ local function fn()
 
 	inst:AddComponent("armor")
 	inst.components.armor:InitCondition(840, 0.90)
+    inst.components.armor.onfinished = onfinishedfn
 	
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.HEAD

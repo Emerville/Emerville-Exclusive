@@ -28,7 +28,7 @@ local function ondepleted(inst, owner)
     local replacement = SpawnPrefab("goldcoin")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
-	replacement.components.stackable:SetStackSize(6)
+	replacement.components.stackable:SetStackSize(10)
 
     local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
     local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
