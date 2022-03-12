@@ -9,8 +9,14 @@ local assets =
 }
 
 local function SpawnAquaHeal(inst, owner)
-    local dubloon = SpawnPrefab("splash_green_small")
-    dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    if not owner.components.hunger or not owner.components.sanity or not owner.components.health then
+        inst.fx_task:Cancel()
+        inst.fx_task = nil
+        return
+    end
+
+    local fx = SpawnPrefab("splash_green_small")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
     local statuseffect = math.random(1,3)
     if statuseffect == 1 and owner.components.hunger then
@@ -22,14 +28,28 @@ local function SpawnAquaHeal(inst, owner)
     end
 end
 
-local function OnPickup(inst)
-    local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
-    inst.dubloon_task = inst:DoPeriodicTask(120, function() SpawnAquaHeal(inst, owner) end) --480 Day/Regular --240 HalfDay/Event
+local function OnHaunt(inst, doer)
+    local fx = SpawnPrefab("ocean_splash_med2")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx.Transform:SetScale(.5, .5, .5)
+    inst:Remove()
+    return old_onhaunt(inst, doer)
+end
+
+local function OnPutInInventory(inst, owner)
+    if inst.fx_task ~= nil then
+        inst.fx_task:Cancel()
+        inst.fx_task = nil
+    end
+    
+    if owner.components.health ~= nil then
+        inst.fx_task = inst:DoPeriodicTask(120, function() SpawnAquaHeal(inst, owner) end) --480 Day/Regular --240 HalfDay/Event
+    end
 end
 
 local function OnDropped(inst)
-    inst.dubloon_task:Cancel()
-    inst.dubloon_task = nil
+    inst.fx_task:Cancel()
+    inst.fx_task = nil
 end
 
 local function init()
@@ -66,7 +86,7 @@ local function init()
     inst.components.inventoryitem.imagename = "smasherdoll"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/smasherdoll.xml"
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickup)
+    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
 
 --    inst:AddComponent("equippable")
 --    inst.components.equippable:SetOnPocket(onpocket)
@@ -76,13 +96,7 @@ local function init()
 
     -- where inst is the hauntable item
     local old_onhaunt = inst.components.hauntable.onhaunt
-    inst.components.hauntable:SetOnHauntFn(function(inst, doer)
-        local fx = SpawnPrefab("ocean_splash_med2")
-        fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        fx.Transform:SetScale(.5, .5, .5)
-        inst:Remove()
-        return old_onhaunt(inst, doer)
-    end)
+    inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:AddComponent("bait")
 
