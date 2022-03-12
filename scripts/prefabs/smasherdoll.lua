@@ -48,8 +48,10 @@ local function OnPutInInventory(inst, owner)
 end
 
 local function OnDropped(inst)
-    inst.fx_task:Cancel()
-    inst.fx_task = nil
+    if inst.fx_task ~= nil then
+        inst.fx_task:Cancel()
+        inst.fx_task = nil
+    end
 end
 
 local function init()
