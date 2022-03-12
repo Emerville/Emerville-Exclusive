@@ -90,7 +90,7 @@ local function fn()
     inst.components.inventoryitem.atlasname = "images/inventoryimages/spartahelmut.xml"
 
     inst:AddComponent("armor")
-    inst.components.armor:InitCondition(840, 0.90)
+    inst.components.armor:InitCondition(840, 0.9)
     inst.components.armor.onfinished = function() onfinishedfn(inst) end
 	
     inst:AddComponent("equippable")

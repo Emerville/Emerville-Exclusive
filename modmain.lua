@@ -73,6 +73,7 @@ PrefabFiles = {
 	"nottrump",
 	"magicdolls",
 	"luisdoll",
+	"smasherdoll",
     "magicbag",
     "magicbag_classic",
 	"magicpouch",

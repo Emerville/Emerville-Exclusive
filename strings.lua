@@ -1774,6 +1774,10 @@ STRINGS.NAMES.LUISDOLL = "Luis Doll"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.LUISDOLL = "This doll smells like a burrito bowl." 
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.SMASHERDOLL = "Smasher Doll"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SMASHERDOLL = "This doll likes to organize events." 
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DOLLWOLFGANG = "Wolfgang Doll"
 STRINGS.RECIPE_DESC.DOLLWOLFGANG = "A mighty stuffed doll!"
 

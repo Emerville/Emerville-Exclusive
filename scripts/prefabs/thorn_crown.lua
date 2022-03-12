@@ -15,7 +15,7 @@ local function procfn(inst, data)
             data.attacker.components.combat:GetAttacked(inst, 100) -- Damage done to attacker
                 SpawnPrefab("statue_transition_2").Transform:SetPosition(data.attacker:GetPosition():Get())
             end
-        else if data.attacker and data.attacker.components.health and data.attacker.components.combat then	
+        elseif data.attacker and data.attacker.components.health and data.attacker.components.combat then	
             data.attacker.components.combat:GetAttacked(inst, 25) -- Damage done to attacker
         end
     end -- IT SHOULD WORK NOW.
@@ -58,7 +58,7 @@ local function onfinishedfn(inst)
     local replacement = SpawnPrefab("goldcoin")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
-    replacement.components.stackable:SetStackSize(6)
+    replacement.components.stackable:SetStackSize(10)
 
     local owner = inst.components.inventoryitem ~= nil and inst.components.inventoryitem.owner or nil
     local holder = owner ~= nil and (owner.components.inventory or owner.components.container) or nil
