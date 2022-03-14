@@ -18,23 +18,35 @@ local prefabs =
 	"chipotlebag",
 }
 
---		{chance = 4,    item = "doctoramulet"},	
 local function MakeLoot(inst)
+    -- All the chance values in the possible_loot table reflect the actual percent chance of getting the corresponding item.
+    -- For example, if a Magical Pouch has a chance value of 7, it has a 7% chance of dropping. If the total chance values do
+    -- do not sum to 100%, then the remaining percentage will be filled by Magical Dolls.
+    -- For example:
+    -- local possible_loot = 
+    -- {
+    --    {chance = 25, item = "elegantlantern"},
+    --    {chance = 15, item = "magicpouch"},
+    -- }
+    -- In the table above, the chance of a receiving an Elegant Lantern is 25% and the chance of receiving a Magical Pouch is 15%.
+    -- This only sums to 40%. The remaining 60% will be filled by Magical Dolls.
     local possible_loot =
     {
-		{chance = 5,    item = "magicdolls"},
-        {chance = 5,    item = "magicdolls"},	
-        {chance = 5,    item = "magicdolls"},
-		{chance = 5,    item = "magicdolls"},
-		{chance = 5,    item = "magicdolls"},	
-		{chance = 4,    item = "magicdolls"},	
-		{chance = 4,    item = "chipotlebag"},			
-		{chance = 4,    item = "reaperamulet"},
-		{chance = 4,    item = "horsehead"},			
-        {chance = 3,    item = "elegantlantern"},
-        {chance = 3,    item = "magicpouch"},	
-        {chance = 3,    item = "icypack"},		
+        {chance = 10, item = "chipotlebag"},
+        {chance = 10, item = "reaperamulet"},
+        {chance = 10, item = "horsehead"},
+        {chance = 7, item = "elegantlantern"},
+        {chance = 7, item = "magicpouch"},
+        {chance = 7, item = "icypack"},
     }
+    local weight = 0
+    for k,v in pairs(possible_loot) do
+        weight = weight + v.chance
+    end
+    local magicdolls_weight = 100 - weight
+
+    table.insert(possible_loot, {chance = magicdolls_weight, item = "magicdolls"})
+	
     local totalchance = 0
     for m, n in ipairs(possible_loot) do
         totalchance = totalchance + n.chance
