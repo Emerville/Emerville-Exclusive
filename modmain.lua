@@ -123,6 +123,7 @@ PrefabFiles = {
 	"dollwurt_abyssal",
 	"dollwarly",
 	"dollwalter",
+	"dollwanda",
 	"dollmystery",
 
 	-- EVENT: 

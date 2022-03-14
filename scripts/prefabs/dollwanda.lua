@@ -1,14 +1,14 @@
 local assets =
 {
-    Asset("ANIM", "anim/walterdoll.zip"),
-    Asset("ANIM", "anim/swap_walterdoll.zip"),
+    Asset("ANIM", "anim/wandadoll.zip"),
+    Asset("ANIM", "anim/swap_wandadoll.zip"),
   
-    Asset("ATLAS", "images/inventoryimages/walterdoll.xml"),
-    Asset("IMAGE", "images/inventoryimages/walterdoll.tex"),
+    Asset("ATLAS", "images/inventoryimages/wandadoll.xml"),
+    Asset("IMAGE", "images/inventoryimages/wandadoll.tex"),
 }
 
 local function OnEquip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_walterdoll", "swap_walterdoll")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_wandadoll", "swap_wandadoll")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 	
@@ -63,11 +63,11 @@ local function fn()
      
     MakeInventoryPhysics(inst)   
       
-    inst.AnimState:SetBank("walterdoll")
-    inst.AnimState:SetBuild("walterdoll")
+    inst.AnimState:SetBank("wandadoll")
+    inst.AnimState:SetBuild("wandadoll")
     inst.AnimState:PlayAnimation("idle")
 	
-    inst.MiniMapEntity:SetIcon("walterdoll.tex")
+    inst.MiniMapEntity:SetIcon("wandadoll.tex")
  
     inst:AddTag("sharp")
  
@@ -91,12 +91,12 @@ local function fn()
 	inst.components.fueled.fueltype = FUELTYPE.DSTDOLL
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
-    inst.components.fueled:InitializeFuelLevel(4800)
+    inst.components.fueled:InitializeFuelLevel(4810)
     inst.components.fueled:SetDepletedFn(inst.Remove)
       
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.imagename = "walterdoll"
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/walterdoll.xml"
+    inst.components.inventoryitem.imagename = "wandadoll"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wandadoll.xml"
 	
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
@@ -109,7 +109,7 @@ local function fn()
 	local old_onhaunt = inst.components.hauntable.onhaunt
 	
 	inst.components.hauntable:SetOnHauntFn(function(inst, doer)		
-    SpawnPrefab("pocketwatch_revive_reviver").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
     inst.components.fueled:DoDelta(-1600)	
     return old_onhaunt(inst, doer)
 	end)
@@ -117,4 +117,4 @@ local function fn()
     return inst
 end
 
-return Prefab("common/inventory/dollwalter", fn, assets) 
+return Prefab("common/inventory/dollwanda", fn, assets) 

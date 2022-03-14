@@ -1853,15 +1853,20 @@ STRINGS.RECIPE_DESC.DOLLWURT_ABYSSAL = "An aspiring Merm-like doll!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWURT_ABYSSAL = "This doll seems eager for knowledge."
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.DOLLWARLYDOLL = "Warly Doll"
-STRINGS.RECIPE_DESC.DOLLWARLYDOLL = "A talented chef doll!"
+STRINGS.NAMES.DOLLWARLY = "Warly Doll"
+STRINGS.RECIPE_DESC.DOLLWARLY = "A talented chef doll!"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWARLYDOLL = "It smells like delicious spices."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWARLY = "It smells like delicious spices."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DOLLWALTER = "Walter Doll"
 STRINGS.RECIPE_DESC.DOLLWALTER = "An adventerous doll!"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWALTER = "I'd take this doll camping with me."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.DOLLWANDA = "Wanda Doll"
+STRINGS.RECIPE_DESC.DOLLWANDA = "The time keeping doll!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLWANDA = "If I could turn back time - if I could find a way..."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DOLLMYSTERY = "Mystery Doll"
 STRINGS.RECIPE_DESC.DOLLMYSTERY = "What a strange doll..."
