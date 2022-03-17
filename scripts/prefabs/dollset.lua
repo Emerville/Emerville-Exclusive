@@ -26,7 +26,8 @@ local doll_prefabs =
 	"dollwortox_uncorrupted",	
 	"dollwurt_abyssal",
 	"dollwarly",
-	"dollwalter",	
+	"dollwalter",
+	"dollwanda",
 }
 
 ----------------------------------
