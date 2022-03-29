@@ -7,6 +7,41 @@ local assets =
     Asset("ATLAS", "images/inventoryimages/scythe.xml"),
 }
 
+local prefabs =
+{
+    "efc",
+}
+
+local function spawnspirit(inst)
+    local dubloon = SpawnPrefab("efc")
+    dubloon.Transform:SetPosition(inst.Transform:GetWorldPosition())
+end
+
+local function IsValidVictim(victim)
+    return victim ~= nil
+        and not ((victim:HasTag("prey") and not victim:HasTag("hostile")) or
+                victim:HasTag("veggie") or
+                victim:HasTag("structure") or
+                victim:HasTag("wall") or
+                victim:HasTag("balloon") or
+                victim:HasTag("groundspike") or
+                victim:HasTag("smashable") or
+                victim:HasTag("companion"))
+        and victim.components.health ~= nil
+        and victim.components.combat ~= nil
+end
+
+local function onkilled(inst, data)
+    local victim = data.victim
+    if IsValidVictim(victim) then
+        if not victim.components.health.nofadeout and (victim:HasTag("epic") or math.random() < 0.1) then
+            local time = victim.components.health.destroytime or 2
+            local x, y, z = victim.Transform:GetWorldPosition()
+            inst:DoTaskInTime(time, spawnspirit, x, y, z)
+        end
+    end
+end
+
 local function turnon(inst)
     if not inst.components.fueled:IsEmpty() then
         if inst.components.fueled ~= nil then
@@ -42,14 +77,16 @@ local function OnUnequip(inst, owner)
     turnoff(inst)
 end
 
+local slashchance = 0.92
+--local soulsiphonchance = 0.08
 local function onattack(inst, owner, target)
-   SpawnPrefab("shadowstrike_slash2_fx").Transform:SetPosition(target:GetPosition():Get())
-end
+	SpawnPrefab("shadowstrike_slash2_fx").Transform:SetPosition(target:GetPosition():Get())
+    if math.random() < slashchance then
 	
-local function onblink(staff, pos, caster)
-    if caster.components.sanity ~= nil then
-       caster.components.sanity:DoDelta(-25) --Changed from 50 to 20
-   end 
+    else
+		SpawnPrefab("reaper_soul").Transform:SetPosition(target:GetPosition():Get())
+        owner.components.talker:Say("Your time has come!")
+    end
 end
 
 local function nofuel(inst)
@@ -76,7 +113,7 @@ local function takefuel(inst)
     if inst.components.equippable and inst.components.equippable:IsEquipped() then
         turnon(inst)
     end
-end
+end	
 
 local function fn()
     local inst = CreateEntity()
@@ -95,7 +132,7 @@ local function fn()
   	
     local light = inst.entity:AddLight()
     inst.Light:SetIntensity(0.65)
-    inst.Light:SetRadius(1)
+    inst.Light:SetRadius(1.5)
     inst.Light:SetFalloff(1)
     light:SetColour(180/255, 0/255, 255/255)
     inst.Light:Enable(false)
@@ -114,9 +151,6 @@ local function fn()
     inst.components.weapon:SetDamage(25)
     inst.components.weapon:SetRange(1.10)
 	
-    inst:AddComponent("blinkstaff")
-    inst.components.blinkstaff.onblinkfn = onblink
-	
     inst:AddComponent("inspectable")
 	
     inst:AddComponent("inventoryitem")
@@ -126,7 +160,7 @@ local function fn()
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(OnEquip)
     inst.components.equippable:SetOnUnequip(OnUnequip)
-    inst.components.equippable.walkspeedmult = 1.05 --TUNING.CANE_SPEED_MULT
+    inst.components.equippable.walkspeedmult = 1.10 --TUNING.CANE_SPEED_MULT
 	
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = FUELTYPE.NIGHTMARE	
@@ -134,6 +168,8 @@ local function fn()
     inst.components.fueled:SetDepletedFn(nofuel)
     inst.components.fueled.ontakefuelfn = takefuel
 	inst.components.fueled.accepting = true
+	
+    inst:ListenForEvent("killed", onkilled)
 	
 	MakeHauntableLaunch(inst)
 	

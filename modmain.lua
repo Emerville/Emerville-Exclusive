@@ -126,7 +126,7 @@ PrefabFiles = {
 	"dollwanda",
 	"dollmystery",
 
-	-- EVENT: 
+	-- FIRST WINTER: 
 	"greencane", 
 	"bluecane",
 	"redcane",
@@ -139,25 +139,29 @@ PrefabFiles = {
 	"orangecane_proj",
 	"greencanefake",
 	"lightning_barrier",
+	-- EVENT:
 	"scythe",
+	"reaper_soul",
+	"reaper_soul_heal_fx",
+	--"reaper_soul_common",
 	"broomstick",
     "witch_hat",
 	"elfhat",
 	"musicbox",
 	"musicbox2",
-	"sand_spikecane",
-	
+	"sand_spikecane",	
 	"snowglobe",
     "snowyball",
-	"santasnowman",
-	
+	"santasnowman",	
 	"santahat",
     "christmas_tree",
 	"santa_hat",
 	"elfscarf",
+	
 	"christmaswendy",
 	"christmaswalter",
 	"christmaswx78",
+	"pizzawathgrithr",
 	"tokenappreciation",
 	
 	-- ADMIN:
