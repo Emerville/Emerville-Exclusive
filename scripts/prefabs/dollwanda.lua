@@ -52,6 +52,14 @@ if self:CanAcceptFuelItem(item) then
         return true
     end
 end
+
+local function OnHaunt(inst, haunter)
+	local source = inst
+	source.prefab = "pocketwatch_revive_reviver"
+	haunter:PushEvent("respawnfromghost", {source = source})
+    inst.components.fueled:DoDelta(-1600)
+	return true
+end
  
 local function fn()  
     local inst = CreateEntity()
@@ -106,13 +114,7 @@ local function fn()
 	inst:AddComponent("hauntable")
 	inst.components.hauntable:SetHauntValue(TUNING.HAUNT_INSTANT_REZ)	
 
-	local old_onhaunt = inst.components.hauntable.onhaunt
-	
-	inst.components.hauntable:SetOnHauntFn(function(inst, doer)		
-    SpawnPrefab("lavaarena_player_revive_from_corpse_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.components.fueled:DoDelta(-1600)	
-    return old_onhaunt(inst, doer)
-	end)
+    AddHauntableCustomReaction(inst, OnHaunt, false, false, true)
 	
     return inst
 end
