@@ -831,7 +831,7 @@ end
 
 local function convertfn(act)
     local convert99 = {"skeletalamulet", "reaperamulet", "horsehead"}
-    local convert25 = {"baronsuit", "magicdolls", "notwilson", "spartahelmut", "thorn_crown"}
+    local convert25 = {"magicdolls", "luisdoll"}--, "baronsuit", "notwilson", "spartahelmut", "thorn_crown"}
     local convert20 = {"box_gear"}
     local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat", "alterguardianhat", "shieldofterror"}
 
@@ -848,7 +848,7 @@ local function convertfn(act)
                 value = 1
             else
                 value = checktable(convert99, 99, item.prefab, value)
-                value = checktable(convert25, 25, item.prefab, value)
+--                value = checktable(convert25, 25, item.prefab, value)
                 value = checktable(convert20, 20, item.prefab, value)
                 value = checktable(convert15, 15, item.prefab, value)
             end
@@ -896,13 +896,14 @@ function params.traderwolfgang.itemtestfn(container, item, slot)
 	item.prefab == "shieldofterror" or
 	item.prefab == "box_gear" or		
 	item.prefab == "skeletonhat" or	
-	item.prefab == "notwilson" or
-	item.prefab == "thorn_crown" or	
-	item.prefab == "baronsuit" or	
-    item.prefab == "spartahelmut" or
+--	item.prefab == "notwilson" or
+--	item.prefab == "thorn_crown" or	
+--	item.prefab == "baronsuit" or	
+--    item.prefab == "spartahelmut" or
 	item.prefab == "horsehead" or		
 	item.prefab == "skeletalamulet" or	
     item.prefab == "reaperamulet" or
+    item.prefab == "luisdoll" or
 	item.prefab == "magicdolls" then	
 		return true
 	end
