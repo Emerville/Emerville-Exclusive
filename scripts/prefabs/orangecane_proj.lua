@@ -60,6 +60,9 @@ local function fn()
     inst.components.projectile:SetOnMissFn(OnMiss)
     inst.components.projectile.range = 30
     inst.components.projectile.has_damage_set = true
+    
+    -- Workaround for check on Wolfgang hitting things 
+    inst:AddComponent("inventoryitem")
 
     return inst
 end
