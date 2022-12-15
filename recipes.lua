@@ -7,8 +7,8 @@ rec.atlas = atlas
 rec.image = image
 end
 
-local box_gear = Ingredient("box_gear", 1)
-box_gear.atlas = "images/inventoryimages/box_gear.xml"
+local gearbox = Ingredient("gearbox", 1)
+gearbox.atlas = "images/inventoryimages/gearbox.xml"
 
 --------------------------------------------------------------------------
 --[[ TOOLS ]]
@@ -19,18 +19,11 @@ box_gear.atlas = "images/inventoryimages/box_gear.xml"
 --[[ LIGHT ]]
 --------------------------------------------------------------------------
 if GetModConfigData("lightnecklacerecipe") then
-local lightnecklace = MakeRecipe("lightnecklace", 
+AddRecipe2("lightnecklace", 
 {Ingredient("lightbulb", 6), Ingredient("rope", 1)}, 
-RECIPETABS.LIGHT, 
 TECH.NONE, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/lightnecklace.xml",
-"lightnecklace.tex")
-lightnecklace.sortkey = AllRecipes["coldfirepit"]["sortkey"] + 0.1 
+{atlas = "images/inventoryimages/lightnecklace.xml"},
+{"LIGHT"})
 end
 
 --------------------------------------------------------------------------
@@ -40,66 +33,38 @@ local metal = Ingredient("metal", 1)
 metal.atlas	= "images/inventoryimages/metal.xml"
 
 if GetModConfigData("wool_sackrecipe") then
-local wool_sack = MakeRecipe("wool_sack",
+AddRecipe2("wool_sack",
 {Ingredient("steelwool", 2), Ingredient("silk", 6), Ingredient("rope", 2)},
-RECIPETABS.SURVIVAL,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/wool_sack.xml",
-"wool_sack.tex")
-wool_sack.sortkey = AllRecipes["piggyback"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/wool_sack.xml"},
+{"CONTAINERS"})
 end
 
 if GetModConfigData("mechanicalfanrecipe") then
-MakeRecipe("mechanicalfan",
+AddRecipe2("mechanicalfan",
 {metal, Ingredient("gears", 3), Ingredient("transistor", 5)},
-RECIPETABS.SURVIVAL,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/mechanicalfan_3.xml",
-"mechanicalfan_3.tex")
+{atlas = "images/inventoryimages/mechanicalfan_3.xml"},
+{"TOOLS", "SUMMER"})
 end
-
 
 --------------------------------------------------------------------------
 --[[ FARM ]]
 --------------------------------------------------------------------------
 if GetModConfigData("compost_boxrecipe") then
-local compost_box = MakeRecipe("compost_box", 
+AddRecipe2("compost_box", 
 {Ingredient("spoiled_food", 8), Ingredient("boards", 3)}, 
-RECIPETABS.FARM,
 TECH.SCIENCE_TWO,
-"compost_box_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/compost_box.xml",
-"compost_box.tex")
-compost_box.sortkey = AllRecipes["fast_farmplot"]["sortkey"] + 0.1
+{placer = "compost_box_placer", min_spacing = 1.4, atlas = "images/inventoryimages/compost_box.xml"},
+{"STRUCTURES", "CONTAINERS"})
 end
 
 if GetModConfigData("freezereyerecipe") then
-local freezer = MakeRecipe("freezereye",
+AddRecipe2("freezereye",
 {Ingredient("deerclops_eyeball", 1), Ingredient("ice", 20), Ingredient("gears", 4)},
-RECIPETABS.FARM,
 TECH.SCIENCE_TWO,
-"freezereye_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/freezereye.xml",
-"freezereye.tex")
-freezer.sortkey = AllRecipes["icebox"]["sortkey"] + 0.2
+{placer = "freezereye_placer", min_spacing = 1.4, atlas = "images/inventoryimages/freezereye.xml"},
+{"COOKING", "STRUCTURES", "CONTAINERS"})
 end
 
 
@@ -107,18 +72,11 @@ end
 --[[ SCIENCE ]]
 --------------------------------------------------------------------------
 if GetModConfigData("trash_canrecipe") then
-local trash_can = MakeRecipe("trash_can", 
+AddRecipe2("trash_can", 
 {Ingredient("cutstone", 3), Ingredient("transistor", 1)}, 
-RECIPETABS.SCIENCE,
 TECH.SCIENCE_TWO,
-"trash_can_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/trash_can.xml",
-"trash_can.tex")
-trash_can.sortkey = AllRecipes["researchlab2"]["sortkey"] + 0.1
+{placer = "trash_can_placer", min_spacing = 1.4, atlas = "images/inventoryimages/trash_can.xml"},
+{"STRUCTURES", "CONTAINERS"})
 end
 
 
@@ -126,161 +84,87 @@ end
 --[[ WAR ]]
 --------------------------------------------------------------------------
 if GetModConfigData("sword_rockrecipe") then
-local sword_rock = MakeRecipe("sword_rock",
+AddRecipe2("sword_rock",
 {Ingredient("twigs", 3), Ingredient("rope", 1), Ingredient("rocks", 1)},  
-RECIPETABS.WAR,
-TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/sword_rock.xml",
-"sword_rock.tex")
-sword_rock.sortkey = AllRecipes["spear"]["sortkey"] + 0.1
+TECH.SCIENCE_ONE,
+{atlas = "images/inventoryimages/sword_rock.xml"},
+{"WEAPONS"})
 end
 
 if GetModConfigData("mace_stingrecipe") then
-local mace_sting = MakeRecipe("mace_sting",
+AddRecipe2("mace_sting",
 {Ingredient("log", 1), Ingredient("rope", 1), Ingredient("stinger", 5)},  
-RECIPETABS.WAR,
 TECH.SCIENCE_TWO, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/mace_sting.xml",
-"mace_sting.tex") 
-mace_sting.sortkey = AllRecipes["spear"]["sortkey"] + 0.2
+{atlas = "images/inventoryimages/mace_sting.xml"},
+{"WEAPONS"})
 end
 
 if GetModConfigData("fryingpanrecipe") then
-local fryingpan = MakeRecipe("fryingpan", 
+AddRecipe2("fryingpan", 
 {Ingredient("log", 1), Ingredient("charcoal", 3), Ingredient("steelwool", 2)},  
-RECIPETABS.WAR, 
 TECH.SCIENCE_ONE, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/fryingpan.xml",
-"fryingpan.tex")
-fryingpan.sortkey = AllRecipes["hambat"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/fryingpan.xml"},
+{"WEAPONS"})
 end
 
 if GetModConfigData("armor_rockrecipe") then
-local armor_rock = MakeRecipe("armor_rock",
-{Ingredient("rocks", 10), Ingredient("rope", 3)},  
-RECIPETABS.WAR, 
+AddRecipe2("armor_rock",
+{Ingredient("rocks", 10), Ingredient("rope", 3)},   
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/armor_rock.xml",
-"armor_rock.tex")
-armor_rock.sortkey = AllRecipes["armorwood"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/armor_rock.xml"},
+{"ARMOUR"})
 end
 
 if GetModConfigData("hat_rockrecipe") then
-local hat_rock = MakeRecipe("hat_rock",
+AddRecipe2("hat_rock",
 {Ingredient("pigskin", 1), Ingredient("rocks", 4), Ingredient("rope", 1)},  
-RECIPETABS.WAR,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/hat_rock.xml",
-"hat_rock.tex")
-hat_rock.sortkey = AllRecipes["footballhat"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/hat_rock.xml"},
+{"ARMOUR"})
 end
 
 if GetModConfigData("hat_marblerecipe") then
-local hat_marble = MakeRecipe("hat_marble",
+AddRecipe2("hat_marble",
 {Ingredient("pigskin", 1), Ingredient("marble", 8), Ingredient("rope", 1)},   
-RECIPETABS.WAR,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/hat_marble.xml",
-"hat_marble.tex")
-hat_marble.sortkey = AllRecipes["footballhat"]["sortkey"] + 0.2
+{atlas = "images/inventoryimages/hat_marble.xml"},
+{"ARMOUR"})
 end
 
 --------------------------------------------------------------------------
 --[[ STRUCTURE ]]
 --------------------------------------------------------------------------
 if GetModConfigData("crate_woodenrecipe") then
-local crate_wooden = MakeRecipe("crate_wooden", 
+AddRecipe2("crate_wooden", 
 {Ingredient("boards", 20), Ingredient("rope", 3)}, 	
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
-"crate_wooden_placer",
-1.8,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_wooden.xml",
-"crate_wooden.tex")
-crate_wooden.sortkey = AllRecipes["treasurechest"]["sortkey"] + 0.1
-crate_wooden.reskinnable = true
+{placer = "crate_wooden_placer", min_spacing = 1.8, atlas = "images/inventoryimages/crate_wooden.xml"},
+{"STRUCTURES", "CONTAINERS"})
 end
 
-AddRecipe("crate_wooden_gingerbread", 
+AddRecipe2("crate_wooden_gingerbread", 
 {Ingredient("boards", 20), Ingredient("rope", 2)}, 	
-nil,
 TECH.LOST,
-"crate_wooden_placer",
-1.8,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_wooden_gingerbread.xml",
-"crate_wooden_gingerbread.tex")
+{placer = "crate_wooden_placer_gingerbread", min_spacing = 1.8, atlas = "images/inventoryimages/crate_wooden_gingerbread.xml"},
+{"STRUCTURES", "CONTAINERS"})
 
-AddRecipe("crate_wooden_3d", 
+AddRecipe2("crate_wooden_3d", 
 {Ingredient("boards", 20), Ingredient("rope", 2)}, 	
-nil,
 TECH.LOST,
-"crate_wooden_placer",
-1.8,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_wooden.xml",
-"crate_wooden.tex")
+{placer = "crate_wooden_placer_3d", min_spacing = 1.8, atlas = "images/inventoryimages/crate_wooden.xml"},
+{"STRUCTURES", "CONTAINERS"})
 
-AddRecipe("crate_wooden_scary", 
+AddRecipe2("crate_wooden_scary", 
 {Ingredient("boards", 20), Ingredient("rope", 2)}, 	
-nil,
 TECH.LOST,
-"crate_wooden_placer",
-1.8,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_wooden.xml",
-"crate_wooden.tex")
+{placer = "crate_wooden_placer_scary", min_spacing = 1.8, atlas = "images/inventoryimages/crate_wooden.xml"},
+{"STRUCTURES", "CONTAINERS"})
 
-AddRecipe("crate_wooden_present", 
+AddRecipe2("crate_wooden_present", 
 {Ingredient("boards", 20), Ingredient("rope", 2)}, 	
-nil,
 TECH.LOST,
-"crate_wooden_placer",
-1.8,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_wooden.xml",
-"crate_wooden.tex")
+{placer = "crate_wooden_placer_present", min_spacing = 1.8, atlas = "images/inventoryimages/crate_wooden.xml"},
+{"STRUCTURES", "CONTAINERS"})
 
 --if GetModConfigData("mech_hay_itemrecipe") then
 --local mechhayrecipe = MakeRecipe("mech_hay_item",
@@ -373,92 +257,51 @@ end]]
 --end 
 
 if GetModConfigData("flowerbushrecipe") then
-local flowerrecipe = MakeRecipe("flowerbush",
+AddRecipe2("flowerbush",
 {Ingredient("marble", 2), Ingredient("petals", 6)},
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
-"flowerbush_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/flowerbush.xml",
-"flowerbush.tex")
-flowerrecipe.sortkey = 39 + 0.05
+{placer = "flowerbush_placer", min_spacing = 1.4, atlas = "images/inventoryimages/flowerbush.xml"},
+{"STRUCTURES", "DECOR"})
 end
 
 if GetModConfigData("xmastreerecipe") then
-local xmasrecipe = MakeRecipe("xmastree",
+AddRecipe2("xmastree",
 {Ingredient("log", 8), Ingredient("goldnugget", 12), Ingredient("petals", 8)},
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
-"xmastree_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/xmastree.xml",
-"xmastree.tex")
-xmasrecipe.sortkey = 39 + 0.10
+{placer = "xmastree_placer", min_spacing = 1.4, atlas = "images/inventoryimages/xmastree.xml"},
+{"STRUCTURES", "DECOR", "WINTER"})
 end
 
 if GetModConfigData("christmastreerecipe") then
-local christmasrecipe = MakeRecipe("christmas_tree",
+AddRecipe2("christmas_tree",
 {Ingredient("livinglog", 3), Ingredient("transistor", 3), Ingredient("petals", 8)}, 
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO, 
-"christmas_tree_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/christmas_tree.xml",
-"christmas_tree.tex")
-christmasrecipe.sortkey = 39 + 0.15
+{placer = "christmas_tree_placer", min_spacing = 1.4, atlas = "images/inventoryimages/christmas_tree.xml"},
+{"STRUCTURES", "DECOR", "WINTER"})
 end
 
 if GetModConfigData("snowmanrecipe") then
-local snowrecipe = MakeRecipe("snowman",
+AddRecipe2("snowman",
 {Ingredient("ice", 10), Ingredient("carrot", 1), Ingredient("twigs", 2)},
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
-"snowman_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/snowman.xml",
-"snowman.tex")
-snowrecipe.sortkey = 39 + 0.15
+{placer = "snowman_placer", min_spacing = 1.4, atlas = "images/inventoryimages/snowman.xml"},
+{"STRUCTURES", "DECOR", "WINTER"})
 end
 
 if GetModConfigData("featherbrellarecipe") then
-local featherrecipe = MakeRecipe("featherbrella",
+AddRecipe2("featherbrella",
 {Ingredient("goose_feather", 10), Ingredient("lightninggoathorn", 2), Ingredient("rope", 3)},
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
-"featherbrella_placer",
-1.4,
-nil,
-nil,
-nil,
-"images/inventoryimages/featherbrella.xml",
-"featherbrella.tex")
-featherrecipe.sortkey = AllRecipes["ruinsrelic_table"]["sortkey"] + 0.1  
+{placer = "featherbrella_placer", min_spacing = 1.4, atlas = "images/inventoryimages/featherbrella.xml"},
+{"STRUCTURES", "DECOR", "SUMMER"})
 end
 
 if GetModConfigData("crate_metalrecipe") then
-MakeRecipe("crate_metal",
+AddRecipe2("crate_metal",
 {metal, Ingredient("dragon_scales", 1), Ingredient("cutstone", 8)}, 
-RECIPETABS.TOWN,
 TECH.SCIENCE_TWO, 
-"crate_metal_placer",
-1.6,
-nil,
-nil,
-nil,
-"images/inventoryimages/crate_metal.xml",
-"crate_metal.tex")
+{placer = "crate_metal_placer", min_spacing = 1.6, atlas = "images/inventoryimages/crate_metal.xml"},
+{"STRUCTURES", "CONTAINERS"})
 end
 
 
@@ -466,18 +309,11 @@ end
 --[[ REFINE ]]
 --------------------------------------------------------------------------
 if GetModConfigData("giftredrecipe") then
-local redrecipe = MakeRecipe("gift_red",
+AddRecipe2("gift_red",
 {Ingredient("goldnugget", 3), Ingredient("papyrus", 1)},
-RECIPETABS.REFINE,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/tp_gift_red.xml",
-"tp_gift_red.tex")
-redrecipe.sortkey = 130 + 0.05
+{atlas = "images/inventoryimages/gift_red.xml"},
+{"REFINE"})
 end
 
 
@@ -485,410 +321,242 @@ end
 --[[ MAGIC ]]
 --------------------------------------------------------------------------
 if GetModConfigData("darkaxerecipe") then
-local dark_axe = MakeRecipe("dark_axe", 
+AddRecipe2("dark_axe", 
 {Ingredient("nightmarefuel", 2), Ingredient("flint", 1)}, 
-RECIPETABS.MAGIC, 
 TECH.MAGIC_TWO, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/dark_axe.xml",
-"dark_axe.tex")
-dark_axe.sortkey = AllRecipes["armor_sanity"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/dark_axe.xml"},
+{"MAGIC", "TOOLS"})
 end
 
 if GetModConfigData("darkpickaxerecipe") then
-local dark_pickaxe = MakeRecipe("dark_pickaxe",
-{Ingredient("nightmarefuel", 2), Ingredient("flint", 2)}, 
-RECIPETABS.MAGIC, 
+AddRecipe2("dark_pickaxe",
+{Ingredient("nightmarefuel", 2), Ingredient("flint", 2)},  
 TECH.MAGIC_TWO, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/dark_pickaxe.xml",
-"dark_pickaxe.tex") 
-dark_pickaxe.sortkey = AllRecipes["armor_sanity"]["sortkey"] + 0.2
+{atlas = "images/inventoryimages/dark_pickaxe.xml"},
+{"MAGIC", "TOOLS"})
 end
 
 if GetModConfigData("growstaffrecipe") then
-local growthstaff = MakeRecipe("growthstaff", 
-{Ingredient("purplegem", 1), Ingredient("spear", 1), Ingredient("lureplantbulb", 1)}, 
-RECIPETABS.MAGIC, 
+AddRecipe2("growthstaff", 
+{Ingredient("purplegem", 1), Ingredient("spear", 1), Ingredient("lureplantbulb", 1)},  
 TECH.MAGIC_THREE, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/growthstaff.xml",
-"growthstaff.tex")
-growthstaff.sortkey = AllRecipes["telestaff"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/growthstaff.xml"},
+{"MAGIC", "TOOLS"})
 end
-
 
 
 --------------------------------------------------------------------------
 --[[ DRESS ]]
 --------------------------------------------------------------------------
-
 local pelt_hound = Ingredient("pelt_hound", 2)
 pelt_hound.atlas  = "images/inventoryimages/pelt_hound.xml"
 
 if GetModConfigData("bandanarecipe") then
-local bandrecipe = MakeRecipe("summerbandana", 
+AddRecipe2("summerbandana", 
 {Ingredient("papyrus", 2)}, 
-RECIPETABS.DRESS, 
-TECH.SCIENCE_ONE, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/summerbandana.xml",
-"summerbandana.tex")
-bandrecipe.sortkey = AllRecipes["deserthat"]["sortkey"] + 0.1
+TECH.SCIENCE_ONE,  
+{atlas = "images/inventoryimages/summerbandana.xml"},
+{"CLOTHING", "SUMMER"})
 end
 
 if GetModConfigData("gear_wingsrecipe") then
-local wingsrecipe = MakeRecipe("gear_wings",
+AddRecipe2("gear_wings",
 {Ingredient("gears", 2),Ingredient("silk", 6)},
-RECIPETABS.DRESS,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/gear_wings.xml",
-"gear_wings.tex")
-wingsrecipe.sortkey = AllRecipes["cane"]["sortkey"] + 0.1
+{atlas = "images/inventoryimages/gear_wings.xml"},
+{"CLOTHING"})
 end
 
 if GetModConfigData("hat_houndrecipe") then
-local hathoundrecipe = MakeRecipe("hat_hound",
+AddRecipe2("hat_hound",
 {pelt_hound, Ingredient("houndstooth", 6), Ingredient("monstermeat", 1)},  
-RECIPETABS.DRESS,
 TECH.SCIENCE_TWO,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/hat_hound.xml",
-"hat_hound.tex")
-hathoundrecipe.sortkey = AllRecipes["cane"]["sortkey"] + 0.2
+{atlas = "images/inventoryimages/hat_hound.xml"},
+{"CLOTHING"})
 end
 
 
 --------------------------------------------------------------------------
 --[[ ANCIENT ]]
 --------------------------------------------------------------------------
-if GetModConfigData("box_gearrecipe") then
-MakeRecipe("box_gear",
+if GetModConfigData("gearboxrecipe") then
+AddRecipe2("gearbox",
 {Ingredient("minotaurhorn", 1), Ingredient("gears", 12), Ingredient("yellowgem", 2)},  
-RECIPETABS.ANCIENT,
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/box_gear.xml",
-"box_gear.tex")
+{nounlock = true, atlas = "images/inventoryimages/gearbox.xml"},
+{"CRAFTING_STATION"})
 end
 
-if GetModConfigData("gears_hat_gogglesrecipe") then
-MakeRecipe("gears_hat_goggles",
-{box_gear, Ingredient("thulecite", 5), Ingredient("yellowgem", 1)},  
-RECIPETABS.ANCIENT, 
+if GetModConfigData("geargogglesrecipe") then
+AddRecipe2("geargoggles",
+{gearbox, Ingredient("thulecite", 5), Ingredient("yellowgem", 1)},   
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/gears_hat_goggles.xml",
-"gears_hat_goggles.tex")
+{nounlock = true, atlas = "images/inventoryimages/geargoggles.xml"},
+{"CRAFTING_STATION"})
 end
 
-if GetModConfigData("gears_staffrecipe") then
-MakeRecipe("gears_staff",
-{box_gear, Ingredient("thulecite", 10), Ingredient("yellowgem", 1)}, 
-RECIPETABS.ANCIENT,
+if GetModConfigData("gearlancerecipe") then
+AddRecipe2("gearlance",
+{gearbox, Ingredient("thulecite", 8), Ingredient("purplegem", 2)}, 
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/gears_staff.xml",
-"gears_staff.tex")
+{nounlock = true, atlas = "images/inventoryimages/gearlance.xml"},
+{"CRAFTING_STATION"})
 end
 
-if GetModConfigData("gears_macerecipe") then
-MakeRecipe("gears_mace",
-{box_gear, Ingredient("thulecite", 8), Ingredient("purplegem", 2)}, 
-RECIPETABS.ANCIENT,
+if GetModConfigData("gearstaffrecipe") then
+AddRecipe2("gearstaff",
+{gearbox, Ingredient("thulecite", 10), Ingredient("yellowgem", 1)}, 
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/gears_mace.xml",
-"gears_mace.tex")
+{nounlock = true, atlas = "images/inventoryimages/gearstaff.xml"},
+{"CRAFTING_STATION"})
 end
 
 if GetModConfigData("stampederecipe") then
-MakeRecipe("stampede", 
+AddRecipe2("stampede", 
 {Ingredient("minotaurhorn", 1), Ingredient("bearger_fur", 1), Ingredient("purplegem", 3)}, 
-RECIPETABS.ANCIENT,
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/stampede.xml",
-"stampede.tex")
+{nounlock = true, atlas = "images/inventoryimages/stampede.xml"},
+{"CRAFTING_STATION"})
 end
 
 if GetModConfigData("hornucopiarecipe") then
-MakeRecipe("hornucopia",
+AddRecipe2("hornucopia",
 {Ingredient("minotaurhorn", 1),Ingredient("horn", 1),Ingredient("bonestew", 3)},  
-RECIPETABS.ANCIENT,
 TECH.ANCIENT_FOUR,
-nil,
-nil,
-true,
-nil,
-nil,
-"images/inventoryimages/hornucopia.xml",
-"hornucopia.tex")
+{nounlock = true, atlas = "images/inventoryimages/hornucopia.xml"},
+{"CRAFTING_STATION"})
 end
 
 
 --------------------------------------------------------------------------
 --[[ SLOT MACHINE ]]
 --------------------------------------------------------------------------
-AddRecipe("spartahelmut", 
+AddRecipe2("spartahelmut", 
 {Ingredient("goldnugget", 4), Ingredient("cutstone", 1), Ingredient("feather_robin", 4) }, 
-nil, 
 TECH.LOST, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/spartahelmut.xml",
-"spartahelmut.tex") 
+{atlas = "images/inventoryimages/spartahelmut.xml"},
+{"ARMOUR"})
 
-AddRecipe("baronsuit", 
-{Ingredient("houndstooth", 2), Ingredient("silk", 12), Ingredient("goldnugget", 6)}, 
-nil, 
+AddRecipe2("ewecushat", 
+{Ingredient("steelwool", 2), Ingredient("feather_crow", 2)},  
 TECH.LOST, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/baronsuit.xml",
-"baronsuit.tex") 
+{atlas = "images/inventoryimages/ewecushat.xml"},
+{"ARMOUR"})
 
-AddRecipe("hollowhat", 
+AddRecipe2("baronsuit", 
+{Ingredient("houndstooth", 2), Ingredient("silk", 12), Ingredient("goldnugget", 6)},  
+TECH.LOST, 
+{atlas = "images/inventoryimages/baronsuit.xml"},
+{"CLOTHING"})
+
+AddRecipe2("hollowhat", 
 {Ingredient("nightmarefuel", 1), Ingredient("boneshard", 1), Ingredient("houndstooth", 1)}, 
-nil, 
 TECH.LOST, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/hollowhat.xml",
-"hollowhat.tex") 
+{atlas = "images/inventoryimages/hollowhat.xml"},
+{"CLOTHING", "MAGIC"})
 
-AddRecipe("magicdolls",
+AddRecipe2("magicdolls",
 {Ingredient("beardhair", 2), Ingredient("nightmarefuel", 2), Ingredient("silk", 2)},
-nil,
 TECH.LOST,
-nil,
-nil,
-nil,
-nil,
-nil,
-"images/inventoryimages/magicdolls.xml",
-"magicdolls.tex")
+{atlas = "images/inventoryimages/magicdolls.xml"},
+{"REFINE"})
 
-AddRecipe("ewecushat", 
-{Ingredient("steelwool", 2), Ingredient("feather_crow", 2)}, 
-nil, 
+AddRecipe2("beargerkit", 
+{Ingredient("gunpowder", 5), Ingredient("red_cap", 10)}, 
 TECH.LOST, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/ewecushat.xml",
-"ewecushat.tex")
+{atlas = "images/inventoryimages/beargerkit.xml"},
+{"REFINE"})
 
-AddRecipe("beargerkit", 
-{Ingredient("gunpowder", 5), Ingredient("red_cap", 5)}, 
-nil, 
-TECH.LOST, 
-nil, 
-nil, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/beargerkit.xml",
-"beargerkit.tex")
 
 --------------------------------------------------------------------------
 --[[ SLOT MACHINE STRUCTURES ]]
 --------------------------------------------------------------------------
 if GetModConfigData("fuelsupplierrecipe") then
-MakeRecipe("fuelsupplier",
+AddRecipe2("fuelsupplier",
 {Ingredient("dragon_scales", 1),Ingredient("redgem", 1)},
-RECIPETABS.REFINE,
 TECH.LOST,
-"fuelsupplier_placer",
-1,
-nil,
-nil,
-nil,
-"images/inventoryimages/fuelsupplier.xml",
-"fuelsupplier.tex")
+{placer = "fuelsupplier_placer", min_spacing = 1, atlas = "images/inventoryimages/fuelsupplier.xml"},
+{"STRUCTURE", "DECOR"})
 end
 
 if GetModConfigData("lamppostrecipe") then
-MakeRecipe("kynoox_lamp_post",
+AddRecipe2("lamp_post",
 {Ingredient("lantern",1), Ingredient("cutstone", 2)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_lamp_post_placer",
-1, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/lamp_post.xml", 
-"lamp_post.tex")
+{placer = "lamp_post_placer", min_spacing = 1, image = "lamp_post.tex", atlas = "images/inventoryimages/lamp_post.xml"},
+{"LIGHT", "STRUCTURE", "DECOR"})
 end
 
 if GetModConfigData("lampshortrecipe") then
-MakeRecipe("kynoox_lamp_short",
+AddRecipe2("lamp_short",
 {Ingredient("lantern",1), Ingredient("cutstone", 2)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_lamp_short_placer",
-1, 
-nil, 
-nil, 
-nil, 
-"images/inventoryimages/lamp_short.xml", 
-"lamp_short.tex")
+{placer = "lamp_short_placer", min_spacing = 1, image = "lamp_short.tex", atlas = "images/inventoryimages/lamp_short.xml"},
+{"LIGHT", "STRUCTURE", "DECOR"})
 end 
 
 if GetModConfigData("postrecipe") then
-MakeRecipe("kynoox_post",
+AddRecipe2("post",
 {Ingredient("cutstone",1)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_post_placer",
-1, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/bollard.xml", 
-"bollard.tex")
+{placer = "post_placer_placer", min_spacing = 1, image = "bollard.tex", atlas = "images/inventoryimages/bollard.xml"},
+{"DECOR"})
 end		
 	
 if GetModConfigData("parkspikerecipe") then
-MakeRecipe("kynoox_parkspike",
+AddRecipe2("parkspike",
 {Ingredient("cutstone",2)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_parkspike_placer",
-1, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/fence.xml", 
-"fence.tex")
+{placer = "parkspike_placer", min_spacing = 1, image = "fence.tex", atlas = "images/inventoryimages/fence.xml"},
+{"DECOR"})
 end
 
 if GetModConfigData("parkspikeshortrecipe") then
-MakeRecipe("kynoox_parkspike_short",
+AddRecipe2("parkspike_short",
 {Ingredient("cutstone",2)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_parkspike_short_placer",
-1, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/fence2.xml", 
-"fence2.tex")
+{placer = "parkspike_short_placer", min_spacing = 1, image = "fence.tex", atlas = "images/inventoryimages/fence.xml"},
+{"DECOR"})
 end
 		
 if GetModConfigData("ivythingrecipe") then
-MakeRecipe("kynoox_ivything",
+AddRecipe2("ivything",
 {Ingredient("succulent_picked",1), Ingredient("cutstone",1)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_ivything_placer",
-2, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/ivy.xml", 
-"ivy.tex")
+{placer = "ivything_placer", min_spacing = 2, image = "ivy.tex", atlas = "images/inventoryimages/ivy.xml"},
+{"DECOR"})
 end			
 
 if GetModConfigData("urnrecipe") then
-MakeRecipe("kynoox_urn",
+AddRecipe2("urn",
 {Ingredient("cutstone",2)},
-RECIPETABS.REFINE,
 TECH.LOST, 
-"kynoox_urn_placer",
-2, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/urn.xml", 
-"urn.tex")
+{placer = "urn_placer", min_spacing = 2, atlas = "images/inventoryimages/urn.xml"},
+{"DECOR"})
 end
 
+if GetModConfigData("statue_charlierecipe") then
+AddRecipe2("statue_charlie",
+{Ingredient("cutstone",8), Ingredient("marble",10), Ingredient("petals",5)}, 
+TECH.LOST, 
+{placer = "statue_charlie_placer", min_spacing = 3, atlas = "images/inventoryimages/statue_charlie.xml"},
+{"DECOR"}) 
+end	
 
 if GetModConfigData("miniyurtrecipe") then
-MakeRecipe("mini_yurt",
+AddRecipe2("mini_yurt",
 {Ingredient("silk",12), Ingredient("log",8), Ingredient("rope",6)}, 
-RECIPETABS.REFINE,
 TECH.LOST, 
-"mini_yurt_placer",
-2,
-nil,
-nil,
-nil,
-"images/inventoryimages/mini_yurt.xml", 
-"mini_yurt.tex")
+{placer = "mini_yurt_placer", min_spacing = 2, atlas = "images/inventoryimages/mini_yurt.xml"},
+{"DECOR"}) 
 end
 
 if GetModConfigData("minitipirecipe") then
-MakeRecipe("mini_tipi",
+AddRecipe2("mini_tipi",
 {Ingredient("silk",8), Ingredient("log",10), Ingredient("rope",4)}, 
-RECIPETABS.REFINE,
 TECH.LOST, 
-"mini_tipi_placer",
-2, -- min_spacing
-nil, -- nounlock
-nil, -- numtogive
-nil, -- builder_tag
-"images/inventoryimages/mini_tipi.xml", 
-"mini_tipi.tex")
+{placer = "mini_tipi_placer", min_spacing = 2, atlas = "images/inventoryimages/mini_tipi.xml"},
+{"DECOR"}) 
 end	
 
 		

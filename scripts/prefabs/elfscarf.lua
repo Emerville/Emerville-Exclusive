@@ -65,6 +65,8 @@ local function SpawnFood(inst)
 end
 
 local function OnEquip(inst, owner)
+	--inst.SoundEmitter:PlaySound("dontstarve/creatures/together/deer/bell")
+    --inst.SoundEmitter:PlaySound("dontstarve/creatures/together/deer/chain")
     owner.AnimState:OverrideSymbol("swap_body", "torso_elfscarf", "torso_elfscarf")
     
 	if inst.components.fueled ~= nil then
@@ -88,6 +90,7 @@ local function init()
 
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
     MakeInventoryPhysics(inst)

@@ -1,5 +1,5 @@
 name = "Emerville Exclusive"
-version = "1.18.11" --Added three more decimals to specify the version number of the fork.
+version = "1.20.01" --Added three more decimals to specify the version number of the fork.
 --version_compatible = "2.02" --didn't seem to work when I tried with local dedicated...
 description = "This mod is so great, we made another one!"
 author = "Luis95R, KoreanWaffles"
@@ -387,7 +387,7 @@ configuration_options =
     },]]
 --------  
     { 
-    name = "box_gearrecipe",
+    name = "gearboxrecipe",
     label = "Gear Box",
     options =
     {
@@ -398,7 +398,7 @@ configuration_options =
     },
 -------- 
     { 
-    name = "gears_hat_gogglesrecipe",
+    name = "geargogglesrecipe",
     label = "Gear Goggles",
     options =
     {
@@ -409,8 +409,8 @@ configuration_options =
     }, 
 -------- 
     { 
-    name = "gears_staffrecipe",
-    label = "Vacuum Bulb",
+    name = "gearlancerecipe",
+    label = "Randomatrix",
     options =
     {
      {description = "Craftable", data = true},
@@ -420,8 +420,8 @@ configuration_options =
     },
 -------- 
     { 
-    name = "gears_macerecipe",
-    label = "Randomatrix",
+    name = "gearstaffrecipe",
+    label = "Vacuum Bulb",
     options =
     {
      {description = "Craftable", data = true},
@@ -545,6 +545,17 @@ configuration_options =
     { 
     name = "urnrecipe",
     label = "Urn",
+    options =
+    {
+     {description = "Craftable", data = true},
+     {description = "Disabled", data = false},
+    },
+      default = true,
+    },
+-------- 
+    { 
+    name = "statue_charlierecipe",
+    label = "Charlie Statue",
     options =
     {
      {description = "Craftable", data = true},

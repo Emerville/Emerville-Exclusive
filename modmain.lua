@@ -55,6 +55,13 @@ PrefabFiles = {
 	"gears_hat_goggles",
 	"gears_staff",
 	"gears_mace",
+	
+	-- NEW ANCIENT PREFABS:
+	"gearbox",
+	"geargoggles",
+	"gearstaff",
+	"gearlance",
+	
 	"stampede",	
 	"hornucopia",
 	
@@ -72,7 +79,7 @@ PrefabFiles = {
 	"notwilson",
 	"nottrump",
 	"magicdolls",
-	"luisdoll",
+	"dollluis",
 	"smasherdoll",
     "magicbag",
     "magicbag_classic",
@@ -90,6 +97,7 @@ PrefabFiles = {
 	"trinket_pigbank",
 	"efc",
 	"hungerregenbuffefc",
+	"hungerregenbuffpuffspizza",
 	"goldenpiggy",
 	"glasspiggy",
 	"goldenegg",
@@ -161,8 +169,12 @@ PrefabFiles = {
 	"christmaswendy",
 	"christmaswalter",
 	"christmaswx78",
-	"pizzawathgrithr",
 	"tokenappreciation",
+	
+	"pizzawathgrithr",
+	"pizzawurt",
+	"puffspizza",
+	"puffspizza_edible",
 	
 	-- ADMIN:
 	"hmsword", --Admin Sword	
@@ -220,6 +232,8 @@ PrefabFiles = {
 	"infernalboss",
 	"themask",
 	"themasktornado",
+    "guitar_miguel",
+    "fx_legion", 
 
     -- ALL I WANT FOR CHRISTMAS IS YOU!
 	"casinochristmastree",
@@ -229,7 +243,7 @@ PrefabFiles = {
 	"rosekey",
 
     --Casino Structures
-    "des_statue_charlie",
+    "statue_charlie",
 	--"des_river",
 	--"des_raindrop",	
 	--"des_river_circle",
@@ -237,18 +251,18 @@ PrefabFiles = {
 	--"des_river_sinkhole",
 	"palmtree",
 	"sandcastle",	
-	
-	"kynoox_parkspike.lua",
-	"kynoox_parkspike_short.lua",
-	"kynoox_lamp_post.lua",
-	"kynoox_lamp_short.lua",	
-	"kynoox_post.lua",
-	"kynoox_ivything.lua",
-	"kynoox_urn.lua",	
+	"parkspike",
+	"parkspike_short",
+	"lamp_post",
+	"lamp_short",	
+	"post",
+	"ivything",
+	"urn",	
+	"advanced_dwellings",
     "casinomarblepillar",
     "casinostatueharp",
-	"advanced_dwellings",
 	"casino_chandelier",
+    "casinocrate",
 
     -- NPCS:
     "tradewebber", --OLD
@@ -310,6 +324,7 @@ PrefabFiles = {
 	"armor_beefalo",
 	"gear_hat",
 	"mermhats",
+	"bagofcoal",
     
     -- Borrowed assets:
     "quagmire_wormwood_fx", -- From Re-Gorge-itated
@@ -327,6 +342,10 @@ Assets = {
 	Asset("SOUND", "sound/musicbox.fsb"),
 	Asset("SOUNDPACKAGE", "sound/woodlegs.fev"),
 	Asset("SOUND", "sound/woodlegs.fsb"),
+    Asset("SOUNDPACKAGE", "sound/legion.fev"),   --吉他的声音
+    Asset("SOUND", "sound/legion.fsb"),
+
+    Asset("ANIM", "anim/playguitar.zip"),   --弹吉他动画模板
 
     -- LIGHT:
 	Asset("ATLAS", "images/inventoryimages/lightnecklace.xml"),
@@ -377,8 +396,8 @@ Assets = {
 	Asset("IMAGE", "images/inventoryimages/featherbrella.tex"),		
 
 	-- REFINE:
-	Asset("ATLAS", "images/inventoryimages/tp_gift_red.xml"),
-    Asset("IMAGE", "images/inventoryimages/tp_gift_red.tex"),
+	Asset("ATLAS", "images/inventoryimages/gift_red.xml"),
+    Asset("IMAGE", "images/inventoryimages/gift_red.tex"),
 	Asset("ATLAS", "images/inventoryimages/chocolatebar.xml"),
     Asset("IMAGE", "images/inventoryimages/chocolatebar.tex"),	
 
@@ -400,13 +419,23 @@ Assets = {
 
 	-- ANCIENT:
 	Asset("ATLAS", "images/inventoryimages/box_gear.xml"),
-	Asset("IMAGE", "images/inventoryimages/box_gear.tex"),		
+	Asset("IMAGE", "images/inventoryimages/box_gear.tex"),	
 	Asset("ATLAS", "images/inventoryimages/gears_hat_goggles.xml"),
 	Asset("IMAGE", "images/inventoryimages/gears_hat_goggles.tex"),
 	Asset("ATLAS", "images/inventoryimages/gears_mace.xml"),
     Asset("IMAGE", "images/inventoryimages/gears_mace.tex"),	
 	Asset("ATLAS", "images/inventoryimages/gears_staff.xml"),
-	Asset("IMAGE", "images/inventoryimages/gears_staff.tex"),	
+	Asset("IMAGE", "images/inventoryimages/gears_staff.tex"),
+	
+	Asset("ATLAS", "images/inventoryimages/gearbox.xml"),
+	Asset("IMAGE", "images/inventoryimages/gearbox.tex"),
+	Asset("ATLAS", "images/inventoryimages/geargoggles.xml"),
+	Asset("IMAGE", "images/inventoryimages/geargoggles.tex"),
+	Asset("ATLAS", "images/inventoryimages/gearlance.xml"),
+    Asset("IMAGE", "images/inventoryimages/gearlance.tex"),	
+	Asset("ATLAS", "images/inventoryimages/gearstaff.xml"),
+	Asset("IMAGE", "images/inventoryimages/gearstaff.tex"),
+	
     Asset("ATLAS", "images/inventoryimages/stampede.xml"),
 	Asset("IMAGE", "images/inventoryimages/stampede.tex"),
 	Asset("ATLAS", "images/inventoryimages/hornucopia.xml"),
@@ -473,6 +502,8 @@ Assets = {
 	Asset("ATLAS", "images/inventoryimages/ivy.xml"),
 	Asset("IMAGE", "images/inventoryimages/urn.tex"),
 	Asset("ATLAS", "images/inventoryimages/urn.xml"),
+    Asset("ATLAS", "images/inventoryimages/statue_charlie.xml"),
+    Asset("IMAGE", "images/inventoryimages/statue_charlie.tex"),
     Asset("IMAGE", "images/inventoryimages/mini_yurt.tex"),
 	Asset("ATLAS", "images/inventoryimages/mini_yurt.xml"),
 	Asset("IMAGE", "images/inventoryimages/mini_tipi.tex"),
@@ -675,10 +706,12 @@ local ActionHandler = GLOBAL.ActionHandler
 
 --much cleaner, isn't it? -M
 modimport("strings.lua")
+modimport("scripts/apublicsupporter.lua")
 modimport("recipes.lua")
 modimport("postinits.lua")
 modimport("scripts/cookpotfix.lua")
 modimport("scripts/customcontainers.lua")
+
 
 --If I had one gold coin for every day Luis wasn't iconic, I'd be broke and living in the Emerslums with the rest of the Emer-rats ツ
 --modimport("koreanwaffles.lua") --ALL moved to Modmain. --Luis
@@ -798,6 +831,13 @@ AddPrefabPostInit("woodie",
 	end
     inst.components.tackler:AddWorkAction(GLOBAL.ACTIONS.HAMMER, 0)
 	end)
+	
+AddPrefabPostInit("stafflight", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+    inst.components.propagator.spreading = false
+end)
 
 --KoreanIcon doing his thing.
 AddPrefabPostInit("firestaff", function(inst)
@@ -837,7 +877,128 @@ AddPrefabPostInit("greenstaff", function(inst)
 
 	inst.components.spellcaster.spell = DestroyStructure
 end)
+
+AddPrefabPostInit("firepen", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+    
+	local _onattack_pen = inst.components.weapon.onattack
+
+	local function OnAttack(inst, attacker, target)
+		if target:HasTag("structure") then
+			return
+		end
+		_onattack_pen(inst, attacker, target)
+	end
+
+	inst.components.weapon.onattack = OnAttack
+end)
+
+AddPrefabPostInit("cannonball_rock", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
 	
+	local _OnUpdateProjectile = inst.components.complexprojectile.onupdatefn
+	
+	local CANNONBALL_RADIUS = TUNING.CANNONBALL_RADIUS
+	local CANNONBALL_DAMAGE = TUNING.CANNONBALL_DAMAGE
+	local CANNONBALL_SPLASH_RADIUS = TUNING.CANNONBALL_SPLASH_RADIUS
+	local CANNONBALL_SPLASH_DAMAGE_PERCENT = TUNING.CANNONBALL_SPLASH_DAMAGE_PERCENT
+	local CANNONBALL_PASS_THROUGH_TIME_BUFFER = TUNING.CANNONBALL_PASS_THROUGH_TIME_BUFFER 	
+    local MUST_ONE_OF_TAGS = { "_combat", "_health", "blocker" }	
+    local AREAATTACK_EXCLUDETAGS = { "INLIMBO", "notarget", "noattack", "flight", "invisible", "playerghost", "structure" }
+	
+	local function onupdateprojectile(inst)
+	-- Look to hit targets while the cannonball is flying through the air
+	local x, y, z = inst.Transform:GetWorldPosition()
+    local targets = TheSim:FindEntities(x, 0, z, CANNONBALL_RADIUS, nil, nil, MUST_ONE_OF_TAGS) -- Set y to zero to look for objects on the ground
+	for i, target in ipairs(targets) do
+		
+        -- Ignore hitting bumpers while flying through the air
+        if target ~= nil and target ~= inst.components.complexprojectile.attacker and not target:HasTag("boatbumper") then
+            -- Do damage to entities with health
+            if target.components.combat and GLOBAL.GetTime() - target.components.combat.lastwasattackedtime > CANNONBALL_PASS_THROUGH_TIME_BUFFER then
+                target.components.combat:GetAttacked(inst, CANNONBALL_DAMAGE, nil)
+            end
+			
+            -- Remove and do splash damage if it hits a wall
+            if target:HasTag("wall") and target.components.health then
+                if not target.components.health:IsDead() then
+                    inst.components.combat:DoAreaAttack(inst, CANNONBALL_SPLASH_RADIUS, nil, nil, nil, AREAATTACK_EXCLUDETAGS)
+                    SpawnPrefab("waterballoon_splash").Transform:SetPosition(inst.Transform:GetWorldPosition())
+                    inst:Remove()
+                    --return
+                end
+			end
+		end
+		_OnUpdateProjectile(inst)		
+	end
+	inst.components.complexprojectile.onupdatefn = onupdateprojectile
+	end
+end)
+
+--[[AddStategraphPostInit("tornado", function(inst)
+    if not GLOBAL.TheWorld.ismastersim then
+        return inst
+    end
+	
+	local _onenter
+
+	local TARGET_TAGS = { "_combat" }
+	for k, v in pairs(WORK_ACTIONS) do
+		table.insert(TARGET_TAGS, k.."_workable")
+	end
+	local TARGET_IGNORE_TAGS = { "INLIMBO" }
+
+	local function destroystuff(inst)
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x, y, z, 3, nil, TARGET_IGNORE_TAGS, TARGET_TAGS)
+		for i, v in ipairs(ents) do
+			if v.components.workable ~= nil and
+                v.components.workable:CanBeWorked() and
+                v.components.workable:GetWorkAction() and
+                WORK_ACTIONS[v.components.workable:GetWorkAction().id] then
+				return
+            end
+			----
+        end
+    end
+	-----------------
+end)
+
+
+
+local function SGWilsonPostInit(sg)
+	local _onenter = sg.states["run_start"].onenter
+	sg.states["run_start"].onenter = function(inst)
+		
+		_onenter(inst)
+		if not (inst.sg.statemem.riding or inst.sg.statemem.heavy)
+		  and SlowEnoughSandWalk(inst) then
+			inst.sg.statemem.sandstorm = true
+			inst.AnimState:PushAnimation("sand_walk_pre")
+		end
+	end
+
+	local _onenter2 = sg.states["run"].onenter
+	sg.states["run"].onenter = function(inst)
+		if not (inst.components.rider:IsRiding() or inst.components.inventory:IsHeavyLifting())
+		  and SlowEnoughSandWalk(inst) then
+			inst.components.locomotor:RunForward()
+			if not inst.AnimState:IsCurrentAnimation("sand_walk") then
+				inst.AnimState:PlayAnimation("sand_walk", true)
+			end
+			inst.sg:SetTimeout(inst.AnimState:GetCurrentAnimationLength())
+		else
+			_onenter2(inst)
+		end
+	end
+end
+
+AddStategraphPostInit("wilson", SGWilsonPostInit)]]
+
 -------------------------------------------
 -- Remove Scarecrow Obstacle Physics 
 -------------------------------------------

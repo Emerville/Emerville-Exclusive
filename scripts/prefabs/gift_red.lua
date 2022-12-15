@@ -4,8 +4,8 @@ local assets =
 {
 	Asset("ANIM", "anim/tp_gift_red.zip"),
 
-	Asset("ATLAS", "images/inventoryimages/tp_gift_red.xml"),
-	Asset("IMAGE", "images/inventoryimages/tp_gift_red.tex"),
+	Asset("ATLAS", "images/inventoryimages/gift_red.xml"),
+	Asset("IMAGE", "images/inventoryimages/gift_red.tex"),
 }
 
 local prefabs =
@@ -134,8 +134,8 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.imagename = "tp_gift_red"
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/tp_gift_red.xml"
+	inst.components.inventoryitem.imagename = "gift_red"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/gift_red.xml"
 	inst.components.inventoryitem.canbepickedup = false
 	
 	MakeLoot(inst)

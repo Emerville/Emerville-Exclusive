@@ -79,7 +79,7 @@ local function fn()
 	inst.components.insulator:SetInsulation(TUNING.INSULATION_LARGE)
 	
 	inst:AddComponent("fueled")
-    inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME*2) --20 Days 
+    inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME) --10 Days 
     inst.components.fueled:SetDepletedFn(ondepleted)
 		
 	MakeHauntableLaunch(inst)	

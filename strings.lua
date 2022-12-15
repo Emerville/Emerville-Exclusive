@@ -719,6 +719,65 @@ STRINGS.CHARACTERS.WOODIE.DESCRIBE.GEARS_MACE 			= "Lookin' sharp." --"Leave it 
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GEARS_MACE 			= "Stick it to em'"   --"This is not its intended purpose."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GEARS_MACE 		= "Escape is not an option!" --"I command the elements."
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.GEARS_MACE 			= "Lets hold it from the not pointy side." --"It's like a game of chance."
+
+
+
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GEARBOX = "Clockwork Box"
+STRINGS.RECIPE_DESC.GEARBOX = "A battery like box charged by magic."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GEARBOX 			= "I can only imagine what I can invent with this."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.GEARBOX 			    = "What does it go into?"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GEARBOX 			= "Is small mechanical box."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.GEARBOX 				= "Power gathered from the unknown."
+STRINGS.CHARACTERS.WX78.DESCRIBE.GEARBOX 				= "IT'S BEAUTIFUL"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GEARBOX 		= "A complicated box serving an unknown purpose."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.GEARBOX 			    = "What's the purpose of this?"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GEARBOX 			= "A cleaner, but more expensive solution to nightmare fuel."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GEARBOX 	        = "A box to aid my quest."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.GEARBOX 		        = "Can we power up our toys with this?"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GEARGOGGLES = "Gear Goggles"
+STRINGS.RECIPE_DESC.GEARGOGGLES = "Conveniently refuelable."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GEARGOGGLES         = "Fashion for the inventor."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.GEARGOGGLES 	        = "I prefer fire for lighting the dark."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GEARGOGGLES     	= "Ha! Wolfgang no longer afraid of darkness!"
+STRINGS.CHARACTERS.WENDY.DESCRIBE.GEARGOGGLES 	        = "How boring. Why bother seeing through the darkness?"
+STRINGS.CHARACTERS.WX78.DESCRIBE.GEARGOGGLES 	     	= "A TEMPORARY VISION UPGRADE"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GEARGOGGLES    = "These goggles appear to be lost technology."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.GEARGOGGLES 	        = "Fancy technological doodad."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GEARGOGGLES 	    = "These are just what I needed."     --   "I forgot about these."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GEARGOGGLES      = "The night no longer binds me."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.GEARGOGGLES       	= "These are awesome!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GEARSTAFF = "Vacuum Bulb"
+STRINGS.RECIPE_DESC.GEARSTAFF = "Absorbs nightmares."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GEARSTAFF 		    = "It runs on insanity!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.GEARSTAFF 			= "It absorbs the light around it."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GEARSTAFF 		    = "Silly stick, light bulb is weak and fragile."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.GEARSTAFF 			= "It feeds off my mind."
+STRINGS.CHARACTERS.WX78.DESCRIBE.GEARSTAFF 			    = "PROGRAMMING IS COMPROMISED"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GEARSTAFF 	    = "Wielding it drives its owner into insanity."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.GEARSTAFF			= "Now that's neat."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GEARSTAFF 		    = "I never knew how to replicate its effects."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GEARSTAFF 		= "It can pierce through the darkness."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.GEARSTAFF 			= "It's like my night light!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GEARLANCE = "Transfixion" --"Randomatrix"
+STRINGS.RECIPE_DESC.GEARLANCE = "With precise control, it can pierce the soul." --"Random elemental infliction."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GEARLANCE 			= "This will get my point across." --"A scientific breakthrough!"
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.GEARLANCE 			= "I have a burning desire to use this." --"Is no way to set this to 'fire' alone?"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.GEARLANCE 		    = "Is very painful." --"Weapon is confused."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.GEARLANCE 			= "Will this pierce through my heart?" --A broken weapon."
+STRINGS.CHARACTERS.WX78.DESCRIBE.GEARLANCE 			    = "EMITS A FAINT SOUND FROM INSIDE" --"RANDOM INTEGERS DETECTED"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.GEARLANCE 	    = "A fine, sharp, and sturdy weapon containing darkness within." --"It appears it cannot properly process the gems installed."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.GEARLANCE 			= "Lookin' sharp." --"Leave it to chance, eh?"
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.GEARLANCE 			= "Stick it to em'"   --"This is not its intended purpose."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.GEARLANCE 		= "Escape is not an option!" --"I command the elements."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.GEARLANCE 			= "Lets hold it from the not pointy side." --"It's like a game of chance."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.STAMPEDE = "Stampede"
 STRINGS.RECIPE_DESC.STAMPEDE = "Smash your enemies into pieces."
@@ -1244,6 +1303,20 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CASINOWOODLEGS     = "Oh great another adven
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CASINOWOODLEGS  = "What treasure do you hold?"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.CASINOWOODLEGS      = "Arggg matey! Hehe."
 ------------------------------------------------------------------------------------------
+STRINGS.NAMES.CASINOCRATE = "Wooden Crate"
+--STRINGS.RECIPE_DESC.CASINOCRATE = "No 3D glasses required!"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CASINOCRATE 				= "No key required."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.CASINOCRATE 					= "Tempting to burn."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.CASINOCRATE 				= "Wolfgang sees large box for many items."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.CASINOCRATE 					= "A box full of treasure... or junk."
+STRINGS.CHARACTERS.WX78.DESCRIBE.CASINOCRATE 					= "LARGE STORAGE UNIT"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.CASINOCRATE 			= "A big storage container for items."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.CASINOCRATE 					= "I can store my junk in here."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.CASINOCRATE 				= "A box made of junk, for junk."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.CASINOCRATE 				= "A box to keep my extra loot."
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.CASINOCRATE 	   			    = "We can store more now."
+------------------------------------------------------------------------------------------
 STRINGS.NAMES.HALLOWEENWILLOW = "Willow the Witch"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.HALLOWEENWILLOW = "Her favorite holiday is Halloween." 
@@ -1458,9 +1531,22 @@ STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BROOMSTICK       = "I still prefer a cane."
 STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.BROOMSTICK    = "Does it belong to a witch or wizard?"
 STRINGS.CHARACTERS.WEBBER.DESCRIBE.BROOMSTICK        = "Mother used to clean the house with something like this."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.ACTIONS_LEGION = {
+    PLAYGUITAR = "Play", --弹琴动作的名字
+}
+
+
+----------
 STRINGS.NAMES.THEMASK = "The Mask"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.THEMASK       = "This mask looks straight out of a 90s movie."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.GUITAR_MIGUEL = "Miguel's guitar"   
+STRINGS.RECIPE_DESC.GUITAR_MIGUEL = "Become a legendary guitarist."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.GUITAR_MIGUEL = "I'll cross life and death to make you remember me!"
+STRINGS.CHARACTERS.WX78.DESCRIBE.GUITAR_MIGUEL = "IT IS NOT MY FUNCTION TO IMPRESS OTHERS."
+
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.ELFHAT = "Elf Hat"
 STRINGS.RECIPE_DESC.ELFHAT = "Dobby was definitely a crackhead."
@@ -1768,11 +1854,11 @@ STRINGS.CHARACTERS.WEBBER.DESCRIBE.NOTTRUMP			  = "He works with the Russians."
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.CHIPOTLEBAG = "Chipotle Bag"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHIPOTLEBAG = "What in the ghetto... ?" 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.CHIPOTLEBAG = "What in the ghetto...?" 
 ------------------------------------------------------------------------------------------------------------
-STRINGS.NAMES.LUISDOLL = "Luis Doll"
+STRINGS.NAMES.DOLLLUIS = "Luis Doll"
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.LUISDOLL = "This doll smells like a burrito bowl." 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DOLLLUIS = "This doll smells like a burrito bowl." 
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SMASHERDOLL = "Smasher Doll"
 
@@ -1917,6 +2003,10 @@ STRINGS.NAMES.ELFSCARF = "Elf Scarf"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ELFSCARF         = "I think this belonged to one of Santa's Elfs."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.BAGOFCOAL = "Bag of Coal"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.BAGOFCOAL         = "I was naughty this year."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.SANTAHAT = "Santa Hat"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.SANTAHAT         = "I stole Santa's Hat, Rudolf is going to split me in half with a lazer from his red nose..."
@@ -1928,9 +2018,22 @@ STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.TRADERWOLFGANG		   = "He a very strong guy,
 STRINGS.CHARACTERS.WX78.DESCRIBE.TRADERWOLFGANG 		   = "HE COLLECTS RARE ITEMS"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.TRADERWOLFGANG    = "A collecter of unique and rare items."
 ------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PIZZAWATHGRITHR = "Wigfrid the Customer"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIZZAWATHGRITHR = "Looks like she's waiting for her Meat Lovers pizza to be delivered."
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.ROSEKEY = "Rose Key"
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ROSEKEY = "It has the letter 'C' etched on it - wonder who it belongs to..."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PUFFSPIZZA = "Puff's Pizza"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PUFFSPIZZA = "I better deliver this hot and fresh pizza!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PUFFSPIZZA_EDIBLE = "Puff's Pizza (Edible)"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PUFFSPIZZA_EDIBLE = "This pizza makes my mouth water!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.PUFFSPIZZA_EDIBLE = "This pizza makes our mouth water!"
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.BUSHHATEX = "Bush Hat EX"
 STRINGS.RECIPE_DESC.BUSHHATEX = "Perfect hiding!"
@@ -2092,106 +2195,128 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.EYEBRELLA = "I'd rather be dry but at leave 
 --[Casino Structures]
 -------------------------
 
-STRINGS.NAMES.DES_STATUE_CHARLIE = "Rose Fountain"
+STRINGS.NAMES.STATUE_CHARLIE = "Rose Fountain"
 
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Is a Nökken within?",
 DRY = "What has staunched the flöw?",
 }
 
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "She's better with statues.",
 DRY = "No everlasting youth.",
 } 
 
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Flower Lady is less scary to us, than in the dark.",
 DRY = "We liked the splashes, but they're gone.",
 }
 
-STRINGS.CHARACTERS.WENDY.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WENDY.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Where is the head?",
 DRY = "All good things come to an end.",
 }
 
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Form should follow function.",
 DRY = "What would Ayn Rand make of this?",
 }
 
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Bet I could burn the roses.",
 DRY = "No bucket brigades forming here.",
 }
 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Good for Fluid Dynamics experimentation.",
 DRY = "Some people drink from the fountain of knowledge, I just gargle.",
 }
 
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "A mighty fountain.",
 DRY = "Water is down to puny trickle.",
 }
 
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "Chopping's thirsty work.",
 DRY = "Feeling thirsty, Eh?.",
 }
 
-STRINGS.CHARACTERS.WX78.DESCRIBE.DES_STATUE_CHARLIE =
+STRINGS.CHARACTERS.WX78.DESCRIBE.STATUE_CHARLIE =
 {
 FULL = "BETTER AVOID SPLASHES",
 DRY = "NO LONGER A DANGER",
 }
 ------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.DES_RIVER_FISHINGHOLE = "Shoal"
-
-STRINGS.ACTIONS.ACTIVATE.ACCOMPLISH = "I did THAT henny!"
-
 ------------------------------------------------------------------------------------------------------------
+STRINGS.ACTIONS.ACTIVATE.ACCOMPLISH = "I did THAT henny!"
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PARKSPIKE = "Tall Iron Fence"
+STRINGS.RECIPE_DESC.PARKSPIKE = "Victorian Fences for your garden."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PARKSPIKE = "It's a fence."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.PARKSPIKE_SHORT = "Iron Fence"
+STRINGS.RECIPE_DESC.PARKSPIKE_SHORT = "Victorian Fences for your garden."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PARKSPIKE_SHORT = "It's a fence."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.LAMP_POST = "Streetlight" 
+STRINGS.RECIPE_DESC.LAMP_POST = "City lights."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAMP_POST = "Huh. Reminds me of home." 
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.LAMP_SHORT = "Streetlight" 
+STRINGS.RECIPE_DESC.LAMP_SHORT = "City lights."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.LAMP_SHORT = "Enlightening."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.POST = "Post"
+STRINGS.RECIPE_DESC.POST = "A fancy post for decoration."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.POST = "It's a post."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.IVYTHING = "Ivy"
+STRINGS.RECIPE_DESC.IVYTHING = "A little structure with ivy."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.IVYTHING = "Creeping ivy."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.URN = "Urn"
+STRINGS.RECIPE_DESC.URN = "What is inside?"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.URN = "This statue commemorates Felix - a beloved DST modder. R.I.P."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.MINI_YURT = "Miniature Yurt"
+STRINGS.RECIPE_DESC.MINI_YURT = "Like a regular yurt, but more smaller"
 
-STRINGS.NAMES.KYNOOX_PARKSPIKE = "Tall Iron Fence"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_PARKSPIKE = "It's a fence."
-STRINGS.RECIPE_DESC.KYNOOX_PARKSPIKE = "Victorian Fences for your garden."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MINI_YURT = "It's big! I can see myself sleeping in this."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MINI_YURT = "They teach a lot of things in the Girl Scouts."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MINI_YURT = "Wolfgang feels more close to home."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MINI_YURT = "Death draws closer as each hour passes."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MINI_YURT = "REBOOTING FACILITY"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MINI_YURT = "A dwelling used by Nomads."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MINI_YURT = "It's a warm home. Better than sleeping on the ground."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MINI_YURT = "I wish it had more style to it."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MINI_YURT = "A home made for a true warrior!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MINI_YURT = "We have a lot of resting space now."
+------------------------------------------------------------------------------------------------------------
+STRINGS.NAMES.MINI_TIPI	= "Miniature Tipi"
+STRINGS.RECIPE_DESC.MINI_TIPI = "A small tipi made for hot summer days."
 
-STRINGS.NAMES.KYNOOX_PARKSPIKE_SHORT = "Iron Fence"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_PARKSPIKE_SHORT = "It's a fence."
-STRINGS.RECIPE_DESC.KYNOOX_PARKSPIKE_SHORT = "Victorian Fences for your garden."
-
---[[ Post Lamp Strings ]]--
-STRINGS.NAMES.KYNOOX_LAMP_POST = "Streetlight" 
-STRINGS.NAMES.KYNOOX_LAMP_SHORT = "Streetlight" 
-
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_LAMP_POST = "Huh. Reminds me of home." 
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_LAMP_SHORT = "Enlightening."
-
-STRINGS.RECIPE_DESC.KYNOOX_LAMP_POST = "City lights."
-STRINGS.RECIPE_DESC.KYNOOX_LAMP_SHORT = "City lights."
-
---[[ Post Strings ]]--
-STRINGS.NAMES.KYNOOX_POST = "Post"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_POST = "It's a post."
-STRINGS.RECIPE_DESC.KYNOOX_POST = "A fancy post for decoration."
-
---[[ Ivy Strings ]]--
-STRINGS.NAMES.KYNOOX_IVYTHING = "Ivy"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_IVYTHING = "Creeping ivy."
-STRINGS.RECIPE_DESC.KYNOOX_IVYTHING = "A little structure with ivy."
-
-STRINGS.NAMES.KYNOOX_URN = "Urn"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.KYNOOX_URN = "This statue commemorates, Felix - a beloved DST modder. R.I.P."
-STRINGS.RECIPE_DESC.KYNOOX_URN = "What is inside?"
-
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.MINI_TIPI = "A tent with more style to it."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.MINI_TIPI = "They taught us how to make these in Girl Scouts, I think?"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MINI_TIPI = "Bigger napping place."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.MINI_TIPI = "Passes time to bring death closer."
+STRINGS.CHARACTERS.WX78.DESCRIBE.MINI_TIPI = "REBOOTING FACILITY FOR SUMMER"
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MINI_TIPI = "A dwelling used by Native Americans."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.MINI_TIPI = "That's one sturdy tent."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MINI_TIPI = "A bit rustic, but it will work."
+STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MINI_TIPI = "True warriörs sleep in these!"
+STRINGS.CHARACTERS.WEBBER.DESCRIBE.MINI_TIPI = "It's a tent?"
+------------------------------------------------------------------------------------------------------------
 STRINGS.NAMES.COFFEE = "Raw Coffee"
 STRINGS.NAMES.COFFEE_COOKED = "Coffee"
 ------------------------------------------------------------------------------------------------------------
@@ -2404,33 +2529,6 @@ STRINGS.DST_MOD_REINCARNATION =
 }
 
 --------------------------------------------------------
-STRINGS.NAMES.MINI_YURT = "Miniature Yurt"
-STRINGS.RECIPE_DESC.MINI_YURT = "Like a regular yurt, but more smaller"
-STRINGS.NAMES.MINI_TIPI	= "Miniature Tipi"
-STRINGS.RECIPE_DESC.MINI_TIPI = "A small tipi made for hot summer days."
---Yurt Examination Quotes
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.MINI_YURT = "It's big! I can see myself sleeping in this."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.MINI_YURT = "They teach a lot of things in the Girl Scouts."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MINI_YURT = "Wolfgang feels more close to home."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.MINI_YURT = "Death draws closer as each hour passes."
-STRINGS.CHARACTERS.WX78.DESCRIBE.MINI_YURT = "REBOOTING FACILITY"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MINI_YURT = "A dwelling used by Nomads."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MINI_YURT = "It's a warm home. Better than sleeping on the ground."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MINI_YURT = "I wish it had more style to it."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MINI_YURT = "A home made for a true warrior!"
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.MINI_YURT = "We have a lot of resting space now."
---Tipi Examination Quotes
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.MINI_TIPI = "A tent with more style to it."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.MINI_TIPI = "They taught us how to make these in Girl Scouts, I think?"
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.MINI_TIPI = "Bigger napping place."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.MINI_TIPI = "Passes time to bring death closer."
-STRINGS.CHARACTERS.WX78.DESCRIBE.MINI_TIPI = "REBOOTING FACILITY FOR SUMMER"
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.MINI_TIPI = "A dwelling used by Native Americans."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.MINI_TIPI = "That's one sturdy tent."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.MINI_TIPI = "A bit rustic, but it will work."
-STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.MINI_TIPI = "True warriörs sleep in these!"
-STRINGS.CHARACTERS.WEBBER.DESCRIBE.MINI_TIPI = "It's a tent?"
-
 STRINGS.NAMES.ACCOMPLISHMENT_SHRINE = "Contest Winner Trophy"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ACCOMPLISHMENT_SHRINE = "This trophy was won by Ena during the Richest Player contest."
 

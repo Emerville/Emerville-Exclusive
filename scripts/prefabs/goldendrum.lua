@@ -37,7 +37,7 @@ local function fn()
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/gflesh.xml"
 	
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = FOODTYPE.MEAT	
+    inst.components.edible.foodtype = "GOODIES"	
 	inst.components.edible.healthvalue = 1
 	inst.components.edible.sanityvalue = 25	
     inst.components.edible.hungervalue = 50	
@@ -46,9 +46,11 @@ local function fn()
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 	
 	inst:AddComponent("tradable")
-    inst.components.tradable.goldvalue = 20
+    inst.components.tradable.goldvalue = 15
 
     inst:AddComponent("bait")
+	
+	MakeHauntableLaunch(inst)
     
     return inst
 end

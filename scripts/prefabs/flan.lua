@@ -110,10 +110,10 @@ local function fn(Sim)
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 	
 	inst:AddComponent("edible")
-	inst.components.edible.foodtype = "MEAT"
-	inst.components.edible.healthvalue = 50
-	inst.components.edible.hungervalue = 50
-	inst.components.edible.sanityvalue = 50
+	inst.components.edible.foodtype = "GOODIES"
+	inst.components.edible.healthvalue = 150
+	inst.components.edible.hungervalue = 150
+	inst.components.edible.sanityvalue = 150
     inst.components.edible:SetOnEatenFn(OnEaten)
 	
 	inst:AddComponent("perishable")

@@ -52,7 +52,7 @@ end
 local function ondepleted(inst)
     inst.SoundEmitter:PlaySound("dontstarve/common/fireOut")
 
-    local replacement = SpawnPrefab("box_gear")
+    local replacement = SpawnPrefab("gearbox")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
 

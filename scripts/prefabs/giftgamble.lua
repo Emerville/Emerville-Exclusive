@@ -83,7 +83,7 @@ end
 
 ----------------------------------
 
-local function onpickup(inst, picker)
+local function onpickup(inst, picker, owner)
     if inst.owner and inst.owner.components.childspawner then 
         inst:PushEvent("pickedup")
     end
@@ -96,7 +96,7 @@ local function onpickup(inst, picker)
             item.components.inventoryitem.ondropfn(item)
         end
         if inst.lootaggro[i] and item.components.combat and picker ~= nil then
-            if not (item:HasTag("spider") and (picker:HasTag("spiderwhisperer") or picker:HasTag("monsdter"))) then
+            if not (item:HasTag("spider") and (picker:HasTag("spiderwhisperer") or picker:HasTag("monster"))) then
                 item.components.combat:SuggestTarget(picker)
             end
         end
@@ -104,8 +104,13 @@ local function onpickup(inst, picker)
 	if picker and picker.components.sanity then
         picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
 	end
+	
+    if picker.name then
+        TheNet:Announce(picker.name.." has opened a Casino Present!")
+	end
 	inst.AnimState:PlayAnimation("open")
 	inst:ListenForEvent("animover", function(inst) inst:Remove() end)
+	
     return true --This makes the inventoryitem component not actually give the tumbleweed to the player
 end
 

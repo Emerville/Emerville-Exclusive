@@ -40,7 +40,7 @@ local function ondepleted(inst)
         owner:PushEvent("torchranout", { torch = inst })
     end
 
-    local replacement = SpawnPrefab("box_gear")
+    local replacement = SpawnPrefab("gearbox")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
 

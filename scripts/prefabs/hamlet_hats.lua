@@ -410,6 +410,10 @@ end
         inst:AddComponent("waterproofer")
         inst.components.waterproofer:SetEffectiveness(TUNING.WATERPROOFNESS_SMALL)	
 		
+        inst:AddComponent("insulator")
+        inst.components.insulator:SetSummer()
+        inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)
+		
 		MakeHauntableLaunch(inst)
 		return inst
 	end

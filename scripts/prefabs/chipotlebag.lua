@@ -10,7 +10,7 @@ local assets =
 
 local doll_prefabs =
 {
-	"luisdoll",
+	"dollluis",
 	"guacamole",	
     "salsa",	
 }

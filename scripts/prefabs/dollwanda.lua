@@ -7,6 +7,13 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/wandadoll.tex"),
 }
 
+local doll_prefabs =
+{
+	"magicdolls",
+	"magicdolls",
+	"magicdolls",
+}
+
 local function OnEquip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_wandadoll", "swap_wandadoll")
     owner.AnimState:Show("ARM_carry")
@@ -60,7 +67,15 @@ local function OnHaunt(inst, haunter)
     inst.components.fueled:DoDelta(-1600)
 	return true
 end
- 
+
+local function Explode(inst)
+	for _,prefabname in ipairs(doll_prefabs) do
+		local prefab = SpawnPrefab(prefabname)
+		inst.components.lootdropper:FlingItem(prefab)
+        inst:Remove() 
+	end
+end
+
 local function fn()  
     local inst = CreateEntity()
  
@@ -91,6 +106,8 @@ local function fn()
   
     inst:AddComponent("inspectable")
 	
+    inst:AddComponent("lootdropper")
+	
     inst:AddComponent("insulator")
     inst.components.insulator:SetInsulation(TUNING.INSULATION_MED)
 	
@@ -100,7 +117,7 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4810)
-    inst.components.fueled:SetDepletedFn(inst.Remove)
+    inst.components.fueled:SetDepletedFn(Explode)
       
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "wandadoll"

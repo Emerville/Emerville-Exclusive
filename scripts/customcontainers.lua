@@ -833,7 +833,7 @@ local function convertfn(act)
     local convert99 = {"skeletalamulet", "reaperamulet", "horsehead"}
     local convert25 = {"magicdolls", "luisdoll"}--, "baronsuit", "notwilson", "spartahelmut", "thorn_crown"}
     local convert20 = {"box_gear"}
-    local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat", "alterguardianhat", "shieldofterror"}
+    local convert15 = {"deerclops_eyeball", "minotaurhorn", "hivehat", "skeletonhat", "alterguardianhat", "shieldofterror", "baronsuit"}
 
 	local inst = act.target
     local container = inst.components.container
@@ -848,7 +848,7 @@ local function convertfn(act)
                 value = 1
             else
                 value = checktable(convert99, 99, item.prefab, value)
---                value = checktable(convert25, 25, item.prefab, value)
+                value = checktable(convert25, 25, item.prefab, value)
                 value = checktable(convert20, 20, item.prefab, value)
                 value = checktable(convert15, 15, item.prefab, value)
             end
@@ -898,7 +898,7 @@ function params.traderwolfgang.itemtestfn(container, item, slot)
 	item.prefab == "skeletonhat" or	
 --	item.prefab == "notwilson" or
 --	item.prefab == "thorn_crown" or	
---	item.prefab == "baronsuit" or	
+	item.prefab == "baronsuit" or	
 --    item.prefab == "spartahelmut" or
 	item.prefab == "horsehead" or		
 	item.prefab == "skeletalamulet" or	
@@ -1452,3 +1452,49 @@ function containers.widgetsetup(container, prefab, data)
     end
 end
 
+--------------------------------------------------------------------------
+--[[ Casino Crate ]]
+--------------------------------------------------------------------------
+params.casinocrate =
+{
+    widget =
+    {
+        slotpos = {},
+        animbank = "ui_chest_5x12",
+        animbuild = "ui_chest_5x12",
+        pos = _G.Vector3(90, 220, 0),
+        side_align_tip = 160,
+    },
+    type = "chest",
+}
+
+    for y = 4, 0, -1 do
+        for x = 0, 11 do
+        table.insert(params.casinocrate.widget.slotpos, _G.Vector3(80 * x - 346 * 2 + 98, 80 * y - 100 * 2 + 42, 0))
+    end
+end
+
+function params.casinocrate.itemtestfn(container, item, slot)
+	if item.prefab == "chester_eyebone" then    
+		return false    
+	end    
+	    return true    
+end
+
+local containers = _G.require "containers"
+containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, params.casinocrate.widget.slotpos ~= nil and #params.casinocrate.widget.slotpos or 0)
+local old_widgetsetup = containers.widgetsetup
+function containers.widgetsetup(container, prefab, data)
+        local pref = prefab or container.inst.prefab
+        if pref == "casinocrate" then
+                local t = params[pref]
+                if t ~= nil then
+                        for k, v in pairs(t) do
+                                container[k] = v
+                        end
+                        container:SetNumSlots(container.widget.slotpos ~= nil and #container.widget.slotpos or 0)
+                end
+        else
+                return old_widgetsetup(container, prefab)
+    end
+end

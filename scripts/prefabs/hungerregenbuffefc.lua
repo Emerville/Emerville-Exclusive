@@ -25,7 +25,7 @@ end
 
 local function OnExtended(inst, target)
     inst.components.timer:StopTimer("regenover")
-    inst.components.timer:StartTimer("regenover", 2400) --Duration
+    inst.components.timer:StartTimer("regenover", 3840) --Duration
     inst.task:Cancel()
     inst.task = inst:DoPeriodicTask(30, OnTick, nil, target) --(TUNING.JELLYBEAN_TICK_RATE, OnTick, nil, target)
 end
@@ -56,7 +56,7 @@ local function fn()
     inst.components.debuff.keepondespawn = true
 
     inst:AddComponent("timer")
-    inst.components.timer:StartTimer("regenover", 2400) --("regenover", TUNING.JELLYBEAN_DURATION) --Duration
+    inst.components.timer:StartTimer("regenover", 3840) --("regenover", TUNING.JELLYBEAN_DURATION) --Duration
     inst:ListenForEvent("timerdone", OnTimerDone)
 
     return inst

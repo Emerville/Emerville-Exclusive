@@ -39,18 +39,20 @@ local function init()
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/goldenegg.xml"
 
 	inst:AddComponent("edible")
-    inst.components.edible.foodtype = FOODTYPE.MEAT
+    inst.components.edible.foodtype = "GOODIES"
 	inst.components.edible.healthvalue = 50
-    inst.components.edible.sanityvalue = 25
-    inst.components.edible.hungervalue = 1
+    inst.components.edible.sanityvalue = 1
+    inst.components.edible.hungervalue = 25
 	
 	inst:AddComponent("stackable")
     inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 	
 	inst:AddComponent("tradable")
-    inst.components.tradable.goldvalue = 10
+    inst.components.tradable.goldvalue = 15
 	
 	inst:AddComponent("bait")
+	
+	MakeHauntableLaunch(inst)
 	
     return inst
 end

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="1" name="glow">
+        <file id="0" name="glow/glow-0.png" width="207" height="130" pivot_x="0.500155" pivot_y="0.500231"/>
+        <file id="1" name="glow/glow-1.png" width="212" height="134" pivot_x="0.500151" pivot_y="0.492085"/>
+        <file id="2" name="glow/glow-2.png" width="218" height="137" pivot_x="0.500158" pivot_y="0.484261"/>
+        <file id="3" name="glow/glow-3.png" width="223" height="140" pivot_x="0.500133" pivot_y="0.476451"/>
+        <file id="4" name="glow/glow-4.png" width="229" height="144" pivot_x="0.50014" pivot_y="0.469322"/>
+        <file id="5" name="glow/glow-5.png" width="234" height="147" pivot_x="0.500153" pivot_y="0.462399"/>
+        <file id="6" name="glow/glow-6.png" width="240" height="151" pivot_x="0.500159" pivot_y="0.456139"/>
+        <file id="7" name="glow/glow-7.png" width="245" height="154" pivot_x="0.500155" pivot_y="0.449587"/>
+        <file id="8" name="glow/glow-8.png" width="251" height="157" pivot_x="0.500181" pivot_y="0.443571"/>
+    </folder>
+    <folder id="2" name="rock">
+        <file id="0" name="rock/rock-0.png" width="300" height="300" pivot_x="0.509546" pivot_y="0.103004"/>
+        <file id="1" name="rock/rock-1.png" width="300" height="300" pivot_x="0.509546" pivot_y="0.103004"/>
+        <file id="2" name="rock/rock-2.png" width="300" height="300" pivot_x="0.509546" pivot_y="0.103004"/>
+        <file id="3" name="rock/rock-3.png" width="300" height="300" pivot_x="0.509546" pivot_y="0.103004"/>
+        <file id="4" name="rock/rock-4.png" width="300" height="300" pivot_x="0.509546" pivot_y="0.103004"/>
+    </folder>
+    <entity id="0" name="bagofcoal">
+        <animation id="0" name="1" length="34" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="coal">
+                <key id="0" spin="0">
+                    <object folder="2" file="0" x="-0.25" y="-0.15" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="2" length="34" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="coal">
+                <key id="0" spin="0">
+                    <object folder="2" file="1" x="-0.25" y="-0.15" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="3" length="34" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="coal">
+                <key id="0" spin="0">
+                    <object folder="2" file="2" x="-0.25" y="-0.15" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="4" length="300" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="67">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="100">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="3" z_index="1"/>
+                </key>
+                <key id="4" time="134">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="4" z_index="1"/>
+                </key>
+                <key id="5" time="167">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="5" z_index="1"/>
+                </key>
+                <key id="6" time="200">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="6" z_index="1"/>
+                </key>
+                <key id="7" time="234">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="7" z_index="1"/>
+                </key>
+                <key id="8" time="267">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="8" z_index="1"/>
+                </key>
+                <key id="9" time="300">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="9" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="glow">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="1" file="1" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="2" time="67" spin="0">
+                    <object folder="1" file="2" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="3" time="100" spin="0">
+                    <object folder="1" file="3" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="4" time="134" spin="0">
+                    <object folder="1" file="4" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="5" time="167" spin="0">
+                    <object folder="1" file="5" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="6" time="200" spin="0">
+                    <object folder="1" file="6" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="7" time="234" spin="0">
+                    <object folder="1" file="7" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="8" time="267" spin="0">
+                    <object folder="1" file="8" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="9" time="300" spin="0">
+                    <object folder="1" file="8" x="5.9" y="145.7" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="coal">
+                <key id="0" spin="0">
+                    <object folder="2" file="3" x="-0.25" y="-0.15" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="5" length="300" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="67">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="100">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="3" z_index="1"/>
+                </key>
+                <key id="4" time="134">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="4" z_index="1"/>
+                </key>
+                <key id="5" time="167">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="5" z_index="1"/>
+                </key>
+                <key id="6" time="200">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="6" z_index="1"/>
+                </key>
+                <key id="7" time="234">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="7" z_index="1"/>
+                </key>
+                <key id="8" time="267">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="8" z_index="1"/>
+                </key>
+                <key id="9" time="300">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="9" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="glow">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="1" file="1" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="2" time="67" spin="0">
+                    <object folder="1" file="2" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="3" time="100" spin="0">
+                    <object folder="1" file="3" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="4" time="134" spin="0">
+                    <object folder="1" file="4" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="5" time="167" spin="0">
+                    <object folder="1" file="5" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="6" time="200" spin="0">
+                    <object folder="1" file="6" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="7" time="234" spin="0">
+                    <object folder="1" file="7" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="8" time="267" spin="0">
+                    <object folder="1" file="8" x="5.9" y="145.7" angle="0"/>
+                </key>
+                <key id="9" time="300" spin="0">
+                    <object folder="1" file="8" x="5.9" y="145.7" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="coal">
+                <key id="0" spin="0">
+                    <object folder="2" file="4" x="-0.25" y="-0.15" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

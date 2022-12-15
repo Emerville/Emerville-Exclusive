@@ -7,7 +7,7 @@ local assets =
 }
 
 local function onfinished(inst)
-    local replacement = SpawnPrefab("box_gear")
+    local replacement = SpawnPrefab("gearbox")
     local x, y, z = inst.Transform:GetWorldPosition()
     replacement.Transform:SetPosition(x, y, z)
 

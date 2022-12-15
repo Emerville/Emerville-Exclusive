@@ -7,6 +7,13 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/willowdoll.tex"),
 }
 
+local doll_prefabs =
+{
+	"magicdolls",
+	"magicdolls",
+	"magicdolls",
+}
+
 local function OnEquip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_willowdoll", "swap_willowdoll")
     owner.AnimState:Show("ARM_carry")
@@ -51,6 +58,14 @@ if self:CanAcceptFuelItem(item) then
         item:Remove()
         return true
     end
+end
+
+local function Explode(inst)
+	for _,prefabname in ipairs(doll_prefabs) do
+		local prefab = SpawnPrefab(prefabname)
+		inst.components.lootdropper:FlingItem(prefab)
+        inst:Remove() 
+	end
 end
  
 local function fn()  
@@ -98,7 +113,7 @@ local function fn()
 	inst.components.fueled.CanAcceptFuelItem = DstDollAcceptFuelItem
 	inst.components.fueled.TakeFuelItem = DstDollTakeFuel
     inst.components.fueled:InitializeFuelLevel(4800)
-    inst.components.fueled:SetDepletedFn(inst.Remove)
+    inst.components.fueled:SetDepletedFn(Explode)
       
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "willowdoll"
