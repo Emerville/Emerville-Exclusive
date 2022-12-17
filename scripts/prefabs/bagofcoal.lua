@@ -3,13 +3,13 @@ local assets =
     Asset("ANIM", "anim/bagofcoal.zip"),
     Asset("ATLAS", "images/inventoryimages/bagofcoal.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal.tex"),
-	Asset("ATLAS", "images/inventoryimages/bagofcoal2.xml"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal2.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal2.tex"),
-	Asset("ATLAS", "images/inventoryimages/bagofcoal3.xml"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal3.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal3.tex"),
-	Asset("ATLAS", "images/inventoryimages/bagofcoal4.xml"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal4.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal4.tex"),
-	Asset("ATLAS", "images/inventoryimages/bagofcoal5.xml"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal5.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal5.tex"),
 }
 
@@ -77,52 +77,27 @@ local function GetStatus(inst)
     end
 end
 
---[[local function UpdateImages(inst, range)
-    inst.currentTempRange = range
-
-    inst.AnimState:PlayAnimation(tostring(range), true)
-
-    local skinname = inst:GetSkinName()
-    inst.components.inventoryitem:ChangeImageName((skinname or "heat_rock")..tostring(range))
-end]]
-
-
---local names = {"1", "2", "3", "4", "5", "6"}
-
 local function UpdateImages(inst, range)
-	inst.currentTempRange = range
-	
+    print("UpdateImages")
+    inst.currentTempRange = range
+        
     inst.AnimState:PlayAnimation(tostring(range), true)
-    inst.components.inventoryitem:ChangeImageName("bagofcoal"..tostring(range))
-	
-	--[[if  inst.animname == "1" then
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoal.xml"
-		inst.components.inventoryitem:ChangeImageName("bagofcoal")
-	elseif  range == "2" then
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoaltwo.xml"
-		inst.components.inventoryitem:ChangeImageName("bagofcoaltwo")
-	elseif  range == "3" then
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoalfour.xml"
-		inst.components.inventoryitem:ChangeImageName("bagofcoalfour")
-	elseif  range == "4" then
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoalfive.xml"
-		inst.components.inventoryitem:ChangeImageName("bagofcoalfive")
-        inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-        inst._light.Light:Enable(true)
-	else
-		inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoalthree.xml"
-		inst.components.inventoryitem.ChangeImageName = ("bagofcoalthree")
-		inst.AnimState:ClearBloomEffectHandle()
-        inst._light.Light:Enable(false)
-	end]]
-	
+
+    local image_name = "bagofcoal"
+    if range > 1 then
+        image_name = image_name..tostring(range)
+    end
+
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/"..image_name..".xml"
+    inst.components.inventoryitem:ChangeImageName(image_name)
+
     if range == 5 then
         inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
         inst._light.Light:Enable(true)
     else
         inst.AnimState:ClearBloomEffectHandle()
         inst._light.Light:Enable(false)
-    end	
+    end 
 end
 
 local function AdjustLighting(inst, range, ambient)
@@ -193,17 +168,17 @@ local function OnOwnerChange(inst)
         owner = nextowner
     end
 
-	if owner:HasTag("pocketdimension_container") or owner:HasTag("buried") then
-		inst._light.entity:SetParent(inst.entity)
-		if not inst._light:IsInLimbo() then
-			inst._light:RemoveFromScene()
-		end
-	else
-		inst._light.entity:SetParent(owner.entity)
-		if inst._light:IsInLimbo() then
-			inst._light:ReturnToScene()
-		end
-	end
+    if owner:HasTag("pocketdimension_container") or owner:HasTag("buried") then
+        inst._light.entity:SetParent(inst.entity)
+        if not inst._light:IsInLimbo() then
+            inst._light:RemoveFromScene()
+        end
+    else
+        inst._light.entity:SetParent(owner.entity)
+        if inst._light:IsInLimbo() then
+            inst._light:ReturnToScene()
+        end
+    end
 
     for k, v in pairs(inst._owners) do
         if k:IsValid() then
@@ -249,9 +224,9 @@ local function fn()
     inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("inventoryitem")
-	--inst.components.inventoryitem:SetOnPutInInventoryFn(UpdateImages)
-    inst.components.inventoryitem.imagename = "bagofcoal"
-    --inst.components.inventoryitem.atlasname = "images/inventoryimages/reaperamulet.xml"
+    -- inst.components.inventoryitem:SetOnPutInInventoryFn(UpdateImages)
+    inst.components.inventoryitem.imagename = "bagofcoal3"
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/bagofcoal3.xml"
 
     inst:AddComponent("tradable")
     inst.components.tradable.rocktribute = 6
@@ -275,7 +250,6 @@ local function fn()
     inst._light = SpawnPrefab("bagofcoallight")
     inst._owners = {}
     inst._onownerchange = function() OnOwnerChange(inst) end
-    --
 
     UpdateImages(inst, 3)
     OnOwnerChange(inst)

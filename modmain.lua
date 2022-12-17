@@ -655,6 +655,19 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/mermhat.tex"),
 	Asset("ATLAS", "images/inventoryimages/mermlighthat.xml"),
     Asset("IMAGE", "images/inventoryimages/mermlighthat.tex"),
+    Asset("ATLAS", "images/inventoryimages/mermlighthat.xml"),
+    Asset("IMAGE", "images/inventoryimages/mermlighthat.tex"),
+
+    Asset("ATLAS", "images/inventoryimages/bagofcoal.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal2.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal2.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal3.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal3.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal4.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal4.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal5.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal5.tex"),
 }
 
 -----------------------------------------------------------
