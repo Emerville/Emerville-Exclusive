@@ -325,6 +325,8 @@ PrefabFiles = {
 	"gear_hat",
 	"mermhats",
 	"bagofcoal",
+	"bagofcoal_dragonegg",
+	"cannonballs",
     
     -- Borrowed assets:
     "quagmire_wormwood_fx", -- From Re-Gorge-itated
@@ -668,6 +670,17 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/bagofcoal4.tex"),
     Asset("ATLAS", "images/inventoryimages/bagofcoal5.xml"),
     Asset("IMAGE", "images/inventoryimages/bagofcoal5.tex"),
+	
+    Asset("ATLAS", "images/inventoryimages/bagofcoal_dragonegg.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal_dragonegg.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal_dragonegg2.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal_dragonegg2.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal_dragonegg3.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal_dragonegg3.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal_dragonegg4.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal_dragonegg4.tex"),
+    Asset("ATLAS", "images/inventoryimages/bagofcoal_dragonegg5.xml"),
+    Asset("IMAGE", "images/inventoryimages/bagofcoal_dragonegg5.tex"),
 }
 
 -----------------------------------------------------------
@@ -908,7 +921,7 @@ AddPrefabPostInit("firepen", function(inst)
 	inst.components.weapon.onattack = OnAttack
 end)
 
-AddPrefabPostInit("cannonball_rock", function(inst)
+--[[AddPrefabPostInit("cannonball_rock", function(inst)
     if not GLOBAL.TheWorld.ismastersim then
         return inst
     end
@@ -950,7 +963,34 @@ AddPrefabPostInit("cannonball_rock", function(inst)
 	end
 	inst.components.complexprojectile.onupdatefn = onupdateprojectile
 	end
-end)
+end)]]
+
+--[[AddPrefabPostInit("cannonballs", function(inst)
+	if GLOBAL.TheWorld.ismastersim then 
+		local function OldOnUpdateProjectile = inst.components.complexprojectile.onupdatefn
+		inst.components.complexprojectile.onupdatefn = function(inst)
+			if target.components.workable then
+				return
+            end
+			OldOnUpdateProjectile(inst)
+		end
+	end
+end)]]
+
+--[[function EvergreenPostInit(inst)
+    if GLOBAL.TheWorld.ismastersim then
+        local oldonfinish = inst.components.workable.onfinish
+        inst.components.workable.onfinish = function(inst, chopper)
+            if chopper and chopper:HasTag("shadowchopper") then
+                inst.components.lootdropper:AddChanceLoot( "livinglog", 0.08)
+            end
+            oldonfinish(inst, chopper)
+        end
+    end	  
+end
+ 
+local trees = {"evergreen", "evergreen_normal", "evergreen_tall", "evergreen_sparse", "evergreen_sparse_normal", "evergreen_sparse_tall", "deciduoustree", "deciduoustree_normal", "deciduoustree_tall"}
+for k,v in pairs(trees) do AddPrefabPostInit(v, EvergreenPostInit) end]]
 
 --[[AddStategraphPostInit("tornado", function(inst)
     if not GLOBAL.TheWorld.ismastersim then
@@ -1057,11 +1097,25 @@ AddCookerRecipe("portablecookpot",coffee)
 AddCookerRecipe("archive_cookpot", coffee)
 
 -----------------------------------------------------
--- Scythe Blink Sanity Drain - Code by KoreanWaffles
+-- Scythe Blink Sanity Drain - Code by KoreanWaffles & Smasher
 -----------------------------------------------------
 ----!!
 local Action = GLOBAL.Action
 ----!!
+
+local function TryToSoulhop(act, act_pos, consumeall)
+    return act.doer ~= nil
+    and act.doer.sg ~= nil
+    and act.doer.sg.currentstate.name == "portal_jumpin_pre"
+    and act_pos ~= nil
+    and act.doer.TryToPortalHop ~= nil
+    and act.doer:TryToPortalHop(act.distancecount, consumeall)
+end
+
+ACTIONS.BLINK.strfn = function(act)
+    return act.invobject == nil and act.doer ~= nil and act.doer:HasTag("soulstealer") and ((act.doer._freesoulhop_counter or 0) > 0 and "FREESOUL" or "SOUL") or nil
+end
+
 ACTIONS.BLINK.fn = function(act)
     local act_pos = act:GetActionPoint()
     if act.invobject ~= nil then
@@ -1074,14 +1128,8 @@ ACTIONS.BLINK.fn = function(act)
                 return false
             end
         end
-    elseif act.doer ~= nil
-        and act.doer.sg ~= nil
-        and act.doer.sg.currentstate.name == "portal_jumpin_pre"
-        and act.pos ~= nil
-        and act.doer.components.inventory ~= nil
-        and act.doer.components.inventory:Has("wortox_soul", 1) then
-        act.doer.components.inventory:ConsumeByName("wortox_soul", 1)
-        act.doer.sg:GoToState("portal_jumpin", act_pos)
+    elseif TryToSoulhop(act, act_pos) then
+        act.doer.sg:GoToState("portal_jumpin", {dest = act_pos,})  
         return true
     end
 end
@@ -1089,6 +1137,7 @@ end
 --------------------------------
 -- Sparta Helmet (Golden Helmet)
 --------------------------------
+
 AddComponentPostInit("combat", function(Combat)
 	local OldCalcDamage = Combat.CalcDamage
 	Combat.CalcDamage = function(self, target, weapon, ...)
@@ -1097,16 +1146,17 @@ AddComponentPostInit("combat", function(Combat)
 			old_dmg = self.inst.components.combat.damagemultiplier
 			self.inst.components.combat.damagemultiplier = old_dmg+0.25
 		elseif target and self.inst:HasTag("spartan") and self.inst.components.combat.damagemultiplier == nil then
-			old_dmg = 1
+			old_dmg = 1		
 			self.inst.components.combat.damagemultiplier = old_dmg+0.25
 		end
-		local ret = OldCalcDamage(self, target, weapon, ...)
+		local ret1, ret2 = OldCalcDamage(self, target, weapon, ...)
 		if old_dmg then
 			self.inst.components.combat.damagemultiplier = old_dmg
 		end
-		return ret
+		return ret1, ret2
 	end
 end)
+
 
 -------------
 -- WALL GATES
@@ -1167,10 +1217,105 @@ end
 AddComponentPostInit("highlight", HighlightPostInit)
 
 ------------
--- Piggy bank actions
+-- Ignite Bag of Coal actions
 ------------
 
-local PIGBANKGIVE = Action({ rmb=true, priority=1 })
+--[[local BAGOFCOALIGNITE = Action({ rmb=true, priority=1 })
+BAGOFCOALIGNITE.str = "Ignite"
+BAGOFCOALIGNITE.id = "BAGOFCOALIGNITE"
+BAGOFCOALIGNITE.fn = function(act)
+    local target = act.target or act.invobject
+    if target.prefab == "bagofcoal" or target.prefab == "bagofcoal_dragonegg" then
+		if GLOBAL.TheWorld.state.isautumn then
+		act.components.temperature:SetTemp(60)
+		act.components.fueled:DoDelta(-50)	
+		act.components.heater:SetThermics(true, false)
+		print("Autumn+") --Does Nothing in Autumn
+		elseif TheWorld.state.iswinter then
+		act.components.temperature:SetTemp(60)
+		act.components.fueled:DoDelta(-50)	
+		print("Winter") --Heats up Bag of Coal to Max in Winter
+		elseif TheWorld.state.isspring then
+		act.components.fueled:DoDelta(-50)	
+		print("Spring") --Does Nothing in Autumn
+		elseif TheWorld.state.issummer then
+		act.components.fueled:DoDelta(-10)	
+		print("Summer") --Cool down Bag of Coal to Max in Summer
+		end
+	end
+end
+AddAction(BAGOFCOALIGNITE)
+
+local bagofcoal_ignite_pickhandler = ActionHandler(ACTIONS.BAGOFCOALIGNITE, "doshortaction")
+
+AddStategraphActionHandler("wilson", bagofcoal_ignite_pickhandler)
+
+AddComponentAction("INVENTORY", "inventoryitem", function(inst, doer, actions)
+    if inst.prefab == "bagofcoal" or inst.prefab == "bagofcoal_dragonegg" then
+        table.insert(actions, ACTIONS.BAGOFCOALIGNITE)
+    end
+end)
+
+AddStategraphActionHandler("wilson_client", bagofcoal_ignite_pickhandler)]]
+
+
+
+
+
+
+
+------------------------
+--[[local TheWorld = GLOBAL.TheWorld
+local BAGOFCOALIGNITE = Action({priority=1 })
+BAGOFCOALIGNITE.str = "Combust"
+BAGOFCOALIGNITE.id = "BAGOFCOALIGNITE"
+BAGOFCOALIGNITE.fn = function(act)
+	local target = act.target or act.invobject
+	if target ~= nil and (target.prefab == "bagofcoal" or target.prefab == "bagofcoal_dragonegg") then
+		  print("Target Aquired") --Does Nothing in Autumn
+		if TheWorld.state.isautumn then
+			print("Autumn") --Does Nothing in Autumn
+			target.components.temperature:SetTemperature(-10)   
+			target.components.fueled:DoDelta(-50)		
+		elseif TheWorld.state.iswinter then
+			print("Winter") --Heats up Bag of Coal to Max in Winter
+			target.components.temperature:SetTemp(70)
+			target.targetcomponents.fueled:DoDelta(-50)	
+		elseif TheWorld.state.isspring then
+			print("Spring") --Does Nothing in Spring
+			target.components.temperature:SetTemp(70)
+			target.components.fueled:DoDelta(-50)	
+		elseif TheWorld.state.issummer then
+			print("Summer") --Cool down Bag of Coal to Max in Summer
+			target.components.temperature:SetTemp(-10)
+			target.components.fueled:DoDelta(-50)	
+		end
+	end
+end
+
+AddAction(BAGOFCOALIGNITE)
+
+local bagofcoalignite_pickhandler = ActionHandler(ACTIONS.BAGOFCOALIGNITE, "doshortaction")
+
+AddStategraphActionHandler("wilson", bagofcoalignite_pickhandler)
+
+AddComponentAction("INVENTORY", "inventoryitem", function(inst, doer, actions)
+    if doer.replica.inventory ~= nil and inst.prefab == "bagofcoal" or inst.prefab == "bagofcoal_dragonegg" then
+        table.insert(actions, ACTIONS.BAGOFCOALIGNITE)
+    end
+end)
+
+AddStategraphActionHandler("wilson_client", bagofcoalignite_pickhandler)]]
+
+
+
+
+
+------------
+--  actions
+------------
+
+local PIGBANKGIVE = Action({ rmb=true, priority=2 })
 PIGBANKGIVE.str = "Deposit"
 PIGBANKGIVE.id = "PIGBANKGIVE"
 PIGBANKGIVE.fn = function(act)
@@ -1185,7 +1330,7 @@ PIGBANKGIVE.fn = function(act)
 end
 AddAction(PIGBANKGIVE)
 
-local PIGBANKTAKE = Action({ rmb=true, priority=1 })
+local PIGBANKTAKE = Action({ rmb=true, priority=2 })
 PIGBANKTAKE.str = "Withdraw"
 PIGBANKTAKE.id = "PIGBANKTAKE"
 PIGBANKTAKE.fn = function(act)
@@ -1212,9 +1357,42 @@ PIGBANKTAKE.fn = function(act)
 end
 AddAction(PIGBANKTAKE)
 
+local PIGBANKTWOTAKE = Action({ rmb=true, priority=1 })
+PIGBANKTWOTAKE.str = "Combust"
+PIGBANKTWOTAKE.id = "PIGBANKTWOTAKE"
+PIGBANKTWOTAKE.fn = function(act)
+	local TheWorld = GLOBAL.TheWorld
+	local target = act.target or act.invobject
+	if target ~= nil and target.components.fueled ~= nil and not target.components.fueled:IsEmpty() and (target.prefab == "bagofcoal" or target.prefab == "bagofcoal_dragonegg") then
+	print("Target Aquired") 
+		if TheWorld.state.isautumn then
+			print("Autumn") --Cools you down in Autumn
+			target.components.temperature:SetTemperature(-0)   
+			target.components.fueled:DoDelta(-50)	
+		elseif TheWorld.state.iswinter then
+			print("Winter") --Heats up in Winter
+			target.components.temperature:SetTemperature(70)
+			target.components.fueled:DoDelta(-50)	
+		elseif TheWorld.state.isspring then
+			print("Spring") --Heats up in Spring
+			target.components.temperature:SetTemperature(70)
+			target.components.fueled:DoDelta(-50)	
+		elseif TheWorld.state.issummer then
+			print("Summer") --Cool down in Summer
+			target.components.temperature:SetTemperature(-0)
+			target.components.fueled:DoDelta(-50)	
+		end
+		target.SoundEmitter:PlaySound("dontstarve/common/fireAddFuel")
+		return true
+	end
+end
+AddAction(PIGBANKTWOTAKE)
+
+local pigbanktwo_take_pickhandler = ActionHandler(ACTIONS.PIGBANKTWOTAKE, "doshortaction")
 local pigbank_give_pickhandler = ActionHandler(ACTIONS.PIGBANKGIVE, "doshortaction")
 local pigbank_take_pickhandler = ActionHandler(ACTIONS.PIGBANKTAKE, "doshortaction")
 
+AddStategraphActionHandler("wilson", pigbanktwo_take_pickhandler)
 AddStategraphActionHandler("wilson", pigbank_give_pickhandler)
 AddStategraphActionHandler("wilson", pigbank_take_pickhandler)
 
@@ -1227,11 +1405,16 @@ end)
 AddComponentAction("INVENTORY", "inventoryitem", function(inst, doer, actions)
     if inst.prefab == "goldenpiggy" then
         table.insert(actions, ACTIONS.PIGBANKTAKE)
+	elseif inst.prefab == "bagofcoal" then
+		table.insert(actions, ACTIONS.PIGBANKTWOTAKE)
     end
 end)
 
+AddStategraphActionHandler("wilson_client", pigbanktwo_take_pickhandler)
 AddStategraphActionHandler("wilson_client", pigbank_give_pickhandler)
 AddStategraphActionHandler("wilson_client", pigbank_take_pickhandler)
+
+
 
 ----------------
 -- Attyla Stuff
